@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Recursively finds all `script.py` files and executes them within their own directory
 base_dir=$(pwd)
