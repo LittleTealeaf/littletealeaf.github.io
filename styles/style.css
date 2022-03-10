@@ -18,17 +18,19 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    margin: 0px;
 }
 
 .header {
-    width: 95%;
+    width: 75%;
+    /* width: 100%; */
     text-align: center;
     background-color: var(--color-c);
     padding: 20px;
     font-size: 30px;
     border-radius: 30px;
-
+    margin: 20px;
+    
 }
 
 .section {
@@ -36,6 +38,7 @@ body {
     flex-direction: row;
     flex-wrap:wrap;
     
+    width: 80%;
     margin: 10px;
     padding: 20px;
     background-color: var(--color-b);
