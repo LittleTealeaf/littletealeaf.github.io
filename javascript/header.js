@@ -1,0 +1,3 @@
+function navHome() {
+    window.location = '/'
+}
