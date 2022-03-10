@@ -13,3 +13,9 @@ echo "Cleaning build directory"
 rm -r ./build >> $LOG
 mkdir build/ >> $LOG
 echo "New Build Directory Created"
+
+echo "Copying Folders:"
+cat "./include.txt" | while read line; do
+    echo "Including $line"
+    cp -r "$line" "build/$line"
+done
