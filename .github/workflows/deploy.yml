@@ -19,6 +19,8 @@ jobs:
         run: sh ./build.sh
       - name: Clean Repository
         run: python3 ./python/clean_publish.py
+      - name: Remove Gitignore
+        run: rm .gitignore
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
