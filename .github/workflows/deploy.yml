@@ -17,7 +17,9 @@ jobs:
       - name: Install pipenv
         uses: dschep/install-pipenv-action@v1
       - name: Run Installations
-        run: ./build.sh
+        run: |
+        chmod +x ./build.sh
+        ./build.sh
       - name: Clean Repository
         run: python3 ./scripts/clean_publis.py
       - name: Publish to Github Pages
