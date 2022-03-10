@@ -4,7 +4,7 @@ import numpy as np
 # Cleans the repository of any unneeded files before it finishes
 
 filterList = ['template.html']
-deleteDirs = ['./python','./templates']
+deleteDirs = ['./templates']
 
 removeList = []
 
