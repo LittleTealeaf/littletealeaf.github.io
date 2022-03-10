@@ -6,11 +6,7 @@ from template_tools import *
 
 
 # Build templates into dictionary
-templates = {}
-for template in os.listdir('./templates/'):
-    if not os.path.isdir(f'./templates/{template}'):
-        templates[template.partition('.')[0]] = load_template(f'./templates/{template}')
-
+templates = load_templates()
 
 # For each directory with a template.html
 for dir in map(lambda dirinfo: dirinfo[0], filter(lambda dirinfo: 'template.html' in dirinfo[2], os.walk('.'))):
