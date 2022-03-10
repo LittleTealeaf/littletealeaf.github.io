@@ -2,8 +2,10 @@ import os
 
 from template_tools import *
 
-# The goal of this script is to create the index in each sub-directory by formatting the templates provided
 
+
+# The goal of this script is to create the index in each sub-directory by formatting the templates provided
+print('build_indexes.py')
 
 # Build templates into dictionary
 templates = load_templates()
