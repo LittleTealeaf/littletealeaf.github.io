@@ -19,7 +19,7 @@ jobs:
       - name: Run Installations
         run: chmod +x ./build.sh && ./build.sh
       - name: Clean Repository
-        run: python3 ./scripts/clean_publis.py
+        run: python3 ./scripts/clean_publish.py
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
