@@ -9,4 +9,3 @@ fi
 python3 -m pip install -r ./python/requirements.txt
 
 python3 ./python/build.py
-python3 ./python/compile.py
