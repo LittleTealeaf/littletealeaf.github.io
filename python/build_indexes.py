@@ -13,7 +13,7 @@ for dir in map(lambda dirinfo: dirinfo[0], filter(lambda dirinfo: 'template.html
     
     # Build templates
     print(f'Building {dir}')
-    template = load_template(os.path.join(dir,'template.html'))
+    template = read_file(os.path.join(dir,'template.html'))
     with open(os.path.join(dir,'index.html'),'w') as file:
         file.write(template.format(**templates))
     
