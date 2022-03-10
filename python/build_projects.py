@@ -15,12 +15,12 @@ for root,dirs,files in os.walk('./projects/'):
 
 for project in projects:
     variables = copy.copy(templates)
+    def add_vars(dict):
+        for var in dict:
+            variables[var] = dict[var]
 
-    # Copy all variables from json over
-    for var in project:
-        variables[var] = project[var]
+    add_vars(project)
 
-    
 
     os.mkdir(os.path.join('.','projects',project['name']))
 
