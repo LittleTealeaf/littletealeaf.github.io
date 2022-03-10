@@ -1,5 +1,4 @@
 import os
-import numpy as np
 
 # Cleans the repository of any unneeded files before it finishes
 
