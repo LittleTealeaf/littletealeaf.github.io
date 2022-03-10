@@ -13,3 +13,26 @@ html {
 
     background: var(--color-a);
 }
+
+.content {
+
+}
+
+.header {
+    width: 95%;
+    text-align: center;
+    background-color: var(--color-c);
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 30px;
+
+}
+
+.text {
+    text-align: left;
+    width: 90%;
+    margin: 10px;
+    padding: 20px;
+    background-color: var(--color-b);
+    border-radius: 40px;
+}
