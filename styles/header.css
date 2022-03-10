@@ -43,7 +43,7 @@ header .navigation button {
     border-radius: 20px;
 }
 
-header .navigation button:hover {
+header .navigation button:hover, header .navigation button:disabled {
     flex-grow: 8;
     background-color: var(--color-d);
     color: var(--color-text-d);

@@ -1,15 +1,16 @@
-function navHome() {
-    window.location = '/';
+var navElements = {
+    'navHome':'/',
+    'navProjects':'/projects/',
+    'navGithub':'https://github.com/LittleTealeaf',
+    'navAboutMe':'/aboutme/'
 }
 
-function navProjects() {
-    window.location = '/projects/';
-}
+const curloc = window.location['pathname']
 
-function navGithub() {
-    window.location = 'https://github.com/LittleTealeaf'
-}
-
-function navAboutMe() {
-    window.location = '/aboutme/'
+for(const [key,value] of Object.entries(navElements)) {
+    if(value != curloc) {
+        document.getElementById(key).onclick = _ => window.location = value;
+    } else {
+        document.getElementById(key).disabled = true;
+    }
 }
