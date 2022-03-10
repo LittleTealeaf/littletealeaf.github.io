@@ -1,4 +1,5 @@
 {
     "welcometitle":"Hello! Welcome to my personal site!",
-    "welcometext":"My name is Thomas Kwashnak! Welcome to my Personal Site!"
+    "textaboutme":"Hi! My name is Thomas Kwashnak! I'm just a geeky and nerdy person who's into coding and math! Want to learn more about me? Checkout the <b>About Me</b> page here!",
+    "textprojects":"Want to see what I'm doing? Check out my projects! Here you will find a (hopefully) complete list of my current projects, and an archive of projects I've previously done"
 }

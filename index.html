@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            LittleTealeaf
-        </title>
-        <link rel="stylesheet" href="/styles/style.css">
-        <link rel="stylesheet" href="/styles/header.css">
+
+<head>
+    <title>
+        LittleTealeaf
+    </title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/header.css">
 
 <header>
     <div class="title">
@@ -20,19 +21,33 @@
         <button id="navGithub">Github</button>
         <button id="navContactMe">Contact Me</button>
     </div>
-    <script src="/javascript/header.js"></script>
+    <script src="/javascript/navigation.js"></script>
 </header>
-        <link rel="stylesheet" href="/styles/home.css">
-    </head>
-    <body>
-        
-        <center class="content">
-            <div class="header">
-                Hello! Welcome to my personal site!
-            </div>
-            <p class="text">
-                My name is Thomas Kwashnak! Welcome to my Personal Site!
-            </p>
-        </center>
-    </body>
+    <link rel="stylesheet" href="/styles/home.css">
+</head>
+
+<body>
+
+    <div class="header">
+        Hello! Welcome to my personal site!
+    </div>
+
+    <div class="section">
+        <div class="text">
+            Hi! My name is Thomas Kwashnak! I'm just a geeky and nerdy person who's into coding and math! Want to learn more about me? Checkout the <b>About Me</b> page here!
+        </div>
+        <button onclick="window.location = '/aboutme/'">
+            About me
+        </button>
+    </div>
+    <div class="section">
+        <button onclick="window.location = '/projects/'">
+            Projects
+        </button>
+        <div class="text">
+            Want to see what I'm doing? Check out my projects! Here you will find a (hopefully) complete list of my current projects, and an archive of projects I've previously done
+        </div>
+    </div>
+</body>
+
 </html>
