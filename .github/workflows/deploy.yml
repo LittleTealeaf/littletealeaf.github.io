@@ -18,7 +18,7 @@ jobs:
       - name: Run Build Script
         run: sh ./build.sh
       - name: Clean Repository
-        run: python3 ./python/clean_publish.py
+        run: python3 ./python/clean_project.py
       - name: Remove Gitignore
         run: rm .gitignore
       - name: Publish to Github Pages

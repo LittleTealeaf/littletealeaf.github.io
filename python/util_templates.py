@@ -10,3 +10,10 @@ def load_templates():
         if not os.path.isdir(f'./templates/{template}'):
             templates[template.partition('.')[0]] = read_file(f'./templates/{template}')
     return templates
+
+def join_templates(*dicts):
+    values = {}
+    for dict in dicts:
+        for key in dict:
+            values[key] = dict[key];
+    return values
