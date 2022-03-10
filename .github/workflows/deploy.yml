@@ -19,7 +19,7 @@ jobs:
       - name: Run pipenv install
         run: pipenv install
       - name: Run Build Script
-        run: chmod +x ./build.sh && ./build.sh
+        run: sh ./build.sh
       - name: Clean Repository
         run: python3 ./scripts/clean_publish.py
       - name: Publish to Github Pages
