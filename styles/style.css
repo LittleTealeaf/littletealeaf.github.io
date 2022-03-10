@@ -14,8 +14,11 @@ html {
     background: var(--color-a);
 }
 
-.content {
-
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .header {
@@ -28,11 +31,52 @@ html {
 
 }
 
-.text {
-    text-align: left;
-    width: 90%;
+.section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    
     margin: 10px;
     padding: 20px;
     background-color: var(--color-b);
     border-radius: 40px;
 }
+
+.section .text {
+    flex-basis: 0;
+    flex-grow: 5;
+}
+
+.section button {
+    background-color: var(--color-a);
+    flex-basis: 1;
+    flex-grow: 2;
+}
+
+.section button:hover {
+    background-color: var(--color-d);
+    flex-grow: 2;
+    margin: 5px 0px;
+    padding: 15px 10px;
+}
+
+button {
+    background-color: transparent;
+    transition-duration: 0.25s;
+    text-align: center;
+    color: var(--color-text-b);
+    border-radius: 5px;
+    border-style: none;
+    align-self: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 10px 5px;
+    padding: 10px 5px;
+    border-radius: 20px;
+}
+
+button:hover, button:disabled {
+    background-color: var(--color-d);
+    color: var(--color-text-d);
+}
+
