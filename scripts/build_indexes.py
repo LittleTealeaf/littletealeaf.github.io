@@ -8,7 +8,8 @@ from template_tools import *
 # Build templates into dictionary
 templates = {}
 for template in os.listdir('./templates/'):
-    templates[template.partition('.')[0]] = load_template(f'./templates/{template}')
+    if not os.path.isdir(f'./templates/{template}'):
+        templates[template.partition('.')[0]] = load_template(f'./templates/{template}')
 
 
 # For each directory with a template.html
