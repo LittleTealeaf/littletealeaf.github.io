@@ -30,7 +30,7 @@ for project in projects:
     name = api['name']
 
 
-    with open('./template/template.html') as f:
+    with open('./templates/project_template.html') as f:
         create_page(api['name'],("\n".join(f.readlines())).format(
             name = name
             ))
