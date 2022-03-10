@@ -5,7 +5,7 @@ var navElements = {
     'navAboutMe':'/aboutme/'
 }
 
-const curloc = window.location['pathname']
+const curloc = window.location['pathname'].replace('index.html','')
 
 for(const [key,value] of Object.entries(navElements)) {
     if(value != curloc) {
