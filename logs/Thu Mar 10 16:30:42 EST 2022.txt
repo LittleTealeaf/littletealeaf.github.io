@@ -1,2 +1,0 @@
-Requirement already satisfied: beautifulsoup4 in /home/tealeaf/.local/lib/python3.8/site-packages (from -r ./python/requirements.txt (line 1)) (4.10.0)
-Requirement already satisfied: soupsieve>1.2 in /home/tealeaf/.local/lib/python3.8/site-packages (from beautifulsoup4->-r ./python/requirements.txt (line 1)) (2.3.1)
