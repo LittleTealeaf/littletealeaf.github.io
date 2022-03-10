@@ -1,11 +1,9 @@
 import os, copy, json
 
-from template_tools import *
+from util_templates import *
 
+# Builds indexes from the templates.html within directories
 
-
-# The goal of this script is to create the index in each sub-directory by formatting the templates provided
-print('build_indexes.py')
 
 # Build templates into dictionary
 templates = load_templates()
@@ -27,4 +25,3 @@ for dir in map(lambda dirinfo: dirinfo[0], filter(lambda dirinfo: 'template.html
     template = read_file(os.path.join(dir,'template.html'))
     with open(os.path.join(dir,'index.html'),'w') as file:
         file.write(template.format(**variables))
-    
