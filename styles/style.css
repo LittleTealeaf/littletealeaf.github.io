@@ -45,6 +45,8 @@ body {
 .section .text {
     flex-basis: 0;
     flex-grow: 5;
+    
+    margin: 5px;
 }
 
 .section button {
