@@ -9,3 +9,7 @@ function navProjects() {
 function navGithub() {
     window.location = 'https://github.com/LittleTealeaf'
 }
+
+function navAboutMe() {
+    window.location = '/aboutme/'
+}
