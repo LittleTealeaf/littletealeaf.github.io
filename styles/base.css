@@ -1,0 +1,15 @@
+html {
+    --color-a: #FFF9E0;
+    --color-b: #F1C550;
+    --color-c: #FF6600;
+    --color-d: #CE2525;
+
+    --color-text-a: black;
+    --color-text-b: black;
+    --color-text-c: white;
+    --color-text-d: white;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    background: var(--color-a);
+}
