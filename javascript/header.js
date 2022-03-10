@@ -1,7 +1,7 @@
 function navHome() {
-    window.location = '/'
+    window.location = '/';
 }
 
 function navProjects() {
-    window.location = '/projects/'
+    window.location = '/projects/';
 }
