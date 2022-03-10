@@ -22,7 +22,7 @@ body {
 }
 
 .header {
-    width: 75%;
+    width: 90%;
     /* width: 100%; */
     text-align: center;
     background-color: var(--color-c);
