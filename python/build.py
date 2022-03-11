@@ -1,6 +1,7 @@
 from multiprocessing.spawn import old_main_modules
 import os, json
 from util_resources import *
+from util_githubapi import *
 
 def write_file(path,content):
     dir = os.path.split(path)[0]
@@ -29,4 +30,3 @@ for root, dirs, files in os.walk('./source'):
         with open(os.path.join(root,'index.html')) as f:
             line = "".join(f.readlines())
             write_file(os.path.join(path,'index.html'),line.format(**templates))
-
