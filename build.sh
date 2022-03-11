@@ -11,8 +11,8 @@ mkdir build/ >> $LOG
 echo "New Build Directory Created"
 
 echo "Cleaning generated directory"
-rm -r ./resources/generated
-mkdir ./resources/generated
+rm -r ./resources/gen
+mkdir ./resources/gen
 echo "Generated directory initialized"
 
 echo "Run Python Script"
