@@ -5,6 +5,9 @@ on:
   schedule:
   - cron: '0 0 * * *'
 
+env:
+  API_GITHUB: ${{ secrets.API_GITHUB }}
+
 jobs:
   build-website:
     runs-on: ubuntu-latest
