@@ -1,2 +1,2 @@
 beautifulsoup4==4.10.0
-numpy==1.21.0
+numpy==1.22.3
