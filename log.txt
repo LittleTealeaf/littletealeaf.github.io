@@ -1,3 +1,0 @@
-
-Requirement already satisfied: beautifulsoup4 in /home/thomas/.local/lib/python3.9/site-packages (from -r ./python/requirements.txt (line 1)) (4.10.0)
-Requirement already satisfied: soupsieve>1.2 in /home/thomas/.local/lib/python3.9/site-packages (from beautifulsoup4->-r ./python/requirements.txt (line 1)) (2.3.1)
