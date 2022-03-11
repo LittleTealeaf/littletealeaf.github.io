@@ -22,8 +22,6 @@ The build scripts are the ones responsible for making this possible. They compil
 | [`styles/`](./styles/) | Cascading Style Sheets used within the project.  This directory is copied into the `build/` directory after the build phase.
 | [`templates/`](./templates/) | Contains templates for use in building the [`source/`](./source/) directory into `build/`. placeholder keys simply indicate the path within the `templates` directory to find the template that should be used there. <!-- Add note here about templates being able to use other templates maybe?-->
 
-### Build Outline
-
 ## Development Notes
 Basically, notes that write just because I need somewhere to store them..
 
