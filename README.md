@@ -25,4 +25,4 @@ The build scripts are the ones responsible for making this possible. They compil
 ## Development Notes
 Basically, notes that write just because I need somewhere to store them..
 
-https://colorhunt.co/palette/f7f6defa7e0a8f0e0e530c0c
+ - https://colorhunt.co/palette/f7f6defa7e0a8f0e0e530c0c
