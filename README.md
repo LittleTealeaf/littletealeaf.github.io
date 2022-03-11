@@ -4,6 +4,7 @@
 
 Hi! Welcome to the repository that builds and hosts my own personal website using github actions and github pages!
 
-
+## Development Notes
+Basically, notes that write just because I need somewhere to store them..
 
 https://colorhunt.co/palette/f7f6defa7e0a8f0e0e530c0c
