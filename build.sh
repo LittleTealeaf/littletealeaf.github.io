@@ -14,6 +14,9 @@ rm -r ./build >> $LOG
 mkdir build/ >> $LOG
 echo "New Build Directory Created"
 
+echo "Run Python Script"
+python3 ./python/build.py
+
 echo "Copying Folders:"
 cat "./include.txt" | while read line; do
     echo "Including $line"
