@@ -2,3 +2,4 @@ build/
 log.txt
 resources/generated/
 .vscode/
+github_token
