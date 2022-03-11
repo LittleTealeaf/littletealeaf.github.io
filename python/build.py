@@ -30,10 +30,3 @@ for root, dirs, files in os.walk('./source'):
         with open(os.path.join(root,'index.html')) as f:
             line = "".join(f.readlines())
             write_file(os.path.join(path,'index.html'),line.format(**templates))
-
-
-val = get_github_token()
-if val:
-    print("Hello")
-else:
-    print("No Hello")

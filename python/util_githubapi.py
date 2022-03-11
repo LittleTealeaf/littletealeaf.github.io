@@ -1,10 +1,9 @@
 import os
 
 
-# first find if the token exists
-def get_github_token():
-    if os.path.exists(os.path.join('.','github_token')):
-        with open(os.path.join('.','github_token')) as f:
-            return f.readline()
-    else:
-        return os.getenv('API_GITHUB')
+api_token_github = None
+if os.path.exists(os.path.join('.','github_token')):
+    with open(os.path.join('.','github_token')) as f:
+        api_token_github = f.readline()
+else:
+    api_token_github = os.getenv('API_GITHUB')
