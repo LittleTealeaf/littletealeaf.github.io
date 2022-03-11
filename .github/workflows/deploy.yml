@@ -1,4 +1,4 @@
-name: Deploy Website
+name: Build Website
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.7
-
       - name: Run Build Script
         run: sh ./build.sh
       - name: Clean Repository
