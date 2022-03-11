@@ -1,5 +1,5 @@
 build/
 log.txt
-resources/generated/
+resources/gen/
 .vscode/
 github_token
