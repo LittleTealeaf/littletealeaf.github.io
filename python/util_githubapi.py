@@ -7,4 +7,4 @@ def get_github_token():
         with open(os.path.join('.','github_token')) as f:
             return f.readline()
     else:
-        
+        return None
