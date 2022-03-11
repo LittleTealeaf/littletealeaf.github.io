@@ -1,0 +1,90 @@
+html {
+    --color-a: #FFF9E0;
+    --color-b: #F1C550;
+    --color-c: #FF6600;
+    --color-d: #CE2525;
+
+    --color-text-a: black;
+    --color-text-b: black;
+    --color-text-c: white;
+    --color-text-d: white;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    background: var(--color-a);
+}
+
+body {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+}
+
+.header {
+    width: 90%;
+    /* width: 100%; */
+    text-align: center;
+    background-color: var(--color-c);
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 30px;
+    margin: 20px;
+    
+}
+
+.section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    
+    width: 80%;
+    margin: 10px;
+    padding: 20px;
+    background-color: var(--color-b);
+    border-radius: 40px;
+}
+
+.section .text {
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    flex-basis: 0;
+    flex-grow: 5;
+    
+    margin: 5px;
+}
+
+.section button {
+    background-color: var(--color-a);
+    flex-basis: 1;
+    flex-grow: 2;
+}
+
+.section button:hover {
+    background-color: var(--color-d);
+    flex-grow: 2;
+    margin: 5px 0px;
+    padding: 15px 10px;
+}
+
+button {
+    background-color: transparent;
+    transition-duration: 0.25s;
+    text-align: center;
+    color: var(--color-text-b);
+    border-radius: 5px;
+    border-style: none;
+    align-self: center;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 10px 5px;
+    padding: 10px 5px;
+    border-radius: 20px;
+}
+
+button:hover, button:disabled {
+    background-color: var(--color-d);
+    color: var(--color-text-d);
+}
+

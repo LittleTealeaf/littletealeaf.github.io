@@ -1,11 +1,24 @@
-#!/bin/sh
+#!/bin/bash
 
-# Clean gen folder
-if [ -d './resources/generated']; then
-    rm -r ./resources/generated
-fi
+LOG="log.txt"
 
-# Run python scripts
-python3 -m pip install -r ./python/requirements.txt
 
+echo "" > $LOG
+
+echo "Installing Python Requirements"
+python3 -m pip install -r ./python/requirements.txt >> $LOG
+echo "Python Requirements Installed"
+
+echo "Cleaning build directory"
+rm -r ./build >> $LOG
+mkdir build/ >> $LOG
+echo "New Build Directory Created"
+
+echo "Run Python Script"
 python3 ./python/build.py
+
+echo "Copying Folders:"
+cat "./include.txt" | while read line; do
+    echo "Including $line"
+    cp -r "$line" "build/$line"
+done

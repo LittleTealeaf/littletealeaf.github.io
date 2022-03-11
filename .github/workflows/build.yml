@@ -10,21 +10,17 @@ jobs:
   build-website:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v3
+      - uses: actions/checkout@v2
+        name: Checkout Repository
+      - uses: actions/setup-python@v3
+        name: Set up Python 3.8
         with:
-          python-version: 3.7
+          python-version: 3.8
       - name: Run Build Script
         run: sh ./build.sh
-      - name: Clean Repository
-        run: python3 ./python/clean_project.py
-      - name: Remove Gitignore
-        run: rm .gitignore
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
         if: github.event_name == 'push'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: ./build/

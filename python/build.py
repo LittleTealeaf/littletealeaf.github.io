@@ -1,53 +1,32 @@
-import os, json, shutil, copy
-from util_templates import *
+from multiprocessing.spawn import old_main_modules
+import os, json
+from util_resources import *
 
+def write_file(path,content):
+    dir = os.path.split(path)[0]
+    if not os.path.exists(dir):
+        os.makedirs(dir)
+    with open(path,'w') as f:
+        f.write(content)
 
-templates = load_templates()
-"Templates loaded from the template directory"
+def join_templates(*templates):
+    joined = {}
+    for template in templates:
+        for value in template:
+            joined[value] = template[value]
+    return joined
 
-def projects():
+templates = {}
+for root,dirs,files in os.walk('./templates'):
+    path = root.replace('./templates','')
+    for file in files:
+        with open(os.path.join(root,file)) as f:
+            templates[os.path.join(path,file.partition('.')[0])] = "".join(f.readlines())
 
-    print("Building Projects")
+for root, dirs, files in os.walk('./source'):
+    if 'index.html' in files:
+        path = root.replace('./source','./build')
+        with open(os.path.join(root,'index.html')) as f:
+            line = "".join(f.readlines())
+            write_file(os.path.join(path,'index.html'),line.format(**templates))
 
-    project_template = read_file('./templates/projects/project.html')
-    projects = json.load(open('./resources/projects.json'))
-
-    for root,dirs,files in os.walk('./projects/'):
-        for dir in dirs:
-            shutil.rmtree(os.path.join(root,dir))
-
-
-    for project in projects:
-        print(f'Building Project: {project["name"]}')
-
-        os.mkdir(os.path.join('.','projects',project['name']))
-
-        with open(os.path.join('.','projects',project['name'],'index.html'),'w') as f:
-            f.write(project_template.format(**join_templates(templates,project)))
-
-
-
-def compile_indexes():
-
-    print("Compiling Indexes:")
-
-    # For each directory with a template.html
-    for dir in map(lambda dirinfo: dirinfo[0], filter(lambda dirinfo: 'template.html' in dirinfo[2], os.walk('.'))):
-
-        # Build templates
-        print(f'Compiling index: {dir}')
-
-        # variables = copy.copy(templates)
-
-        content = {}
-        if os.path.exists(os.path.join(dir,'content.json')):
-            with open(os.path.join(dir,'content.json')) as f:
-                content = json.load(f)
-
-        template = read_file(os.path.join(dir,'template.html'))
-        with open(os.path.join(dir,'index.html'),'w') as file:
-            file.write(template.format(**join_templates(templates,content)))
-
-
-projects()
-compile_indexes()
