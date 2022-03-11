@@ -1,11 +1,13 @@
-name: Deploy Website
+name: Build Website
 
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  publish:
+  build-website:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -14,7 +16,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.7
-
       - name: Run Build Script
         run: sh ./build.sh
       - name: Clean Repository
@@ -23,6 +24,7 @@ jobs:
         run: rm .gitignore
       - name: Publish to Github Pages
         uses: peaceiris/actions-gh-pages@v3
+        if: github.event_name == 'push'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
