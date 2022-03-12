@@ -1,9 +1,10 @@
 .header {
     text-align: center;
     width: 100%;
-    margin: 0;
-    padding: 0;
+    padding: 0px;
 }
+
+
 
 .header .title {
     background-color: var(--color-c);
@@ -20,14 +21,4 @@
 
     border-bottom-left-radius: var(--border-round);
     border-bottom-right-radius: var(--border-round);
-}
-
-.header .title h1 {
-    font-size: 50px;
-    margin: 0px;
-}
-
-.header .title h2 {
-    font-size: 20px;
-    margin: 0px;
 }
