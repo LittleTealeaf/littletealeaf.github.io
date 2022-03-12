@@ -18,13 +18,19 @@ jobs:
         name: Set up Python 3.8
         with:
           python-version: 3.8
-      - name: Setup Node
+      - name: Set up Node 17
         uses: actions/setup-node@v3
         with:
           node-version: '17'
           cache: 'npm'
+      - name: Install Python Dependencies
+        uses: BSFishy/pip-action@v1
+        with:
+          requirements: ./python/requirements.txt
       - name: Install Dependencies with Node
         run: npm ci
+      - name: Build with Python
+        run: python3 ./python/build.py
       - name: Build with Node
         run: npm run build
       - name: Publish to Github Pages

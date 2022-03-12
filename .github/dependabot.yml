@@ -20,3 +20,11 @@ updates:
       - "dependencies"
       - "npm"
       - "javascript"
+  - package-ecosystem: "pip"
+    directory: "/python/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+      - "python"
+      - "pip"
