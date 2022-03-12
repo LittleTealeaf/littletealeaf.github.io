@@ -23,6 +23,8 @@ jobs:
         with:
           node-version: '17'
           cache: 'npm'
+      - name: Install Dependencies with Node
+        run: npm ci
       - name: Build with Node
         run: npm run build
       - name: Publish to Github Pages
