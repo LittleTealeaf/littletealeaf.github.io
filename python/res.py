@@ -6,6 +6,7 @@ dir_gen_public = os.path.join('.','public','gen')
 
 def delete_directory_if_exists(dir):
     if os.path.exists(dir) and os.path.isdir(dir):
+        print("Deleted Directory: " + dir)
         shutil.rmtree(dir)
 
 delete_directory_if_exists(dir_gen_public)
