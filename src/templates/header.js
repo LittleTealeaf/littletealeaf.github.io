@@ -1,7 +1,10 @@
 import './header.css'
+import navlinks from '../res/navigation.json'
+
 
 
 function Header() {
+
     return (
         <div class="header">
             <div class="title">
@@ -9,7 +12,13 @@ function Header() {
                 <h2>LittleTealeaf</h2>
             </div>
             <div class="navigation">
-                THIS IS THE NAVIGATION
+                {
+                    navlinks.map((data) => (
+                        <a href={data.href} class="navbutton">
+                            {data.name}
+                        </a>
+                    ))
+                }
             </div>
         </div>
 

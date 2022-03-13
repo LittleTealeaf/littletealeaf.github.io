@@ -1,9 +1,13 @@
 [
     {
-        "name":"Home",
+        "name": "Home",
+        "href": "/"
+    },
+    {
+        "name": "Github",
+        "href": "https://www.github.com/LittleTealeaf"
+    },{
+        "name":"Test",
         "href":"/"
-    }, {
-        "name":"Github",
-        "href":"https://www.github.com/LittleTealeaf"
     }
 ]
