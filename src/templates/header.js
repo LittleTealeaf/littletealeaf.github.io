@@ -5,7 +5,6 @@ import navlinks from '../res/navigation.json'
 
 function Header() {
 
-
     return (
         <div class="header">
             <div class="title">
@@ -15,7 +14,9 @@ function Header() {
             <div class="navigation">
                 {
                     navlinks.map((data) => (
-                        <button class="navbutton">{data.name}</button> 
+                        <button class="navbutton" onClick={
+                            window.location = data.href
+                        }>{data.name}</button> 
                     ))
                 }
             </div>
