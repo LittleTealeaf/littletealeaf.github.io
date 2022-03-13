@@ -17,9 +17,6 @@ function Header() {
                         <a href={data.href} class="navbutton">
                             {data.name}
                         </a>
-                        // <button class="navbutton" onClick={
-                        //     () => window.location = data.href
-                        // }>{data.name}</button> 
                     ))
                 }
             </div>
