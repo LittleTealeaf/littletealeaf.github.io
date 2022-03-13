@@ -10,3 +10,11 @@ def delete_directory_if_exists(dir):
 
 delete_directory_if_exists(dir_gen_public)
 delete_directory_if_exists(dir_gen_src)
+
+def resource_src(name):
+    "returns the path for a file with the provided name in the src generated directory"
+    return os.path.join(dir_gen_src,name)
+
+def resource_public(name):
+    "returns the path for a file with the provided name in the public generated directory"
+    return os.path.join(dir_gen_public,name)
