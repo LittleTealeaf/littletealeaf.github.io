@@ -1,0 +1,32 @@
+.header {
+    text-align: center;
+    width: 100%;
+    padding: 0px;
+    background-color: var(--color-b);
+
+    --border-round: 10% 10px;
+
+    
+    border-bottom-left-radius: var(--border-round);
+    border-bottom-right-radius: var(--border-round);
+
+}
+
+
+
+.header .title {
+    background-color: var(--color-c);
+
+    padding: 15px;
+
+
+    --border-round: 40% 20px;
+
+
+
+    color: white;
+    font-family: cursive;
+
+    border-bottom-left-radius: var(--border-round);
+    border-bottom-right-radius: var(--border-round);
+}
