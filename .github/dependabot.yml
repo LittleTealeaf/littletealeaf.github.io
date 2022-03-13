@@ -15,7 +15,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     labels:
       - "dependencies"
       - "npm"
@@ -23,7 +23,7 @@ updates:
   - package-ecosystem: "pip"
     directory: "/python/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     labels:
       - "dependencies"
       - "python"
