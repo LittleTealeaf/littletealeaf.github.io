@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Header from './header'
+import Header from './header/header'
 
 ReactDOM.render(
   <React.StrictMode>
