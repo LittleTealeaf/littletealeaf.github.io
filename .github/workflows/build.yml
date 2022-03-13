@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
@@ -29,7 +29,7 @@ jobs:
         with:
           requirements: ./python/requirements.txt
       - name: Install Node Dependencies
-        run: npm ci
+        run: npm install --package-lock
       - name: Build Python
         run: python3 ./python/build.py
       - name: Build Node
