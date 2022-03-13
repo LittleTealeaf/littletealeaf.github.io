@@ -1,0 +1,24 @@
+.header {
+    text-align: center;
+    width: 100%;
+    padding: 0px;
+}
+
+
+
+.header .title {
+    background-color: var(--color-c);
+
+    padding: 20px;
+
+
+    --border-round: 40% 20px;
+
+
+
+    color: white;
+    font-family: cursive;
+
+    border-bottom-left-radius: var(--border-round);
+    border-bottom-right-radius: var(--border-round);
+}
