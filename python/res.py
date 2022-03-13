@@ -1,4 +1,4 @@
-import os, json, shutil
+import os, shutil
 
 dir_gen_src = os.path.join('.','src','gen')
 dir_gen_public = os.path.join('.','public','gen')
