@@ -1,4 +1,4 @@
-import os, json
+import os, json, requests
 from resutil import *
 from githubapi import *
 
@@ -11,6 +11,8 @@ with open(os.path.join('.','resources','projects.json')) as f:
 
         def compile_user(api):
             c = {'api':api}
+            
+
             return c
 
         project['contributors'] = [compile_user(api) for api in api_github(project['api']['contributors_url'])]
