@@ -11,23 +11,23 @@ github_actions: .github/workflows/*
 
 dependabot: .github/dependabot.yml
 
-gitignore: '*.gitignore'
+gitignore: '**/*.gitignore'
 
-javascript: '*.js'
+javascript: '**/*.js'
 
-python: '*.py'
+python: '**/*.py'
 
 html: '*.html'
 
-css: '*.css'
+css: '**/*.css'
 
-json: '*.json'
+json: '**/*.json'
 
-shell: '*.sh'
+shell: '**/*.sh'
 
-yml: '*.yml'
+yml: '**/*.yml'
 
-markdown: ['*.md', '*.markdown']
+markdown: ['**/*.md', '**/*.markdown']
 
 github: .github/*
 
