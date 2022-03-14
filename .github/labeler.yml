@@ -1,0 +1,13 @@
+javascript:
+- "*.js"
+npm:
+- any: ['package-lock.json','package.json']
+
+pip:
+- 'python/requirements.txt'
+
+github_actions:
+- '.github/workflows/*'
+
+dependabot:
+- '.github/dependabot.yml'
