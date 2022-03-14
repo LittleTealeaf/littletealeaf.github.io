@@ -1,5 +1,5 @@
 
-pip: python/requirements.txt
+pip: 'python/requirements.txt'
 
 npm: ['package-lock.json','package.json']
 
@@ -7,29 +7,29 @@ dependencies: ['package-lock.json','package.json','python/requirements.txt']
 
 labels: ['.github/labeler.yml', '.github/workflows/labeler.yml']
 
-github_actions: .github/workflows/*
+github_actions: '.github/workflows/*'
 
-dependabot: .github/dependabot.yml
+dependabot: '.github/dependabot.yml'
 
-gitignore: '*.gitignore'
+gitignore: '**/*.gitignore'
 
-javascript: '*.js'
+javascript: '**/*.js'
 
-python: '*.py'
+python: '**/*.py'
 
 html: '*.html'
 
-css: '*.css'
+css: '**/*.css'
 
-json: '*.json'
+json: '**/*.json'
 
-shell: '*.sh'
+shell: '**/*.sh'
 
-yml: '*.yml'
+yml: '**/*.yml'
 
-markdown: ['*.md', '*.markdown']
+markdown: ['**/*.md', '**/*.markdown']
 
-github: .github/*
+github: '.github/*'
 
 resources: ['resources/*','src/res/*','public/res/*']
 
