@@ -19,19 +19,19 @@ def initialize_dirs(*dirs):
  
 initialize_dirs(PUBLIC,SRC)
 
-def resource_src(name='',ext='',seed=''):
-    return resource_old(dir_gen_src,name,ext,seed)
+# def resource_src(name='',ext='',seed=''):
+#     return resource_old(dir_gen_src,name,ext,seed)
 
-def resource_public(name='',ext='',seed=''):
-    return resource_old(dir_gen_public,name,ext,seed)
-def resource_old(dir,name='',ext='',seed=''):
-    if seed != '':
-        random.seed(seed)
-    if name == '':
-        chars = 'abcdefghijklmnopqrstuvwxyz1234567890'
-        name = "".join(random.sample(chars,10))
+# def resource_public(name='',ext='',seed=''):
+#     return resource_old(dir_gen_public,name,ext,seed)
+# def resource_old(dir,name='',ext='',seed=''):
+#     if seed != '':
+#         random.seed(seed)
+#     if name == '':
+#         chars = 'abcdefghijklmnopqrstuvwxyz1234567890'
+#         name = "".join(random.sample(chars,10))
     
-    return os.path.join(dir,f'{name}{ext}')
+#     return os.path.join(dir,f'{name}{ext}')
 
 def resource(location,name='',suffix='',randomName=False,seed=None):
     if seed:
