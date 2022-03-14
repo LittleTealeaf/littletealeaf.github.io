@@ -20,16 +20,16 @@ initialize_generated_dir(dir_gen_src)
 
 
 def resource_src(name='',ext='',seed=''):
-    return resource(dir_gen_src,name,ext,seed)
+    return resource_old(dir_gen_src,name,ext,seed)
 
 def resource_public(name='',ext='',seed=''):
-    return resource(dir_gen_public,name,ext,seed)
+    return resource_old(dir_gen_public,name,ext,seed)
 
 # def resource_public(name):
 #     "returns the path for a file with the provided name in the public generated directory"
 #     return os.path.join(dir_gen_public,name)
 
-def resource(dir,name='',ext='',seed=''):
+def resource_old(dir,name='',ext='',seed=''):
     if seed != '':
         random.seed(seed)
     if name == '':
