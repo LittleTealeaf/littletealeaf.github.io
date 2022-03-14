@@ -14,9 +14,11 @@ def image_format_circular(img):
     return img
 
 def image_read(path):
+    print(f'Loading image from {path}')
     return Image.open(path)
 
 def image_src(url):
+    print(f'Loading image from {url}')
     return Image.open(BytesIO(requests.get(url).content))
 
 def image_format(image,attributes={}):
