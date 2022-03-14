@@ -23,4 +23,6 @@ json: '*.json'
 
 shell: '*.sh'
 
+yml: '*.yml'
+
 resources: ['resources/*','src/res/*','public/res/*']
