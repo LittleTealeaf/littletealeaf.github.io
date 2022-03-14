@@ -9,22 +9,11 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-    labels:
-      - "dependencies"
-      - "github_actions"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
-    labels:
-      - "dependencies"
-      - "npm"
-      - "javascript"
   - package-ecosystem: "pip"
     directory: "/python/"
     schedule:
       interval: "daily"
-    labels:
-      - "dependencies"
-      - "python"
-      - "pip"
