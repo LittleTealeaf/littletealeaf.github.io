@@ -28,7 +28,7 @@ jobs:
         uses: BSFishy/pip-action@v1
         with:
           requirements: ./python/requirements.txt
-      - name: Install Node Dependencies
+      - name: Install Javascript Dependencies
         run: npm install --package-lock
       - name: Build Python
         run: python3 ./python/build.py
