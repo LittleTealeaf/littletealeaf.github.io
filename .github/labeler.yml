@@ -5,6 +5,8 @@ npm: ['package-lock.json','package.json']
 
 dependencies: ['package-lock.json','package.json','python/requirements.txt']
 
+labels: ['.github/labeler.yml', '.github/workflows/labeler.yml']
+
 github_actions: .github/workflows/*
 
 dependabot: .github/dependabot.yml
