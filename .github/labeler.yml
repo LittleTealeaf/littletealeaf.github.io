@@ -18,4 +18,5 @@ css: '*.css'
 json: '*.json'
 shell: '*.sh'
 
-resources: any: ['resources/*','src/res/*','public/res/*']
+resources:
+- any: ['resources/*','src/res/*','public/res/*']
