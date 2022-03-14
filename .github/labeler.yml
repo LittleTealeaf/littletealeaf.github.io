@@ -1,13 +1,21 @@
-javascript:
-- "*.js"
+
+pip: 'python/requirements.txt'
 npm:
 - any: ['package-lock.json','package.json']
 
-pip:
-- 'python/requirements.txt'
+dependencies:
+ - any: ['package-lock.json','package.json','python/requirements.txt']
 
-github_actions:
-- '.github/workflows/*'
 
-dependabot:
-- '.github/dependabot.yml'
+
+github_actions: '.github/workflows/*'
+dependabot: '.github/dependabot.yml'
+
+javascript: '*.js'
+python: '*.py'
+html: '*.html'
+css: '*.css'
+json: '*.json'
+shell: '*.sh'
+
+resources: any: ['resources/*','src/res/*','public/res/*']
