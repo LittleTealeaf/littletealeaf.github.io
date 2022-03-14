@@ -1,5 +1,5 @@
-import './header.css'
-import navlinks from '../res/navigation.json'
+import './header.css';
+import navlinks from '../res/navigation.json';
 
 
 
