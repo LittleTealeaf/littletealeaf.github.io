@@ -20,7 +20,7 @@ def image_src(url):
     return Image.open(BytesIO(requests.get(url).content))
 
 def image_format(image,attributes={}):
-    img = image
+    img = image.convert('RGBA')
     if 'circular' in attributes and attributes['circular']:
         img = image_format_circular(img)
     

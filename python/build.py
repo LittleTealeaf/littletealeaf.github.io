@@ -12,8 +12,11 @@ with open(os.path.join('.','resources','projects.json')) as f:
 
         def compile_user(api):
             c = {'api':api}
-            
-
+            img = image_format(image_src(api['avatar_url']),{
+                'circular': True
+            })
+            c['avatar_src'] = resource_src(ext='.png')
+            img.save(c['avatar_src'])
             return c
 
         project['contributors'] = [compile_user(api) for api in api_github(project['api']['contributors_url'])]
