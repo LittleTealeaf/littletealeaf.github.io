@@ -15,8 +15,8 @@ with open(os.path.join('.','resources','projects.json')) as f:
             img = image_format(image_src(api['avatar_url']),{
                 'circular': True
             })
-            c['avatar_src'] = resource_src(ext='.png',seed=api['avatar_url'])
-            img.save(c['avatar_src'])
+            img_save_path, c['avatar_src'] = resource(SRC,suffix='.png',randomName=True,seed=f"{api['avatar_url']}imageround")
+            img.save(img_save_path)
             return c
 
         project['contributors'] = [compile_user(api) for api in api_github(project['api']['contributors_url'])]
@@ -25,5 +25,5 @@ with open(os.path.join('.','resources','projects.json')) as f:
         project['api_tags'] = api_github(project['api']['tags_url'])
         project['api_releases'] = api_github(project['api']['releases_url'].replace('{/id}',''))
     
-    with open(resource_src('projects.json'),'w') as w:
+    with open(resource(SRC,'projects.json')[0],'w') as w:
         w.write(json.dumps(projects))
