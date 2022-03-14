@@ -33,4 +33,9 @@ def resource_old(dir,name='',ext='',seed=''):
     
     return os.path.join(dir,f'{name}{ext}')
 
-# def resource(dir):
+def resource(location,name='',suffix='',random=False,seed=None):
+    if seed:
+        random.seed(str(seed))
+    if random:
+        name = "".join(random.sample('abcdefghijklmnopqrstuvwxyz1234567890',10))
+    return (os.path.join(*location[0],f'{name}{suffix}'),os.path.join(*location[1],f'{name}{suffix}'))\
