@@ -15,7 +15,7 @@ with open(os.path.join('.','resources','projects.json')) as f:
             img = image_format(image_src(api['avatar_url']),{
                 'circular': True
             })
-            c['avatar_src'] = resource_src(ext='.png')
+            c['avatar_src'] = resource_src(ext='.png',seed=api['avatar_url'])
             img.save(c['avatar_src'])
             return c
 
