@@ -10,6 +10,9 @@ with open(os.path.join('.','resources','projects.json')) as f:
     for p in projects_in:
         project = {'api':api_github(p['api_url'])}
         project['contributors'] = api_github(project['api']['contributors_url'])
+        project['tags'] = api_github(project['api']['tags_url'])
+        project['releases'] = api_github(project['api']['releases_url'].replace('{/id}',''))
+        
         
 
 
