@@ -26,3 +26,5 @@ yarn-error.log*
 
 src/res/gen/
 public/res/gen/
+
+github_token

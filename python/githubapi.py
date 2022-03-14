@@ -1,4 +1,4 @@
-import os
+import os, requests
 
 
 api_token_github = None
@@ -7,3 +7,7 @@ if os.path.exists(os.path.join('.','github_token')):
         api_token_github = f.readline()
 else:
     api_token_github = os.getenv('API_GITHUB')
+
+
+def api_github(url):
+    return requests.get(url,headers={'authorization':f'token {api_token_github}'}).json()
