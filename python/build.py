@@ -1,7 +1,7 @@
 import os, json, requests
 from resutil import *
 from githubapi import *
-from imageformatting import *
+from imageutil import *
 
 # Compiles the projects json for building
 with open(os.path.join('.','resources','projects.json')) as f:
