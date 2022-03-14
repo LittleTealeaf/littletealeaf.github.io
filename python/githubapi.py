@@ -10,4 +10,5 @@ else:
 
 
 def api_github(url):
+    print(f'Fetching api from {url}')
     return requests.get(url,headers={'authorization':f'token {api_token_github}'}).json()
