@@ -8,6 +8,9 @@ if os.path.exists(os.path.join('.','github_token')):
 else:
     api_token_github = os.getenv('API_GITHUB')
 
+if not api_token_github:
+    print("WARNING: NO GITHUB API TOKEN GIVEN")
+
 
 def api_github(url):
     print(f'Fetching api from {url}')
