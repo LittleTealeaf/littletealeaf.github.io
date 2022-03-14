@@ -1,5 +1,5 @@
 
-pip: python/requirements.txt
+pip: 'python/requirements.txt'
 
 npm: ['package-lock.json','package.json']
 
