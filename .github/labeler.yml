@@ -10,6 +10,7 @@ dependencies:
 
 github_actions: '.github/workflows/*'
 dependabot: '.github/dependabot.yml'
+gitignore: '*.gitignore'
 
 javascript: '*.js'
 python: '*.py'
