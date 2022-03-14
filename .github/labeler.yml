@@ -1,23 +1,30 @@
 
-pip: 'python/requirements.txt'
-npm:
-- any: ['package-lock.json','package.json']
+pip: python/requirements.txt
 
-dependencies:
- - any: ['package-lock.json','package.json','python/requirements.txt']
+npm: ['package-lock.json','package.json']
 
+dependencies: ['package-lock.json','package.json','python/requirements.txt']
 
+github_actions: .github/workflows/*
 
-github_actions: '.github/workflows/*'
-dependabot: '.github/dependabot.yml'
+dependabot: .github/dependabot.yml
+
 gitignore: '*.gitignore'
 
 javascript: '*.js'
+
 python: '*.py'
+
 html: '*.html'
+
 css: '*.css'
+
 json: '*.json'
+
 shell: '*.sh'
 
-resources:
-- any: ['resources/*','src/res/*','public/res/*']
+yml: '*.yml'
+
+github: .github/*
+
+resources: ['resources/*','src/res/*','public/res/*']
