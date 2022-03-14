@@ -25,6 +25,8 @@ shell: '*.sh'
 
 yml: '*.yml'
 
+markdown: ['*.md', '*.markdown']
+
 github: .github/*
 
 resources: ['resources/*','src/res/*','public/res/*']
