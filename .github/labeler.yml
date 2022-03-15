@@ -13,7 +13,9 @@ dependabot: '.github/dependabot.yml'
 
 gitignore: '**/*.gitignore'
 
-javascript: '**/*.js'
+javascript: ['**/*.js', '**/*.jsx']
+
+react: '**/*.jsx'
 
 python: '**/*.py'
 
