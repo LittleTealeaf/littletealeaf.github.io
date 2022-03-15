@@ -17,7 +17,7 @@ javascript: '**/*.js'
 
 python: '**/*.py'
 
-html: '*.html'
+html: '**/*.html'
 
 css: '**/*.css'
 
