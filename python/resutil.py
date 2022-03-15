@@ -24,4 +24,4 @@ def resource(location,name='',suffix='',randomName=False,seed=None):
         random.seed(str(seed))
     if randomName:
         name = "".join(random.sample('abcdefghijklmnopqrstuvwxyz1234567890',10))
-    return (os.path.join(*location[0],f'{name}{suffix}'),os.path.join(*location[1],f'{name}{suffix}'))
+    return (os.path.join(*location[0],f'{name}{suffix}'),"/".join([*location[1],f'{name}{suffix}']))
