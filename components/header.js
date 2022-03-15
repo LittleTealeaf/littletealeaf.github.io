@@ -4,8 +4,6 @@ import Link from 'next/link'
 import style from '../styles/header.module.css'
 import navLinks from '../resources/navigation.json'
 
-console.log(navLinks);
-
 export default function Header({home}) {
     return (
         <div className={style.header}>
