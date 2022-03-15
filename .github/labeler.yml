@@ -36,3 +36,5 @@ github: '.github/*'
 resources: ['resources/*','src/res/*','public/res/*']
 
 image: ['*.jpg', '*.jpeg', '*.png']
+
+pages: 'pages/*'
