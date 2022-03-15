@@ -4,26 +4,33 @@ import Link from 'next/link'
 import style from '../styles/header.module.css'
 import navLinks from '../resources/navigation.json'
 
+const links = navLinks.map((data, i) => (
+    <Link key={i} href={data.href}>
+        <div className={style.navlink}>
+            {data.name}
+        </div>
+    </Link>
+));
 
-export default function Header({home}) {
+
+export default function Header({ path }) {
+    console.log(path);
     return (
+
         <div className={style.header}>
             <Head>
-               
+                <title>
+                    {
+                        path[path.length - 1]
+                    }
+                </title>
             </Head>
-            <div className={style.title}>
-                <h1>Thomas Kwashnak</h1>
-                <h2>LittleTealeaf</h2>
-            </div>
-            <div className={style.navigation}>
-                {
-                    navLinks.map((data,id) => (
-                        <Link key={id} href={data.href}>
-                            {data.name}
-                        </Link>
-                    ))
-                }
-            </div>
+
+            <center className={style.centered}>
+                <div className={style.navigation}>
+                    {links}
+                </div>
+            </center>
         </div>
     )
 }
