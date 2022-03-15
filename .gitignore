@@ -38,3 +38,5 @@ yarn-error.log*
 github_token
 
 .vscode/
+pages/res/gen/
+public/res/gen/

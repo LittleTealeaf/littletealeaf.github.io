@@ -1,11 +1,8 @@
 import os, shutil, random
 
-dir_gen_src = os.path.join('.','src','res','gen')
-dir_gen_public = os.path.join('.','public','res','gen')
-
 PUBLIC = (['.','public','res','gen'],['%PUBLIC_URL%','res','gen'])
 "The first entry of this tuple contains the path from the project root, the second entry contains the path that source files should use"
-SRC = (['.','src','res','gen'],['.','res','gen'])
+SRC = (['.','pages','res','gen'],['.','pages','gen'])
 "The first entry of this tuple contains the path from the project root, the second entry contains the path that source files should use"
 
 def initialize_dirs(*dirs):
