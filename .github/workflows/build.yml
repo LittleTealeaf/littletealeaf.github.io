@@ -33,7 +33,7 @@ jobs:
       - name: Build Python
         run: python3 ./python/build.py
       - name: Build Node
-        run: npm run publish
+        run: npm run deploy
       - name: Publish to Github Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
