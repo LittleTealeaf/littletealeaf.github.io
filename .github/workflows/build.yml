@@ -33,10 +33,10 @@ jobs:
       - name: Build Python
         run: python3 ./python/build.py
       - name: Build Node
-        run: npm run build
+        run: npm run publish
       - name: Publish to Github Pages
         if: github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/
+          publish_dir: ./out/
