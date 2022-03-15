@@ -1,7 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import projects from '../resources/generated/projects.json'
 
-const projects = JSON.parse(fs.readFileSync(path.join(process.cwd(),'resources','generated','projects.json')));
 
 export function getAllProjectIds() {
     return projects.map(project => {
