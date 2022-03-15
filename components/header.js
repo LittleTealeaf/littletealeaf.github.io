@@ -26,16 +26,25 @@ const TITLE = (
 export default function Header({ path }) {
     console.log(path);
     return (
-        <div className={style.header} id="header">
+        <div className={style.header} id='static-header'>
             <Head>
                 <title>
                     {path[path.length - 1]}
                 </title>
                 
             </Head>
-            <div>
+            <div className={style.headerbackground}>
+            <div className={style.headerfixed}>
+            <div className={style.title}>
+                    LittleTealeaf
+                </div>
+                <div className={style.navigation}>
                 {navLinks.map(NavLink)}
+                </div>
             </div>
+            </div>
+            
+            
             <Script src="./assets/js/header-scroll.js" />
         </div>
     )

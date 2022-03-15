@@ -26,7 +26,7 @@ const debounce = (fn) => {
 // Reads out the scroll position and stores it in the data attribute
 // so we can use it in our stylesheets
 const storeScroll = () => {
-    document.getElementById('header').dataset.scroll = window.scrollY;
+    document.getElementById('static-header').dataset.scroll = window.scrollY;
 }
 
 // Listen for new scroll events, here we debounce our `storeScroll` function
