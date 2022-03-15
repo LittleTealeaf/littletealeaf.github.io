@@ -5,9 +5,12 @@
     },{
         "name":"Projects",
         "href":"/projects"
+    },{
+        "name":"Github",
+        "href":"/github"
     },
     {
-        "name": "Github",
-        "href": "https://www.github.com/LittleTealeaf"
+        "name":"About Me",
+        "href":"/about"
     }
 ]
