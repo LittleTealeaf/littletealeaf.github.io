@@ -1,4 +1,10 @@
 
+
+.navlink {
+    cursor: pointer;
+}
+
+/* 
 .header {
 
     --header-height: 100px;
@@ -58,7 +64,7 @@
 .navlink {
     --bottom-radius: 20%;
 
-    /* width: fit-content; */
+ 
 
     padding: 10px;
 
@@ -67,4 +73,4 @@
     border-bottom-right-radius: var(--bottom-radius);
 
     cursor: pointer;
-}
+} */

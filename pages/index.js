@@ -6,7 +6,7 @@ export default function Home() {
     
     <div>
       <Header path={[]}/>
-      I AM A BIRD
+      WARNING, THIS WEBSITE IS UNDER DEVELOPMENT. ALSO, I AM A BIRD
     </div>
   )
 }
