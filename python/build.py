@@ -4,7 +4,7 @@ from githubapi import *
 from imageutil import *
 
 # Compiles the projects json for building
-with open(os.path.join('.','resources','projects.json')) as f:
+with open(os.path.join('.','assets','projects.json')) as f:
     projects = json.load(f)
 
     for project in projects:
@@ -37,11 +37,6 @@ with open(os.path.join('.','resources','projects.json')) as f:
         w.write(json.dumps(projects))
 
 
-with open(os.path.join('.','resources','projects.json')) as f:
-    projects = json.load(f)
-
-    for project in projects:
-        project['api'] = api_github(project['api_url'])
 
 
     
