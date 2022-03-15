@@ -4,7 +4,7 @@ import Script from 'next/script'
 
 import style from '../styles/header.module.css'
 import navLinks from '../assets/navigation.json'
-import Styles from '../libs/styleutil'
+import StyleClass from '../libs/styleutil'
 
 const NavLink = (data, i) => (
     <Link key={i} href={data.href}>
@@ -18,11 +18,21 @@ function handleScroll() {
     console.log("hello");
 }
 
+/*
+THE PLAN:
+
+When the user is at the top, the whole header is displayed, with the name on the left
+when the user scrolls, the name on the left disappears completely, and the navigation hides partially in the cieling
+when the user hovers over the navigation bar, it expands
+
+potentially?
+*/
+
 
 export default function Header({ path }) {
     console.log(path);
     return (
-        <div className={Styles(style.navlink)} id='static-header'>
+        <div className={StyleClass(style.navlink)} id='static-header'>
             <Head>
                 <title>
                     {path[path.length - 1]}
