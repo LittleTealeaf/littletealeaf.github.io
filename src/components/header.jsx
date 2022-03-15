@@ -1,5 +1,6 @@
 import './header.css';
 import navlinks from '../res/navigation.json';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -14,9 +15,10 @@ function Header() {
             <div class="navigation">
                 {
                     navlinks.map((data) => (
-                        <a href={data.href} class="navbutton">
-                            {data.name}
-                        </a>
+                        // <a href={data.href} class="navbutton">
+                        //     {data.name}
+                        // </a>
+                        <NavLink to={data.href} className="navbutton">{data.name}</NavLink>
                     ))
                 }
             </div>
