@@ -14,7 +14,7 @@ def initialize_dirs(*dirs):
         print(f"Initializing {path}")
         os.makedirs(path)
  
-initialize_dirs(PUBLIC,SRC)
+# initialize_dirs(PUBLIC,SRC)
 
 def resource(location,name='',suffix='',randomName=False,seed=None):
     if seed:
