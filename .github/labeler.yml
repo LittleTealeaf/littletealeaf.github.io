@@ -1,38 +1,34 @@
-
+# Dependencies
 pip: 'python/requirements.txt'
-
 npm: ['package-lock.json','package.json']
 
 dependencies: ['package-lock.json','package.json','python/requirements.txt']
 
+# Frameworks
+next.js: 'next.config.js'
+
+
+# Github
 labels: ['.github/labeler.yml', '.github/workflows/labeler.yml']
-
 github_actions: '.github/workflows/*'
-
 dependabot: '.github/dependabot.yml'
-
 gitignore: '**/*.gitignore'
-
-javascript: ['**/*.js', '**/*.jsx']
-
-react: '**/*.jsx'
-
-python: '**/*.py'
-
-html: '**/*.html'
-
-css: '**/*.css'
-
-json: '**/*.json'
-
-shell: '**/*.sh'
-
-yml: '**/*.yml'
-
-markdown: ['**/*.md', '**/*.markdown']
-
 github: '.github/*'
 
-resources: ['resources/*','src/res/*','public/res/*']
 
+# Languages
+javascript: ['**/*.js', '**/*.jsx']
+react: '**/*.jsx'
+python: '**/*.py'
+html: '**/*.html'
+css: '**/*.css'
+json: '**/*.json'
+shell: '**/*.sh'
+yml: '**/*.yml'
+markdown: ['**/*.md', '**/*.markdown']
 image: ['*.jpg', '*.jpeg', '*.png']
+
+# Directories
+resources: ['resources/*','pages/res/*','public/res/*']
+pages: 'pages/*'
+public: 'public/*'
