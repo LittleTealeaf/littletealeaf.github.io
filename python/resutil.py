@@ -27,6 +27,6 @@ class ResourceDirectory:
 
 
 RESOURCES = ResourceDirectory(os.path.join('.','assets','generated'))
-PUBLIC = ResourceDirectory(os.path.join('.','public','assets','generated'),'/resources/generated')
+PUBLIC = ResourceDirectory(os.path.join('.','public','assets','generated'),'/assets/generated')
 
 [i.initialize() for i in [RESOURCES,PUBLIC]]
