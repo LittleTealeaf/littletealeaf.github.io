@@ -23,7 +23,7 @@ with open(os.path.join('.','assets','projects.json')) as f:
             img = image_format(image_src(api['avatar_url']),{
                 'circular': True
             })
-            img_resource = Asset(ASSETS,path=['images'],name=image_hashname(img),suffix='.png')
+            img_resource = Asset(ASSETS,path=['images'],seed=image_hashname(img),suffix='.png')
             
             img.save(img_resource.path)
             c['avatar_url'] = img_resource.refpath

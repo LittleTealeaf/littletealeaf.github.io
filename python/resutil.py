@@ -3,7 +3,7 @@ class Asset:
     def __init__(self,resource,path=[],name='',suffix='',seed=None):
         if seed:
             random.seed(str(seed))
-            name = "".join(random.sample('abcdefghijklmnopqrstuvwxyz1234567890',10))
+            name = "".join(random.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',10))
         dir = os.path.join(resource.directory,*path)
         if not os.path.exists(dir):
             print(f"Created Asset Directory: {dir}")
