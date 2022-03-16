@@ -13,6 +13,8 @@ settings = {}
 with open(os.path.join('.','assets','pyconfig.json')) as f:
     settings = json.load(f)
 
+index = {}
+
 def save_json(asset,dict):
     "Directly saves a json to an asset object"
     with open(asset.path,'w') as w:
@@ -92,8 +94,11 @@ with open(os.path.join('.','assets','projects.json')) as p:
 
 
         if 'attributes' in project_ref:
-            project['attributes'] = reference_json_seed(PROJECT_ATTRIBUTES,project_ref['attributes'])
+            project['attributes'] = reference_json_seed(JSONS,project_ref['attributes'])
         
-        projects.append(reference_json(Asset(path=PROJECT,seed=project_ref['repository_api'],type=JSON),project))
+        projects.append(reference_json_seed(JSONS,project))
     
-    save_json(Asset(name='projects.json'),projects)
+    index['projects'] = reference_json_seed(JSONS,projects);
+
+
+save_json(Asset(name='index.json'),index)

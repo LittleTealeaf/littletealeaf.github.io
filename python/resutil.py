@@ -14,9 +14,8 @@ GITHUB_EVENTS = GITHUB + ['events']
 GITHUB_RELEASES = GITHUB + ['releases']
 GITHUB_USER_LIST = GITHUB + ['groups']
 GITHUB_LANGUAGES = GITHUB + ['languages']
-PROJECT = ['project']
-PROJECT_ATTRIBUTES = PROJECT + ['attributes']
 IMAGES = ['images']
+JSONS = ['json']
 
 
 class Asset:
