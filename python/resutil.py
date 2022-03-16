@@ -1,16 +1,16 @@
 import os, shutil, random
 class Asset:
-    def __init__(self,resource,path=[],name='',suffix='',seed=None):
+    def __init__(self,resourcepath,path=[],name='',suffix='',seed=None):
         if seed:
             random.seed(str(seed))
             name = "".join(random.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',10))
-        dir = os.path.join(resource.directory,*path)
+        dir = os.path.join(resourcepath.directory,*path)
         if not os.path.exists(dir):
             print(f"Created Asset Directory: {dir}")
             os.makedirs(dir)
         path.append(f'{name}{suffix}')
         
-        self.path = os.path.join(resource.directory,*path)
+        self.path = os.path.join(resourcepath.directory,*path)
         self.refpath = "/".join(path)
 
         print(f'Configured asset {self.refpath} at {self.path}')

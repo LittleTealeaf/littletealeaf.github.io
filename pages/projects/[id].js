@@ -6,7 +6,7 @@ const ContributorAvatar = (contributor,index) => {
         <div key={index}>
             {
                 contributor.avatar_url != null ? (
-                    <img alt={contributor.api.login} src={require('../../assets/generated/' + contributor.avatar_url)} width="30" height="30"></img>
+                    <img alt={contributor.api.login} src={require('../../assets/generated/' + contributor.avatar)} width="30" height="30"></img>
                 ) : <></>
             }
         </div>
