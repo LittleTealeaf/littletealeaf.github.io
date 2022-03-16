@@ -34,6 +34,7 @@ def image_format(image,attributes={}):
     img = img.resize(size)
     return img
 
+# comment out later
 def image_hash(img):
     image = img.resize((10,10),Image.ANTIALIAS)
     image = image.convert("L")
