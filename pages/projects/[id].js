@@ -2,12 +2,13 @@ import { getAllProjectIds, getProjectData } from "../../libs/projects"
 import Header from '../../components/header'
 import style from '../../styles/project.module.css'
 import Link from 'next/link'
+import { getAsset } from "../../libs/assets"
 
-const ContributorAvatar = (contributor_reference, index) => {
-    const contributor = require('../../assets/generated/' + contributor_reference)
+const UserAvatar = (reference, index) => {
+    const contributor = getAsset(reference)
     return (contributor.avatar != null ? (
         <a key={index} href={contributor.api.html_url}>
-            <img alt={contributor.api.login} src={require('../../assets/generated/' + contributor.avatar)} width="30" height="30" />
+            <img alt={contributor.api.login} src={getAsset(contributor.avatar)} width="30" height="30" />
         </a>
     ) : <></>
     )
@@ -15,15 +16,26 @@ const ContributorAvatar = (contributor_reference, index) => {
 
 export default function Project({ projectData }) {
     var data = projectData.element;
+    const api = getAsset(data.api)
 
     return <div>
         <Header path={
-            ["projects", data.api.name]
+            ["projects", api.name]
         } />
-        <h1>{data.api.name}</h1>
-        <h2>{data.api.owner.login}</h2>
+        <h1>{api.name}</h1>
+        <h2>{api.owner.login}</h2>
         <div>
-            {data.contributors.map(ContributorAvatar)}
+            Contributors: 
+            {getAsset(data.contributors).map(UserAvatar)}
+            
+        </div>
+        <div>
+            Stargazers:
+        {getAsset(data.stargazers).map(UserAvatar)}
+        </div>
+        <div>
+            Subscribers:
+            {getAsset(data.subscribers).map(UserAvatar)}
         </div>
     </div>
 }
