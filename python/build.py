@@ -11,27 +11,27 @@ settings = {}
 with open(os.path.join('.','assets','pyconfig.json')) as f:
     settings = json.load(f)
 
-def json_save(asset,dict):
+def save_json(asset,dict):
     with open(asset.path,'w') as w:
         w.write(json.dumps(dict))
 
-def json_reference(asset,json):
-    json_save(asset,json)
+def reference_json(asset,json):
+    save_json(asset,json)
     return asset.ref
 
-def json_fetch(asset,fetch,fetch_params={}):
+def fetch_json(asset,fetch,fetch_params={}):
     if not asset.exists():
         print(f'Fetching Asset: {asset.ref}')
         with open(asset.path,'w') as w:
             w.write(json.dumps(fetch(**fetch_params)))
     return asset.ref
 
-def image_reference(img):
+def reference_image(img):
     asset = Asset(IMAGES,seed=image_hash(img),type=PNG)
     img.save(asset.path)
     return asset.ref
         
-def github_user_reference(username=None,url=None,api=None,include=[]):
+def reference_github_user(username=None,url=None,api=None,include=[]):
     if not url:
         if username:
             url = f'https://api.github.com/users/{username}'
@@ -45,55 +45,49 @@ def github_user_reference(username=None,url=None,api=None,include=[]):
             api = api_github(url)
         user = {
             'api': api,
-            'avatar': image_reference(image_format(image_src(api['avatar_url']),{'circular': True}))
+            'avatar': reference_image(image_format(image_src(api['avatar_url']),{'circular': True}))
         }
 
         return user
 
-    return json_fetch(asset,fetchUser,{'url': url, 'include': include, 'api': api})
+    return fetch_json(asset,fetchUser,{'url': url, 'include': include, 'api': api})
     # if not api:
     #     if not url:
     #         url = f"https://api.github.com/users/{username}"
     #     api = api_github(url)
 
-def api_github_reference(url,path=GITHUB):
+def reference_api_github(url,path=GITHUB):
     asset = Asset(path=path,seed=url,type=JSON)
-    return json_fetch(asset,lambda: api_github(url))
+    return fetch_json(asset,lambda: api_github(url))
 
 
 
 with open(os.path.join('.','assets','projects.json')) as p:
     projects = []
 
-    COPY_VALUES = ['description']
-
     for project_ref in json.load(p):
         # api = api_github(project_ref['api_url'])
         project = {
-            'api': api_github_reference(project_ref['api_url'],GITHUB_REPOSITORY)
+            'api': reference_api_github(project_ref['api_url'],GITHUB_REPOSITORY)
         }
 
         with open(os.path.join('.','assets','generated',project['api'])) as api_file:
             api = json.load(api_file)
             project.update({
-                'contributors': json_reference(Asset(GITHUB_USER_LIST,type=JSON,seed=api['contributors_url']),[github_user_reference(api=user_api) for user_api in api_github(api['contributors_url'])]),
-                'subscribers': json_reference(Asset(GITHUB_USER_LIST,type=JSON,seed=api['subscribers_url']),[github_user_reference(api=user_api) for user_api in api_github(api['subscribers_url'])]),
-                'stargazers': json_reference(Asset(GITHUB_USER_LIST,type=JSON,seed=api['stargazers_url']),[github_user_reference(api=user_api) for user_api in api_github(api['stargazers_url'])]),
-                'languages': api_github(api['languages_url']),
-                'events': api_github_reference(api['events_url'],GITHUB_EVENTS),
-                'releases': api_github_reference(api['releases_url'].replace('{/id}',''),GITHUB_RELEASES)
+                'contributors': reference_json(Asset(GITHUB_USER_LIST,type=JSON,seed=api['contributors_url']),[reference_github_user(api=user_api) for user_api in api_github(api['contributors_url'])]),
+                'subscribers': reference_json(Asset(GITHUB_USER_LIST,type=JSON,seed=api['subscribers_url']),[reference_github_user(api=user_api) for user_api in api_github(api['subscribers_url'])]),
+                'stargazers': reference_json(Asset(GITHUB_USER_LIST,type=JSON,seed=api['stargazers_url']),[reference_github_user(api=user_api) for user_api in api_github(api['stargazers_url'])]),
+                'languages': reference_json(Asset(GITHUB_LANGUAGES,type=JSON,seed=api['languages_url']),api_github(api['languages_url'])),
+                'events': reference_api_github(api['events_url'],GITHUB_EVENTS),
+                'releases': reference_api_github(api['releases_url'].replace('{/id}',''),GITHUB_RELEASES)
             })
-        
 
-        for key in COPY_VALUES:
-            if key in project_ref:
-                project[key] = project_ref[key]
-            else:
-                project[key] = ''
+        if 'attributes' in project_ref:
+            project['attributes'] = reference_json(Asset(PROJECT_ATTRIBUTES,type=JSON,seed=project_ref['api_url']),project_ref['attributes'])
         
-        projects.append(json_reference(Asset(path=PROJECTS,seed=project_ref['api_url'],type=JSON),project))
+        projects.append(reference_json(Asset(path=PROJECT,seed=project_ref['api_url'],type=JSON),project))
     
-    json_save(Asset(name='projects.json'),projects)
+    save_json(Asset(name='projects.json'),projects)
         
         # project['contributors'] = [github_user_reference(api=user_api) for user_api in api_github(api['contributors_url'])]
         
