@@ -30,7 +30,7 @@ class AssetDirectory:
 ASSETS = AssetDirectory('.','assets','generated')
 PUBLIC = AssetDirectory('.','public','assets','generated')
 
-[i.initialize() for i in [ASSETS,PUBLIC]]
+[i.initialize() for i in [ASSETS, PUBLIC]]
 
 
 def json_save(dictionary,asset):

@@ -1,8 +1,9 @@
-import projects from '../assets/generated/json/projects.json'
+// import projects from '../assets/generated/json/projects.json'
+import {Projects} from "./assets";
 
 
 export function getAllProjectIds() {
-    return projects.map(project => {
+    return Projects.map(project => {
         return {
             params: {
                 id: project.api.name
@@ -13,7 +14,7 @@ export function getAllProjectIds() {
 
 export function getProjectData(id) {
     var project = null;
-    projects.forEach(element => {
+    Projects.forEach(element => {
         if(element.api.name == id) {
             project = {
                 id, 

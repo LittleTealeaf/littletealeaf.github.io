@@ -12,7 +12,7 @@ with open(os.path.join('.','assets','pyconfig.json')) as f:
 # Loads the user api
     
 
-def load_github_user(username=None,url=None,api=None,include=[]):
+def github_load_user(username=None,url=None,api=None,include=[]):
     if not api:
         if not url:
             url = f"https://api.github.com/users/{username}"
@@ -38,16 +38,16 @@ def load_github_user(username=None,url=None,api=None,include=[]):
     for userinclude in ['followers','following']:
         if userinclude in include:
             users = api_github(api[f'{userinclude}_url'].partition('{')[0])
-            user[userinclude] = [load_github_user(api=i) for i in users]
+            user[userinclude] = [github_load_user(api=i) for i in users]
     
     return user
 
 def github_user_reference(username=None,url=None,api=None,include=[]):
-    user = load_github_user(username,url,api,include)
+    user = github_load_user(username,url,api,include)
     return json_reference(user,Asset(ASSETS,path=['json','github','user'],seed=user['api']['node_id'],suffix='.json'))
 
 
-user = load_github_user(username=settings['github_username'],include=['followers','following','events'])
+user = github_load_user(username=settings['github_username'],include=['followers','following','events'])
 
 
 # Compiles the projects json for building
