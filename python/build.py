@@ -1,4 +1,5 @@
 import os, json, requests
+from sys import stdin
 from resutil import *
 from githubapi import *
 from imageutil import *
@@ -30,10 +31,8 @@ def github_load_user(username=None,url=None,api=None,include=[]):
     user['avatar'] = img_resource.refpath
     img.save(img_resource.path)
 
-    # Include Attributes
-    for stdinclude in ['organizations','events']:
-        if stdinclude in include:
-            user[stdinclude] = json_reference(api_github(api[f'{stdinclude}_url'].partition('{')[0]),Asset(ASSETS,path=['json','github',stdinclude],seed=api['node_id'],suffix='.json'))
+    if 'events' in include:
+        user['events'] = json_reference(api_github(api['events_url'].partition('{')[0]),Asset(ASSETS,path=PATH_GITHUB_EVENTS,seed=api['node_id'],suffix='.json'))
     
     for userinclude in ['followers','following']:
         if userinclude in include:
@@ -44,7 +43,7 @@ def github_load_user(username=None,url=None,api=None,include=[]):
 
 def github_user_reference(username=None,url=None,api=None,include=[]):
     user = github_load_user(username,url,api,include)
-    return json_reference(user,Asset(ASSETS,path=['json','github','user'],seed=user['api']['node_id'],suffix='.json'))
+    return json_reference(user,Asset(ASSETS,path=PATH_GITHUB_USERS,seed=user['api']['node_id'],suffix='.json'))
 
 
 user = github_load_user(username=settings['github_username'],include=['followers','following','events'])
@@ -52,13 +51,13 @@ user = github_load_user(username=settings['github_username'],include=['followers
 
 # Compiles the projects json for building
 with open(os.path.join('.','assets','projects.json')) as f:
-    projects = json.load(f)
+    projects = []
 
     PROJECT_VALUES = {
         'description':''
     }
 
-    for project in projects:
+    for project in json.load(f):
         project['api'] = api_github(project['api_url'])
 
         project['owner'] = project['api']['owner']
@@ -67,9 +66,9 @@ with open(os.path.join('.','assets','projects.json')) as f:
         project['subscribers'] = [github_user_reference(api=user_api) for user_api in api_github(project['api']['subscribers_url'])]
         project['stargazers'] = [github_user_reference(api=user_api) for user_api in api_github(project['api']['stargazers_url'])]
         
-        project['tags'] = json_reference(api_github(project['api']['tags_url']),Asset(ASSETS,['json','github','tags'],seed=project['api']['node_id'],suffix='.json'))
+        project['tags'] = json_reference(api_github(project['api']['tags_url']),Asset(ASSETS,path=PATH_GITHUB_TAGS,seed=project['api']['node_id'],suffix='.json'))
         project['releases'] = api_github(project['api']['releases_url'].replace('{/id}',''))
-        project['events'] = json_reference(api_github(project['api']['events_url']),Asset(ASSETS,['json','github','events'],seed=project['api']['node_id'],suffix='.json'))
+        project['events'] = json_reference(api_github(project['api']['events_url']),Asset(ASSETS,path=PATH_GITHUB_EVENTS,seed=project['api']['node_id'],suffix='.json'))
 
         languages = api_github(project['api']['languages_url'])
         project['languages'] = [{'name':name,'value':languages[name]} for name in languages]
@@ -77,9 +76,11 @@ with open(os.path.join('.','assets','projects.json')) as f:
         for key in PROJECT_VALUES:
             if key not in project:
                 project[key] = PROJECT_VALUES[key]
+        
 
-
-    json_save(projects,Asset(ASSETS,['json'],'projects.json'))
+        projects.append(json_reference(project,Asset(ASSETS,path=PATH_PROJECTS,seed=project['api']['node_id'],suffix='.json')))
+    
+    json_save(projects,Asset(ASSETS,name='projects.json'))
 
 # Compiles recent events
 events = []
@@ -90,4 +91,4 @@ while len(events) < settings['event_load_count']:
     events_result = api_github(events_api_url,{'per_page':100,'page':page})
     events.extend(events_result[:min(settings['event_load_count'] - len(events),100)])
 
-json_save(events,Asset(ASSETS,path=['json'],name='events.json'))
+json_save(events,Asset(ASSETS,name='events.json'))

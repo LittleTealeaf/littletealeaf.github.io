@@ -2,6 +2,7 @@ import os, shutil, random, json
 
 class Asset:
     def __init__(self,resourcepath,path=[],name='',suffix='',seed=None):
+        path = path.copy()
         if seed:
             random.seed(str(seed))
             name = "".join(random.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',15))
@@ -29,6 +30,19 @@ class AssetDirectory:
 
 ASSETS = AssetDirectory('.','assets','generated')
 PUBLIC = AssetDirectory('.','public','assets','generated')
+
+PATH_GITHUB = ['github']
+PATH_IMAGES = ['images']
+PATH_JSON = ['json']
+PATH_PROJECTS = ['projects']
+PATH_GITHUB_API = PATH_GITHUB + ['api']
+PATH_GITHUB_TAGS = PATH_GITHUB + ['tags']
+PATH_GITHUB_USERS = PATH_GITHUB + ['users']
+PATH_GITHUB_EVENTS = PATH_GITHUB + ['events']
+
+
+
+print(PATH_GITHUB_API)
 
 [i.initialize() for i in [ASSETS, PUBLIC]]
 

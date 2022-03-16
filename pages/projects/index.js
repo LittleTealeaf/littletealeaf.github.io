@@ -1,14 +1,17 @@
 import Header from '../../components/header';
 import Link from 'next/link';
-import {Projects} from '../../libs/assets';
+import {Projects, getAsset} from '../../libs/assets';
 
 const ProjectHref = (project) =>  "/projects/" + project.api.name;
 
-const ProjectDisplay = (project,index) => (
-  <div>
-    <Link id={index} href={ProjectHref(project)}>{project.api.name}</Link>
-  </div>
-);
+const ProjectDisplay = (projectref,index) => {
+  const project = getAsset(projectref);
+  return (
+    <div>
+      <Link id={index} href={ProjectHref(project)}>{project.api.name}</Link>
+    </div>
+  )
+};
 
 export default function Home() {
     return (

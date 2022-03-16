@@ -1,8 +1,10 @@
 // Manages references to the assets page, including any static / used references
-
-import Projects from '../assets/generated/json/projects.json'
-import Events from '../assets/generated/json/events.json'
 import Navigation from '../assets/navigation.json'
-export {Projects, Events, Navigation};
+import Projects from '../assets/generated/projects.json'
+import Events from '../assets/generated/events.json'
 
-const NAV_BACK = '../'
+export function getAsset(genpath) {
+    return require('../assets/generated/' + genpath);
+}
+
+export {Projects, Events, Navigation}
