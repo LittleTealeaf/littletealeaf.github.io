@@ -34,7 +34,7 @@ def image_format(image,attributes={}):
     img = img.resize(size)
     return img
 
-def image_hashname(img):
+def image_hash(img):
     image = img.resize((10,10),Image.ANTIALIAS)
     image = image.convert("L")
     pixel_data = list(image.getdata())
