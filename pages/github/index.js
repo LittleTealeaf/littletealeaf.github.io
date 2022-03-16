@@ -10,7 +10,7 @@ export default function Home() {
             <div>
                 {
                     events.map((event,i) => (
-                        <GithubEvent event={event} />
+                        <GithubEvent key={i} event={event} />
                     ))
                 }
             </div>

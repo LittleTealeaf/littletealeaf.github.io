@@ -26,7 +26,7 @@ class ResourceDirectory:
         os.makedirs(self.directory)
 
 
-RESOURCES = ResourceDirectory(os.path.join('.','assets','generated'))
-PUBLIC = ResourceDirectory(os.path.join('.','public','assets','generated'),'/assets/generated')
+RESOURCES = ResourceDirectory(os.path.join('.','assets','generated'),'./assets/generated')
+PUBLIC = ResourceDirectory(os.path.join('.','public','assets','generated'),'./assets/generated')
 
 [i.initialize() for i in [RESOURCES,PUBLIC]]
