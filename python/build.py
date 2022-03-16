@@ -69,7 +69,8 @@ def reference_github_repository(url):
             'stargazers': reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user_api) for user_api in api_github(repo['stargazers_url'])]),
             'languages': reference_json(Asset(GITHUB_LANGUAGES,type=JSON,seed=repo['languages_url']),api_github(repo['languages_url'])),
             'events': reference_api_github(repo['events_url'],GITHUB_EVENTS),
-            'releases': reference_api_github(repo['releases_url'].replace('{/id}',''),GITHUB_RELEASES)
+            'releases': reference_api_github(repo['releases_url'].replace('{/id}',''),GITHUB_RELEASES),
+            'owner': reference_github_user(api=repo['owner'])
         })
         save_json(asset,repo)
     return asset.ref
