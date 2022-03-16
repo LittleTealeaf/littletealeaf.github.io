@@ -1,5 +1,5 @@
 import Header from '../../components/header'
-import projects from '../../assets/generated/projects.json'
+import projects from '../../assets/generated/json/projects.json'
 import Link from 'next/link'
 
 const ProjectHref = (project) =>  "/projects/" + project.api.name;

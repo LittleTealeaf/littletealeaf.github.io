@@ -33,3 +33,12 @@ def image_format(image,attributes={}):
         size[1] = attributes['height']
     img = img.resize(size)
     return img
+
+def image_hash(img):
+    image = img.resize((10,10),Image.ANTIALIAS)
+    image = image.convert("L")
+    pixel_data = list(image.getdata())
+    avg_pixel = sum(pixel_data) / len(pixel_data)
+    bits = "".join(['1' if (px >= avg_pixel) else '0' for px in pixel_data])
+    hex_representation = str(hex(int(bits, 2)))[2:][::-1].upper()
+    return hex_representation

@@ -1,32 +1,32 @@
 import os, shutil, random
-
-class Resource:
-    def __init__(self,resource_directory,name='',suffix='',seed=None):
+class Asset:
+    def __init__(self,resource,path=[],name='',suffix='',seed=None):
         if seed:
             random.seed(str(seed))
-            name = "".join(random.sample('abcdefghijklmnopqrstuvwxyz1234567890',10))
+            name = "".join(random.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',10))
+        dir = os.path.join(resource.directory,*path)
+        if not os.path.exists(dir):
+            print(f"Created Asset Directory: {dir}")
+            os.makedirs(dir)
+        path.append(f'{name}{suffix}')
         
-        self.path = os.path.join(resource_directory.directory, f'{name}{suffix}')
-        self.refpath = resource_directory.reference + f'/{name}{suffix}'
-        
+        self.path = os.path.join(resource.directory,*path)
+        self.refpath = "/".join(path)
 
-class ResourceDirectory:
-    def __init__(self,directory,reference=None):
-        self.directory = directory
-        if reference:
-            self.reference = reference
-        else:
-            self.reference = directory
+        print(f'Configured asset {self.refpath} at {self.path}')
+
+class AssetDirectory:
+    def __init__(self,*directory):
+        self.directory = os.path.join(*directory)
 
     def initialize(self):
         if os.path.exists(self.directory) and os.path.isdir(self.directory):
-            print(f'Deleting {self.directory}')
-            shutil.rmtree(self.directory)
+             print(f'Deleting {self.directory}')
+             shutil.rmtree(self.directory)
         print(f'Initializing {self.directory}')
         os.makedirs(self.directory)
 
+ASSETS = AssetDirectory('.','assets','generated')
+PUBLIC = AssetDirectory('.','public','assets','generated')
 
-RESOURCES = ResourceDirectory(os.path.join('.','assets','generated'))
-PUBLIC = ResourceDirectory(os.path.join('.','public','assets','generated'),'/resources/generated')
-
-[i.initialize() for i in [RESOURCES,PUBLIC]]
+[i.initialize() for i in [ASSETS,PUBLIC]]

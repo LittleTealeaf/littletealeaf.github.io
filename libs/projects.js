@@ -1,4 +1,4 @@
-import projects from '../assets/generated/projects.json'
+import projects from '../assets/generated/json/projects.json'
 
 
 export function getAllProjectIds() {
