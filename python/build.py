@@ -3,6 +3,15 @@ from resutil import *
 from githubapi import *
 from imageutil import *
 
+# Load configuration settings
+
+settings = {}
+with open(os.path.join('.','assets','pyconfig.json')) as f:
+    settings = json.load(f)
+
+# Loads the user api
+user = api_github(f'https://api.github.com/users/{settings["github_username"]}')
+
 # Compiles the projects json for building
 with open(os.path.join('.','assets','projects.json')) as f:
     projects = json.load(f)
@@ -31,5 +40,13 @@ with open(os.path.join('.','assets','projects.json')) as f:
         w.write(json.dumps(projects))
 
 # Compiles recent events
+events = []
+events_api_url = user['events_url'].replace("{/privacy}","/public")
 
-    
+while len(events) < settings['event_load_count']:
+    page = int(len(events) / 100) + 1
+    events_result = api_github(events_api_url,{'per_page':100,'page':page})
+    events.extend(events_result[:min(settings['event_load_count'] - len(events),100)])
+
+with open(Resource(RESOURCES,'events.json').path,'w') as w:
+    w.write(json.dumps(events))
