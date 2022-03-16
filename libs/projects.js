@@ -6,7 +6,7 @@ export function getAllProjectIds() {
     return Projects.map(reference => {
         return {
             params: {
-                id: getAsset(getAsset(reference).api).name
+                id: getAsset(getAsset(reference).repository).name
             }
         }
     });
@@ -16,7 +16,7 @@ export function getProjectData(id) {
     var project = null;
     Projects.forEach(reference => {
         var element = getAsset(reference);
-        if(getAsset(element.api).name == id) {
+        if(getAsset(element.repository).name == id) {
             project = {
                 id, 
                 element

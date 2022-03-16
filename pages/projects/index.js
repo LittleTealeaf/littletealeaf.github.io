@@ -2,14 +2,14 @@ import Header from '../../components/header';
 import Link from 'next/link';
 import {Projects, getAsset} from '../../libs/assets';
 
-const ProjectHref = (api) =>  "/projects/" + api.name;
+const ProjectHref = (repo) =>  "/projects/" + repo.name;
 
 const ProjectDisplay = (projectref,index) => {
   const project = getAsset(projectref);
-  const api = getAsset(project.api);
+  const repo = getAsset(project.repository);
   return (
     <div>
-      <Link id={index} href={ProjectHref(api)}>{api.name}</Link>
+      <Link id={index} href={ProjectHref(repo)}>{repo.name}</Link>
     </div>
   )
 };
