@@ -4,7 +4,9 @@ import Header from '../../components/header'
 export default function Project({ projectData }) {
     var data = projectData.element;
     return <div>
-        <Header />
+        <Header path={
+            ["projects",data.api.name]
+        }/>
         <h1>{data.api.name}</h1>
         <h2>{data.api.owner.login}</h2>
         

@@ -4,7 +4,9 @@
     padding: 0px;
     background-color: var(--color-b);
 
-    --border-round: 10% 10px;
+    --border-round: 5% 20%;
+
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.4);
 
     
     border-bottom-left-radius: var(--border-round);
@@ -17,10 +19,11 @@
 
     padding: 15px;
 
+    
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.4);
 
-    --border-round: 40% 20px;
 
-
+    --border-round: 40% 70%;
 
     color: white;
     font-family: cursive;
@@ -31,8 +34,9 @@
 
 .navigation {
     display: flex;
-    margin: 2px 20px;
+    margin: 2px 5%;
     padding: 5px 0px;
+    flex-wrap: wrap;
 }
 
 .navigation a {
@@ -46,6 +50,8 @@
     background-color: var(--color-b);
 
     padding: 10px;
+
+    margin: 5px 10px;
     
 
     border-radius: 20px;
@@ -55,4 +61,6 @@
     flex-grow: 10;
     background-color: var(--color-c);
     color: white;
+    
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.4);
 }

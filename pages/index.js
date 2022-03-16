@@ -5,8 +5,8 @@ export default function Home() {
   return (
     
     <div>
-      <Header />
-      I AM A BIRD
+      <Header path={[]}/>
+      WARNING, THIS WEBSITE IS UNDER DEVELOPMENT. ALSO, I AM A BIRD
     </div>
   )
 }

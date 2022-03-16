@@ -4,7 +4,7 @@ from githubapi import *
 from imageutil import *
 
 # Compiles the projects json for building
-with open(os.path.join('.','resources','projects.json')) as f:
+with open(os.path.join('.','assets','projects.json')) as f:
     projects = json.load(f)
 
     for project in projects:
@@ -18,12 +18,6 @@ with open(os.path.join('.','resources','projects.json')) as f:
             
             img.save(img_resource.path)
             c['avatar_url'] = img_resource.refpath
-
-            # img = image_format(image_src(api['avatar_url']),{
-            #     'circular': True
-            # })
-            # img_save_path, c['avatar_src'] = resource(SRC,suffix='.png',randomName=True,seed=f"{api['avatar_url']}imageround")
-            # img.save(img_save_path)
             return c
 
         project['contributors'] = [compile_user(api) for api in api_github(project['api']['contributors_url'])]
@@ -37,11 +31,6 @@ with open(os.path.join('.','resources','projects.json')) as f:
         w.write(json.dumps(projects))
 
 
-with open(os.path.join('.','resources','projects.json')) as f:
-    projects = json.load(f)
-
-    for project in projects:
-        project['api'] = api_github(project['api_url'])
 
 
     

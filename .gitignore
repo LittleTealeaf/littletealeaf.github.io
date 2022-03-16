@@ -39,5 +39,5 @@ github_token
 
 .vscode/
 
-resources/generated/
-public/resources/generated/
+assets/generated/
+public/assets/generated/
