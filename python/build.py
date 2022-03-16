@@ -78,9 +78,9 @@ with open(os.path.join('.','assets','projects.json')) as p:
         with open(os.path.join('.','assets','generated',project['api'])) as api_file:
             api = json.load(api_file)
             project.update({
-                'contributors': reference_json(Asset(GITHUB_USER_LIST,type=JSON,seed=api['contributors_url']),[reference_github_user(api=user_api) for user_api in api_github(api['contributors_url'])]),
-                'subscribers': reference_json(Asset(GITHUB_USER_LIST,type=JSON,seed=api['subscribers_url']),[reference_github_user(api=user_api) for user_api in api_github(api['subscribers_url'])]),
-                'stargazers': reference_json(Asset(GITHUB_USER_LIST,type=JSON,seed=api['stargazers_url']),[reference_github_user(api=user_api) for user_api in api_github(api['stargazers_url'])]),
+                'contributors': reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user_api) for user_api in api_github(api['contributors_url'])]),
+                'subscribers': reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user_api) for user_api in api_github(api['subscribers_url'])]),
+                'stargazers': reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user_api) for user_api in api_github(api['stargazers_url'])]),
                 'languages': reference_json(Asset(GITHUB_LANGUAGES,type=JSON,seed=api['languages_url']),api_github(api['languages_url'])),
                 'events': reference_api_github(api['events_url'],GITHUB_EVENTS),
                 'releases': reference_api_github(api['releases_url'].replace('{/id}',''),GITHUB_RELEASES)
