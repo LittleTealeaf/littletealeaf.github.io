@@ -72,6 +72,7 @@ def reference_github_repository(url):
             'releases': reference_api_github(repo['releases_url'].replace('{/id}',''),GITHUB_RELEASES),
             'owner': reference_github_user(api=repo['owner'])
         })
+        [repo.pop(key,None) for key in ['permissions','contributors_url','subscribers_url','stargazers_url','languages','events_url','releases_url']]
         save_json(asset,repo)
     return asset.ref
 
