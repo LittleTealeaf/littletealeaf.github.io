@@ -10,11 +10,6 @@ with open(os.path.join('.','assets','pyconfig.json')) as f:
     settings = json.load(f)
 
 # Loads the user api
-
-def json_save(dictionary,asset):
-    print(f'Saving json to {asset.path}')
-    with open(asset.path,'w') as w:
-        w.write(json.dumps(dictionary))
     
 
 def load_github_user(username=None,url=None,api=None,include=[]):
@@ -38,21 +33,21 @@ def load_github_user(username=None,url=None,api=None,include=[]):
     # Include Attributes
     for stdinclude in ['organizations','events']:
         if stdinclude in include:
-            user[stdinclude] = api_github(api[f'{stdinclude}_url'].partition('{')[0])
+            user[stdinclude] = json_reference(api_github(api[f'{stdinclude}_url'].partition('{')[0]),Asset(ASSETS,path=['json','github',stdinclude],seed=api['node_id'],suffix='.json'))
     
     for userinclude in ['followers','following']:
         if userinclude in include:
             users = api_github(api[f'{userinclude}_url'].partition('{')[0])
             user[userinclude] = [load_github_user(api=i) for i in users]
     
-
-
     return user
 
+def github_user_reference(username=None,url=None,api=None,include=[]):
+    user = load_github_user(username,url,api,include)
+    return json_reference(user,Asset(ASSETS,path=['json','github','user'],seed=user['api']['node_id'],suffix='.json'))
 
-user = load_github_user(username=settings['github_username'],include=['followers','following'])
 
-json_save(user,Asset(ASSETS,path=['json','github_users'],name=user['api']['login'],suffix='.json'))
+user = load_github_user(username=settings['github_username'],include=['followers','following','events'])
 
 
 # Compiles the projects json for building
@@ -65,25 +60,16 @@ with open(os.path.join('.','assets','projects.json')) as f:
 
     for project in projects:
         project['api'] = api_github(project['api_url'])
-        def compile_user(api):
-            c = {'api':api}
-            img = image_format(image_src(api['avatar_url']),{
-                'circular': True
-            })
-            img_resource = Asset(ASSETS,path=['images'],seed=image_hash(img),suffix='.png')
-            
-            img.save(img_resource.path)
-            c['avatar_url'] = img_resource.refpath
-            return c
 
         project['owner'] = project['api']['owner']
 
-        project['contributors'] = [load_github_user(api=user_api) for user_api in api_github(project['api']['contributors_url'])]
-        project['subscribers'] = [load_github_user(api=user_api) for user_api in api_github(project['api']['subscribers_url'])]
-        project['stargazers'] = [load_github_user(api=user_api) for user_api in api_github(project['api']['stargazers_url'])]
+        project['contributors'] = [github_user_reference(api=user_api) for user_api in api_github(project['api']['contributors_url'])]
+        project['subscribers'] = [github_user_reference(api=user_api) for user_api in api_github(project['api']['subscribers_url'])]
+        project['stargazers'] = [github_user_reference(api=user_api) for user_api in api_github(project['api']['stargazers_url'])]
         
-        project['api_tags'] = api_github(project['api']['tags_url'])
-        project['api_releases'] = api_github(project['api']['releases_url'].replace('{/id}',''))
+        project['tags'] = json_reference(api_github(project['api']['tags_url']),Asset(ASSETS,['json','github','tags'],seed=project['api']['node_id'],suffix='.json'))
+        project['releases'] = api_github(project['api']['releases_url'].replace('{/id}',''))
+        project['events'] = json_reference(api_github(project['api']['events_url']),Asset(ASSETS,['json','github','events'],seed=project['api']['node_id'],suffix='.json'))
 
         languages = api_github(project['api']['languages_url'])
         project['languages'] = [{'name':name,'value':languages[name]} for name in languages]

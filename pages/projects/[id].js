@@ -1,11 +1,12 @@
 import { getAllProjectIds, getProjectData } from "../../libs/projects"
 import Header from '../../components/header'
 
-const ContributorAvatar = (contributor,index) => {
+const ContributorAvatar = (contributor_reference,index) => {
+    const contributor = require('../../assets/generated/' + contributor_reference)
     return (
         <div key={index}>
             {
-                contributor.avatar_url != null ? (
+                contributor.avatar != null ? (
                     <img alt={contributor.api.login} src={require('../../assets/generated/' + contributor.avatar)} width="30" height="30"></img>
                 ) : <></>
             }
@@ -15,6 +16,7 @@ const ContributorAvatar = (contributor,index) => {
 
 export default function Project({ projectData }) {
     var data = projectData.element;
+
     return <div>
         <Header path={
             ["projects",data.api.name]
