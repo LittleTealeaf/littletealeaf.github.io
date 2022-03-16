@@ -11,12 +11,21 @@
     "deploy": "next build && next export"
   },
   "dependencies": {
-    "imagemin-optipng": "8.0.0",
+    "image-trace-loader": "^1.0.2",
+    "imagemin-gifsicle": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "imagemin-svgo": "^10.0.1",
+    "jimp": "^0.16.1",
+    "lqip-loader": "^2.2.1",
     "next": "12.1.0",
     "next-compose-plugins": "2.2.1",
     "next-optimized-images": "2.6.2",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "responsive-loader": "^2.3.0",
+    "svg-sprite-loader": "^6.0.11",
+    "webp-loader": "^0.6.0"
   },
   "devDependencies": {
     "eslint": "8.11.0",
