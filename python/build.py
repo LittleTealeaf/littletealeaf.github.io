@@ -60,7 +60,11 @@ def reference_api_github(url,path=GITHUB):
     asset = Asset(path=path,seed=url,type=JSON)
     return fetch_json(asset,lambda: api_github(url))
 
+def reference_json_seed(path=[],data=None):
+    json_string = json.dumps(data)
+    return reference_json(Asset(path=path,seed=json_string,type=JSON),data)
 
+    
 
 with open(os.path.join('.','assets','projects.json')) as p:
     projects = []
