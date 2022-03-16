@@ -7,35 +7,35 @@ import { getAsset } from "../../libs/assets"
 const UserAvatar = (reference, index) => {
     const contributor = getAsset(reference)
     return (contributor.avatar != null ? (
-        <a key={index} href={contributor.api.html_url}>
-            <img alt={contributor.api.login} src={getAsset(contributor.avatar)} width="30" height="30" />
+        <a key={index} href={contributor.html_url}>
+            <img alt={contributor.login} src={getAsset(contributor.avatar)} width="30" height="30" />
         </a>
     ) : <></>
     )
 }
 
 export default function Project({ projectData }) {
-    var data = projectData.element;
-    const api = getAsset(data.api)
+    const data = projectData.element;
+    const repo = getAsset(data.repository)
 
     return <div>
         <Header path={
-            ["projects", api.name]
+            ["projects", repo.name]
         } />
-        <h1>{api.name}</h1>
-        <h2>{api.owner.login}</h2>
+        <h1>{repo.name}</h1>
+        <h2>{repo.owner.login}</h2>
         <div>
             Contributors: 
-            {getAsset(data.contributors).map(UserAvatar)}
+            {getAsset(repo.contributors).map(UserAvatar)}
             
         </div>
         <div>
             Stargazers:
-        {getAsset(data.stargazers).map(UserAvatar)}
+        {getAsset(repo.stargazers).map(UserAvatar)}
         </div>
         <div>
             Subscribers:
-            {getAsset(data.subscribers).map(UserAvatar)}
+            {getAsset(repo.subscribers).map(UserAvatar)}
         </div>
     </div>
 }
