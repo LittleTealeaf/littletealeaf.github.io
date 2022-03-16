@@ -30,8 +30,6 @@ with open(os.path.join('.','assets','projects.json')) as f:
     with open(Resource(RESOURCES,'projects.json').path,'w') as w:
         w.write(json.dumps(projects))
 
+# Compiles recent events
 
-
-
-    
     
