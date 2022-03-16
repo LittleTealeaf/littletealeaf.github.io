@@ -5,10 +5,11 @@ PNG = 'png'
 JSON = 'json'
 
 GITHUB = ['github']
-GITHUB_USERS = GITHUB + ['users']
+GITHUB_USER = GITHUB + ['users']
 GITHUB_REPOSITORY = GITHUB + ['repository']
 GITHUB_EVENTS = GITHUB + ['events']
 GITHUB_RELEASES = GITHUB + ['releases']
+GITHUB_USER_LIST = GITHUB_USER + ['group']
 PROJECTS = ['projects']
 IMAGES = ['images']
 

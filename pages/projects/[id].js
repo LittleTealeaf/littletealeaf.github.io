@@ -4,7 +4,7 @@ import style from '../../styles/project.module.css'
 import Link from 'next/link'
 import { getAsset } from "../../libs/assets"
 
-const ContributorAvatar = (reference, index) => {
+const UserAvatar = (reference, index) => {
     const contributor = getAsset(reference)
     return (contributor.avatar != null ? (
         <a key={index} href={contributor.api.html_url}>
@@ -25,7 +25,17 @@ export default function Project({ projectData }) {
         <h1>{api.name}</h1>
         <h2>{api.owner.login}</h2>
         <div>
-            {data.contributors.map(ContributorAvatar)}
+            Contributors: 
+            {getAsset(data.contributors).map(UserAvatar)}
+            
+        </div>
+        <div>
+            Stargazers:
+        {getAsset(data.stargazers).map(UserAvatar)}
+        </div>
+        <div>
+            Subscribers:
+            {getAsset(data.subscribers).map(UserAvatar)}
         </div>
     </div>
 }

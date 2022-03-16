@@ -38,7 +38,7 @@ def github_user_reference(username=None,url=None,api=None,include=[]):
         elif api:
             url = api['url']
 
-    asset = Asset(path=GITHUB_USERS,seed=url,type=JSON)
+    asset = Asset(path=GITHUB_USER,seed=url,type=JSON)
 
     def fetchUser(api=None,url=None,include=[]):
         if not api:
@@ -76,9 +76,9 @@ with open(os.path.join('.','assets','projects.json')) as p:
         with open(os.path.join('.','assets','generated',project['api'])) as api_file:
             api = json.load(api_file)
             project.update({
-                'contributors': [github_user_reference(api=user_api) for user_api in api_github(api['contributors_url'])],
-                'subscribers': [github_user_reference(api=user_api) for user_api in api_github(api['subscribers_url'])],
-                'stargazers': [github_user_reference(api=user_api) for user_api in api_github(api['stargazers_url'])],
+                'contributors': json_reference(Asset(GITHUB_USER_LIST,type=JSON,seed=api['contributors_url']),[github_user_reference(api=user_api) for user_api in api_github(api['contributors_url'])]),
+                'subscribers': json_reference(Asset(GITHUB_USER_LIST,type=JSON,seed=api['subscribers_url']),[github_user_reference(api=user_api) for user_api in api_github(api['subscribers_url'])]),
+                'stargazers': json_reference(Asset(GITHUB_USER_LIST,type=JSON,seed=api['stargazers_url']),[github_user_reference(api=user_api) for user_api in api_github(api['stargazers_url'])]),
                 'languages': api_github(api['languages_url']),
                 'events': api_github_reference(api['events_url'],GITHUB_EVENTS),
                 'releases': api_github_reference(api['releases_url'].replace('{/id}',''),GITHUB_RELEASES)
