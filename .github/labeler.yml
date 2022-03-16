@@ -29,6 +29,9 @@ markdown: ['**/*.md', '**/*.markdown']
 image: ['*.jpg', '*.jpeg', '*.png']
 
 # Directories
-resources: ['assets/*','public/assets/*']
-pages: 'pages/*'
-public: 'public/*'
+assets: 'assets/**/*'
+pages: 'pages/**/*'
+public: 'public/**/*'
+styles: 'styles/**/*'
+libraries: 'libs/**/*'
+components: 'components/**/*'
