@@ -2,6 +2,9 @@ from fileinput import filename
 import os, shutil, random, json
 
 PNG = 'png'
+JPEG = 'jpeg'
+SVG = 'svg'
+WEBP = 'WebP'
 JSON = 'json'
 
 GITHUB = ['github']
