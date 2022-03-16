@@ -1,5 +1,5 @@
 import Header from '../../components/header'
-import events from '../../assets/generated/json/events.json'
+import { Events } from '../../libs/assets'
 import GithubEvent from '../../components/githubevent'
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
             I AM A GITHUB BIRD
             <div>
                 {
-                    events.map((event,i) => (
+                    Events.map((event,i) => (
                         <GithubEvent key={i} event={event} />
                     ))
                 }

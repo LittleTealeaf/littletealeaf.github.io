@@ -1,14 +1,17 @@
-import Header from '../../components/header'
-import projects from '../../assets/generated/json/projects.json'
-import Link from 'next/link'
+import Header from '../../components/header';
+import Link from 'next/link';
+import {Projects, getAsset} from '../../libs/assets';
 
 const ProjectHref = (project) =>  "/projects/" + project.api.name;
 
-const ProjectDisplay = (project,index) => (
-  <div>
-    <Link id={index} href={ProjectHref(project)}>{project.api.name}</Link>
-  </div>
-);
+const ProjectDisplay = (projectref,index) => {
+  const project = getAsset(projectref);
+  return (
+    <div>
+      <Link id={index} href={ProjectHref(project)}>{project.api.name}</Link>
+    </div>
+  )
+};
 
 export default function Home() {
     return (
@@ -19,7 +22,7 @@ export default function Home() {
         I AM A PROJECT BIRD
         <div>
           {
-            projects.map(ProjectDisplay)
+            Projects.map(ProjectDisplay)
           }
         </div>
       </div>

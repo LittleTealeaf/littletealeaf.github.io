@@ -12,6 +12,6 @@ if not api_token_github:
     print("WARNING: NO GITHUB API TOKEN GIVEN")
 
 
-def api_github(url,parameters={}):
+def api_github(url,parameters={},extensive=False):
     print(f'Fetching api from {url}')
     return requests.get(url,headers={'authorization':f'token {api_token_github}'}, params=parameters).json()
