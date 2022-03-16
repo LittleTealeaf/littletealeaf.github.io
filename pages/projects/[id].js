@@ -5,16 +5,11 @@ import Link from 'next/link'
 
 const ContributorAvatar = (contributor_reference, index) => {
     const contributor = require('../../assets/generated/' + contributor_reference)
-    return (
-        <div key={index}>
-            {
-                contributor.avatar != null ? (
-                    <a href={contributor.api.html_url}>
-                        <img alt={contributor.api.login} src={require('../../assets/generated/' + contributor.avatar)} width="30" height="30" />
-                    </a>
-                ) : <></>
-            }
-        </div>
+    return (contributor.avatar != null ? (
+        <a key={index} href={contributor.api.html_url}>
+            <img alt={contributor.api.login} src={require('../../assets/generated/' + contributor.avatar)} width="30" height="30" />
+        </a>
+    ) : <></>
     )
 }
 
