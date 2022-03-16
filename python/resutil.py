@@ -16,6 +16,8 @@ class Asset:
         self.refpath = "/".join(path)
 
         print(f'Configured asset {self.refpath} at {self.path}')
+    def exists(self):
+        return os.path.exists(self.path)
 
 class AssetDirectory:
     def __init__(self,*directory):

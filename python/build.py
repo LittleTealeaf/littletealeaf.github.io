@@ -10,8 +10,7 @@ settings = {}
 with open(os.path.join('.','assets','pyconfig.json')) as f:
     settings = json.load(f)
 
-# Loads the user api
-    
+
 
 def github_load_user(username=None,url=None,api=None,include=[]):
     if not api:
@@ -41,9 +40,22 @@ def github_load_user(username=None,url=None,api=None,include=[]):
     
     return user
 
+
+
+
+
 def github_user_reference(username=None,url=None,api=None,include=[]):
+
+    def create_asset(api):
+        return Asset(ASSETS,path=PATH_GITHUB_USERS,seed=api['node_id'],suffix='.json')
+
+    if api:
+        asset = create_asset(api)
+        if os.path.exists(asset.path):
+            print(f'Skipping Fetching User: {api["login"]}')
+            return asset.refpath
     user = github_load_user(username,url,api,include)
-    return json_reference(user,Asset(ASSETS,path=PATH_GITHUB_USERS,seed=user['api']['node_id'],suffix='.json'))
+    return json_reference(user,create_asset(user['api']))    
 
 
 user = github_load_user(username=settings['github_username'],include=['followers','following','events'])

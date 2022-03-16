@@ -15,4 +15,3 @@ if not api_token_github:
 def api_github(url,parameters={},extensive=False):
     print(f'Fetching api from {url}')
     return requests.get(url,headers={'authorization':f'token {api_token_github}'}, params=parameters).json()
-
