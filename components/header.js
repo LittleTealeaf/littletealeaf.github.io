@@ -32,26 +32,44 @@ potentially?
 export default function Header({ path }) {
     console.log(path);
     return (
-        <div className={StyleClass(style.navlink)} id='static-header'>
+        <div className={style.header}>
             <Head>
-                <title>
-                    {path[path.length - 1]}
-                </title>
-
+               
             </Head>
-            <div className={style.headerbackground}>
-                <div className={style.headerfixed}>
-                    <div className={style.title}>
-                        LittleTealeaf
-                    </div>
-                    <div className={style.navigation}>
-                        {navLinks.map(NavLink)}
-                    </div>
-                </div>
+            <div className={style.title}>
+                <h1>Thomas Kwashnak</h1>
+                <h2>LittleTealeaf</h2>
             </div>
-
-
-            <Script src="./assets/js/header-scroll.js" />
+            <div className={style.navigation}>
+                {
+                    navLinks.map((data,id) => (
+                        <Link key={id} href={data.href}>
+                            {data.name}
+                        </Link>
+                    ))
+                }
+            </div>
         </div>
+        // <div className={StyleClass(style.navlink)} id='static-header'>
+        //     <Head>
+        //         <title>
+        //             {path[path.length - 1]}
+        //         </title>
+
+        //     </Head>
+        //     <div className={style.headerbackground}>
+        //         <div className={style.headerfixed}>
+        //             <div className={style.title}>
+        //                 LittleTealeaf
+        //             </div>
+        //             <div className={style.navigation}>
+        //                 {navLinks.map(NavLink)}
+        //             </div>
+        //         </div>
+        //     </div>
+
+
+        //     <Script src="./assets/js/header-scroll.js" />
+        // </div>
     )
 }

@@ -1,76 +1,65 @@
-
-
-.navlink {
-    cursor: pointer;
-}
-
-/* 
 .header {
+    text-align: center;
+    width: 100%;
+    padding: 0px;
+    background-color: var(--color-b);
 
-    --header-height: 100px;
+    --border-round: 5% 20%;
 
-    background-color: transparent;
-    transition-duration: 0.1s;
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.4);
+
+    
+    border-bottom-left-radius: var(--border-round);
+    border-bottom-right-radius: var(--border-round);
+
 }
-
-.header * {
-    transition-duration: 0.5s;
-}
-
-.header:not([data-scroll='0']) {
-    --header-height: 0px;
-
-    background-color: transparent;
-}
-
-.headerfixed {
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-}
-
-.headerfixed .title {
-    flex-grow: 1;
-}
-
-.headerfixed .navigation {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-}
-
-.headerfixed .navigation .navlink {
-    flex-grow: 1;
-}
-
-
 
 .header .title {
-    font-size: 50;
+    background-color: var(--color-c);
+
+    padding: 15px;
+
+    
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.4);
+
+
+    --border-round: 40% 70%;
+
+    color: white;
+    font-family: cursive;
+
+    border-bottom-left-radius: var(--border-round);
+    border-bottom-right-radius: var(--border-round);
 }
 
-.header .headerbackground {
-    height: var(--header-height);
-    width: 100%;
-    left:0;
-    background-color: grey;
+.navigation {
+    display: flex;
+    margin: 2px 5%;
+    padding: 5px 0px;
 }
 
-.header:not([data-scroll='0']) .headerbackground {
-    width: 0%;
-}
+.navigation a {
+    flex-grow: 9;
 
+    transition-duration: 0.5s;
 
-.navlink {
-    --bottom-radius: 20%;
+    text-decoration: none;
+    color: black;
 
- 
+    background-color: var(--color-b);
 
     padding: 10px;
 
-    background-color: rgb(123, 165, 123);
-    border-bottom-left-radius: var(--bottom-radius);
-    border-bottom-right-radius: var(--bottom-radius);
+    margin: 0px 10px;
+    
 
-    cursor: pointer;
-} */
+    border-radius: 20px;
+}
+
+.navigation a:hover {
+    flex-grow: 10;
+    background-color: var(--color-c);
+    color: white;
+    
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.4);
+}
