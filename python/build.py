@@ -16,6 +16,10 @@ user = api_github(f'https://api.github.com/users/{settings["github_username"]}')
 with open(os.path.join('.','assets','projects.json')) as f:
     projects = json.load(f)
 
+    PROJECT_VALUES = {
+        'description':''
+    }
+
     for project in projects:
         project['api'] = api_github(project['api_url'])
         def compile_user(api):
@@ -34,6 +38,10 @@ with open(os.path.join('.','assets','projects.json')) as f:
         
         project['api_tags'] = api_github(project['api']['tags_url'])
         project['api_releases'] = api_github(project['api']['releases_url'].replace('{/id}',''))
+
+        for key in PROJECT_VALUES:
+            if key not in project:
+                project[key] = PROJECT_VALUES[key]
 
 
     with open(Asset(ASSETS,['json'],'projects.json').path,'w') as w:
