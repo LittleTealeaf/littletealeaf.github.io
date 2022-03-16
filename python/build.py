@@ -23,7 +23,7 @@ with open(os.path.join('.','assets','projects.json')) as f:
             img = image_format(image_src(api['avatar_url']),{
                 'circular': True
             })
-            img_resource = Resource(RESOURCES,path=['images'],seed=f'{api["avatar_url"]}imageround',suffix='.png')
+            img_resource = Asset(ASSETS,path=['images'],name=image_hashname(img),suffix='.png')
             
             img.save(img_resource.path)
             c['avatar_url'] = img_resource.refpath
@@ -36,7 +36,7 @@ with open(os.path.join('.','assets','projects.json')) as f:
         project['api_releases'] = api_github(project['api']['releases_url'].replace('{/id}',''))
 
 
-    with open(Resource(RESOURCES,['json'],'projects.json').path,'w') as w:
+    with open(Asset(ASSETS,['json'],'projects.json').path,'w') as w:
         w.write(json.dumps(projects))
 
 # Compiles recent events
@@ -48,5 +48,5 @@ while len(events) < settings['event_load_count']:
     events_result = api_github(events_api_url,{'per_page':100,'page':page})
     events.extend(events_result[:min(settings['event_load_count'] - len(events),100)])
 
-with open(Resource(RESOURCES,path=['json'],name='events.json').path,'w') as w:
+with open(Asset(ASSETS,path=['json'],name='events.json').path,'w') as w:
     w.write(json.dumps(events))
