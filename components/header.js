@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Script from 'next/script'
+// import Script from 'next/script'
 
 import style from '../styles/header.module.css'
 import navLinks from '../assets/navigation.json'
-import StyleClass from '../libs/styleutil'
+// import StyleClass from '../libs/styleutil'
 
 const NavLink = (data, i) => (
     <Link key={i} href={data.href}>
@@ -14,9 +14,6 @@ const NavLink = (data, i) => (
     </Link>
 )
 
-function handleScroll() {
-    console.log("hello");
-}
 
 /*
 THE PLAN:
@@ -30,7 +27,6 @@ potentially?
 
 
 export default function Header({ path }) {
-    console.log(path);
     return (
         <div className={style.header}>
             <Head>

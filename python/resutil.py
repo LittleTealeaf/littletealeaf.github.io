@@ -1,32 +1,28 @@
 import os, shutil, random
-
 class Resource:
-    def __init__(self,resource_directory,name='',suffix='',seed=None):
+    def __init__(self,resource,path=[],name='',suffix='',seed=None):
         if seed:
             random.seed(str(seed))
             name = "".join(random.sample('abcdefghijklmnopqrstuvwxyz1234567890',10))
-        
-        self.path = os.path.join(resource_directory.directory, f'{name}{suffix}')
-        self.refpath = resource_directory.reference + f'/{name}{suffix}'
-        
+        dir = os.path.join(resource.directory,*path)
+        if not os.path.exists(dir):
+            os.makedirs(dir)
+        path.append(f'{name}{suffix}')
+        self.path = os.path.join(resource.directory,*path)
+        self.refpath = "/".join(path)
 
 class ResourceDirectory:
-    def __init__(self,directory,reference=None):
-        self.directory = directory
-        if reference:
-            self.reference = reference
-        else:
-            self.reference = directory
+    def __init__(self,*directory):
+        self.directory = os.path.join(*directory)
 
     def initialize(self):
         if os.path.exists(self.directory) and os.path.isdir(self.directory):
-            print(f'Deleting {self.directory}')
-            shutil.rmtree(self.directory)
+             print(f'Deleting {self.directory}')
+             shutil.rmtree(self.directory)
         print(f'Initializing {self.directory}')
         os.makedirs(self.directory)
 
-
-RESOURCES = ResourceDirectory(os.path.join('.','assets','generated'),'./assets/generated')
-PUBLIC = ResourceDirectory(os.path.join('.','public','assets','generated'),'./assets/generated')
+RESOURCES = ResourceDirectory('.','assets','generated')
+PUBLIC = ResourceDirectory('.','public','assets','generated')
 
 [i.initialize() for i in [RESOURCES,PUBLIC]]

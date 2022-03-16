@@ -1,5 +1,5 @@
 import Header from '../../components/header'
-import events from '../../assets/generated/events.json'
+import events from '../../assets/generated/json/events.json'
 import GithubEvent from '../../components/githubevent'
 
 export default function Home() {
