@@ -16,5 +16,17 @@
     },{
         "repository_api":"https://api.github.com/repos/coding-horror/basic-computer-games",
         "attributes": {}
+    },{
+        "repository_api":"https://api.github.com/repos/LittleTealeaf/SER-225-Team-A2",
+        "attributes": {}
+    },{
+        "repository_api":"https://api.github.com/repos/LittleTealeaf/CSC-215-Program-S1",
+        "attributes": {}
+    },{
+        "repository_api":"https://api.github.com/repos/LittleTealeaf/CSC-215-Program-P1",
+        "attributes": {}
+    },{
+        "repository_api":"https://api.github.com/repos/SER210-SP21/headfirst-ch2-LittleTealeaf",
+        "attributes": {}
     }
 ]

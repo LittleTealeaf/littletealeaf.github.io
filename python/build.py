@@ -70,7 +70,7 @@ def reference_github_repository(url):
     if not asset.exists():
         repo = api_github(url)
         repo.update({
-            'contributors': reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user_api) for user_api in api_github(repo['contributors_url'])]),
+            'contributors': reference_json_seed(GITHUB_USER_LIST,[{'user':reference_github_user(api=user_api),'contributions':user_api['contributions']} for user_api in api_github(repo['contributors_url'])]),
             'subscribers': reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user_api) for user_api in api_github(repo['subscribers_url'])]),
             'stargazers': reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user_api) for user_api in api_github(repo['stargazers_url'])]),
             'languages': reference_json(Asset(GITHUB_LANGUAGES,type=JSON,seed=repo['languages_url']),api_github(repo['languages_url'])),
