@@ -21,7 +21,6 @@ jobs:
         id: littletealeaf-github-io
         with:
           path: .next/cache
-          key: ${{runner.os}}-${{ hashFiles('**/package-lock.json')}}-${{ hashFiles('**/*.js')}}
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
