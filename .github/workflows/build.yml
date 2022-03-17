@@ -16,6 +16,12 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+      - name: Checkout Cache
+        uses: actions/checkout@v2
+        id: cache-littletealeaf.github.io
+        with:
+          path: .next/cache
+          key: ${{runner.os}}-${{ hashFiles('**/package-lock.json')}}-${{ hashFiles('**/*.js')}}
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
