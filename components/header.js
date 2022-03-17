@@ -3,14 +3,12 @@ import Link from 'next/link'
 // import Script from 'next/script'
 
 import style from '../styles/header.module.css'
-import {Navigation as navLinks} from '../libs/assets'
+import { Navigation as navLinks } from '../libs/assets'
 // import StyleClass from '../libs/styleutil'
 
 const NavLink = (data, i) => (
-    <Link key={i} href={data.href}>
-        <div className={style.navlink}>
-            {data.name}
-        </div>
+    <Link key={i} href={data.href} passHref>
+        {data.name}
     </Link>
 )
 
@@ -30,7 +28,7 @@ export default function Header({ path }) {
     return (
         <div className={style.header}>
             <Head>
-               
+
             </Head>
             <div className={style.title}>
                 <h1>Thomas Kwashnak</h1>
@@ -38,11 +36,7 @@ export default function Header({ path }) {
             </div>
             <div className={style.navigation}>
                 {
-                    navLinks.map((data,id) => (
-                        <Link key={id} href={data.href}>
-                            {data.name}
-                        </Link>
-                    ))
+                    navLinks.map(NavLink)
                 }
             </div>
         </div>
