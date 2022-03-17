@@ -1,8 +1,18 @@
 {
-    "event_load_count": 100,
+    "event_load": 100,
     "contributors_load_count":20,
     "stargazers_load_count":20,
-    "subscribers_load_count":20,
+    "subscribers_load_count":21,
     "username":"LittleTealeaf",
-    "index_name":"index.json"
+    "index_name":"index.json",
+    "follower_load":50,
+    "following_load":50,
+    "load_count": {
+        "events":100,
+        "contributors":40,
+        "stargazers":20,
+        "subscribers":20,
+        "followers": 20,
+        "following": 20
+    }
 }
