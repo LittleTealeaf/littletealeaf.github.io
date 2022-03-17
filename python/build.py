@@ -1,6 +1,6 @@
 import os, json, requests
 from sys import stdin
-from resutil import *
+from assetutil import *
 from githubapi import *
 from imageutil import *
 
