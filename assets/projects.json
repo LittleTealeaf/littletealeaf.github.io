@@ -1,32 +1,32 @@
 [
     {
-        "repository_api":"https://api.github.com/repos/LittleTealeaf/paceManager",
+        "repository":"https://api.github.com/repos/LittleTealeaf/paceManager",
         "attributes": {
             "description":"This is the very simple description about the pace manager..."
         }
     },{
-        "repository_api":"https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
+        "repository":"https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
         "attributes": {}
     },{
-        "repository_api":"https://api.github.com/repos/LittleTealeaf/LittleTealeaf",
+        "repository":"https://api.github.com/repos/LittleTealeaf/LittleTealeaf",
         "attributes": {}
     },{
-        "repository_api":"https://api.github.com/repos/LittleTealeaf/JsonPrettifier",
+        "repository":"https://api.github.com/repos/LittleTealeaf/JsonPrettifier",
         "attributes": {}
     },{
-        "repository_api":"https://api.github.com/repos/coding-horror/basic-computer-games",
+        "repository":"https://api.github.com/repos/coding-horror/basic-computer-games",
         "attributes": {}
     },{
-        "repository_api":"https://api.github.com/repos/LittleTealeaf/SER-225-Team-A2",
+        "repository":"https://api.github.com/repos/LittleTealeaf/SER-225-Team-A2",
         "attributes": {}
     },{
-        "repository_api":"https://api.github.com/repos/LittleTealeaf/CSC-215-Program-S1",
+        "repository":"https://api.github.com/repos/LittleTealeaf/CSC-215-Program-S1",
         "attributes": {}
     },{
-        "repository_api":"https://api.github.com/repos/LittleTealeaf/CSC-215-Program-P1",
+        "repository":"https://api.github.com/repos/LittleTealeaf/CSC-215-Program-P1",
         "attributes": {}
     },{
-        "repository_api":"https://api.github.com/repos/SER210-SP21/headfirst-ch2-LittleTealeaf",
+        "repository":"https://api.github.com/repos/SER210-SP21/headfirst-ch2-LittleTealeaf",
         "attributes": {}
     }
 ]

@@ -7,15 +7,11 @@ SVG = 'svg'
 WEBP = 'WebP'
 JSON = 'json'
 
-GITHUB = ['github']
-GITHUB_USER = GITHUB + ['users']
-GITHUB_REPOSITORY = GITHUB + ['repository']
-GITHUB_EVENTS = GITHUB + ['events']
-GITHUB_RELEASES = GITHUB + ['releases']
-GITHUB_USER_LIST = GITHUB + ['groups']
-GITHUB_LANGUAGES = GITHUB + ['languages']
+
 IMAGES = ['images']
 JSONS = ['json']
+
+VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
 
 
 class Asset:
@@ -23,7 +19,7 @@ class Asset:
         path = path.copy()
         if seed:
             random.seed(str(seed))
-            name = "".join(random.sample('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890',15))
+            name = ''.join(random.sample(VALID_CHARACTERS,15))
         
         parent_directory = os.path.join('.','assets','generated',*path)
         if not os.path.exists(parent_directory):
@@ -45,5 +41,5 @@ def clean_directory():
     if os.path.exists(path):
         print(f'Deleting Directory: {path}')
         shutil.rmtree(path)
-    print(f'Creating Directory: {path}')
-    os.makedirs(path)
+
+
