@@ -4,6 +4,7 @@ from io import BytesIO
 from assetutil import *
 
 def ref_image(url,asset_path=IMAGES,type=PNG,circular=False):
+    print(f"IMAGE: {url}")
     img = Image.open(BytesIO(requests.get(url).content)).convert('RGBA')
 
     if circular:

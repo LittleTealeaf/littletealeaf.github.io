@@ -23,7 +23,7 @@ if not API_TOKEN_GITHUB:
 
 
 def api_github(url,parameters={}):
-    print(f'Fetching api from {url} {json.dumps(parameters)}')
+    print(f'API: {url} {json.dumps(parameters)}')
     api = requests.get(url,headers={'authorization':f'token {API_TOKEN_GITHUB}'}, params=parameters).json()
     if isinstance(api,dict):
         [api.pop(key,None) for key in REMOVE_KEYS]
