@@ -20,17 +20,23 @@ def save_json(asset,dict):
     with open(asset.path,'w') as w:
         w.write(json.dumps(dict))
 
+def load_json(asset):
+    data = {}
+    with open(asset.path) as f:
+        data = json.load(f)
+    return data
+
 def reference_json(asset,json):
     "Directly saves a json to an asset object and returns the reference"
     save_json(asset,json)
     return asset.ref
 
-def fetch_json(asset,fetch,fetch_params={}):
+def fetch_json(asset,fetch):
     "Checks if that asset exists, calls `fetch` with `params` if it does not exist. Returns the reference"
     if not asset.exists():
         print(f'Fetching Asset: {asset.ref}')
         with open(asset.path,'w') as w:
-            w.write(json.dumps(fetch(**fetch_params)))
+            w.write(json.dumps(fetch()))
     return asset.ref
 
 def reference_image(img):
@@ -39,7 +45,7 @@ def reference_image(img):
     img.save(asset.path)
     return asset.ref
         
-def reference_github_user(username=None,url=None,api=None):
+def reference_github_user(username=None,url=None,api=None, include=[], update=False):
     if not url:
         if username:
             url = f'https://api.github.com/users/{username}'
@@ -48,16 +54,29 @@ def reference_github_user(username=None,url=None,api=None):
 
     asset = Asset(path=GITHUB_USER,seed=url,type=JSON)
 
-    def fetchUser(user=None,url=None):
+    def fetchUser(user=None,url=None, include=[]):
         if not user:
             user = api_github(url)
         user.update({
             'avatar': reference_image(image_format(image_src(user['avatar_url']),{'circular': True}))
         })
 
+        for group in ['followers', 'following']:
+            if group in include:
+                user[group] = reference_json_seed(GITHUB_USER_LIST,[reference_github_user(api=user) for user in api_github(user[f'{group}_url'].partition('{')[0])])
+
+        [user.pop(item,None) for item in ['private_gists','plan','total_private_repos','owned_private_repos','two_factor_authentication']]
+
         return user
 
-    return fetch_json(asset,fetchUser,{'url': url, 'user': api})
+
+
+    if update and os.path.exists(asset.path):
+        loaded = load_json(asset)
+        loaded.update(fetchUser(user=api,url=url, incldue=include))
+        save_json(asset,loaded)
+    else:
+        return fetch_json(asset,lambda: fetchUser(api,url,include))
 
 def reference_api_github(url,path=GITHUB):
     asset = Asset(path=path,seed=url,type=JSON)
@@ -83,6 +102,14 @@ def reference_github_repository(url):
         [repo.pop(key,None) for key in ['permissions','contributors_url','subscribers_url','stargazers_url','languages','events_url','releases_url']]
         save_json(asset,repo)
     return asset.ref
+
+
+
+# Actual build script
+index['user'] = reference_github_user(username=settings['username'],include=['followers','following'])
+
+
+
 
 with open(os.path.join('.','assets','projects.json')) as p:
     projects = []
