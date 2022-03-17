@@ -71,12 +71,17 @@ def ref_github_user(username=None,url=None,api=None,update=False,followers=False
     if asset.exists() and not update:
         api_cache = json_asset(asset)
 
-        update = update and followers and key_followers not in api_cache
+        update = followers and key_followers not in api_cache
         update = update and following and key_following not in api_cache
 
         if not update:
             return asset.ref
-    
+        
+        if api:
+            api_cache.update(api)
+            api = api_cache
+            
+                
     if not api:
         api = api_github(url)
     
