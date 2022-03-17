@@ -9,7 +9,7 @@ const ProjectDisplay = (projectref,index) => {
   const repo = getAsset(project.repository);
   return (
     <div>
-      <Link id={index} href={ProjectHref(repo)}>{repo.name}</Link>
+      <Link id={index} href={ProjectHref(repo)} passHref>{repo.name}</Link>
     </div>
   )
 };
