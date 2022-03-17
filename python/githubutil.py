@@ -80,7 +80,8 @@ def ref_github_user(username=None,url=None,api=None,update=False,followers=False
     if not api:
         api = api_github(url)
     
-    api['avatar'] = ref_image(api['avatar_url'],circular=True)
+    if 'avatar' not in api:
+        api['avatar'] = ref_image(api['avatar_url'],circular=True)
 
     if followers and key_followers not in api:
         api[key_followers] = ref_github_user_list(api['followers_url'],CONFIG['load_count']['followers'])
