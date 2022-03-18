@@ -7,7 +7,7 @@ const Skills = () => {
 
   const SkillCategory = (category, i) => {
 
-    const SkillsList  = (skill, i) => {
+    const SkillsList  = (skill) => {
       if (skill.attributes.length > 0) {
         return `${skill.name} (${skill.attributes.join(', ')})`;
       } else {
@@ -15,12 +15,9 @@ const Skills = () => {
       }
     }
 
-    const name = category.name;
-    const values = getAsset(category.values);
-
     return (
       <div id={i}>
-        <p><b>{name}</b> {values.map(SkillsList).join(', ')}</p>
+        <p><b>{category.name}</b> {getAsset(category.values).map(SkillsList).join(', ')}</p>
       </div>
     )
   }
