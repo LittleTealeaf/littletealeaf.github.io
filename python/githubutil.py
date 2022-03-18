@@ -6,7 +6,6 @@ from jsonutil import *
 from apiutil import *
 
 
-
 GITHUB = ['github']
 GITHUB_USER = GITHUB + ['users']
 GITHUB_EVENT = GITHUB + ['events']
@@ -121,7 +120,11 @@ def ref_github_repository(url):
         api['stargazers'] = ref_github_user_list(api['stargazers_url'],CONFIG['load_count']['stargazers'])
         api['events'] = ref_github_event_list(api['events_url'],CONFIG['load_count']['events'],load_repo=False)
 
-        contributors = api_github_list(api['contributors_url'],count=CONFIG['load_count']['contributors'])
+        contributors = []
+        for contributor in api_github_list(api['contributors_url'],count=CONFIG['load_count']['contributors']):
+            if '[bot]' not in contributor['login'] or CONFIG['github']['contributors']['include_bots']:
+                contributors.append(contributor)
+
         api['contributors'] = ref_json([{'user':ref_github_user(api=i),'contributions':i['contributions']} for i in contributors])
 
         

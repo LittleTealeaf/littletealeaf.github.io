@@ -8,5 +8,10 @@
         "subscribers":20,
         "followers": 20,
         "following": 20
+    },
+    "github": {
+        "contributors": {
+            "include_bots": false
+        }
     }
 }
