@@ -16,12 +16,6 @@ index['user'] = ref_github_user(username='LittleTealeaf',followers=True,followin
 resume_projects = []
 
 with open(os.path.join('.','assets','templates','projects.json')) as file:
-    # projects = json.load(file)
-    # for project in projects:
-    #     project['repository'] = ref_github_repository(project['repository'])
-    #     project['attributes'] = ref_json(project['attributes'])
-
-    # index['projects'] = ref_json([ref_json(i) for i in projects])
     projects = []
     for project in json.load(file):
         is_resume_project = 'resume' in project['attributes']
