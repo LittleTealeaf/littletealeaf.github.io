@@ -8,7 +8,7 @@ import GithubUser from "../../components/githubuser"
 
 const About = (description) => {
     return (
-        <div class={style.section} style={{
+        <div className={style.section} style={{
             'flexGrow': 1,
             'display': 'flex',
             'flexDirection':'column'

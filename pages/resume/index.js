@@ -24,7 +24,7 @@ const Skills = () => {
         'margin': '0px',
         'width': '80%'
       }}>Skills</h1>
-      <table class={style.widesection}>
+      <table className={style.widesection}>
         {getAsset(Resume.skills).map(SkillCategory)}
       </table>
     </div>
