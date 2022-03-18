@@ -10,6 +10,8 @@ index = {}
 
 index['user'] = ref_github_user(username='LittleTealeaf',followers=True,following=True)
 
+
+#Projects
 with open(os.path.join('.','assets','templates','projects.json')) as file:
     projects = json.load(file)
     for project in projects:
@@ -18,6 +20,8 @@ with open(os.path.join('.','assets','templates','projects.json')) as file:
     
     index['projects'] = ref_json([ref_json(i) for i in projects])
 
+
+#Resume
 with open(os.path.join('.','assets','templates','resume.json')) as file:
     r = json.load(file)
 
