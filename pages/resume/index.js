@@ -12,7 +12,7 @@ const Skills = () => {
 
     return (
       <tr key={i}>
-        <td><b>{cateogry.name}</b></td>
+        <td><center><b>{cateogry.name}</b></center></td>
         <td>{getAsset(cateogry.values).map(SkillDisplay).join(", ")}</td>
       </tr>
     );
