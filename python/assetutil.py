@@ -6,6 +6,8 @@ JPEG = 'jpeg'
 SVG = 'svg'
 WEBP = 'WebP'
 JSON = 'json'
+HTML='html'
+TXT = 'txt'
 
 
 IMAGES = ['images']
@@ -43,3 +45,9 @@ def clean_directory():
         shutil.rmtree(path)
 
 
+def ref_text(text="",asset=None,path=[],type=TXT):
+    if not asset:
+        asset = Asset(path=path,seed=text,type=type)
+    with open(asset.path,'w') as file:
+        file.write(text)
+    return asset.ref
