@@ -1,32 +1,59 @@
-[{
-    "repository": "https://api.github.com/repos/LittleTealeaf/paceManager",
-    "attributes": {
-        "name":"Pace Manager",
-        "description": "This is the very simple description about the pace manager...",
-        "resume": {
-            "about":"A simple project that I started working on as a side project"
+[
+    {
+        "repository": "https://api.github.com/repos/LittleTealeaf/paceManager",
+        "attributes": {
+            "name": "Pace Manager",
+            "description": "This is the very simple description about the pace manager...",
+            "resume": {
+                "about": "A simple project that I started working on as a side project"
+            }
+        }
+    },
+    {
+        "repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
+        "attributes": {}
+    },
+    {
+        "repository": "https://api.github.com/repos/LittleTealeaf/LittleTealeaf",
+        "attributes": {
+            "description": "Using Python to automate a README used in my Github Profile"
+        }
+    },
+    {
+        "repository": "https://api.github.com/repos/LittleTealeaf/JsonPrettifier",
+        "attributes": {
+            "name": "Json Prettifier",
+            "description": "A simple javascript, html, and css application used to make JSON text easier to read"
+        }
+    },
+    {
+        "repository": "https://api.github.com/repos/LittleTealeaf/SER-225-Team-A2",
+        "attributes": {
+            "name": "SER-225 Game Project",
+            "description": "A Software Engineering Course project practicing Scrum and collaboration on Git, developing a java awt platformer game"
+        }
+    },
+    {
+        "repository": "https://api.github.com/repos/LittleTealeaf/CSC-215-Program-S1",
+        "attributes": {
+            "name": "CSC-215 Water Pouring Puzzle",
+            "authors": [
+                "Thomas Kwashnak",
+                "Emily Balboni",
+                "Priscilla Esteves"
+            ]
+        }
+    },
+    {
+        "repository": "https://api.github.com/repos/LittleTealeaf/CSC-215-Program-P1",
+        "attributes": {
+            "name": "CSC-215 Integer Multiplication Experiment",
+            "description": "Tested the effectiveness of different multiplication algorithms with large numbers",
+            "authors": [
+                "Thomas Kwashnak",
+                "Emily Balboni",
+                "Priscilla Esteves"
+            ]
         }
     }
-}, {
-    "repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
-    "attributes": {
-    }
-}, {
-    "repository": "https://api.github.com/repos/LittleTealeaf/LittleTealeaf",
-    "attributes": {}
-}, {
-    "repository": "https://api.github.com/repos/LittleTealeaf/JsonPrettifier",
-    "attributes": {}
-},{
-    "repository": "https://api.github.com/repos/LittleTealeaf/SER-225-Team-A2",
-    "attributes": {}
-}, {
-    "repository": "https://api.github.com/repos/LittleTealeaf/CSC-215-Program-S1",
-    "attributes": {}
-}, {
-    "repository": "https://api.github.com/repos/LittleTealeaf/CSC-215-Program-P1",
-    "attributes": {}
-}, {
-    "repository": "https://api.github.com/repos/SER210-SP21/headfirst-ch2-LittleTealeaf",
-    "attributes": {}
-}]
+]
