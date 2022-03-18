@@ -2,7 +2,7 @@ html {
     --color-a: #F7F6DE;
     --color-b: #FA7E0A;
     --color-c: #8F0E0E;
-    --color-d: #530C0C;
+    --color-d: #a3290a;
   /* TODO: figure out how I managed to get rid of the edges? */
     background-color: var(--color-a);
   }

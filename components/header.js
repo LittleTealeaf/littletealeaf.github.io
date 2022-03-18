@@ -6,7 +6,8 @@ import style from '../styles/header.module.css'
 import { Navigation as navLinks } from '../libs/assets'
 // import StyleClass from '../libs/styleutil'
 
-export default function Header({router}) {
+
+export default function Header({ router }) {
     return (
         <div className={style.header}>
             <Head>
@@ -19,19 +20,21 @@ export default function Header({router}) {
             <div className={style.navigation}>
                 {
                     navLinks.map((data, i) => {
-                        if ((data.href != '/' && router.asPath.includes(data.href)) || data.href == router.asPath) {
-                            return (
-                                <a key={i} className={style.active}>
-                                    {data.name}
-                                </a>
-                            );
-                        } else {
-                            return (
-                                <Link key={i} href={data.href} passHref>
-                                    {data.name}
-                                </Link>
-                            );
-                        }
+
+                        const active = (data.href != '/' && router.asPath.includes(data.href)) || data.href == router.asPath;
+                        return (
+                            <Link key={i} href={data.href} passHref>
+                                {
+                                    active ? (
+                                        <a className={style.active} style={{
+                                            'cursor': 'default'
+                                        }}>{data.name}</a>
+                                    ) : (
+                                        data.name
+                                    )
+                                }
+                            </Link>
+                        )
                     })
                 }
             </div>
