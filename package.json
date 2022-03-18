@@ -11,6 +11,7 @@
     "deploy": "next build && next export"
   },
   "dependencies": {
+    "html-loader": "3.1.0",
     "imagemin-optipng": "8.0.0",
     "next": "12.1.0",
     "next-compose-plugins": "2.2.1",
@@ -18,7 +19,9 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router-dom": "6.2.2",
-    "webp-loader": "0.6.0"
+    "url-loader": "4.1.1",
+    "webp-loader": "0.6.0",
+    "webpack": "5.70.0"
   },
   "devDependencies": {
     "eslint": "8.11.0",

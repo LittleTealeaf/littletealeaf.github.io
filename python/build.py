@@ -3,7 +3,6 @@ from githubutil import *
 from jsonutil import *
 from imageutil import *
 from config import *
-from mdutil import *
 
 clean_directory()
 

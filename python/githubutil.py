@@ -3,7 +3,6 @@ from assetutil import *
 from imageutil import *
 from config import *
 from jsonutil import *
-from mdutil import *
 from apiutil import *
 
 
@@ -125,7 +124,7 @@ def ref_github_repository(url):
         contributors = api_github_list(api['contributors_url'],count=CONFIG['load_count']['contributors'])
         api['contributors'] = ref_json([{'user':ref_github_user(api=i),'contributions':i['contributions']} for i in contributors])
 
-        api['readme'] = ref_render_markdown(f'https://raw.githubusercontent.com/{api["full_name"]}/main/README.md',path=GITHUB_README)
+        
 
         save_json(api,asset)
 
