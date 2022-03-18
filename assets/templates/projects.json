@@ -1,7 +1,10 @@
 [{
     "repository": "https://api.github.com/repos/LittleTealeaf/paceManager",
     "attributes": {
-        "description": "This is the very simple description about the pace manager..."
+        "description": "This is the very simple description about the pace manager...",
+        "resume": {
+            "about":"A simple project that I started working on as a side project"
+        }
     }
 }, {
     "repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",

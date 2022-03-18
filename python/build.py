@@ -12,13 +12,23 @@ index['user'] = ref_github_user(username='LittleTealeaf',followers=True,followin
 
 
 #Projects
+
+resume_projects = []
+
 with open(os.path.join('.','assets','templates','projects.json')) as file:
-    projects = json.load(file)
-    for project in projects:
+    projects = []
+    for project in json.load(file):
+        is_resume_project = 'resume' in project['attributes']
         project['repository'] = ref_github_repository(project['repository'])
         project['attributes'] = ref_json(project['attributes'])
+        ref = ref_json(project)
+        if is_resume_project:
+            resume_projects.append(ref)
+        projects.append(ref)
     
-    index['projects'] = ref_json([ref_json(i) for i in projects])
+    index['projects'] = ref_json(projects)
+
+        
 
 
 #Resume
@@ -29,6 +39,7 @@ with open(os.path.join('.','assets','templates','resume.json')) as file:
         r['skills'][category] = ref_json([{'name': key, 'attributes': r['skills'][category][key]} for key in r['skills'][category]])
     
     r['skills'] = ref_json([{'name':key, 'values': r['skills'][key]} for key in r['skills']])
+    r['projects'] = ref_json(resume_projects)
     
     index['resume'] = ref_json(r)
 
