@@ -37,7 +37,5 @@ yarn-error.log*
 
 github_token
 
-.vscode/
-
 assets/generated/
 public/assets/generated/
