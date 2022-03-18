@@ -33,11 +33,11 @@ const SocialPanel = (repo) => {
             'flexGrow': 1
         }}>
             <center>
-                <h2 class={style.widesection}>
+                <h2 className={style.widesection}>
                     Socials
                     </h2>
                     
-                    <div class={style.widesection}>
+                    <div className={style.widesection}>
                         <h4 style={{
                             'margin':'0'
                         }}>Contributors:</h4>
@@ -47,7 +47,7 @@ const SocialPanel = (repo) => {
                             ))
                         }
                     </div>
-                    <div class={style.widesection}>
+                    <div className={style.widesection}>
                         <h4 style={{
                             'margin':'0'
                         }}>Stargazers: {repo.stargazers_count}</h4>
