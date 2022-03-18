@@ -20,7 +20,8 @@
                 "Numpy",
                 "Pillow"
             ],
-            "Bash/Shell": [],
+            "Bash": [],
+            "Shell": [],
             "Javascript": [
                 "Nextjs",
                 "React",
@@ -35,7 +36,8 @@
             "Linux": [
                 "Ubuntu"
             ],
-            "Github/Git": [],
+            "Git": [],
+            "Github": ["Actions","Pages"],
             "Microsoft Office 365": [],
             "Google Drive": [],
             "SolidWorks": [],
