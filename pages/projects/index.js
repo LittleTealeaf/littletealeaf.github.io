@@ -43,7 +43,7 @@ const ProjectDisplay = (projectref, index) => {
             ))
           }
           <i>{
-            contributors.length > contributor_display_count ? ` and ${contributors.length - contributor_display_count} more...` : ""
+            contributors.length > contributor_display_count ? ` and ${repo.contributors_count - contributor_display_count} more...` : ""
           }</i>
         </center>
       </div>
