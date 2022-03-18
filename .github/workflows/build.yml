@@ -3,7 +3,10 @@ name: Build Website
 on:
   push:
     branches: [ main ]
-  pull_request_target:
+  workflow_run:
+    workflows: ["Code scanning results"]
+    tyles:
+      - completed
   schedule:
   - cron: '0 0 * * *'
 
