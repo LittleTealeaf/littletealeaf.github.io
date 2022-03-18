@@ -2,6 +2,7 @@ import Header from '../../components/header';
 import Link from 'next/link';
 import style from '../../styles/style.module.css'
 import { Projects, getAsset } from '../../libs/assets';
+import GithubUser from '../../components/githubuser';
 
 const ProjectHref = (repo) => "/projects/" + repo.name;
 
@@ -16,24 +17,32 @@ const ProjectDisplay = (projectref, index) => {
 
   return (
     <div className={style.section} style={{
-      'flexGrow':1
+      'flexGrow': 1
     }}>
       <div>
         <center>
+
           <Link id={index} href={ProjectHref(repo)} passHref>
             <a style={{
               'textDecoration': 'none',
               'color': 'black',
-              'fontSize': '16px', 
+              'fontSize': '16px',
               'textAlign': 'center',
-              'fontFamily':'cursive'
+              'fontFamily': 'cursive',
+              'margin': '0px 10px'
             }}>
               <b>{name}</b>
             </a>
           </Link>
+          {
+            getAsset(repo.contributors).map((user, i) => (
+              <GithubUser user_ref={user.user} size="20" key={i} />
+            ))
+          }
         </center>
       </div>
       <div>{description}</div>
+
     </div>
   )
 };
