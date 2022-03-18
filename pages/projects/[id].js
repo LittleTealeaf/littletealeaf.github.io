@@ -3,16 +3,8 @@ import Header from '../../components/header'
 import style from '../../styles/project.module.css'
 import Link from 'next/link'
 import { getAsset } from "../../libs/assets"
+import GithubUser from "../../components/githubuser"
 
-const UserAvatar = (reference, index) => {
-    const contributor = getAsset(reference);
-    return (contributor.avatar != null ? (
-        <a key={index} href={contributor.html_url}>
-            <img alt={contributor.login} src={getAsset(contributor.avatar)} width="30" height="30" />
-        </a>
-    ) : <></>
-    )
-}
 
 export default function Project({ projectData, router }) {
     const data = projectData.element;
@@ -24,16 +16,16 @@ export default function Project({ projectData, router }) {
         <h2>{getAsset(repo.owner).login}</h2>
         <div>
             Contributors: 
-            {getAsset(repo.contributors).map((userobject,index) => UserAvatar(userobject.user,index))}
+            {getAsset(repo.contributors).map((userref,index) => <GithubUser key={index} user_ref={userref.user}/>)}
             
         </div>
         <div>
             Stargazers:
-        {getAsset(repo.stargazers).map(UserAvatar)}
+        {getAsset(repo.stargazers).map((userref,index) => <GithubUser key={index} user_ref={userref}/>)}
         </div>
         <div>
             Subscribers:
-            {getAsset(repo.subscribers).map(UserAvatar)}
+            {getAsset(repo.subscribers).map((userref,index) => <GithubUser key={index} user_ref={userref}/>)}
         </div>
     </div>
 }
