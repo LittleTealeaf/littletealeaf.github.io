@@ -3,7 +3,7 @@ import Header from '../../components/header'
 import style from '../../styles/project.module.css'
 import Link from 'next/link'
 import { getAsset } from "../../libs/assets"
-import GithubUser from "../../components/GithubUser"
+import GithubUser from "../../components/githubUser"
 
 
 export default function Project({ projectData, router }) {
