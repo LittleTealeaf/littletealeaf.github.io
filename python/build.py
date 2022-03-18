@@ -18,4 +18,16 @@ with open(os.path.join('.','assets','projects.json')) as file:
     
     index['projects'] = ref_json([ref_json(i) for i in projects])
 
+with open(os.path.join('.','assets','resume.json')) as file:
+    r = json.load(file)
+
+    for category in r['skills']:
+        r['skills'][category] = ref_json([{'name': key, 'attributes': r['skills'][category][key]} for key in r['skills'][category]])
+    
+    r['skills'] = ref_json([{'name':key, 'values': r['skills'][key]} for key in r['skills']])
+
+
+    
+    index['resume'] = ref_json(r)
+
 save_json(index,Asset(name='index.json'))

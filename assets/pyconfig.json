@@ -8,8 +8,8 @@
     "follower_load":50,
     "following_load":50,
     "load_count": {
-        "events":100,
-        "contributors":40,
+        "events":20,
+        "contributors":20,
         "stargazers":20,
         "subscribers":20,
         "followers": 20,
