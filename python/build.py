@@ -21,14 +21,13 @@ with open(os.path.join('.','assets','templates','projects.json')) as file:
         is_resume_project = 'resume' in project['attributes']
         project['repository'] = ref_github_repository(project['repository'])
         project['attributes'] = ref_json(project['attributes'])
+
         ref = ref_json(project)
         if is_resume_project:
             resume_projects.append(ref)
         projects.append(ref)
     
     index['projects'] = ref_json(projects)
-
-        
 
 
 #Resume
