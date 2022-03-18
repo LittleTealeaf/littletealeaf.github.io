@@ -29,16 +29,14 @@ const Skills = () => {
   )
 };
 
-export default function Home() {
-  return (
-    <div>
-      <Header path={
-        ["Resume"]
-      } />
-      <center>
-        <h1 className={StyleClass(style.section, style.header1)}>{Resume.name}</h1>
-        {Skills()}
-      </center>
-    </div>
-  )
-}
+export default function Home({router}) {
+    return (
+      <div>
+        <Header router={router}/>
+        <center>
+          <h1 className={StyleClass(style.section, style.header1)}>{Resume.name}</h1>
+          {Skills()}
+        </center>
+      </div>
+    )
+  }

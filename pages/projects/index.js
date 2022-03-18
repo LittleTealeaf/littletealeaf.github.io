@@ -14,12 +14,10 @@ const ProjectDisplay = (projectref,index) => {
   )
 };
 
-export default function Home() {
+export default function Home({router}) {
     return (
       <div>
-        <Header path={
-          ["Projects"]
-        }/>
+        <Header router={router}/>
         I AM A PROJECT BIRD
         <div>
           {

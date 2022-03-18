@@ -14,14 +14,12 @@ const UserAvatar = (reference, index) => {
     )
 }
 
-export default function Project({ projectData }) {
+export default function Project({ projectData, router }) {
     const data = projectData.element;
     const repo = getAsset(data.repository)
 
     return <div>
-        <Header path={
-            ["projects", repo.name]
-        } />
+        <Header router={router}/>
         <h1>{repo.name}</h1>
         <h2>{getAsset(repo.owner).login}</h2>
         <div>
