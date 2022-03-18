@@ -40,8 +40,7 @@
             "Unity": [],
             "Visual Studio Code": [],
             "Jira": [],
-            "Android Studio": [],
-            "Intellij IDEA": []
+            "Jetbrains": ["Android Studio","Intellij IDEA", "PyCharm"]
         }
     }
 }
