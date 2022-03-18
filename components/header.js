@@ -6,19 +6,6 @@ import style from '../styles/header.module.css'
 import { Navigation as navLinks } from '../libs/assets'
 // import StyleClass from '../libs/styleutil'
 
-
-
-/*
-THE PLAN:
-
-When the user is at the top, the whole header is displayed, with the name on the left
-when the user scrolls, the name on the left disappears completely, and the navigation hides partially in the cieling
-when the user hovers over the navigation bar, it expands
-
-potentially?
-*/
-
-
 export default function Header({router}) {
     return (
         <div className={style.header}>
@@ -32,7 +19,7 @@ export default function Header({router}) {
             <div className={style.navigation}>
                 {
                     navLinks.map((data, i) => {
-                        if (router.asPath == data.href) {
+                        if ((data.href != '/' && router.asPath.includes(data.href)) || data.href == router.asPath) {
                             return (
                                 <a key={i} className={style.active}>
                                     {data.name}
