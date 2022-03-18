@@ -44,7 +44,7 @@ jobs:
       - name: Run Node Deploy
         run: npm run deploy
       - name: Publish to Github Pages
-        if: ${{github.repository_owner == 'LittleTealeaf' && (github.event == 'push' || github.event == 'schedule' || github.ref_name == 'main')}}
+        if: ${{github.repository_owner == 'LittleTealeaf' && (github.event == 'push' || github.event == 'schedule')}}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
