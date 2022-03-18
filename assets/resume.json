@@ -1,0 +1,79 @@
+{
+    "name": "Thomas Kwashnak",
+    "info": {
+        "email":"thomaskwashnak@gmail.com",
+        "linkedin":" http://www.linkedin.com/in/thomas-kwashnak",
+        "github":"https://github.com/LittleTealeaf"
+    },
+    "education": [
+        {
+            "school":"Quinnipiac University",
+            "location":"Hamden CT",
+            "majors": [
+                "Bachelor of Arts in Computer Science"
+            ],
+            "minors": [
+                "Economics",
+                "Data Science"
+            ],
+            "expected_graduation":"May 2024",
+            "gpa":3.94,
+            "awards": {
+                "deans_list": [
+                    "Fall 2020","Spring 2021","Fall 2021"
+                ]
+            }
+        }
+    ],
+    "employment": [
+        {
+            "organization":"Quinnipiac University",
+            "titles": "Orientation Leader",
+            "term":"Summer 2021"
+        },
+        {
+            "organization":"USA Martial Arts Naugatuck",
+            "title":"Instructor",
+            "term":"Spring-2019 - Present / Seasonal"
+        }, {
+            "organization":"Middlebury Congregational Church",
+            "title":"Registration, Cashier",
+            "term":"2017"
+        }
+    ],
+    "skills": {
+        "code_languages": {
+            "C#": [],
+            "Java": [
+                "Maven",
+                "JUnit5",
+                "JavaFX",
+                "AWT"
+            ],
+            "Scala": [],
+            "Python": [
+                "Scipy",
+                "Numpy"
+            ],
+            "Bash/Shell": [],
+            "Javascript": [
+                "Nextjs",
+                "React",
+                "p5.js"
+            ]
+        },
+        "software": [
+            "Windows",
+            "Linux",
+            "Github/Git",
+            "Microsoft Office 365",
+            "Google Drive",
+            "SolidWorks",
+            "Unity",
+            "Visual Studio Code",
+            "Jira",
+            "Android Studio",
+            "Intellij IDEA"
+        ]
+    }
+}
