@@ -29,8 +29,6 @@ with open(os.path.join('.','assets','templates','resume.json')) as file:
         r['skills'][category] = ref_json([{'name': key, 'attributes': r['skills'][category][key]} for key in r['skills'][category]])
     
     r['skills'] = ref_json([{'name':key, 'values': r['skills'][key]} for key in r['skills']])
-
-
     
     index['resume'] = ref_json(r)
 
