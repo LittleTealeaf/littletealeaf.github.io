@@ -17,7 +17,8 @@
             "Scala": [],
             "Python": [
                 "Scipy",
-                "Numpy"
+                "Numpy",
+                "Pillow"
             ],
             "Bash/Shell": [],
             "Javascript": [
