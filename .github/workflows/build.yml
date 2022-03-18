@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ]
   workflow_run:
-    workflows: ["CodeQL"]
+    workflows: [CodeQL]
     tyles:
       - completed
   schedule:
