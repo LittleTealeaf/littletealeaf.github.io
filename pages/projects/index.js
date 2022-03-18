@@ -35,7 +35,7 @@ const ProjectDisplay = (projectref, index) => {
             </a>
           </Link>
           {
-            getAsset(repo.contributors).map((user, i) => (
+            getAsset(repo.contributors).slice(0,5).map((user, i) => (
               <GithubUser user_ref={user.user} size="20" key={i} />
             ))
           }
