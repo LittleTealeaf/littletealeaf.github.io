@@ -29,7 +29,7 @@ const SocialPanel = (repo) => {
 
 
     return (
-        <div class={style.section} style={{
+        <div className={style.section} style={{
             'flexGrow': 1
         }}>
             <center>
