@@ -14,7 +14,7 @@ jobs:
   build-website:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout Repository (Pull Request)
         uses: actions/checkout@v3
         with:
           ref: ${{github.event.pull_request.head.sha}}
@@ -44,7 +44,7 @@ jobs:
       - name: Build Node
         run: npm run deploy
       - name: Publish to Github Pages
-        if: github.repository_owner == 'LittleTealeaf' && github.ref == 'ref/heads/main'
+        if: ${{github.repository_owner == 'LittleTealeaf' && github.ref == 'ref/heads/main'}}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
