@@ -20,10 +20,11 @@ const Skills = () => {
 
   return (
     <div className={StyleClass(style.section)}>
-      <h1 className={style.header1} style={{
-        'margin': '0px'
+      <h1 className={StyleClass(style.header1,style.widesection)} style={{
+        'margin': '0px',
+        'width': '80%'
       }}>Skills</h1>
-      <table>
+      <table className={style.widesection}>
         {getAsset(Resume.skills).map(SkillCategory)}
       </table>
     </div>
