@@ -35,7 +35,8 @@
             "Linux": [
                 "Ubuntu"
             ],
-            "Github/Git": [],
+            "Git": [],
+            "Github": ["Actions","Pages"],
             "Microsoft Office 365": [],
             "Google Drive": [],
             "SolidWorks": [],
