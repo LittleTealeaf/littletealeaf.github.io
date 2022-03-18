@@ -2,8 +2,8 @@
     "username":"LittleTealeaf",
     "index_name":"index.json",
     "load_count": {
-        "events":20,
-        "contributors":20,
+        "events":10,
+        "contributors":30,
         "stargazers":20,
         "subscribers":20,
         "followers": 20,
