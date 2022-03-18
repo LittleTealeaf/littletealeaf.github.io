@@ -23,6 +23,11 @@ jobs:
         id: littletealeaf-github-io
         with:
           path: .next/cache
+      - name: Debugs
+        run: |
+          echo ${{github.event}}
+          echo ${{github.ref}}
+          echo ${{github.ref_name}}
       - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
