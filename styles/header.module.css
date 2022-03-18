@@ -57,7 +57,7 @@
     border-radius: 20px;
 }
 
-.navigation a:hover {
+.navigation a:hover, .navigation .active {
     flex-grow: 10;
     background-color: var(--color-c);
     color: white;

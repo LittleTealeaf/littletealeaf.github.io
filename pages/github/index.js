@@ -1,10 +1,10 @@
 import Header from '../../components/header'
 import { Events } from '../../libs/assets'
 
-export default function Home() {
+export default function Home({router}) {
     return (
         <div>
-            <Header path={["github"]}/>
+            <Header router={router}/>
             I AM A GITHUB BIRD
         </div>
     )

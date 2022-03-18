@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Header from '../components/header'
 
-export default function Home() {
+import {useRouter} from 'next/router'
+
+export default function Home({router}) {
   return (
     
     <div>
-      <Header path={[]}/>
+      <Header router={router}/>
       WARNING, THIS WEBSITE IS UNDER DEVELOPMENT. ALSO, I AM A BIRD
     </div>
   )

@@ -6,11 +6,6 @@ import style from '../styles/header.module.css'
 import { Navigation as navLinks } from '../libs/assets'
 // import StyleClass from '../libs/styleutil'
 
-const NavLink = (data, i) => (
-    <Link key={i} href={data.href} passHref>
-        {data.name}
-    </Link>
-)
 
 
 /*
@@ -24,7 +19,7 @@ potentially?
 */
 
 
-export default function Header({ path }) {
+export default function Header({router}) {
     return (
         <div className={style.header}>
             <Head>
@@ -36,7 +31,21 @@ export default function Header({ path }) {
             </div>
             <div className={style.navigation}>
                 {
-                    navLinks.map(NavLink)
+                    navLinks.map((data, i) => {
+                        if (router.asPath == data.href) {
+                            return (
+                                <a key={i} className={style.active}>
+                                    {data.name}
+                                </a>
+                            );
+                        } else {
+                            return (
+                                <Link key={i} href={data.href} passHref>
+                                    {data.name}
+                                </Link>
+                            );
+                        }
+                    })
                 }
             </div>
         </div>
