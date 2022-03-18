@@ -1,5 +1,30 @@
 {
     "name": "Thomas Kwashnak",
+    "info": {
+        "email":"thomaskwashnak@gmail.com",
+        "linkedin":" http://www.linkedin.com/in/thomas-kwashnak",
+        "github":"https://github.com/LittleTealeaf"
+    },
+    "education": [
+        {
+            "school":"Quinnipiac University",
+            "location":"Hamden CT",
+            "majors": [
+                "Bachelor of Arts in Computer Science"
+            ],
+            "minors": [
+                "Economics",
+                "Data Science"
+            ],
+            "expected_graduation":"May 2024",
+            "gpa":3.94,
+            "awards": {
+                "deans_list": [
+                    "Fall 2020","Spring 2021","Fall 2021"
+                ]
+            }
+        }
+    ],
     "employment": [
         {
             "organization":"Quinnipiac University",
