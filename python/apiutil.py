@@ -1,4 +1,5 @@
-import os, json, requests
+import os, json, requests, sys
+from analytics import *
 
 REMOVE_KEYS = ['plan','two_factor_authentication','total_private_repos','owned_private_repos','private_gists','permissions']
 
@@ -13,18 +14,16 @@ if not API_TOKEN_GITHUB:
     print("WARNING: NO GITHUB API TOKEN GIVEN")
 
 def api_github_raw(url,parameters={}):
-    return requests.get(url,headers={'authorization':f'token {API_TOKEN_GITHUB}'}, params=parameters)
+    request = requests.get(url,headers={'authorization':f'token {API_TOKEN_GITHUB}'}, params=parameters)
+    if request.status_code == 403:
+        print(f'API ERROR: {request["message"]}')
+        sys.exit(1)
+    return request
 
 def api_github(url,parameters={}):
     print(f'API: {url} {json.dumps(parameters)}')
 
-    data = {'count':0}
-    if os.path.exists('tmp.json'):
-        with open('tmp.json') as file:
-            data = json.load(file)
-    data['count'] = data['count'] + 1
-    with open('tmp.json','w') as file:
-        file.write(json.dumps(data))
+    analytics_ping_api_call()
 
     api = api_github_raw(url,parameters).json()
     if isinstance(api,dict):

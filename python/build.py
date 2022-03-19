@@ -3,8 +3,10 @@ from assetutil import *
 from githubutil import *
 from jsonutil import *
 from imageutil import *
+from analytics import *
 
 clean_directory()
+analytics_delete()
 
 CONFIG = load_json(get_asset_path('pyconfig.json'))
 
@@ -41,13 +43,9 @@ with open(get_asset_path('resume.json')) as file:
     
     index['resume'] = ref_json(r)
 
-
+analytics = anayltics_load()
+print(analytics)
+index['analytics'] = ref_json(analytics)
+analytics_delete()
 
 save_json(index,Asset(name='index.json'))
-
-
-with open('tmp.json') as file:
-    data = json.load(file)
-    print(f'Pinged API a total of {data["count"]} times')
-
-os.remove('tmp.json')
