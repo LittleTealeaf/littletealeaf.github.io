@@ -1,5 +1,5 @@
 // Manages references to the assets page, including any static / used references
-import Navigation from '../assets/templates/navigation.json';
+import Navigation from '../assets/config/navigation.json';
 import Index from '../assets/generated/index.json';
 
 
