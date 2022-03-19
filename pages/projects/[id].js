@@ -64,6 +64,41 @@ const SocialPanel = (repo) => {
     )
 }
 
+const Languages = (repo) => {
+    const languages = getAsset(repo.languages);
+
+    const max = languages.reduce((partial,item) => partial + item.value,0);
+
+    const toPercentage = (value) => {
+        const percentage = (100.0 * value) / max;
+        return `${percentage.toFixed(3)}%`
+    }
+
+    return (
+        <div className={style.section} style={{
+            'flexGrow':1
+        }}>
+            <h2 className={style.widesection}>
+                Languages
+            </h2>
+            <table className={style.widesection}>
+                {
+                  languages.map((lang,i) => (
+                    <tr key={i}>
+                        <td style={{
+                        'textAlign':'right',
+                        'padding':'0px 10px'
+                    }}>{lang.name}</td>
+                        <td>{toPercentage(lang.value)}</td>
+                        
+                    </tr>
+                ))  
+                }
+            </table>
+        </div>
+    )
+}
+
 
 
 export default function Project({ projectData, router }) {
@@ -93,6 +128,7 @@ export default function Project({ projectData, router }) {
                 }}>
                     {About(description)}
                     {SocialPanel(repo)}
+                    {Languages(repo)}
                 </div>
             </div>
         </center>
