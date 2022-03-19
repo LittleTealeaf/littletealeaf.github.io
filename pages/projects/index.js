@@ -14,9 +14,6 @@ const ProjectDisplay = (projectref, index) => {
   const name = attributes.name == null ? repo.name : attributes.name;
   const description = attributes.description == null ? repo.description : attributes.description;
 
-  const contributors = getAsset(repo.contributors);
-  const contributor_display_count = 5;
-
 
   return (
     <div className={style.section} style={{
@@ -37,16 +34,14 @@ const ProjectDisplay = (projectref, index) => {
               <b>{name}</b>
             </a>
           </Link>
-          {
-            contributors.slice(0,contributor_display_count).map((user, i) => (
-              <GithubUser user_ref={user.user} size="20" key={i} />
-            ))
-          }
-          <i>{
-            contributors.length > contributor_display_count ? ` and ${repo.contributors_count - contributor_display_count} more...` : ""
-          }</i>
+          <div>
+            {
+              getAsset(repo.languages).map(language => language.name).join(', ')
+            }
+          </div>
         </center>
       </div>
+
       <div>{description}</div>
 
     </div>
