@@ -1,45 +1,48 @@
+import os
 from assetutil import *
 from githubutil import *
 from jsonutil import *
 from imageutil import *
-from config import *
 
 clean_directory()
 
+CONFIG = load_json(get_asset_path('pyconfig.json'))
+
 index = {}
 
-index['user'] = ref_github_user(username='LittleTealeaf',followers=True,following=True)
+if os.path.exists('tmp.json'):
+    os.remove('tmp.json')
 
+user = api_github(f'https://api.github.com/users/{CONFIG["username"]}')
 
-#Projects
+index['user'] = ref_github_user(api=user,followers=True,following=True)
 
-resume_projects = []
+# Repositories
+repos = filter(lambda item: not item['private'], api_github_list(user['repos_url'],count=CONFIG['load_count']['repositories']))
+index['repositories'] = ref_json([ref_github_repository(i['url']) for i in repos])
 
-with open(os.path.join('.','assets','config','projects.json')) as file:
+# Projects
+with open(get_asset_path('projects.json')) as file:
     projects = []
     for project in json.load(file):
-        is_resume_project = 'resume' in project['attributes']
-        project['repository'] = ref_github_repository(project['repository'])
+        project['repository'] = ref_github_repository(project['repository'],get_events=True,get_contributors=True,get_stargazers=True)
         project['attributes'] = ref_json(project['attributes'])
-
-        ref = ref_json(project)
-        if is_resume_project:
-            resume_projects.append(ref)
-        projects.append(ref)
+        projects.append(ref_json(project))
     
     index['projects'] = ref_json(projects)
 
 
 #Resume
-with open(os.path.join('.','assets','config','resume.json')) as file:
+with open(get_asset_path('resume.json')) as file:
     r = json.load(file)
 
     for category in r['skills']:
         r['skills'][category] = ref_json([{'name': key, 'attributes': r['skills'][category][key]} for key in r['skills'][category]])
     
     r['skills'] = ref_json([{'name':key, 'values': r['skills'][key]} for key in r['skills']])
-    r['projects'] = ref_json(resume_projects)
     
     index['resume'] = ref_json(r)
+
+
 
 save_json(index,Asset(name='index.json'))

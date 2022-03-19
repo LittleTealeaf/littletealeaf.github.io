@@ -1,7 +1,6 @@
 import os, requests, json
 from assetutil import *
 from imageutil import *
-from config import *
 from jsonutil import *
 from apiutil import *
 
@@ -12,7 +11,7 @@ GITHUB_EVENT = GITHUB + ['events']
 GITHUB_REPO = GITHUB + ['repo']
 GITHUB_README = GITHUB + ['readme']
 
-
+CONFIG = load_json(get_asset_path('pyconfig.json'))
 
 
 def api_github_list(url,parameters={}, count=30):
@@ -105,30 +104,36 @@ def ref_github_event_list(url,load_count,load_repo=True):
     api = [ref_github_event(i,load_repo=load_repo) for i in api_github_list(url,count=load_count)]
     return ref_json(api)
 
-def ref_github_repository(url):
+def ref_github_repository(url,get_events=False,get_stargazers=False,get_contributors=False, get_subscribers=False):
     asset = Asset(path=GITHUB_REPO,seed=url,type=JSON)
 
     if not asset.exists():
-        api = api_github(url)
+        api = api_github(url)        
+    else:
+        api = load_json(asset.path)
+    
+    if isinstance(api['owner'],dict):
         api['owner'] = ref_github_user(api=api['owner'])
 
-        # Custom languages list
+    if 'languages' not in api:
         api_languages = api_github(api['languages_url'])
         languages = [{'name':key,'value':api_languages[key]} for key in api_languages]
         api['languages'] = ref_json(languages)
+    
+    if get_subscribers and 'subscribers' not in api:
         api['subscribers'] = ref_github_user_list(api['subscribers_url'],CONFIG['load_count']['subscribers'])
+    if get_stargazers and 'stargazers' not in api:
         api['stargazers'] = ref_github_user_list(api['stargazers_url'],CONFIG['load_count']['stargazers'])
+    if get_events and 'events' not in api:
         api['events'] = ref_github_event_list(api['events_url'],CONFIG['load_count']['events'],load_repo=False)
-
+    
+    if get_contributors and 'contributors' not in api:
         contributors = []
         for contributor in api_github_list(api['contributors_url'],count=CONFIG['load_count']['contributors']):
             if '[bot]' not in contributor['login'] or CONFIG['github']['contributors']['include_bots']:
                 contributors.append(contributor)
-
         api['contributors'] = ref_json([{'user':ref_github_user(api=i),'contributions':i['contributions']} for i in contributors])
-
         
 
-        save_json(api,asset)
-
+    save_json(api,asset)
     return asset.ref
