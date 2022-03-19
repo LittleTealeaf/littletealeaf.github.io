@@ -10,8 +10,6 @@ CONFIG = load_json(get_asset_path('pyconfig.json'))
 
 index = {}
 
-if os.path.exists('tmp.json'):
-    os.remove('tmp.json')
 
 user = api_github(f'https://api.github.com/users/{CONFIG["username"]}')
 
@@ -51,3 +49,5 @@ save_json(index,Asset(name='index.json'))
 with open('tmp.json') as file:
     data = json.load(file)
     print(f'Pinged API a total of {data["count"]} times')
+
+os.remove('tmp.json')
