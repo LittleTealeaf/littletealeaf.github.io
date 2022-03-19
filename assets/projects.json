@@ -6,7 +6,11 @@
             "description": "This is the very simple description about the pace manager...",
             "resume": {
                 "about": "A simple project that I started working on as a side project"
-            }
+            },
+            "labels": [
+                "Personal",
+                "Hunter Pace"
+            ]
         }
     },
     {
@@ -23,14 +27,21 @@
         "repository": "https://api.github.com/repos/LittleTealeaf/JsonPrettifier",
         "attributes": {
             "name": "Json Prettifier",
-            "description": "A simple javascript, html, and css application used to make JSON text easier to read"
+            "description": "A simple javascript, html, and css application used to make JSON text easier to read",
+            "labels": [
+                "Personal"
+            ]
         }
     },
     {
         "repository": "https://api.github.com/repos/LittleTealeaf/SER-225-Team-A2",
         "attributes": {
             "name": "SER-225 Game Project",
-            "description": "A Software Engineering Course project practicing Scrum and collaboration on Git, developing a java awt platformer game"
+            "description": "A Software Engineering Course project practicing Scrum and collaboration on Git, developing a java awt platformer game",
+            "labels": [
+                "SER-225",
+                "Scrum"
+            ]
         }
     },
     {
@@ -41,6 +52,9 @@
                 "Thomas Kwashnak",
                 "Emily Balboni",
                 "Priscilla Esteves"
+            ],
+            "labels": [
+                "CSC-215"
             ]
         }
     },
@@ -53,6 +67,9 @@
                 "Thomas Kwashnak",
                 "Emily Balboni",
                 "Priscilla Esteves"
+            ],
+            "labels": [
+                "CSC-215"
             ]
         }
     }

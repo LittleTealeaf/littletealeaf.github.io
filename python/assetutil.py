@@ -51,3 +51,6 @@ def ref_text(text="",asset=None,path=[],type=TXT):
     with open(asset.path,'w') as file:
         file.write(text)
     return asset.ref
+
+def get_asset_path(*path):
+    return os.path.join('.','assets',os.path.join(*path))
