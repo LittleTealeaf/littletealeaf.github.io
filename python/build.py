@@ -16,7 +16,7 @@ index['user'] = github.ref_user(username=CONFIG['username'],followers=True,follo
 user = json.load(path=f"./assets/generated/{index['user']}")
 
 repos = filter(lambda item: not item['private'],github.api_list(user['repos_url'],count=CONFIG['load_count']['repositories']))
-index['repositories'] = json.ref([github.ref_repository(obj=i) for i in repos])
+index['repositories'] = json.ref([github.ref_repository(obj=i,get_contributors=True) for i in repos])
 
 ## Projects
 projects = []
