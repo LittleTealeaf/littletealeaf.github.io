@@ -1,18 +1,21 @@
-name: "Pull Request Actions"
+name: "Custom Actions"
 
 on:
   issue_comment:
     types: [created]
+  
+permissions:
+    pull-requests: write
+    contents: write
 
 jobs:
-  pr_commented:
-    name: "pr action"
+  automerge:
+    name: "Automerge"
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request && github.actor == 'LittleTealeaf' && github.event.comment.body == ">automerge")}}
     steps:
-      - run: echo "$BODY"
+      - run: gh pr merge --auto --squash "$PR_URL"
         env:
-          BODY: ${{github.event.comment.body}}
-      - run: echo "$GITHUB_CONTEXT"
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github)}}
+            PR_URL: ${{github.event.pull_request.html_url}}
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      
