@@ -34,7 +34,7 @@ const Skills = () => {
 export default function Home({ router }) {
   return (
     <div>
-      <Header router={router} />
+      <Header router={router} title="LittleTealeaf - Resume"/>
       <center>
         <h1 className={StyleClass(style.section, style.header1)}>{Resume.name}</h1>
         {Skills()}

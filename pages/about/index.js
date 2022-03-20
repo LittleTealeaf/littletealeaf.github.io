@@ -8,7 +8,7 @@ for(var i = 0; i < 1000; i++) {
 export default function Home({router}) {
     return (
       <div>
-        <Header router={router}/>
+        <Header router={router} title="LittleTealeaf - About Me"/>
         {
           dummytext.map((item,id) => (
             <a key={id}>{item}</a>

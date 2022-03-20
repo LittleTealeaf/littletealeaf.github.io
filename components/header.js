@@ -7,11 +7,13 @@ import { Navigation as navLinks } from '../libs/assets'
 // import StyleClass from '../libs/styleutil'
 
 
-export default function Header({ router }) {
+export default function Header({ router, title: page_title }) {
     return (
         <div className={style.header}>
             <Head>
-
+                <title>
+                    {page_title}
+                </title>
             </Head>
             <div className={style.title}>
                 <h1>Thomas Kwashnak</h1>
