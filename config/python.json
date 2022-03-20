@@ -1,0 +1,31 @@
+{
+    "index_name": "index.json",
+    "github": {
+        "username": "LittleTealeaf",
+        "repositories": {
+            "count": 1000,
+            "contributors": {
+                "count": 20,
+                "include_bots": false
+            },
+            "stargazers": {
+                "count": 30
+            },
+            "subscribers": {
+                "count": 30
+            }
+        },
+        "users": {
+            "followers": {
+                "count": 30
+            },
+            "following": {
+                "count": 30
+            },
+            "count": 30
+        },
+        "events": {
+            "count": 20
+        }
+    }
+}
