@@ -37,3 +37,5 @@ index['analytics'] = analytics.ref()
 
 
 json.save(index,Asset(name='index.json'))
+
+print(f'{github.api_requests_remaining()} requests remaining')

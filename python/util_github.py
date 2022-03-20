@@ -60,6 +60,8 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Respons
     # analytics.update_remaining_api(request)
     return request
 
+def api_requests_remaining() -> int:
+    return GET('https://api.github.com').headers['x-ratelimit-remaining']
 
 def api(url: str, parameters: dict = {}) -> dict:
     result = GET(url, parameters=parameters).json()
