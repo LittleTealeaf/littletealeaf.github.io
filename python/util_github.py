@@ -9,7 +9,7 @@ import util_images as images
 import util_json as json
 from util_assets import Asset
 from list_filetypes import *
-from util_config import config
+import util_config as configs
 
 DIR = ['github']
 DIR_USER = DIR + ['user']
@@ -36,7 +36,7 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Respons
         'authorization': f'token {TOKEN}'
     })
     analytics.ping_api()
-    wait_time = config('github','api','timeout_delay')
+    wait_time = configs.config('github','api','timeout_delay')
     max_attempts = 60 / wait_time
     request: requests.Response = None
     current_attempt = 0
@@ -62,7 +62,7 @@ def api_requests_remaining() -> int:
 def api(url: str, parameters: dict = {}) -> dict:
     result = GET(url, parameters=parameters).json()
     if isinstance(result, dict):
-        [result.pop(key, None) for key in config('github','remove_keys')]
+        [result.pop(key, None) for key in configs.config('github','remove_keys')]
     return result
 
 def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
@@ -95,8 +95,8 @@ def api_ref(url: str, parameters: dict={}, asset=None) -> str:
     return json.ref(data, asset)
 
 
-def ref_user(username: str = None, url: str = None, obj: dict = None, update: bool = config('github','users','force_update'), followers: bool = config('github','users','include_followers'), following: bool = config('github','users','include_following')) -> str:
-
+def ref_user(username: str = None, url: str = None, obj: dict = None, config: dict = {}) -> str:
+    config = configs.compile(config,'github','users')
     key_followers = 'followers_list'
     key_following = 'following_list'
 
@@ -116,28 +116,30 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, update: bo
 
     if not obj:
         obj = api(url)
-    elif update:
+    elif config['force_api']:
         obj.update(api(url))
 
     if 'avatar' not in obj:
         obj['avatar'] = images.ref(obj['avatar_url'], circular=True)
     
-    if followers and key_followers not in obj:
-        obj[key_followers] = ref_user_list(obj['followers_url'],count=config('github','users','followers','count'))
+    if config['followers']['include'] and key_followers not in obj:
+        obj[key_followers] = ref_user_list(obj['followers_url'],count=config['followers']['count'])
     
-    if following and key_following not in obj:
-        obj[key_following] = ref_user_list(obj['following_url'].replace('{/other_user}',''),count=config('github','users','following','count'))
+    if config['following']['include'] and key_following not in obj:
+        obj[key_following] = ref_user_list(obj['following_url'].replace('{/other_user}',''),count=config['following']['count'])
 
-    [obj.pop(key,None) for key in config('github','users','remove_keys')]
+    [obj.pop(key,None) for key in config['remove_keys']]
 
     return json.ref(obj, asset)
 
 
-def ref_user_list(url: str, count: int = config('github','users','count')) -> str:
-    return json.ref([ref_user(obj=i) for i in api_list(url,count=count)])
+def ref_user_list(url: str, config: dict={},count: int = configs.config('github','users','count')) -> str:
+    return json.ref([ref_user(obj=i,config=config.copy()) for i in api_list(url,count=count)])
 
 
-def ref_repository(url: str=None, obj: dict=None, force_api: bool=config('github','repositories','force_api'), get_events: bool = config('github','repositories','include_events'), get_stargazers: bool = config('github','repositories','include_stargazers'), get_contributors: bool = config('github','repositories','include_contributors'), get_subscribers: bool = config('github','repositories','include_subscribers')) -> str:
+def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
+
+    config = configs.compile(config,'github','repositories')
 
     if not url:
         url = obj['url']
@@ -152,7 +154,7 @@ def ref_repository(url: str=None, obj: dict=None, force_api: bool=config('github
     
     if not obj:
         obj = api(url)
-    elif force_api:
+    elif config['force_api']:
         obj.update(api(url))
 
     if isinstance(obj['owner'],dict):
@@ -163,19 +165,19 @@ def ref_repository(url: str=None, obj: dict=None, force_api: bool=config('github
         obj['languages'] = json.ref([{'name':key,'value':languages[key]} for key in languages])
     
 
-    if get_subscribers and 'subscribers' not in obj:
-        obj['subscribers'] = ref_user_list(obj['subscribers_url'],count=config('github','repositories','subscribers','count'))
+    if config['subscribers']['include'] and 'subscribers' not in obj:
+        obj['subscribers'] = ref_user_list(obj['subscribers_url'],count=config['subscribers']['count'])
     
-    if get_stargazers and 'stargazers' not in obj:
-        obj['stargazers'] = ref_user_list(obj['stargazers_url'],count=config('github','repositories','stargazers','count'))
+    if config['stargazers']['include'] and 'stargazers' not in obj:
+        obj['stargazers'] = ref_user_list(obj['stargazers_url'],count=config['stargazers']['count'])
 
-    if get_events and 'events' not in obj:
-        obj['events'] = ref_event_list(obj['events_url'],load_repo=False)
+    if config['events']['include'] and 'events' not in obj:
+        obj['events'] = ref_event_list(obj['events_url'],load_repo=False,count=config['events']['count'])
     
-    if get_contributors and 'contributors' not in obj:
+    if config['contributors']['include'] and 'contributors' not in obj:
         contributors = []
-        for contributor in api_list(obj['contributors_url'], count=config('github','repositories','contributors','count')):
-            if '[bot]' not in contributor['login'] or config('github','repositories','contributors','include_bots'):
+        for contributor in api_list(obj['contributors_url'], count=config['contributors']['count']):
+            if '[bot]' not in contributor['login'] or config['contributors']['include_bots']:
                 contributors.append(contributor)
         obj['contributors'] = json.ref([{'contributions': i['contributions'],'user':ref_user(obj=i)} for i in contributors])
     
@@ -203,5 +205,5 @@ def ref_event(obj: dict,load_repo: bool=False) -> str:
                 
 
 
-def ref_event_list(url: str,count: int=config('github','events','count'), load_repo: bool=True) -> str:
+def ref_event_list(url: str,count: int=configs.config('github','events','count'), load_repo: bool=True) -> str:
     return json.ref([ref_event(i,load_repo=load_repo) for i in api_list(url,count=count)])

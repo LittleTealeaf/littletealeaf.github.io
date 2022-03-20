@@ -12,16 +12,27 @@ analytics.clear()
 
 index = {}
 
-index['user'] = github.ref_user(username=config('github','username'),followers=True,following=True)
+index['user'] = github.ref_user(username=config('github','username'),config={
+    'followers': {
+        'include': True
+    },
+    'following': {
+        'include': True
+    }
+})
 user = json.load(ref=index['user'])
 
 repos = filter(lambda item: not item['private'],github.api_list(user['repos_url'],count=config('github','repositories','count')))
-index['repositories'] = json.ref([github.ref_repository(obj=i,get_contributors=True) for i in repos])
+index['repositories'] = json.ref([github.ref_repository(obj=i,config={'contributors':{'include':True}}) for i in repos])
 
 ## Projects
 projects = []
 for project in json.load(path=config('config','projects','path')):
-    project['repository'] = github.ref_repository(url=project['repository'],get_events=True,get_contributors=True,get_stargazers=True,get_subscribers=True)
+    project['repository'] = github.ref_repository(url=project['repository'],config={
+        'contributors': {
+            'include': True
+        }
+    })
     project['attributes'] = json.ref(project['attributes'])
     projects.append(json.ref(project))
 index['projects'] = json.ref(projects)

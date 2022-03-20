@@ -11,30 +11,33 @@
         "repositories": {
             "count": 200,
             "force_api":true,
-            "include_events": false,
-            "include_stargazers": false,
-            "include_contributors": false,
-            "include_subscribers": false,
             "contributors": {
                 "count": 10,
-                "include_bots": false
+                "include_bots": false,
+                "include": false
             },
             "stargazers": {
-                "count": 10
+                "count": 10,
+                "include": false
             },
             "subscribers": {
-                "count": 10
+                "count": 10,
+                "include": false
+            },
+            "events": {
+                "count":10,
+                "include": false
             }
         },
         "users": {
-            "force_update": false,
-            "include_followers": false,
-            "include_following": false,
+            "force_api": false,
             "followers": {
-                "count": 10
+                "count": 10,
+                "include": false
             },
             "following": {
-                "count": 10
+                "count": 10,
+                "include": false
             },
             "count": 20,
             "remove_keys": [
