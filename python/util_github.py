@@ -29,6 +29,8 @@ if not TOKEN:
 
 
 def GET(url: str, parameters: dict = {}, headers: dict = {}):
+    print(f'API: {url} {parameters}')
+
     headers = headers.copy()
     headers.update({
         'authorization': f'token {TOKEN}'
