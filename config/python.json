@@ -10,6 +10,11 @@
         "username": "LittleTealeaf",
         "repositories": {
             "count": 200,
+            "force_api":true,
+            "include_events": false,
+            "include_stargazers": false,
+            "include_contributors": false,
+            "include_subscribers": false,
             "contributors": {
                 "count": 10,
                 "include_bots": false
@@ -22,20 +27,29 @@
             }
         },
         "users": {
+            "force_update": false,
+            "include_followers": false,
+            "include_following": false,
             "followers": {
                 "count": 10
             },
             "following": {
                 "count": 10
             },
-            "count": 20
+            "count": 20,
+            "remove_keys": [
+                "contributions"
+            ]
         },
         "events": {
             "count": 10
         },
         "api": {
             "timeout_delay": 600
-        }
+        },
+        "remove_keys": [
+            "plan","two_factor_authentication","total_private_repos","owned_private_repos","private_gists","permissions"
+        ]
     },
     "config": {
         "resume": {

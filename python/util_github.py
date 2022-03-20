@@ -16,9 +16,6 @@ DIR_USER = DIR + ['user']
 DIR_EVENT = DIR + ['event']
 DIR_REPO = DIR + ['repo']
 
-REMOVE_KEYS = ['plan', 'two_factor_authentication', 'total_private_repos',
-               'owned_private_repos', 'private_gists', 'permissions']
-REMOVE_USER = ['contributions']
 TOKEN = None
 if os.path.exists(os.path.join('.', 'github_token')):
     with open(os.path.join('.', 'github_token')) as f:
@@ -65,7 +62,7 @@ def api_requests_remaining() -> int:
 def api(url: str, parameters: dict = {}) -> dict:
     result = GET(url, parameters=parameters).json()
     if isinstance(result, dict):
-        [result.pop(key, None) for key in REMOVE_KEYS]
+        [result.pop(key, None) for key in config('github','remove_keys')]
     return result
 
 def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
@@ -98,7 +95,7 @@ def api_ref(url: str, parameters: dict={}, asset=None) -> str:
     return json.ref(data, asset)
 
 
-def ref_user(username: str = None, url: str = None, obj: dict = None, update: bool = False, followers: bool = False, following: bool = False) -> str:
+def ref_user(username: str = None, url: str = None, obj: dict = None, update: bool = config('github','users','force_update'), followers: bool = config('github','users','include_followers'), following: bool = config('github','users','include_following')) -> str:
 
     key_followers = 'followers_list'
     key_following = 'following_list'
@@ -131,7 +128,7 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, update: bo
     if following and key_following not in obj:
         obj[key_following] = ref_user_list(obj['following_url'].replace('{/other_user}',''),count=config('github','users','following','count'))
 
-    [obj.pop(key,None) for key in REMOVE_USER]
+    [obj.pop(key,None) for key in config('github','users','remove_keys')]
 
     return json.ref(obj, asset)
 
@@ -140,7 +137,7 @@ def ref_user_list(url: str, count: int = config('github','users','count')) -> st
     return json.ref([ref_user(obj=i) for i in api_list(url,count=count)])
 
 
-def ref_repository(url: str=None, obj: dict=None, force_api: bool=True, get_events: bool = False, get_stargazers: bool = False, get_contributors: bool = False, get_subscribers: bool = False) -> str:
+def ref_repository(url: str=None, obj: dict=None, force_api: bool=config('github','repositories','force_api'), get_events: bool = config('github','repositories','include_events'), get_stargazers: bool = config('github','repositories','include_stargazers'), get_contributors: bool = config('github','repositories','include_contributors'), get_subscribers: bool = config('github','repositories','include_subscribers')) -> str:
 
     if not url:
         url = obj['url']
