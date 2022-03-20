@@ -1,19 +1,16 @@
-import numpy as np
-import util_assets as assets
-import os
-import glob
 import requests
-import random
 from util_assets import Asset
 from PIL import Image, ImageDraw, ImageFilter
 from io import BytesIO
 from list_filetypes import *
+import util_analytics as analytics
 
 DIR = ['images']
 
 
 def ref(url, dir=DIR, type=PNG, circular=False):
     print(f'IMG: {url}')
+    analytics.ping_image()
     img = Image.open(BytesIO(requests.get(url).content)).convert('RGBA')
 
     if circular:
