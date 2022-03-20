@@ -5,7 +5,7 @@ export default function Home({router}) {
     return (
         <div>
             <Header router={router} title="LittleTealeaf - Github"/>
-            I AM A GITHUB BIRD
+            I AM A GIT BIRD
         </div>
     )
 }
