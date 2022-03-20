@@ -1,0 +1,14 @@
+name: "Pull Request Actions"
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  pr_commented:
+    name: "pr action"
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request }}
+    steps:
+      - run: echo ${{ github.event.changes.body }}
+      - run: echo ${{ toJson(github)}}
