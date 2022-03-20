@@ -30,7 +30,7 @@ if not TOKEN:
     sys.exit(1)
 
 
-def GET(url: str, parameters: dict = {}, headers: dict = {}):
+def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Response:
     print(f'API: {url} {parameters}')
 
     headers = headers.copy()
@@ -61,13 +61,13 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}):
     return request
 
 
-def api(url: str, parameters: dict = {}):
+def api(url: str, parameters: dict = {}) -> dict:
     result = GET(url, parameters=parameters).json()
     if isinstance(result, dict):
         [result.pop(key, None) for key in REMOVE_KEYS]
     return result
 
-def api_list(url: str, parameters: dict = {}, count=30):
+def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
     obj = []
     page = 1
     per_page = min(100, count)
@@ -88,7 +88,7 @@ def api_list(url: str, parameters: dict = {}, count=30):
     return obj
 
 
-def api_ref(url, parameters={}, asset=None):
+def api_ref(url: str, parameters: dict={}, asset=None) -> str:
 
     data = api(url, parameters)
     if not asset:
@@ -97,7 +97,7 @@ def api_ref(url, parameters={}, asset=None):
     return json.ref(data, asset)
 
 
-def ref_user(username: str = None, url: str = None, obj: dict = None, update: bool = False, followers: bool = False, following: bool = False):
+def ref_user(username: str = None, url: str = None, obj: dict = None, update: bool = False, followers: bool = False, following: bool = False) -> str:
 
     key_followers = 'followers_list'
     key_following = 'following_list'
@@ -135,11 +135,11 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, update: bo
     return json.ref(obj, asset)
 
 
-def ref_user_list(url: str, count: int = CONFIG['load_count']['users']):
+def ref_user_list(url: str, count: int = CONFIG['load_count']['users']) -> str:
     return json.ref([ref_user(obj=i) for i in api_list(url,count=count)])
 
 
-def ref_repository(url: str=None, obj: dict=None, force_api: bool=True, get_events: bool = False, get_stargazers: bool = False, get_contributors: bool = False, get_subscribers: bool = False):
+def ref_repository(url: str=None, obj: dict=None, force_api: bool=True, get_events: bool = False, get_stargazers: bool = False, get_contributors: bool = False, get_subscribers: bool = False) -> str:
 
     if not url:
         url = obj['url']
@@ -186,7 +186,7 @@ def ref_repository(url: str=None, obj: dict=None, force_api: bool=True, get_even
         
     
 
-def ref_event(obj: dict,load_repo: bool=False):
+def ref_event(obj: dict,load_repo: bool=False) -> str:
     asset = Asset(dir=DIR_EVENT,type=JSON,seed=obj['id'])
     if not asset.exists():
         if 'repo' in obj:
@@ -205,5 +205,5 @@ def ref_event(obj: dict,load_repo: bool=False):
                 
 
 
-def ref_event_list(url,count: int=CONFIG['load_count']['events'], load_repo: bool=True):
+def ref_event_list(url: str,count: int=CONFIG['load_count']['events'], load_repo: bool=True) -> str:
     return json.ref([ref_event(i,load_repo=load_repo) for i in api_list(url,count=count)])

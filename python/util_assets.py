@@ -4,7 +4,7 @@ import os, shutil, random
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
 
 class Asset:
-    def __init__(self,dir: list=[],name='',suffix='',prefix='',seed=None,type=None):
+    def __init__(self,dir: list=[],name: str='',suffix: str='',prefix: str='',seed: str=None,type: str=None):
         dir = dir.copy()
         if seed:
             random.seed(str(seed))
@@ -20,16 +20,17 @@ class Asset:
         filename = f'{prefix}{name}{suffix}'
         self.path = os.path.join(parent_directory,filename)
         self.ref = "/".join([*dir,filename])
-    def exists(self):
+    
+    def exists(self) -> bool:
         return os.path.exists(self.path)
 
 
 # Cleaning Directory
-def initialize():
+def initialize() -> None:
     path = os.path.join('.','assets','generated')
     if os.path.exists(path):
         print(f'Deleting Directory: {path}')
         shutil.rmtree(path)
 
-def config_path(name):
+def config_path(name: str) -> str:
     return os.path.join('.','assets',name)
