@@ -5,17 +5,17 @@ import util_analytics as analytics
 import util_images as images
 import util_github as github
 from util_assets import Asset
-from util_config import CONFIG
+from util_config import config
 
 assets.initialize()
 analytics.clear()
 
 index = {}
 
-index['user'] = github.ref_user(username=CONFIG['username'],followers=True,following=True)
+index['user'] = github.ref_user(username=config('github','username'),followers=True,following=True)
 user = json.load(path=f"./assets/generated/{index['user']}")
 
-repos = filter(lambda item: not item['private'],github.api_list(user['repos_url'],count=CONFIG['load_count']['repositories']))
+repos = filter(lambda item: not item['private'],github.api_list(user['repos_url'],count=config('github','repositories','count')))
 index['repositories'] = json.ref([github.ref_repository(obj=i,get_contributors=True) for i in repos])
 
 ## Projects

@@ -3,29 +3,29 @@
     "github": {
         "username": "LittleTealeaf",
         "repositories": {
-            "count": 1000,
+            "count": 200,
             "contributors": {
-                "count": 20,
+                "count": 10,
                 "include_bots": false
             },
             "stargazers": {
-                "count": 30
+                "count": 10
             },
             "subscribers": {
-                "count": 30
+                "count": 10
             }
         },
         "users": {
             "followers": {
-                "count": 30
+                "count": 10
             },
             "following": {
-                "count": 30
+                "count": 10
             },
-            "count": 30
+            "count": 20
         },
         "events": {
-            "count": 20
+            "count": 10
         }
     }
 }
