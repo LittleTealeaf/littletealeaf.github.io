@@ -30,6 +30,7 @@ image: ['*.jpg', '*.jpeg', '*.png']
 
 # Directories
 assets: 'assets/**/*'
+config: 'config/**/*'
 pages: 'pages/**/*'
 public: 'public/**/*'
 styles: 'styles/**/*'
