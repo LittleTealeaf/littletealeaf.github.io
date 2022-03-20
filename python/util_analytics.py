@@ -1,40 +1,51 @@
 import os
 import util_json as json
+import datetime
 
-TEMP_FILE = 'analytics.json'
+FILE_NAME = 'analytics.json'
 
-KEY_API = 'api_calls'
-KEY_IMAGE = 'image_calls'
-REMAINING_API_CALLS = 'remaining_api_calls'
+class Keys:
+    GITHUB_API_CALLS = 'Github API Calls'
+    IMAGE_REQUESTS = 'Image Requests'
+    LAST_UPDATED = 'Last Updated'
 
-def clean():
-    if os.path.exists(TEMP_FILE):
-        os.remove(TEMP_FILE)
+DEFAULTS: dict = {
+    Keys.GITHUB_API_CALLS: 0,
+    Keys.IMAGE_REQUESTS: 0
+}
+
+def clear():
+    if os.path.exists(FILE_NAME):
+        os.remove(FILE_NAME)
 
 def load():
-    analytics = {
-        KEY_API: 0,
-        KEY_IMAGE: 0,
-        REMAINING_API_CALLS: 5000
-    }
-    if os.path.exists(TEMP_FILE):
-        analytics = json.load(path=TEMP_FILE)
-    return analytics
+    if os.path.exists(FILE_NAME):
+        return json.load(path=FILE_NAME)
+    else:
+        return DEFAULTS.copy()
 
-def save(analytics):
-    json.save(analytics,path=TEMP_FILE)
+def update(updater):
+    data = load()
+    updater(data)
+    json.save(data,path=FILE_NAME)
+
+def update_value(key: str, value_updater):
+    data = load()
+    data[key] = value_updater(data[key])
+    json.save(data,path=FILE_NAME)
+
 
 def ping_api():
-    state = load()
-    state[KEY_API] = state[KEY_API] + 1
-    save(state)
+    update_value(Keys.GITHUB_API_CALLS,lambda item: item + 1)
 
 def ping_image():
-    state = load()
-    state[KEY_IMAGE] = state[KEY_IMAGE] + 1
-    save(state)
+    update_value(Keys.IMAGE_REQUESTS, lambda item: item + 1)
 
-def update_remaining_api(request):
-    state = load()
-    state[REMAINING_API_CALLS] = request.headers['x-ratelimit-remaining']
-    save(state)
+def compile():
+    data = load()
+    data[Keys.LAST_UPDATED] = str(datetime.datetime.now())
+    analytics = [{'name':key,'value':data[key]} for key in data]
+    return analytics
+
+def ref():
+    return json.ref(compile())
