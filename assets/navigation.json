@@ -15,5 +15,8 @@
     {
         "name":"About Me",
         "href":"/about"
+    },{
+        "name":"About this website",
+        "href":"/website"
     }
 ]

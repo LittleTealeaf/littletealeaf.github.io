@@ -10,5 +10,6 @@ export function getAsset(genpath) {
 
 const Projects = getAsset(Index.projects);
 const Resume = getAsset(Index.resume);
+const Analytics = getAsset(Index.analytics);
 
-export {Projects, Navigation, Resume}
+export {Projects, Navigation, Resume, Analytics}
