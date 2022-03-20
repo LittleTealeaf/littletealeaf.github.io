@@ -1,7 +1,10 @@
 {
     "output": {
         "directory": [".","generated"],
-        "index_name":"index.json"
+        "index_name":"index.json",
+        "include_config": {
+            "navigation":"navigation.json"
+        }
     },
     "github": {
         "username": "LittleTealeaf",
