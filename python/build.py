@@ -8,7 +8,7 @@ from util_assets import Asset
 from util_config import CONFIG
 
 assets.initialize()
-analytics.clean()
+analytics.clear()
 
 index = {}
 
@@ -33,9 +33,7 @@ for category in resume['skills']:
 resume['skills'] = json.ref([{'name':key, 'values': resume['skills'][key]} for key in resume['skills']])
 index['resume'] = json.ref(resume)
 
-analytics_report = analytics.load()
-print(analytics_report)
-index['analytics'] = json.ref(analytics_report)
-analytics.clean()
+index['analytics'] = analytics.ref()
+
 
 json.save(index,Asset(name='index.json'))
