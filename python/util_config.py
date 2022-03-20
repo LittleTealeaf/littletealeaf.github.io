@@ -11,3 +11,9 @@ def config(*path):
     for key in path:
         data = data[key]
     return data
+
+def get_config_file(filename: str):
+    data = None
+    with open(os.path.join('.','config',filename)) as file:
+        data = json.load(file)
+    return data

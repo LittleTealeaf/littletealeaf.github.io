@@ -5,7 +5,7 @@ import util_analytics as analytics
 import util_images as images
 import util_github as github
 from util_assets import Asset
-from util_config import config
+from util_config import config, get_config_file
 
 assets.initialize()
 analytics.clear()
@@ -34,6 +34,13 @@ resume['skills'] = json.ref([{'name':key, 'values': resume['skills'][key]} for k
 index['resume'] = json.ref(resume)
 
 index['analytics'] = analytics.ref()
+
+
+config_includes = config('output','include_config')
+for key in config_includes:
+    index[key] = json.ref(get_config_file(config_includes[key]))
+
+
 
 json.save(index,Asset(name=config('output','index_name')))
 
