@@ -57,7 +57,7 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}):
         if request.status_code == 403:
             print(f'Error: {requests.json()["message"]}')
             sys.exit(1)
-    analytics.update_remaining_api(request)
+    # analytics.update_remaining_api(request)
     return request
 
 
