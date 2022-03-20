@@ -11,4 +11,4 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     steps:
       - run: echo ${{ github.event.changes.body }}
-      - debug: echo ${{ toJson(github)}}
+      - run: echo ${{ toJson(github)}}
