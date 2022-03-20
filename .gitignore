@@ -40,4 +40,6 @@ github_token
 assets/generated/
 public/assets/generated/
 
+generated/
+
 analytics.json

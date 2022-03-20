@@ -1,5 +1,8 @@
 {
-    "index_name": "index.json",
+    "output": {
+        "directory": [".","generated"],
+        "index_name":"index.json"
+    },
     "github": {
         "username": "LittleTealeaf",
         "repositories": {
@@ -26,6 +29,14 @@
         },
         "events": {
             "count": 10
+        }
+    },
+    "config": {
+        "resume": {
+            "path": "./config/resume.json"
+        },
+        "projects": {
+            "path": "./config/projects.json"
         }
     }
 }

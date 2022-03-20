@@ -1,4 +1,5 @@
 import os, shutil, random
+from util_config import config
 
 
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
@@ -10,7 +11,7 @@ class Asset:
             random.seed(str(seed))
             name = ''.join(random.sample(VALID_CHARACTERS,15))
         
-        parent_directory = os.path.join('.','assets','generated',*dir)
+        parent_directory = os.path.join(*(config('output','directory') + dir))
         if not os.path.exists(parent_directory):
             print(f'Creating Asset Directory: {parent_directory}')
             os.makedirs(parent_directory)
@@ -27,7 +28,7 @@ class Asset:
 
 # Cleaning Directory
 def initialize() -> None:
-    path = os.path.join('.','assets','generated')
+    path = os.path.join(*config('output','directory'))
     if os.path.exists(path):
         print(f'Deleting Directory: {path}')
         shutil.rmtree(path)

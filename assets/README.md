@@ -1,1 +1,0 @@
-pyconfig.json - Configuration used in the python build.py script
