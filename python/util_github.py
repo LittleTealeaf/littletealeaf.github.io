@@ -1,6 +1,8 @@
 import os
 import requests
 import sys
+import time
+import datetime
 import util_analytics as analytics
 import util_images as images
 import util_json as json
@@ -37,9 +39,24 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}):
     })
     analytics.ping_api()
     request = requests.get(url, headers=headers, params=parameters)
-    if request.status_code == 403:
+    if request.status_code != 200:
         print(f'API ERROR: {request.json()["message"]}')
-        sys.exit(1)
+
+        # https://stackoverflow.com/a/52808375/12206859
+        print(f'Waiting until next hour')
+        delta = datetime.timedelta(hours=1)
+        now = datetime.datetime.now()
+        next_hour = (now + delta).replace(microsecond=0,second=0,minute=2)
+
+        wait_seconds = (next_hour - now).seconds + 5 * 60
+        print(f'Sleeping for {wait_seconds} seconds')
+        time.sleep(wait_seconds)
+        print(f'Attempting to get API:')
+        request = requests.get(url,headers=headers,params=parameters)
+        
+        if request.status_code == 403:
+            print(f'Error: {requests.json()["message"]}')
+            sys.exit(1)
     return request
 
 
@@ -48,7 +65,6 @@ def api(url: str, parameters: dict = {}):
     if isinstance(result, dict):
         [result.pop(key, None) for key in REMOVE_KEYS]
     return result
-
 
 def api_list(url: str, parameters: dict = {}, count=30):
     obj = []
