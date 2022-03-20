@@ -1,4 +1,5 @@
 import os
+from urllib.request import Request
 import requests
 import sys
 import time
@@ -38,26 +39,24 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Respons
         'authorization': f'token {TOKEN}'
     })
     analytics.ping_api()
-    request = requests.get(url, headers=headers, params=parameters)
-    if request.status_code != 200:
-        print(f'API ERROR: {request.json()["message"]}')
-
-        # https://stackoverflow.com/a/52808375/12206859
-        print(f'Waiting until next hour')
-        delta = datetime.timedelta(hours=1)
-        now = datetime.datetime.now()
-        next_hour = (now + delta).replace(microsecond=0,second=0,minute=2)
-
-        wait_seconds = (next_hour - now).seconds + 5 * 60
-        print(f'Sleeping for {wait_seconds} seconds')
-        time.sleep(wait_seconds)
-        print(f'Attempting to get API:')
+    wait_time = config('github','api','timeout_delay')
+    max_attempts = 60 / wait_time
+    request: requests.Response = None
+    current_attempt = 0
+    while (not request or request.status_code != 200) and current_attempt < max_attempts:
+        current_attempt = current_attempt + 1
         request = requests.get(url,headers=headers,params=parameters)
-        
-        if request.status_code == 403:
-            print(f'Error: {requests.json()["message"]}')
-            sys.exit(1)
-    # analytics.update_remaining_api(request)
+
+        if request.status_code != 200:
+            print(f'Error Attempt {current_attempt}: {request.json()["message"]}')
+            
+            if request.status_code == 403:
+                print(f'Waiting {wait_time} seconds before reattempting...')
+                time.sleep(wait_time)
+    
+    if current_attempt < max_attempts:
+        print(f'Unable to get API')
+        sys.exit(1)
     return request
 
 def api_requests_remaining() -> int:

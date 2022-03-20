@@ -29,6 +29,9 @@
         },
         "events": {
             "count": 10
+        },
+        "api": {
+            "timeout_delay": 600
         }
     },
     "config": {
