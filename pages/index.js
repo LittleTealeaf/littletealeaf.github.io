@@ -7,7 +7,7 @@ export default function Home({router}) {
   return (
     
     <div>
-      <Header router={router}/>
+      <Header router={router} title="LittleTealeaf"/>
       WARNING, THIS WEBSITE IS UNDER DEVELOPMENT. ALSO, I AM A BIRD
     </div>
   )

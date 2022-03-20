@@ -55,7 +55,7 @@ export default function Home({router}) {
   return (
     
     <div>
-      <Header router={router} />
+      <Header router={router} title="LittleTealeaf - About Website"/>
       <div style={{
         'margin': '20px',
         'display': 'flex',

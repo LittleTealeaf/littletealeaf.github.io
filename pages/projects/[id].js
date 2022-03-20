@@ -111,7 +111,7 @@ export default function Project({ projectData, router }) {
 
 
     return <div>
-        <Header router={router} />
+        <Header router={router} title={`LittleTealeaf - ${name}`}/>
         <center>
             <div className={style.section} style={{
                 'width':'80%'

@@ -4,7 +4,7 @@ import Style from '../styles/404.module.css'
 export default function Home({router}) {
     return (
         <div>
-            <Header router={router}/>
+            <Header router={router} title="LittleTealeaf - Page Not Found"/>
             <div>
                 <center className={Style.center}>
                 <h1 className={Style.leftText}>404</h1>
