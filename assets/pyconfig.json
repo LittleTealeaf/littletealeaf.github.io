@@ -3,12 +3,12 @@
     "index_name":"index.json",
     "load_count": {
         "users":30,
-        "events":10,
+        "events":20,
         "contributors":30,
         "stargazers":20,
         "subscribers":20,
-        "followers": 20,
-        "following": 20,
+        "followers": 30,
+        "following": 30,
         "repositories": 1000
     },
     "github": {
