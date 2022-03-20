@@ -5,17 +5,17 @@ from list_filetypes import *
 
 DIR = ['json']
 
-def load(asset: Asset=None,path: str=None):
+def load(asset: Asset=None,path: str=None) -> dict:
     data = None
     with open(asset.path if asset else path) as file:
         data = json.load(file)
     return data
 
-def save(data,asset: Asset=None,path: list=None):
+def save(data: dict,asset: Asset=None,path: list=None) -> None:
     with open(asset.path if asset else path,'w') as file:
         file.write(json.dumps(data))
 
-def ref(dict,asset: Asset=None,dir: list=None):
+def ref(dict: dict,asset: Asset=None,dir: list=None) -> str:
     string = json.dumps(dict)
     if not asset:
         asset = Asset(dir=(dir if dir else DIR),seed=string,type=JSON)

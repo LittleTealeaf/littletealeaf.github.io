@@ -8,7 +8,7 @@ import util_analytics as analytics
 DIR = ['images']
 
 
-def ref(url, dir=DIR, type=PNG, circular=False):
+def ref(url: str, dir: list=DIR, type: str=PNG, circular: bool=False) -> str:
     print(f'IMG: {url}')
     analytics.ping_image()
     img = Image.open(BytesIO(requests.get(url).content)).convert('RGBA')
@@ -27,7 +27,7 @@ def ref(url, dir=DIR, type=PNG, circular=False):
     return asset.ref
 
 
-def hash_image(img):
+def hash_image(img: Image) -> str:
     image = img.resize((10, 10), Image.ANTIALIAS)
     image = image.convert("L")
     pixel_data = list(image.getdata())
