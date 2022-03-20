@@ -10,13 +10,6 @@ from util_assets import Asset
 from list_filetypes import *
 from util_config import CONFIG
 
-# delta = datetime.timedelta(hours=1)
-# now = datetime.datetime.now()
-# next_hour = (now + delta).replace(microsecond=0, second=0, minute=2)
-
-# wait_seconds = (next_hour - now).seconds   
-
-
 DIR = ['github']
 DIR_USER = DIR + ['user']
 DIR_EVENT = DIR + ['event']
