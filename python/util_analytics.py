@@ -43,7 +43,8 @@ def ping_image() -> None:
 
 def compile() -> dict:
     data = load()
-    data[Keys.LAST_UPDATED] = str(datetime.datetime.now())
+    data[Keys.LAST_UPDATED] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M")
+
     analytics = [{'name':key,'value':data[key]} for key in data]
     return analytics
 
