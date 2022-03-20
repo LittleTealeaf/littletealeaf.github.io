@@ -1,29 +1,16 @@
-from fileinput import filename
-import os, shutil, random, json
+import os, shutil, random
 
-PNG = 'png'
-JPEG = 'jpeg'
-SVG = 'svg'
-WEBP = 'WebP'
-JSON = 'json'
-HTML='html'
-TXT = 'txt'
-
-
-IMAGES = ['images']
-JSONS = ['json']
 
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
 
-
 class Asset:
-    def __init__(self,path=[],name='',suffix='',prefix='',seed=None,type=None):
-        path = path.copy()
+    def __init__(self,dir: list=[],name='',suffix='',prefix='',seed=None,type=None):
+        dir = dir.copy()
         if seed:
             random.seed(str(seed))
             name = ''.join(random.sample(VALID_CHARACTERS,15))
         
-        parent_directory = os.path.join('.','assets','generated',*path)
+        parent_directory = os.path.join('.','assets','generated',*dir)
         if not os.path.exists(parent_directory):
             print(f'Creating Asset Directory: {parent_directory}')
             os.makedirs(parent_directory)
@@ -32,25 +19,17 @@ class Asset:
 
         filename = f'{prefix}{name}{suffix}'
         self.path = os.path.join(parent_directory,filename)
-        self.ref = "/".join([*path,filename])
+        self.ref = "/".join([*dir,filename])
     def exists(self):
         return os.path.exists(self.path)
 
 
 # Cleaning Directory
-def clean_directory():
+def initialize():
     path = os.path.join('.','assets','generated')
     if os.path.exists(path):
         print(f'Deleting Directory: {path}')
         shutil.rmtree(path)
 
-
-def ref_text(text="",asset=None,path=[],type=TXT):
-    if not asset:
-        asset = Asset(path=path,seed=text,type=type)
-    with open(asset.path,'w') as file:
-        file.write(text)
-    return asset.ref
-
-def get_asset_path(*path):
-    return os.path.join('.','assets',os.path.join(*path))
+def config_path(name):
+    return os.path.join('.','assets',name)

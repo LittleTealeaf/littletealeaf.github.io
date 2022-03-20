@@ -2,6 +2,7 @@
     "username":"LittleTealeaf",
     "index_name":"index.json",
     "load_count": {
+        "users":30,
         "events":10,
         "contributors":30,
         "stargazers":20,

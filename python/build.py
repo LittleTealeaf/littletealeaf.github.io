@@ -1,51 +1,41 @@
-import os
-from assetutil import *
-from githubutil import *
-from jsonutil import *
-from imageutil import *
-from analytics import *
+from site import getuserbase
+import util_assets as assets
+import util_json as json
+import util_analytics as analytics
+import util_images as images
+import util_github as github
+from util_assets import Asset
+from util_config import CONFIG
 
-clean_directory()
-analytics_delete()
-
-CONFIG = load_json(get_asset_path('pyconfig.json'))
+assets.initialize()
+analytics.clean()
 
 index = {}
 
+index['user'] = github.ref_user(username=CONFIG['username'],followers=True,following=True)
+user = json.load(path=f"./assets/generated/{index['user']}")
 
-user = api_github(f'https://api.github.com/users/{CONFIG["username"]}')
+# repos = filter(lambda item: not item['private'],github.api_list(user['repos_url'],count=CONFIG['load_count']['repositories']))
+# index['repositories'] = json.ref([github.ref_repository(obj=i) for i in repos])
 
-index['user'] = ref_github_user(api=user,followers=True,following=True)
+## Projects
+projects = []
+for project in json.load(path=assets.config_path('projects.json')):
+    project['repository'] = github.ref_repository(url=project['repository'],get_events=True,get_contributors=True,get_stargazers=True,get_subscribers=True)
+    project['attributes'] = json.ref(project['attributes'])
+    projects.append(json.ref(project))
+index['projects'] = json.ref(projects)
 
-# Repositories
-repos = filter(lambda item: not item['private'], api_github_list(user['repos_url'],count=CONFIG['load_count']['repositories']))
-index['repositories'] = ref_json([ref_github_repository(i['url']) for i in repos])
+## Resume
+resume = json.load(path=assets.config_path('resume.json'))
+for category in resume['skills']:
+    resume['skills'][category] = json.ref([{'name':key,'attributes': resume['skills'][category][key]} for key in resume['skills'][category]])
+resume['skills'] = json.ref([{'name':key, 'values': resume['skills'][key]} for key in resume['skills']])
+index['resume'] = json.ref(resume)
 
-# Projects
-with open(get_asset_path('projects.json')) as file:
-    projects = []
-    for project in json.load(file):
-        project['repository'] = ref_github_repository(project['repository'],get_events=True,get_contributors=True,get_stargazers=True)
-        project['attributes'] = ref_json(project['attributes'])
-        projects.append(ref_json(project))
-    
-    index['projects'] = ref_json(projects)
+analytics_report = analytics.load()
+print(analytics_report)
+index['analytics'] = json.ref(analytics_report)
+analytics.clean()
 
-
-#Resume
-with open(get_asset_path('resume.json')) as file:
-    r = json.load(file)
-
-    for category in r['skills']:
-        r['skills'][category] = ref_json([{'name': key, 'attributes': r['skills'][category][key]} for key in r['skills'][category]])
-    
-    r['skills'] = ref_json([{'name':key, 'values': r['skills'][key]} for key in r['skills']])
-    
-    index['resume'] = ref_json(r)
-
-analytics = anayltics_load()
-print(analytics)
-index['analytics'] = ref_json(analytics)
-analytics_delete()
-
-save_json(index,Asset(name='index.json'))
+json.save(index,Asset(name='index.json'))
