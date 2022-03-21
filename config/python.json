@@ -10,7 +10,7 @@
         "username": "LittleTealeaf",
         "repositories": {
             "count": 200,
-            "force_api":true,
+            "force_api":false,
             "contributors": {
                 "count": 10,
                 "include_bots": false,
@@ -27,6 +27,9 @@
             "events": {
                 "count":10,
                 "include": false
+            },
+            "template": {
+                "include": true
             }
         },
         "users": {
