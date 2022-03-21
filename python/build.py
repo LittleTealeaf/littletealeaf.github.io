@@ -31,6 +31,9 @@ for project in json.load(path=config('config','projects','path')):
     project['repository'] = github.ref_repository(url=project['repository'],config={
         'contributors': {
             'include': True
+        },
+        'stargazers': {
+            'include': True
         }
     })
     project['attributes'] = json.ref(project['attributes'])
