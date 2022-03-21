@@ -1,8 +1,9 @@
 import os
 import util_json as json
 import datetime
+import util_temp as tmp
 
-FILE_NAME = 'analytics.json'
+FILE_NAME = tmp.tmp_path('analytics.json')
 
 class Keys:
     GITHUB_API_CALLS = 'Github API Calls'
@@ -21,10 +22,6 @@ DEFAULTS: dict = {
 }
 
 INCREMENT = lambda item: item + 1
-
-def clear() -> None:
-    if os.path.exists(FILE_NAME):
-        os.remove(FILE_NAME)
 
 def load() -> dict:
     if os.path.exists(FILE_NAME):

@@ -4,23 +4,24 @@
         "attributes": {
             "name": "Pace Manager",
             "description": "This is the very simple description about the pace manager...",
-            "resume": {
-                "about": "A simple project that I started working on as a side project"
-            },
             "labels": [
                 "Personal",
                 "Hunter Pace"
-            ]
+            ],
+            "status": "In Progress"
         }
     },
     {
         "repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
-        "attributes": {}
+        "attributes": {
+            "status": "In Progress"
+        }
     },
     {
         "repository": "https://api.github.com/repos/LittleTealeaf/LittleTealeaf",
         "attributes": {
-            "description": "Using Python to automate a README used in my Github Profile"
+            "description": "Using Python to automate a README used in my Github Profile",
+            "status": "In Progress"
         }
     },
     {
@@ -30,7 +31,8 @@
             "description": "A simple javascript, html, and css application used to make JSON text easier to read",
             "labels": [
                 "Personal"
-            ]
+            ],
+            "status": "Completed"
         }
     },
     {
@@ -41,7 +43,8 @@
             "labels": [
                 "SER-225",
                 "Scrum"
-            ]
+            ],
+            "status": "Completed"
         }
     },
     {
@@ -55,7 +58,8 @@
             ],
             "labels": [
                 "CSC-215"
-            ]
+            ],
+            "status": "Completed"
         }
     },
     {
@@ -70,7 +74,8 @@
             ],
             "labels": [
                 "CSC-215"
-            ]
+            ],
+            "status": "Completed"
         }
     }
 ]
