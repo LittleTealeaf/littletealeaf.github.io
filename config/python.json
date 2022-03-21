@@ -9,23 +9,23 @@
     "github": {
         "username": "LittleTealeaf",
         "repositories": {
-            "count": 200,
-            "force_api":false,
+            "count": 1000,
+            "force_api":true,
             "contributors": {
-                "count": 10,
+                "count": 20,
                 "include_bots": false,
                 "include": false
             },
             "stargazers": {
-                "count": 10,
+                "count": 20,
                 "include": false
             },
             "subscribers": {
-                "count": 10,
+                "count": 20,
                 "include": false
             },
             "events": {
-                "count":10,
+                "count":100,
                 "include": false
             },
             "template": {
@@ -35,11 +35,11 @@
         "users": {
             "force_api": false,
             "followers": {
-                "count": 10,
+                "count": 50,
                 "include": false
             },
             "following": {
-                "count": 10,
+                "count": 50,
                 "include": false
             },
             "count": 20,
