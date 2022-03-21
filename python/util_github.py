@@ -113,6 +113,8 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, config: di
         if obj:
             cache.update(obj)
         obj = cache
+    else:
+        analytics.ping_user()
 
     if not obj:
         obj = api(url)
@@ -153,9 +155,12 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
                 if key not in cache:
                     cache[key] = obj[key]
         obj = cache
+    else:
+        analytics.ping_repo()
     
     if not obj:
         obj = api(url)
+        
     elif config['force_api']:
         obj.update(api(url))
 
@@ -194,6 +199,7 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
 def ref_event(obj: dict,load_repo: bool=False) -> str:
     asset = Asset(dir=DIR_EVENT,type=JSON,seed=obj['id'])
     if not asset.exists():
+        analytics.ping_event()
         if 'repo' in obj:
             if load_repo:
                 obj['repo'] = ref_repository(obj=obj['repo'])

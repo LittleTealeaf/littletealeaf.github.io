@@ -8,11 +8,19 @@ class Keys:
     GITHUB_API_CALLS = 'Github API Calls'
     IMAGE_REQUESTS = 'Image Requests'
     LAST_UPDATED = 'Last Updated'
+    REPOSITORY_REQUESTS = 'Repository APIs'
+    USER_REQUESTS = 'User APIs'
+    EVENT_REQUESTS = 'Event APIs'
 
 DEFAULTS: dict = {
     Keys.GITHUB_API_CALLS: 0,
-    Keys.IMAGE_REQUESTS: 0
+    Keys.REPOSITORY_REQUESTS: 0,
+    Keys.USER_REQUESTS: 0,
+    Keys.EVENT_REQUESTS: 0,
+    Keys.IMAGE_REQUESTS: 0,
 }
+
+INCREMENT = lambda item: item + 1
 
 def clear() -> None:
     if os.path.exists(FILE_NAME):
@@ -34,13 +42,6 @@ def update_value(key: str, value_updater) -> None:
     data[key] = value_updater(data[key])
     json.save(data,path=FILE_NAME)
 
-
-def ping_api() -> None:
-    update_value(Keys.GITHUB_API_CALLS,lambda item: item + 1)
-
-def ping_image() -> None:
-    update_value(Keys.IMAGE_REQUESTS, lambda item: item + 1)
-
 def compile() -> dict:
     data = load()
     data[Keys.LAST_UPDATED] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M")
@@ -50,3 +51,18 @@ def compile() -> dict:
 
 def ref() -> str:
     return json.ref(compile())
+
+def ping_api() -> None:
+    update_value(Keys.GITHUB_API_CALLS,INCREMENT)
+
+def ping_image() -> None:
+    update_value(Keys.IMAGE_REQUESTS, INCREMENT)
+
+def ping_user() -> None:
+    update_value(Keys.USER_REQUESTS,INCREMENT)
+
+def ping_event() -> None:
+    update_value(Keys.EVENT_REQUESTS,INCREMENT)
+
+def ping_repo() -> None:
+    update_value(Keys.REPOSITORY_REQUESTS,INCREMENT)
