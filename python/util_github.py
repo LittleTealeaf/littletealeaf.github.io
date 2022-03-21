@@ -149,7 +149,9 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
     if asset.exists():
         cache = json.load(asset=asset)
         if obj:
-            cache.update(obj)
+            for key in obj:
+                if key not in cache:
+                    cache[key] = obj[key]
         obj = cache
     
     if not obj:
@@ -180,6 +182,9 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
             if '[bot]' not in contributor['login'] or config['contributors']['include_bots']:
                 contributors.append(contributor)
         obj['contributors'] = json.ref([{'contributions': i['contributions'],'user':ref_user(obj=i)} for i in contributors])
+    
+    if config['template']['include'] and 'template_repository' in obj:
+        obj['template_repository'] = ref_repository(obj=obj['template_repository'])
     
     return json.ref(obj,asset=asset)
 
