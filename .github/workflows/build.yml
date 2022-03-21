@@ -7,8 +7,6 @@ on:
   schedule:
   - cron: '0 0 * * *'
 
-env:
-  API_GITHUB: ${{ secrets.API_GITHUB }}
 
 jobs:
   build-website:
@@ -41,6 +39,8 @@ jobs:
         run: npm install --package-lock
       - name: Run Python Build
         run: python3 ./python/build.py
+        env:
+          API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Run Node Deploy
         run: npm run deploy
       - name: Publish to Github Pages
