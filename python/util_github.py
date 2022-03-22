@@ -196,6 +196,14 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
     if config['template']['include'] and 'template_repository' in obj and isinstance(obj['template_repository'],dict):
         obj['template_repository'] = ref_repository(obj=obj['template_repository'])
     
+    if config['parent']['include'] and 'parent' in obj and isinstance(obj['parent'],dict):
+        obj['parent'] = ref_repository(obj=obj['parent'])
+    
+    if config['source']['include'] and 'source' in obj and isinstance(obj['source'],dict):
+        obj['source'] = ref_repository(obj=obj['source'])
+
+    [obj.pop(key,None) for key in config['remove_keys']]
+    
     return json.ref(obj,asset=asset)
 
         

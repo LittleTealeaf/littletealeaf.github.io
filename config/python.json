@@ -12,6 +12,9 @@
         "repositories": {
             "count": 1000,
             "force_api":true,
+            "remove_keys": [
+                "permissions","allow_squash_merge","allow_merge_commit","allow_rebase_merge","allow_auto_merge","delete_branch_on_merge","temp_clone_token"
+            ],
             "contributors": {
                 "count": 20,
                 "include_bots": false,
@@ -30,6 +33,12 @@
                 "include": false
             },
             "template": {
+                "include": true
+            },
+            "parent": {
+                "include": true
+            },
+            "source": {
                 "include": true
             }
         },
