@@ -20,6 +20,9 @@ index['user'] = github.ref_user(username=config('github','username'),config={
     },
     'following': {
         'include': True
+    },
+    'events': {
+        'include': True
     }
 })
 user = json.load(ref=index['user'])

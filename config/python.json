@@ -43,6 +43,11 @@
                 "count": 50,
                 "include": false
             },
+            "events": {
+                "count": 100,
+                "include": false,
+                "load_repo": true
+            },
             "count": 20,
             "remove_keys": [
                 "contributions"
