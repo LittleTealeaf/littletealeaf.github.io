@@ -5,6 +5,7 @@ from util_config import config
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890'
 
 class Asset:
+    "Indicates a generated asset file"
     def __init__(self,dir: list=[],name: str='',suffix: str='',prefix: str='',seed: str=None,type: str=None):
         dir = dir.copy()
         if seed:
@@ -23,15 +24,18 @@ class Asset:
         self.ref = "/".join([*dir,filename])
     
     def exists(self) -> bool:
+        "Returns whether or not this file currently exists"
         return os.path.exists(self.path)
 
 
 # Cleaning Directory
 def initialize() -> None:
+    "Initializes the assets directory, cleaning it if it is currently populated"
     path = os.path.join(*config('output','directory'))
     if os.path.exists(path):
         print(f'Deleting Directory: {path}')
         shutil.rmtree(path)
 
 def config_path(name: str) -> str:
+    "Gets the raw path for a configuration file"
     return os.path.join('.','assets',name)
