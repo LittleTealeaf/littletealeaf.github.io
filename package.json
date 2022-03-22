@@ -21,9 +21,7 @@
     "react-router-dom": "6.2.2",
     "url-loader": "4.1.1",
     "webp-loader": "0.6.0",
-    "webpack": "5.70.0"
-  },
-  "devDependencies": {
+    "webpack": "5.70.0",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0"
   }
