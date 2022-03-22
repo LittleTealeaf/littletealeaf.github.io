@@ -1,4 +1,3 @@
-from site import getuserbase
 import util_assets as assets
 import util_json as json
 import util_analytics as analytics

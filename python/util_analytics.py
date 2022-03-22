@@ -8,10 +8,13 @@ class Keys:
     GITHUB_API_CALLS = 'Github API Calls'
     IMAGE_REQUESTS = 'Image Requests'
     LAST_UPDATED = 'Last Updated'
+    ASSET_COUNT = 'Generated Assets Used'
 
 DEFAULTS: dict = {
     Keys.GITHUB_API_CALLS: 0,
-    Keys.IMAGE_REQUESTS: 0
+    Keys.ASSET_COUNT: 0,
+    Keys.IMAGE_REQUESTS: 0,
+    Keys.LAST_UPDATED: ''
 }
 
 def clear() -> None:
@@ -43,6 +46,7 @@ def ping_image() -> None:
 
 def compile() -> dict:
     data = load()
+    data[Keys.ASSET_COUNT] = get_asset_count()
     data[Keys.LAST_UPDATED] = datetime.datetime.now().strftime("%m/%d/%Y %H:%M")
 
     analytics = [{'name':key,'value':data[key]} for key in data]
@@ -50,3 +54,10 @@ def compile() -> dict:
 
 def ref() -> str:
     return json.ref(compile())
+
+
+def get_asset_count():
+    count = 0
+    for dirpath, dirnames, filenames in os.walk(os.path.join('.','generated')):
+        count += len(filenames)
+    return count
