@@ -8,6 +8,7 @@
     },
     "github": {
         "username": "LittleTealeaf",
+        "website_repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
         "repositories": {
             "count": 1000,
             "force_api":true,
@@ -50,6 +51,11 @@
             "following": {
                 "count": 50,
                 "include": false
+            },
+            "events": {
+                "count": 100,
+                "include": false,
+                "load_repo": true
             },
             "count": 20,
             "remove_keys": [

@@ -130,6 +130,9 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, config: di
     if config['following']['include'] and key_following not in obj:
         obj[key_following] = ref_user_list(obj['following_url'].replace('{/other_user}',''),count=config['following']['count'])
 
+    if config['events']['include'] and 'events' not in obj:
+        obj['events'] = ref_event_list(obj['events_url'].replace('{/privacy}','/public'),count=config['events']['count'], load_repo=config['events']['load_repo'])
+
     [obj.pop(key,None) for key in config['remove_keys']]
 
     return json.ref(obj, asset)
@@ -160,9 +163,11 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
     
     if not obj:
         obj = api(url)
+        obj['api_loaded'] = True
         
-    elif config['force_api']:
+    elif config['force_api'] and ('api_loaded' not in obj or not obj['api_loaded']):
         obj.update(api(url))
+        obj['api_loaded'] = True
 
     if isinstance(obj['owner'],dict):
         obj['owner'] = ref_user(obj=obj['owner'])
@@ -188,7 +193,7 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
                 contributors.append(contributor)
         obj['contributors'] = json.ref([{'contributions': i['contributions'],'user':ref_user(obj=i)} for i in contributors])
     
-    if config['template']['include'] and 'template_repository' in obj:
+    if config['template']['include'] and 'template_repository' in obj and isinstance(obj['template_repository'],dict):
         obj['template_repository'] = ref_repository(obj=obj['template_repository'])
     
     if config['parent']['include'] and 'parent' in obj and isinstance(obj['parent'],dict):
@@ -224,5 +229,5 @@ def ref_event(obj: dict,load_repo: bool=False) -> str:
                 
 
 
-def ref_event_list(url: str,count: int=configs.config('github','events','count'), load_repo: bool=True) -> str:
+def ref_event_list(url: str,count: int=configs.config('github','events','count'), load_repo: bool=False) -> str:
     return json.ref([ref_event(i,load_repo=load_repo) for i in api_list(url,count=count)])
