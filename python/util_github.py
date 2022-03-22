@@ -201,6 +201,9 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
     
     if config['source']['include'] and 'source' in obj and isinstance(obj['source'],dict):
         obj['source'] = ref_repository(obj=obj['source'])
+    
+    if config['organization']['include'] and 'organization' in obj and isinstance(obj['organization'],dict):
+        obj['organization'] = ref_user(obj=obj['organization'])
 
     [obj.pop(key,None) for key in config['remove_keys']]
     
