@@ -9,26 +9,20 @@ class Keys:
     GITHUB_API_CALLS = 'Github API Calls'
     IMAGE_REQUESTS = 'Image Requests'
     LAST_UPDATED = 'Last Updated'
-<<<<<<< HEAD
+    REPOSITORY_REQUESTS = 'Repository APIs'
+    USER_REQUESTS = 'User APIs'
+    EVENT_REQUESTS = 'Event APIs'
     ASSET_COUNT = 'Generated Assets Used'
 
 DEFAULTS: dict = {
     Keys.GITHUB_API_CALLS: 0,
     Keys.ASSET_COUNT: 0,
     Keys.IMAGE_REQUESTS: 0,
-    Keys.LAST_UPDATED: ''
-=======
-    REPOSITORY_REQUESTS = 'Repository APIs'
-    USER_REQUESTS = 'User APIs'
-    EVENT_REQUESTS = 'Event APIs'
-
-DEFAULTS: dict = {
-    Keys.GITHUB_API_CALLS: 0,
-    Keys.REPOSITORY_REQUESTS: 0,
     Keys.USER_REQUESTS: 0,
     Keys.EVENT_REQUESTS: 0,
     Keys.IMAGE_REQUESTS: 0,
->>>>>>> d10468906d189549d56212d7ecd7978ea61d10ef
+    Keys.REPOSITORY_REQUESTS: 0,
+    Keys.LAST_UPDATED: ''
 }
 
 INCREMENT = lambda item: item + 1
@@ -66,7 +60,7 @@ def get_asset_count():
     for dirpath, dirnames, filenames in os.walk(os.path.join('.','generated')):
         count += len(filenames)
     return count
-    
+
 def ping_api() -> None:
     update_value(Keys.GITHUB_API_CALLS,INCREMENT)
 
