@@ -3,24 +3,60 @@ import util_json as json
 import util_analytics as analytics
 import util_images as images
 import util_github as github
+import util_temp as temp
 from util_assets import Asset
-from util_config import config
+from util_config import config, get_config_file
 
 assets.initialize()
-analytics.clear()
+temp.initialize()
+
 
 index = {}
 
-index['user'] = github.ref_user(username=config('github','username'),followers=True,following=True)
-user = json.load(path=f"./generated/{index['user']}")
+index['user'] = github.ref_user(username=config('github','username'),config={
+    'followers': {
+        'include': True
+    },
+    'following': {
+        'include': True
+    },
+    'events': {
+        'include': True
+    }
+})
+user = json.load(ref=index['user'])
+
+index['website_repository'] = github.ref_repository(url=config('github','website_repository'), config={
+    'force_api': True,
+    'contributors': {
+        'count': 100,
+        'include': True
+    },
+    'stargazers': {
+        'include': True
+    },
+    'subscribers': {
+        'include': True
+    },
+    'events': {
+        'include': True
+    }
+})
 
 repos = filter(lambda item: not item['private'],github.api_list(user['repos_url'],count=config('github','repositories','count')))
-index['repositories'] = json.ref([github.ref_repository(obj=i,get_contributors=True) for i in repos])
+index['repositories'] = json.ref([github.ref_repository(obj=i,config={'contributors':{'include':True}}) for i in repos])
 
 ## Projects
 projects = []
 for project in json.load(path=config('config','projects','path')):
-    project['repository'] = github.ref_repository(url=project['repository'],get_events=True,get_contributors=True,get_stargazers=True,get_subscribers=True)
+    project['repository'] = github.ref_repository(url=project['repository'],config={
+        'contributors': {
+            'include': True
+        },
+        'stargazers': {
+            'include': True
+        }
+    })
     project['attributes'] = json.ref(project['attributes'])
     projects.append(json.ref(project))
 index['projects'] = json.ref(projects)
@@ -33,6 +69,13 @@ resume['skills'] = json.ref([{'name':key, 'values': resume['skills'][key]} for k
 index['resume'] = json.ref(resume)
 
 index['analytics'] = analytics.ref()
+
+
+config_includes = config('output','include_config')
+for key in config_includes:
+    index[key] = json.ref(get_config_file(config_includes[key]))
+
+
 
 json.save(index,Asset(name=config('output','index_name')))
 

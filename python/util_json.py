@@ -2,11 +2,14 @@ import os, json
 import util_assets as assets
 from util_assets import Asset
 from list_filetypes import *
+from util_config import config
 
 DIR = ['json']
 
-def load(asset: Asset=None,path: str=None) -> dict:
+def load(asset: Asset=None,path: str=None, ref: str=None) -> dict:
     data = None
+    if ref:
+        path = '/'.join(config('output','directory')) + '/' + ref
     with open(asset.path if asset else path) as file:
         data = json.load(file)
     return data

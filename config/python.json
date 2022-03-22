@@ -1,35 +1,76 @@
 {
     "output": {
         "directory": [".","generated"],
-        "index_name":"index.json"
+        "index_name":"index.json",
+        "include_config": {
+            "navigation":"navigation.json"
+        }
     },
     "github": {
         "username": "LittleTealeaf",
+        "website_repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
         "repositories": {
-            "count": 200,
+            "count": 1000,
+            "force_api":true,
+            "remove_keys": [
+                "permissions","allow_squash_merge","allow_merge_commit","allow_rebase_merge","allow_auto_merge","delete_branch_on_merge","temp_clone_token"
+            ],
             "contributors": {
-                "count": 10,
-                "include_bots": false
+                "count": 20,
+                "include_bots": false,
+                "include": false
             },
             "stargazers": {
-                "count": 10
+                "count": 20,
+                "include": false
             },
             "subscribers": {
-                "count": 10
+                "count": 20,
+                "include": false
+            },
+            "events": {
+                "count":100,
+                "include": false
+            },
+            "template": {
+                "include": true
+            },
+            "parent": {
+                "include": true
+            },
+            "source": {
+                "include": true
             }
         },
         "users": {
+            "force_api": false,
             "followers": {
-                "count": 10
+                "count": 50,
+                "include": false
             },
             "following": {
-                "count": 10
+                "count": 50,
+                "include": false
             },
-            "count": 20
+            "events": {
+                "count": 100,
+                "include": false,
+                "load_repo": true
+            },
+            "count": 20,
+            "remove_keys": [
+                "contributions"
+            ]
         },
         "events": {
             "count": 10
-        }
+        },
+        "api": {
+            "timeout_delay": 600
+        },
+        "remove_keys": [
+            "plan","two_factor_authentication","total_private_repos","owned_private_repos","private_gists","permissions"
+        ]
     },
     "config": {
         "resume": {

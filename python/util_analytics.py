@@ -1,13 +1,15 @@
 import os
 import util_json as json
 import datetime
+import util_temp as tmp
 
-FILE_NAME = 'analytics.json'
+FILE_NAME = tmp.tmp_path('analytics.json')
 
 class Keys:
     GITHUB_API_CALLS = 'Github API Calls'
     IMAGE_REQUESTS = 'Image Requests'
     LAST_UPDATED = 'Last Updated'
+<<<<<<< HEAD
     ASSET_COUNT = 'Generated Assets Used'
 
 DEFAULTS: dict = {
@@ -15,11 +17,21 @@ DEFAULTS: dict = {
     Keys.ASSET_COUNT: 0,
     Keys.IMAGE_REQUESTS: 0,
     Keys.LAST_UPDATED: ''
+=======
+    REPOSITORY_REQUESTS = 'Repository APIs'
+    USER_REQUESTS = 'User APIs'
+    EVENT_REQUESTS = 'Event APIs'
+
+DEFAULTS: dict = {
+    Keys.GITHUB_API_CALLS: 0,
+    Keys.REPOSITORY_REQUESTS: 0,
+    Keys.USER_REQUESTS: 0,
+    Keys.EVENT_REQUESTS: 0,
+    Keys.IMAGE_REQUESTS: 0,
+>>>>>>> d10468906d189549d56212d7ecd7978ea61d10ef
 }
 
-def clear() -> None:
-    if os.path.exists(FILE_NAME):
-        os.remove(FILE_NAME)
+INCREMENT = lambda item: item + 1
 
 def load() -> dict:
     if os.path.exists(FILE_NAME):
@@ -36,13 +48,6 @@ def update_value(key: str, value_updater) -> None:
     data = load()
     data[key] = value_updater(data[key])
     json.save(data,path=FILE_NAME)
-
-
-def ping_api() -> None:
-    update_value(Keys.GITHUB_API_CALLS,lambda item: item + 1)
-
-def ping_image() -> None:
-    update_value(Keys.IMAGE_REQUESTS, lambda item: item + 1)
 
 def compile() -> dict:
     data = load()
@@ -61,3 +66,18 @@ def get_asset_count():
     for dirpath, dirnames, filenames in os.walk(os.path.join('.','generated')):
         count += len(filenames)
     return count
+    
+def ping_api() -> None:
+    update_value(Keys.GITHUB_API_CALLS,INCREMENT)
+
+def ping_image() -> None:
+    update_value(Keys.IMAGE_REQUESTS, INCREMENT)
+
+def ping_user() -> None:
+    update_value(Keys.USER_REQUESTS,INCREMENT)
+
+def ping_event() -> None:
+    update_value(Keys.EVENT_REQUESTS,INCREMENT)
+
+def ping_repo() -> None:
+    update_value(Keys.REPOSITORY_REQUESTS,INCREMENT)
