@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "deploy": "next build && next export"
+    "compile": "next build && next export"
   },
   "dependencies": {
     "html-loader": "3.1.0",
