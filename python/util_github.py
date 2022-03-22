@@ -29,6 +29,7 @@ if not TOKEN:
 
 
 def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Response:
+    "Authenticates and sends a GET request to the specified url with the provided parameters and headers"
     print(f'API: {url} {parameters}')
 
     headers = headers.copy()
@@ -57,15 +58,18 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Respons
     return request
 
 def api_requests_remaining() -> int:
+    "Returns the number of authenticated requests remaining for the api token"
     return GET('https://api.github.com').headers['x-ratelimit-remaining']
 
 def api(url: str, parameters: dict = {}) -> dict:
+    "Fetches and returns the json object from the url with the specified parameters"
     result = GET(url, parameters=parameters).json()
     if isinstance(result, dict):
         [result.pop(key, None) for key in configs.config('github','remove_keys')]
     return result
 
 def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
+    "Fetches and returns a list of json objects from the specified url with the given parameters. If the count is over 100, then it will attempt to load pages until the count is fulfilled. It will stop sending requests when the total count is met"
     obj = []
     page = 1
     per_page = min(100, count)
@@ -87,7 +91,7 @@ def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
 
 
 def api_ref(url: str, parameters: dict={}, asset=None) -> str:
-
+    "Fetches and stores the data from a url with the specified parameters to a json file, storing that data in an asset"
     data = api(url, parameters)
     if not asset:
         asset = Asset(dir=DIR, type=JSON, seed=url)
@@ -96,6 +100,7 @@ def api_ref(url: str, parameters: dict={}, asset=None) -> str:
 
 
 def ref_user(username: str = None, url: str = None, obj: dict = None, config: dict = {}) -> str:
+    "Creates a user reference from a username, url, or obj. Must have one of those in order to complete"
     config = configs.compile(config,'github','users')
     key_followers = 'followers_list'
     key_following = 'following_list'
@@ -143,6 +148,7 @@ def ref_user_list(url: str, config: dict={},count: int = configs.config('github'
 
 
 def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
+    "Creates a reference to a repository from a url or object. Must have one of those to complete"
 
     config = configs.compile(config,'github','repositories')
 
@@ -210,6 +216,7 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
     
 
 def ref_event(obj: dict,load_repo: bool=False) -> str:
+    "Creates an event reference from an object"
     asset = Asset(dir=DIR_EVENT,type=JSON,seed=obj['id'])
     if not asset.exists():
         analytics.ping_event()
@@ -230,4 +237,5 @@ def ref_event(obj: dict,load_repo: bool=False) -> str:
 
 
 def ref_event_list(url: str,count: int=configs.config('github','events','count'), load_repo: bool=False) -> str:
+    "Gets a reference list"
     return json.ref([ref_event(i,load_repo=load_repo) for i in api_list(url,count=count)])
