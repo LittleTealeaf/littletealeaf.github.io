@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-website:
-    name: "Compile Website"
+    name: "Build Website"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
