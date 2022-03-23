@@ -6,7 +6,9 @@ import { Navigation as navLinks } from '../libs/assets'
 
 export default function Header({ router, title: page_title }) {
     return (
-        <div>
+        <div className='fixed' style={{
+            width: '100%'
+        }}>
             <Head>
                 <title>
                     {page_title}
