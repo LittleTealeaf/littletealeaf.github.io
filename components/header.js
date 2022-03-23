@@ -1,21 +1,43 @@
 import Head from 'next/head'
 import Link from 'next/link'
-// import Script from 'next/script'
 
-import style from '../styles/header.module.css'
 import { Navigation as navLinks } from '../libs/assets'
-// import StyleClass from '../libs/styleutil'
 
 
 export default function Header({ router, title: page_title }) {
     return (
-        <div className={style.header}>
+        <div>
             <Head>
                 <title>
                     {page_title}
                 </title>
             </Head>
-            <div className={style.title}>
+            <div className='bg-slate-700 ' style={{
+                width: '100%',
+                padding: '0px 0px 5px 0px'
+            }}>
+                <div className='bg-slate-500 flex flex-row'>
+                <div className='flex-grow'>
+                        ITEM A
+                    </div><div className='flex-grow'>
+                        ITEM A
+                    </div><div className='flex-grow'>
+                        ITEM A
+                    </div><div className='flex-grow'>
+                        ITEM A
+                    </div><div className='flex-grow'>
+                        ITEM A
+                    </div><div className='flex-grow'>
+                        ITEM A
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+/*
+<div className={style.title}>
                 <h1>Thomas Kwashnak</h1>
                 <h2>LittleTealeaf</h2>
             </div>
@@ -41,26 +63,4 @@ export default function Header({ router, title: page_title }) {
                 }
             </div>
         </div>
-        // <div className={StyleClass(style.navlink)} id='static-header'>
-        //     <Head>
-        //         <title>
-        //             {path[path.length - 1]}
-        //         </title>
-
-        //     </Head>
-        //     <div className={style.headerbackground}>
-        //         <div className={style.headerfixed}>
-        //             <div className={style.title}>
-        //                 LittleTealeaf
-        //             </div>
-        //             <div className={style.navigation}>
-        //                 {navLinks.map(NavLink)}
-        //             </div>
-        //         </div>
-        //     </div>
-
-
-        //     <Script src="./assets/js/header-scroll.js" />
-        // </div>
-    )
-}
+        */
