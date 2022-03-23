@@ -60,6 +60,10 @@
                 "include": false,
                 "load_repo": true
             },
+            "starred": {
+                "count": 100,
+                "include": false
+            },
             "count": 20,
             "remove_keys": [
                 "contributions"
