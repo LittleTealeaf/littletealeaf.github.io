@@ -143,6 +143,10 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, config: di
 
     if config['events']['include'] and 'events' not in obj:
         obj['events'] = ref_event_list(obj['events_url'].replace('{/privacy}','/public'),count=config['events']['count'], load_repo=config['events']['load_repo'])
+    
+    if config['starred']['include'] and 'starred' not in obj:
+        starred_repo = api_list(obj['starred_url'].replace('{/owner}{/repo}',''),count=config['starred']['count'])
+        obj['starred'] = json.ref([ref_repository(obj=repo) for repo in starred_repo])
 
     [obj.pop(key,None) for key in config['remove_keys']]
 

@@ -1,4 +1,9 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
 html {
+
     --color-a: #F7F6DE;
     --color-b: #FA7E0A;
     --color-c: #8F0E0E;
@@ -14,11 +19,6 @@ html {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
   }
   
   
