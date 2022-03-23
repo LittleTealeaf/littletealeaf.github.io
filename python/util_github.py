@@ -50,6 +50,8 @@ def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Respons
             if request.status_code == 403:
                 print(f'Waiting {wait_time} seconds before reattempting...')
                 time.sleep(wait_time)
+            elif request.status_code == 404:
+                return None
     
     if current_attempt < max_attempts:
         print(f'Unable to get API')
@@ -60,10 +62,13 @@ def api_requests_remaining() -> int:
     return GET('https://api.github.com').headers['x-ratelimit-remaining']
 
 def api(url: str, parameters: dict = {}) -> dict:
-    result = GET(url, parameters=parameters).json()
-    if isinstance(result, dict):
-        [result.pop(key, None) for key in configs.config('github','remove_keys')]
-    return result
+    result = GET(url, parameters=parameters)
+    if result:
+        result_json = result.json()
+        if isinstance(result_json, dict):
+            [result_json.pop(key, None) for key in configs.config('github','remove_keys')]
+        return result_json
+    return None
 
 def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
     obj = []
@@ -115,11 +120,17 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, config: di
         obj = cache
     else:
         analytics.ping_user()
-
-    if not obj:
-        obj = api(url)
-    elif config['force_api']:
-        obj.update(api(url))
+    
+    api_obj = None
+    if not obj or config['force_api']:
+        api_obj = api(url)
+        if api_obj:
+            if not obj:
+                obj = api_obj
+            elif config['force_api']:
+                obj.update(api_obj)
+        elif not obj:
+            return None
 
     if 'avatar' not in obj:
         obj['avatar'] = images.ref(obj['avatar_url'], circular=True)
@@ -161,18 +172,25 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
     else:
         analytics.ping_repo()
     
-    if not obj:
-        obj = api(url)
-        obj['api_loaded'] = True
+    if not obj or config['force_api']:
+        obj_api = api(url)
+        if obj_api:
+            obj['api_loaded'] = True
+            if not obj:
+                obj = obj_api
+            elif config['force_api']:
+                obj.update(obj_api)
+        elif not obj:
+            return None
         
     elif config['force_api'] and ('api_loaded' not in obj or not obj['api_loaded']):
         obj.update(api(url))
         obj['api_loaded'] = True
 
-    if isinstance(obj['owner'],dict):
+    if 'owner' in obj and isinstance(obj['owner'],dict):
         obj['owner'] = ref_user(obj=obj['owner'])
     
-    if 'languages' not in obj:
+    if 'languages' not in obj and 'languages_url' in obj:
         languages = api(obj['languages_url'])
         obj['languages'] = json.ref([{'name':key,'value':languages[key]} for key in languages])
     
