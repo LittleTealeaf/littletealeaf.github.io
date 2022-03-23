@@ -13,7 +13,7 @@ temp.initialize()
 
 index = {}
 
-index['user'] = github.ref_user(username=config('github','username'),config={
+index['user'] = github.ref_user(obj=github.api('https://api.github.com/user'),config={
     'followers': {
         'include': True
     },
@@ -27,7 +27,6 @@ index['user'] = github.ref_user(username=config('github','username'),config={
         'include': True
     }
 })
-user = json.load(ref=index['user'])
 
 index['website_repository'] = github.ref_repository(url=config('github','website_repository'), config={
     'force_api': True,
@@ -46,7 +45,7 @@ index['website_repository'] = github.ref_repository(url=config('github','website
     }
 })
 
-repos = filter(lambda item: not item['private'],github.api_list(user['repos_url'],count=config('github','repositories','count')))
+repos = filter(lambda item: not item['private'],github.api_list('https://api.github.com/user/repos',count=config('github','repositories','count')))
 index['repositories'] = json.ref([github.ref_repository(obj=i,config={'contributors':{'include':True}}) for i in repos])
 
 ## Projects
@@ -73,6 +72,9 @@ index['resume'] = json.ref(resume)
 
 index['analytics'] = analytics.ref()
 
+
+emojis = github.api('https://api.github.com/emojis')
+index['emojis'] = json.ref([{'name': key, 'url': emojis[key]} for key in emojis])
 
 config_includes = config('output','include_config')
 for key in config_includes:
