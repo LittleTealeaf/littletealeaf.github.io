@@ -1,6 +1,7 @@
 import json
 import os
 import copy
+import util_merge as merge
 
 
 
@@ -21,19 +22,5 @@ def get_config_file(filename: str):
     return data
 
 def compile(user_config: dict,*path):
-    def merge(base,updates):
-        for key in updates:
-            if isinstance(updates[key],dict):
-                if key in base:
-                    base[key] = merge(base[key],updates[key])
-                else:
-                    base[key] = updates[key]
-            elif isinstance(updates[key],list):
-                if key in base:
-                    base[key].extend(updates[key])
-            else:
-                base[key] = updates[key]
-        return base
-                
-    return merge(config(*path),user_config)
+    return merge.update(config(*path),user_config)
 
