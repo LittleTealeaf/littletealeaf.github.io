@@ -1,8 +1,4 @@
 
-
-from numpy import isin
-
-
 def dicts(a: dict, b: dict) -> dict:
     res = a.copy()
     for key in b:
