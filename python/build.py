@@ -73,6 +73,9 @@ index['resume'] = json.ref(resume)
 index['analytics'] = analytics.ref()
 
 
+emojis = github.api('https://api.github.com/emojis')
+index['emojis'] = json.ref([{'name': key, 'url': emojis[key]} for key in emojis])
+
 config_includes = config('output','include_config')
 for key in config_includes:
     index[key] = json.ref(get_config_file(config_includes[key]))

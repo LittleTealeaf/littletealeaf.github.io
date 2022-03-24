@@ -5,10 +5,9 @@ export function getAsset(genpath) {
     return require('../generated/' + genpath);
 }
 
-const Projects = getAsset(Index.projects);
-const Resume = getAsset(Index.resume);
-const Analytics = getAsset(Index.analytics);
-const Navigation = getAsset(Index.navigation);
-const WebsiteRepository = getAsset(Index.website_repository);
-
-export {Projects, Navigation, Resume, Analytics, WebsiteRepository}
+export const Projects = getAsset(Index.projects);
+export const Resume = getAsset(Index.resume);
+export const Analytics = getAsset(Index.analytics);
+export const Navigation = getAsset(Index.navigation);
+export const WebsiteRepository = getAsset(Index.website_repository);
+export const Emojis = getAsset(Index.emojis);

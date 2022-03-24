@@ -1,6 +1,6 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 html {
 
@@ -9,7 +9,8 @@ html {
     --color-c: #8F0E0E;
     --color-d: #a3290a;
   /* TODO: figure out how I managed to get rid of the edges? */
-    background-color: var(--color-a);
+    background-color: #54515c;
+    color: white;
   }
   
   body {

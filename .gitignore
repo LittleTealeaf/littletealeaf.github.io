@@ -37,9 +37,6 @@ yarn-error.log*
 
 github_token
 
-assets/generated/
-public/assets/generated/
-
 generated/
 
 tmp/
