@@ -1,4 +1,13 @@
 
+
+def update(a: any, b: any) -> any:
+    if isinstance(a,dict) and isinstance(b,dict):
+        return dicts(a,b)
+    elif isinstance(a,list) and isinstance(b,list):
+        return lists(a,b)
+    else:
+        return b
+
 def dicts(a: dict, b: dict) -> dict:
     res = a.copy()
     for key in b:
