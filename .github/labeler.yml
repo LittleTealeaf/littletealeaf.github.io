@@ -2,8 +2,6 @@
 pip: 'python/requirements.txt'
 npm: ['package-lock.json','package.json']
 
-dependencies: ['package-lock.json','package.json','python/requirements.txt']
-
 # Frameworks
 next.js: 'next.config.js'
 
