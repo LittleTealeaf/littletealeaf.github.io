@@ -29,10 +29,9 @@ markdown: ['**/*.md', '**/*.markdown']
 image: ['*.jpg', '*.jpeg', '*.png']
 
 # Directories
-assets: 'assets/**/*'
+components: 'components/**/*'
 config: 'config/**/*'
+libraries: 'libs/**/*'
 pages: 'pages/**/*'
 public: 'public/**/*'
 styles: 'styles/**/*'
-libraries: 'libs/**/*'
-components: 'components/**/*'
