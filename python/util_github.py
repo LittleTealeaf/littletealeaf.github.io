@@ -10,11 +10,14 @@ import util_json as json
 from util_assets import Asset
 from list_filetypes import *
 import util_config as configs
+import util_merge as merge
 
 DIR = ['github']
 DIR_USER = DIR + ['user']
 DIR_EVENT = DIR + ['event']
 DIR_REPO = DIR + ['repo']
+
+# TODO: oh my god I need to like actually build the config file
 
 TOKEN = None
 if os.path.exists(os.path.join('.', 'github_token')):
@@ -116,24 +119,22 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, config: di
     if asset.exists():
         cache = json.load(asset=asset)
         if obj:
-            cache.update(obj)
+            merge.update(cache,obj)
         obj = cache
     else:
         analytics.ping_user()
     
     api_obj = None
-    if not obj or config['force_api']:
+    if not obj or (config['force_api'] and not config['api_loaded']):
         api_obj = api(url)
+        api_obj['api_loaded'] = True
         if api_obj:
             if not obj:
                 obj = api_obj
             elif config['force_api']:
-                obj.update(api_obj)
+                merge.update(obj,api_obj)
         elif not obj:
             return None
-
-    if 'avatar' not in obj:
-        obj['avatar'] = images.ref(obj['avatar_url'], circular=True)
     
     if config['followers']['include'] and key_followers not in obj:
         obj[key_followers] = ref_user_list(obj['followers_url'],count=config['followers']['count'])
@@ -190,6 +191,8 @@ def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
     elif config['force_api'] and ('api_loaded' not in obj or not obj['api_loaded']):
         obj.update(api(url))
         obj['api_loaded'] = True
+
+    # obj['name'] = obj['full_name'].partition('/')[1]
 
     if 'owner' in obj and isinstance(obj['owner'],dict):
         obj['owner'] = ref_user(obj=obj['owner'])

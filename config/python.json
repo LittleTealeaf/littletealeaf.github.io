@@ -10,7 +10,7 @@
         "website_repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
         "repositories": {
             "count": 1000,
-            "force_api":false,
+            "force_api":true,
             "remove_keys": [
                 "permissions","allow_squash_merge","allow_merge_commit","allow_rebase_merge","allow_auto_merge","delete_branch_on_merge","temp_clone_token","allow_update_branch"
             ],
@@ -57,7 +57,7 @@
             "events": {
                 "count": 100,
                 "include": false,
-                "load_repo": true
+                "load_repo": false
             },
             "starred": {
                 "count": 100,
@@ -69,7 +69,21 @@
             ]
         },
         "events": {
-            "count": 10
+            "count": 10,
+            "load_repo": false,
+            "repositories": {
+                "include": false,
+                "force_api": true,
+                "events": {
+                    "include": false
+                },
+                "stargazers": {
+                    "include": false
+                },
+                "subscribers": {
+                    "include": false
+                }
+            }
         },
         "api": {
             "timeout_delay": 300

@@ -10,6 +10,7 @@ from util_config import config, get_config_file
 assets.initialize()
 temp.initialize()
 
+# god, help me
 
 index = {}
 
