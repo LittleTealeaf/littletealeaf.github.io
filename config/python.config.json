@@ -1,6 +1,6 @@
 {
     "output": {
-        "directory": [".","generated"],
+        "directory": [".", "generated"],
         "index_name": "index.json",
         "include_config": {
             "navigation": "navigation.json"
@@ -8,11 +8,76 @@
     },
     "github": {
         "repository_api": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
+        "api": {
+            "timeout_delay": 300
+        },
         "repositories": {
-            
+            "count": 1000,
+            "remove_keys": [
+                "permissions", "allow_squash_merge", "allow_merge_commit", "allow_rebase_merge", "allow_auto_merge", "delete_branch_on_merge", "temp_clone_token", "allow_update_branch"
+            ],
+            "contributors": {
+                "include": false,
+                "include_bots": false
+            },
+            "stargazers": {
+                "include": false
+            },
+            "subscribers": {
+                "include": false
+            },
+            "events": {
+                "include": false,
+                "repositories": {
+                    "include": false
+                }
+            },
+            "owner": {
+                "include": true
+            },
+            "template": {
+                "include": true
+            },
+            "parent": {
+                "include": true
+            },
+            "source": {
+                "include": true
+            },
+            "organization": {
+                "include": true
+            }
+        },
+        "users": {
+            "count": 20,
+            "followers": {
+
+            },
+            "following": {
+
+            },
+            "events": {
+
+            },
+            "starred": {
+
+            },
+            "remove_keys": [
+                "email", "private_gists", "total_private_repos", "owned_private_repos", "disk_usage", "collaborators",
+                "two_factor_authentication", "plan","contributions"
+            ]
+        },
+        "events": {
+            "count": 100,
+            "repositories": {
+                "include": false
+            },
+            "users": {
+                "include": false
+            }
         }
     },
     "config": {
-        
+
     }
 }
