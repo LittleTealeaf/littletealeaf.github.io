@@ -2,12 +2,6 @@
 pip: 'python/requirements.txt'
 npm: ['package-lock.json','package.json']
 
-dependencies: ['package-lock.json','package.json','python/requirements.txt']
-
-# Frameworks
-next.js: 'next.config.js'
-
-
 # Github
 labels: ['.github/labeler.yml', '.github/workflows/labeler.yml']
 github_actions: '.github/workflows/*'
@@ -29,10 +23,9 @@ markdown: ['**/*.md', '**/*.markdown']
 image: ['*.jpg', '*.jpeg', '*.png']
 
 # Directories
-assets: 'assets/**/*'
+components: 'components/**/*'
 config: 'config/**/*'
+libraries: 'libs/**/*'
 pages: 'pages/**/*'
 public: 'public/**/*'
 styles: 'styles/**/*'
-libraries: 'libs/**/*'
-components: 'components/**/*'
