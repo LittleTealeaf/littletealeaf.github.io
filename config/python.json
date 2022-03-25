@@ -70,7 +70,20 @@
         },
         "events": {
             "count": 10,
-            "load_repo": false
+            "load_repo": false,
+            "repositories": {
+                "include": false,
+                "force_api": true,
+                "events": {
+                    "include": false
+                },
+                "stargazers": {
+                    "include": false
+                },
+                "subscribers": {
+                    "include": false
+                }
+            }
         },
         "api": {
             "timeout_delay": 300
