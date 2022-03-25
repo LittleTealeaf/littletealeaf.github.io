@@ -7,6 +7,7 @@ labels: ['.github/labeler.yml', '.github/workflows/labeler.yml']
 github_actions: '.github/workflows/*'
 dependabot: '.github/dependabot.yml'
 gitignore: '**/*.gitignore'
+issue_templates: '.github/ISSUE_TEMPLATE/**/*'
 github: '.github/*'
 
 
