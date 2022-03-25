@@ -4,6 +4,7 @@ import copy
 import util_merge as merge
 
 
+# merging lists should instead replace. UNLESS, the merge INTO is a dict that has the merge type 'append' and a value list
 
 CONFIG: dict = {}
 with open(os.path.join('.','config','python.json')) as file:

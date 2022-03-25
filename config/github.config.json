@@ -1,0 +1,13 @@
+{
+    "output": {
+        "directories": {
+            "base": ["github"],
+            "user": ["github","user"],
+            "event": ["github","event"],
+            "repository": ["github","repository"]
+        }
+    },
+    "api": {
+        "timeout_delay": 300
+    }
+}
