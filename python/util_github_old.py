@@ -10,7 +10,7 @@ import util_json as json
 from util_assets import Asset
 from list_filetypes import *
 import util_config as configs
-import util_merge as merge
+import util_merge as merger
 
 DIR = ['github']
 DIR_USER = DIR + ['user']
@@ -105,7 +105,7 @@ def api_ref(url: str, parameters: dict={}, asset=None) -> str:
 
 
 def ref_user(username: str = None, url: str = None, obj: dict = None, config: dict = {}) -> str:
-    config = configs.compile(config,'github','users')
+    config = configs.config_merge(config,'github','users')
     key_followers = 'followers_list'
     key_following = 'following_list'
 
@@ -120,7 +120,7 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, config: di
     if asset.exists():
         cache = json.load(asset=asset)
         if obj:
-            merge.update(cache,obj)
+            merger.update(cache,obj)
         obj = cache
     else:
         analytics.ping_user()
@@ -133,7 +133,7 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, config: di
             if not obj:
                 obj = api_obj
             elif config['force_api']:
-                merge.update(obj,api_obj)
+                merger.update(obj,api_obj)
         elif not obj:
             return None
     
@@ -161,7 +161,7 @@ def ref_user_list(url: str, config: dict={},count: int = configs.config('github'
 
 def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
 
-    config = configs.compile(config,'github','repositories')
+    config = configs.config_merge(config,'github','repositories')
 
     if not url:
         url = obj['url']

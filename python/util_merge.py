@@ -1,5 +1,7 @@
 
 
+MERGE = 'merge'
+
 def update(a: any, b: any) -> any:
     if isinstance(a,dict) and isinstance(b,dict):
         return dicts(a,b)
@@ -29,3 +31,21 @@ def lists(a: list, b: list) -> list:
         if item not in res:
             res.append(item)
     return res
+
+def merge(a,b):
+    if isinstance(a,dict) and isinstance(b,dict):
+        ret = a.copy()
+        for key in b:
+            ret[key] = merge(ret[key],b[key])
+        return ret
+    elif isinstance(a,list) and isinstance(b,list):
+        return b
+    elif isinstance(a,list) and isinstance(b,dict) and 'merge_type' in b:
+        if b['merge_type'] == MERGE:
+            ret = a.copy()
+            for item in b['values']:
+                if item not in ret:
+                    ret.append(item)
+            return ret
+    else:
+        return b
