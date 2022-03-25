@@ -2,11 +2,6 @@
 pip: 'python/requirements.txt'
 npm: ['package-lock.json','package.json']
 
-# Frameworks
-next.js: 'next.config.js'
-postcss: 'postcss.config.js'
-tailwind: 'tailwind.config.js'
-
 # Github
 labels: ['.github/labeler.yml', '.github/workflows/labeler.yml']
 github_actions: '.github/workflows/*'
