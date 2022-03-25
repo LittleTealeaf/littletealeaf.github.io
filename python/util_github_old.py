@@ -18,6 +18,7 @@ DIR_EVENT = DIR + ['event']
 DIR_REPO = DIR + ['repo']
 
 # TODO: oh my god I need to like actually build the config file
+# TODO: also add the url replacements into the config
 
 TOKEN = None
 if os.path.exists(os.path.join('.', 'github_token')):
