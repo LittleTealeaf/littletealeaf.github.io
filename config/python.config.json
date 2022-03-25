@@ -1,0 +1,18 @@
+{
+    "output": {
+        "directory": [".","generated"],
+        "index_name": "index.json",
+        "include_config": {
+            "navigation": "navigation.json"
+        }
+    },
+    "github": {
+        "repository_api": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
+        "repositories": {
+            
+        }
+    },
+    "config": {
+        
+    }
+}

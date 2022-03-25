@@ -6,7 +6,6 @@
             "navigation":"navigation.json"
         }
     },
-    
     "github": {
         "website_repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
         "repositories": {
