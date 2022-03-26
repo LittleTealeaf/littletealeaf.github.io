@@ -33,19 +33,25 @@ def lists(a: list, b: list) -> list:
     return res
 
 def merge(a,b):
-    if isinstance(a,dict) and isinstance(b,dict):
-        ret = a.copy()
-        for key in b:
-            ret[key] = merge(ret[key],b[key])
-        return ret
-    elif isinstance(a,list) and isinstance(b,list):
-        return b
-    elif isinstance(a,list) and isinstance(b,dict) and 'merge_type' in b:
-        if b['merge_type'] == MERGE:
+    if a != None and b != None:
+        if isinstance(a,dict) and isinstance(b,dict):
             ret = a.copy()
-            for item in b['values']:
-                if item not in ret:
-                    ret.append(item)
+            for key in b:
+                if key in a:
+                    ret[key] = merge(ret[key],b[key])
+                else:
+                    ret[key] = b[key]
             return ret
+        elif isinstance(a,list) and isinstance(b,list):
+            return b
+        elif isinstance(a,list) and isinstance(b,dict) and 'merge_type' in b:
+            if b['merge_type'] == MERGE:
+                ret = a.copy()
+                for item in b['values']:
+                    if item not in ret:
+                        ret.append(item)
+                return ret
+        else:
+            return b
     else:
-        return b
+        return a if a else b

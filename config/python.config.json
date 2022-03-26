@@ -41,7 +41,10 @@
                 }
             },
             "owner": {
-                "include": true
+                "include": true,
+                "repositories": {
+                    "include": false
+                }
             },
             "template": {
                 "include": true
@@ -155,6 +158,7 @@
             }
         },
         "gists": {
+            "count": 100,
             "path": ["github", "gists"],
             "owner": {
                 "include": true
@@ -216,6 +220,7 @@
             }
         },
         "pull_requests": {
+            "count": 20,
             "example": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/pulls/419"
         },
         "releases": {
@@ -224,6 +229,16 @@
             "author": {
                 "include": true
             }
+        },
+        "tags": {
+            "count": 10,
+            "path": ["github","tags"],
+            "commit": {
+                "include": true
+            }
+        },
+        "languages": {
+            "path": ["github","languages"]
         }
     },
     "images": {

@@ -5,7 +5,7 @@ import sys
 import time
 import util_analytics as analytics
 import util_images as images
-import util_json as json
+import util_json as uson
 from util_assets import *
 from list_filetypes import *
 from util_merge import *
@@ -56,6 +56,12 @@ def GET(url: str, params: dict = {}, headers: dict = {}) -> Request:
 
     return request
 
+def format_url(url: str, conf: dict = {}):
+    if 'url_remove' in conf:
+        for key in conf['url_remove']:
+            url = url.replace(key,'')
+    return url
+
 def get_remaining_api_requests() -> int:
     return GET('https://api.github.com').headers['x-ratelimit-remaining']
 
@@ -66,7 +72,26 @@ def ref_api(url: str, params: dict = {}, headers: dict = {}, asset: Asset = None
     data = api(url,params=params, headers=headers)
     if not asset:
         asset = Asset(dir=config('github','path'),type=JSON,seed=url)
-    return json.ref(data,asset)
+    return uson.ref(data,asset)
+
+def api_list(url: str, params: dict = {}, headers: dict = {}, count: int = 30) -> list:
+    obj = []
+    page = 1
+    per_page = min(100,count)
+    params = params.copy()
+    params['per_page'] = per_page
+    while len(obj) < count:
+        params['page'] = page
+        api_segment = api(url,params=params,headers=headers)
+        items_left = count - len(obj)
+        if len(api_segment) == per_page and items_left < per_page:
+            obj.extend(api_segment[:items_left])
+        else:
+            obj.extend(api_segment)
+            if len(api_segment) < per_page:
+                break
+        page += 1
+    return obj
 
 def repository(url: str = None, obj: dict = None, conf: dict = {}) -> dict:
     conf = config_merge(conf,'github','repositories')
@@ -74,10 +99,12 @@ def repository(url: str = None, obj: dict = None, conf: dict = {}) -> dict:
     if not url:
         url = obj['url']
     
+    url = format_url(url,conf)
+    
     asset = Asset(dir=conf['path'], type=JSON, seed = url)
 
     if asset.exists():
-        cache = json.load(asset=asset)
+        cache = uson.load(asset=asset)
         obj = merge(obj,cache) if obj else cache
     else:
         analytics.ping_repo()
@@ -89,4 +116,90 @@ def repository(url: str = None, obj: dict = None, conf: dict = {}) -> dict:
 
         if not obj:
             return None
+    
+    if conf['remove_keys']:
+        [obj.pop(item,None) for item in conf['remove_keys']]
 
+    if conf['contributors']['include'] and 'contributors' not in obj:
+        conf_userlist = config_merge(conf['contributors'],'github','users')
+        contributors_url = format_url(obj['contributors_url'],conf['contributors'])
+        contributors = api_list(contributors_url,count=conf_userlist['count'])
+        obj['contributors'] = uson.ref([ref_user(obj=item, conf=conf_userlist) for item in contributors])
+    
+    if conf['stargazers']['include'] and 'stargazers' not in obj:
+        conf_userlist = config_merge(conf['stargazers'],'github','users')
+        stargazers_url = format_url(obj['stargazers_url'],conf['stargazers'])
+        stargazers = api_list(stargazers_url,count=conf_userlist['count'])
+        obj['stargazers'] = uson.ref([ref_user(obj=item, conf=conf_userlist) for item in stargazers])
+    
+    if conf['subscribers']['include'] and 'subscribers' not in obj:
+        conf_userlist = config_merge(conf['subscribers'],'github','users')
+        subscribers_url = format_url(obj['subscribers_url'],conf['subscribers'])
+        subscribers = api_list(subscribers_url,count=conf_userlist['count'])
+        obj['subscribers'] = uson.ref([ref_user(obj=item, conf=conf_userlist) for item in subscribers])
+    
+    if conf['events']['include'] and 'events' not in obj:
+        conf_list = config_merge(conf['events'],'github','events')
+        list_url = format_url(obj['events_url'],conf_list)
+        events = api_list(list_url,count=conf_list['count'])
+        obj['events'] = uson.ref([ref_event(obj=item,conf=conf_list) for item in events])
+    
+    if conf['owner']['include'] and 'owner' in obj and  isinstance(obj['owner'],dict):
+        obj['owner'] = ref_user(obj=obj['owner'],conf=conf['owner'])
+    
+    if conf['template']['include'] and 'template_repository' in obj and isinstance(obj['template_repository'],dict):
+        obj['template_repository'] = ref_repository(obj=obj['template_repository'],conf=conf['template'])
+    
+    if conf['parent']['include'] and 'parent' in obj and isinstance(obj['parent'],dict):
+        obj['parent'] = ref_repository(obj=obj['parent'],conf=conf['parent'])
+    
+    if conf['source']['include'] and 'source' in obj and isinstance(obj['source'],dict):
+        obj['source'] = ref_repository(obj=obj['source'], conf=conf['source'])
+    
+    if conf['tags']['include'] and 'tags' not in obj:
+        conf_list = config_merge(conf['tags'],'github','tags')
+        list_url = format_url(obj['tags_url'],conf_list)
+        tags = api_list(list_url,count=conf_list['count'])
+        obj['tags'] = uson.ref([ref_tag(item,conf_list) for item in tags])
+
+    if conf['languages']['include'] and 'languages' not in obj:
+        conf_langs = config_merge(conf['languages'],'github','languages')
+        obj['languages'] = uson.ref(api(obj['languages_url']),dir=conf_langs['path'])
+    
+    if conf['commits']['include'] and 'commits' not in obj:
+        ...
+
+    if conf['contents']['include'] and 'contents' not in obj:
+        ...
+    
+    if conf['issues']['include'] and 'issues' not in obj:
+        ...
+    
+    if conf['forks']['include'] and 'forks' not in obj:
+        ...
+    
+
+    return (obj,asset)
+    
+def ref_repository(url: str = None, obj: dict = None, conf: dict = {}):
+    obj,asset=repository(url=url,obj=obj,conf=conf)
+    uson.save(obj,asset=asset)
+    return asset.ref
+
+def user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}):
+    ...
+
+def ref_user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}):
+    ...
+
+def event(obj: dict, conf: dict = {}):
+    ...
+
+def ref_event(obj: dict, conf: dict = {}):
+    ...
+
+def tag(obj: dict, conf: dict = {}):
+    ...
+
+def ref_tag(obj: dict, conf: dict = {}):
+    ...
