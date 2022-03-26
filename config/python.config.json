@@ -139,6 +139,7 @@
         },
         "events": {
             "count": 100,
+            "force_api": false,
             "path": ["github", "events"],
             "repo": {
                 "include": false,
@@ -158,6 +159,7 @@
             }
         },
         "gists": {
+            "force_api": false,
             "count": 100,
             "path": ["github", "gists"],
             "owner": {
@@ -187,6 +189,7 @@
             ]
         },
         "commits": {
+            "force_api": false,
             "count": 20,
             "path": ["github", "commits"],
             "author": {
@@ -197,11 +200,13 @@
             }
         },
         "contents": {
+            "force_api": false,
             "path": ["github", "contents"],
             "count": 100
         },
         "issues": {
             "count": 20,
+            "force_api": false,
             "path": ["github", "issues"],
             "user": {
                 "include": true
@@ -221,9 +226,11 @@
         },
         "pull_requests": {
             "count": 20,
+            "force_api": false,
             "example": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/pulls/419"
         },
         "releases": {
+            "force_api": false,
             "count": 10,
             "path": ["github", "releases"],
             "author": {
@@ -231,6 +238,7 @@
             }
         },
         "tags": {
+            "force_api": false,
             "count": 10,
             "path": ["github","tags"],
             "commit": {
@@ -238,6 +246,7 @@
             }
         },
         "languages": {
+            "force_api": false,
             "path": ["github","languages"]
         }
     },

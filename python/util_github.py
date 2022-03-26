@@ -121,28 +121,28 @@ def repository(url: str = None, obj: dict = None, conf: dict = {}) -> dict:
         [obj.pop(item,None) for item in conf['remove_keys']]
 
     if conf['contributors']['include'] and 'contributors' not in obj:
-        conf_userlist = config_merge(conf['contributors'],'github','users')
-        contributors_url = format_url(obj['contributors_url'],conf['contributors'])
-        contributors = api_list(contributors_url,count=conf_userlist['count'])
-        obj['contributors'] = uson.ref([ref_user(obj=item, conf=conf_userlist) for item in contributors])
+        conft = config_merge(conf['contributors'],'github','users')
+        turl = format_url(obj['contributors_url'],conf['contributors'])
+        items = api_list(turl,count=conft['count'])
+        obj['contributors'] = uson.ref([ref_user(obj=item, conf=conft) for item in items])
     
     if conf['stargazers']['include'] and 'stargazers' not in obj:
-        conf_userlist = config_merge(conf['stargazers'],'github','users')
-        stargazers_url = format_url(obj['stargazers_url'],conf['stargazers'])
-        stargazers = api_list(stargazers_url,count=conf_userlist['count'])
-        obj['stargazers'] = uson.ref([ref_user(obj=item, conf=conf_userlist) for item in stargazers])
+        conft = config_merge(conf['stargazers'],'github','users')
+        turl = format_url(obj['stargazers_url'],conf['stargazers'])
+        items = api_list(turl,count=conft['count'])
+        obj['stargazers'] = uson.ref([ref_user(obj=item, conf=conft) for item in items])
     
     if conf['subscribers']['include'] and 'subscribers' not in obj:
-        conf_userlist = config_merge(conf['subscribers'],'github','users')
-        subscribers_url = format_url(obj['subscribers_url'],conf['subscribers'])
-        subscribers = api_list(subscribers_url,count=conf_userlist['count'])
-        obj['subscribers'] = uson.ref([ref_user(obj=item, conf=conf_userlist) for item in subscribers])
+        conft = config_merge(conf['subscribers'],'github','users')
+        turl = format_url(obj['subscribers_url'],conf['subscribers'])
+        items = api_list(turl,count=conft['count'])
+        obj['subscribers'] = uson.ref([ref_user(obj=item, conf=conft) for item in items])
     
     if conf['events']['include'] and 'events' not in obj:
-        conf_list = config_merge(conf['events'],'github','events')
-        list_url = format_url(obj['events_url'],conf_list)
-        events = api_list(list_url,count=conf_list['count'])
-        obj['events'] = uson.ref([ref_event(obj=item,conf=conf_list) for item in events])
+        conft = config_merge(conf['events'],'github','events')
+        turl = format_url(obj['events_url'],conft)
+        items = api_list(turl,count=conft['count'])
+        obj['events'] = uson.ref([ref_event(obj=item,conf=conft) for item in items])
     
     if conf['owner']['include'] and 'owner' in obj and  isinstance(obj['owner'],dict):
         obj['owner'] = ref_user(obj=obj['owner'],conf=conf['owner'])
@@ -157,26 +157,38 @@ def repository(url: str = None, obj: dict = None, conf: dict = {}) -> dict:
         obj['source'] = ref_repository(obj=obj['source'], conf=conf['source'])
     
     if conf['tags']['include'] and 'tags' not in obj:
-        conf_list = config_merge(conf['tags'],'github','tags')
-        list_url = format_url(obj['tags_url'],conf_list)
-        tags = api_list(list_url,count=conf_list['count'])
-        obj['tags'] = uson.ref([ref_tag(item,conf_list) for item in tags])
+        conft = config_merge(conf['tags'],'github','tags')
+        turl = format_url(obj['tags_url'],conft)
+        items = api_list(turl,count=conft['count'])
+        obj['tags'] = uson.ref([ref_tag(item,conft) for item in items])
 
     if conf['languages']['include'] and 'languages' not in obj:
-        conf_langs = config_merge(conf['languages'],'github','languages')
-        obj['languages'] = uson.ref(api(obj['languages_url']),dir=conf_langs['path'])
+        conft = config_merge(conf['languages'],'github','languages')
+        obj['languages'] = uson.ref(api(obj['languages_url']),dir=conft['path'])
     
     if conf['commits']['include'] and 'commits' not in obj:
-        ...
+        conft = config_merge(conf['commits'],'github','commits')
+        turl = format_url(obj['commits_url'],conft)
+        items = api_list(turl,count=conft['count'])
+        obj['commits'] = uson.ref([ref_commit(obj=item,conf=conft) for item in items])
 
     if conf['contents']['include'] and 'contents' not in obj:
-        ...
+        conft = config_merge(conf['contents'],'github','contents')
+        turl = format_url(obj['contents_url'],conft)
+        items = api_list(turl,count=conft['count'])
+        obj['contents'] = uson.ref([ref_contents(obj=item,conf=conft) for item in items])
     
     if conf['issues']['include'] and 'issues' not in obj:
-        ...
+        conft = config_merge(conf['issues'],'github','issues')
+        turl = format_url(obj['issues_url'],conft)
+        items = api_list(turl,count=conft['count'])
+        obj['issues'] = uson.ref([ref_issues(obj=item, conf=conft) for item in items])
     
     if conf['forks']['include'] and 'forks' not in obj:
-        ...
+        conft = config_merge(conf['forks'],'github','repositories')
+        turl = format_url(obj['forks_url'],conft)
+        items = api_list(turl,count=conft['count'])
+        obj['forks'] = uson.ref([ref_repository(obj=item,conf=conft) for item in items])
     
 
     return (obj,asset)
@@ -202,4 +214,24 @@ def tag(obj: dict, conf: dict = {}):
     ...
 
 def ref_tag(obj: dict, conf: dict = {}):
+    ...
+
+def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict,Asset]:
+    ...
+
+def ref_commit(url: str = None, obj: dict = {}, conf: dict = {}) -> str:
+    obj,asset = commit(url=url,obj=obj,conf=conf)
+    uson.save(obj,asset=asset)
+    return asset.ref
+
+def contents(url: str = None, obj: dict = {}, conf: dict = {}):
+    ...
+
+def ref_contents(url: str = None, obj: dict = {}, conf: dict = {}):
+    ...
+
+def issues(url: str = None, obj: dict = {}, conf: dict = {}):
+    ...
+
+def ref_issues(url: str = None, obj: dict = {}, conf: dict = {}):
     ...
