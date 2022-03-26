@@ -1,16 +1,17 @@
 import os
-from urllib.request import Request
-import requests
 import sys
 import time
+from urllib.request import Request
+
+import requests
+
 import util_analytics as analytics
 import util_images as images
 import util_json as uson
-from util_assets import *
 from list_filetypes import *
-from util_merge import *
+from util_assets import *
 from util_config import *
-
+from util_merge import *
 
 API_STATUS_KEY = config('github', 'api', 'keys', 'api_status')
 
@@ -215,11 +216,39 @@ def ref_repository(url: str = None, obj: dict = None, conf: dict = {}):
 
 
 def user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}):
-    ...
+    conf = config_merge(conf, 'github', 'users')
+
+    if not url:
+        if username:
+            url = f'https://api.github.com/users/{username}'
+        elif obj:
+            url = obj['url']
+        else:
+            sys.exit(1)
+
+    asset = Asset(dir=conf['path'], type=JSON, seed=url)
+
+    if asset.exists():
+        cache = uson.load(asset=asset)
+        obj = merge(obj, cache) if obj else cache
+    else:
+        analytics.ping_user()
+
+    if not obj or (conf['force_api'] and not obj[API_STATUS_KEY]):
+        obj_api = api(url)
+        obj = merge(obj_api, obj)
+        obj[API_STATUS_KEY] = True
+
+        if not obj:
+            return None
+
+    return (obj, asset)
 
 
 def ref_user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}):
-    ...
+    obj, asset = user(username=username, url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
 
 
 def event(obj: dict, conf: dict = {}):
@@ -227,7 +256,9 @@ def event(obj: dict, conf: dict = {}):
 
 
 def ref_event(obj: dict, conf: dict = {}):
-    ...
+    obj, asset = event(obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
 
 
 def tag(obj: dict, conf: dict = {}):
@@ -235,7 +266,9 @@ def tag(obj: dict, conf: dict = {}):
 
 
 def ref_tag(obj: dict, conf: dict = {}):
-    ...
+    obj, asset = tag(obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
 
 
 def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asset]:
@@ -253,7 +286,9 @@ def contents(url: str = None, obj: dict = {}, conf: dict = {}):
 
 
 def ref_contents(url: str = None, obj: dict = {}, conf: dict = {}):
-    ...
+    obj, asset = contents(url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
 
 
 def issues(url: str = None, obj: dict = {}, conf: dict = {}):
@@ -261,4 +296,6 @@ def issues(url: str = None, obj: dict = {}, conf: dict = {}):
 
 
 def ref_issues(url: str = None, obj: dict = {}, conf: dict = {}):
-    ...
+    obj, asset = contents(url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
