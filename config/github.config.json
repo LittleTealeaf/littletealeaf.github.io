@@ -2,9 +2,9 @@
     "output": {
         "directories": {
             "base": ["github"],
-            "user": ["github","user"],
-            "event": ["github","event"],
-            "repository": ["github","repository"]
+            "user": ["github", "user"],
+            "event": ["github", "event"],
+            "repository": ["github", "repository"]
         }
     },
     "api": {

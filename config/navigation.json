@@ -1,22 +1,21 @@
-[
-    {
+[{
         "name": "Home",
         "href": "/"
-    },{
+    }, {
         "name": "Resume",
-        "href":"/resume"
-    },{
-        "name":"Projects",
-        "href":"/projects"
-    },{
-        "name":"Github",
-        "href":"/github"
+        "href": "/resume"
+    }, {
+        "name": "Projects",
+        "href": "/projects"
+    }, {
+        "name": "Github",
+        "href": "/github"
     },
     {
-        "name":"About Me",
-        "href":"/about"
-    },{
-        "name":"About this website",
-        "href":"/website"
+        "name": "About Me",
+        "href": "/about"
+    }, {
+        "name": "About this website",
+        "href": "/website"
     }
 ]

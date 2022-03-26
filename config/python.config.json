@@ -118,7 +118,7 @@
             },
             "starred": {
                 "include": false,
-                "url_remove": ["{/owner}","{/repo}"]
+                "url_remove": ["{/owner}", "{/repo}"]
             },
             "avatar": {
                 "include": true,
@@ -240,14 +240,14 @@
         "tags": {
             "force_api": false,
             "count": 10,
-            "path": ["github","tags"],
+            "path": ["github", "tags"],
             "commit": {
                 "include": true
             }
         },
         "languages": {
             "force_api": false,
-            "path": ["github","languages"]
+            "path": ["github", "languages"]
         }
     },
     "images": {
