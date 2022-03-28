@@ -18,7 +18,7 @@ jobs:
         with:
           ref: ${{github.event.pull_request.head.sha}}
       - name: Checkout Cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: littletealeaf-github-io
         with:
           path: .next/cache
