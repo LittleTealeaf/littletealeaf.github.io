@@ -75,7 +75,7 @@ def get_remaining_api_requests() -> int:
 
 
 def api(url: str, params: dict = {}, headers: dict = {}):
-    key: str = f'{url}{json.dumps(params)}{json.dumps(headers)}'
+    key: str = f'{url} {json.dumps(params)} {json.dumps(headers)}'
     
     data = cache.load(key)
     if data:

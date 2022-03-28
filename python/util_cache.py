@@ -44,3 +44,13 @@ def hash_key(key: str) -> str:
 
 def current_time() -> int:
     return int(round(time.time() * 1000)) 
+
+def clean():
+    expired = []
+    for dir,dirs,files in os.walk(os.path.join('.','cache')):
+        for file in files:
+            with open(os.path.join(dir,file)) as f:
+                if json.load(f)['expires'] < current_time():
+                    expired.append(os.path.join(dir,file))
+    for file in expired:
+        os.remove(file)

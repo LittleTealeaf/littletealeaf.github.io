@@ -4,11 +4,13 @@ import util_analytics as analytics
 import util_images as images
 import util_github as github
 import util_temp as temp
+import util_cache as cache
 from util_assets import Asset
 from util_config import config, get_config_file
 
 assets.initialize()
 temp.initialize()
+cache.clean()
 
 # god, help me
 
