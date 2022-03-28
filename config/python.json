@@ -86,7 +86,10 @@
             }
         },
         "api": {
-            "timeout_delay": 300
+            "timeout_delay": 300,
+            "keys": {
+                "api_status": "Api Loaded"
+            }
         },
         "remove_keys": [
             "plan", "two_factor_authentication", "total_private_repos", "owned_private_repos", "private_gists", "permissions"

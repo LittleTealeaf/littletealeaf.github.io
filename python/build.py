@@ -2,7 +2,7 @@ import util_assets as assets
 import util_json as json
 import util_analytics as analytics
 import util_images as images
-import util_github_old as github
+import util_github as github
 import util_temp as temp
 from util_assets import Asset
 from util_config import config, get_config_file
@@ -14,7 +14,7 @@ temp.initialize()
 
 index = {}
 
-index['user'] = github.ref_user(obj=github.api('https://api.github.com/user'),config={
+index['user'] = github.ref_user(obj=github.api('https://api.github.com/user'),conf={
     'followers': {
         'include': True
     },
@@ -29,7 +29,7 @@ index['user'] = github.ref_user(obj=github.api('https://api.github.com/user'),co
     }
 })
 
-index['website_repository'] = github.ref_repository(url=config('github','website_repository'), config={
+index['website_repository'] = github.ref_repository(url=config('github','repository_api'), conf={
     'force_api': True,
     'contributors': {
         'count': 100,
@@ -47,12 +47,12 @@ index['website_repository'] = github.ref_repository(url=config('github','website
 })
 
 repos = filter(lambda item: not item['private'],github.api_list('https://api.github.com/user/repos',count=config('github','repositories','count')))
-index['repositories'] = json.ref([github.ref_repository(obj=i,config={'contributors':{'include':True}}) for i in repos])
+index['repositories'] = json.ref([github.ref_repository(obj=i) for i in repos])
 
 ## Projects
 projects = []
 for project in json.load(path=config('config','projects','path')):
-    project['repository'] = github.ref_repository(url=project['repository'],config={
+    project['repository'] = github.ref_repository(url=project['repository'],conf={
         'contributors': {
             'include': True
         },
@@ -77,7 +77,7 @@ index['analytics'] = analytics.ref()
 # emojis = github.api('https://api.github.com/emojis')
 # index['emojis'] = json.ref([{'name': key, 'url': emojis[key]} for key in emojis])
 
-index['emojis'] = github.api_ref('https://api.github.com/emojis');
+index['emojis'] = github.ref_api('https://api.github.com/emojis');
 
 config_includes = config('output','include_config')
 for key in config_includes:
@@ -89,4 +89,4 @@ json.save(index,Asset(name=config('output','index_name')))
 
 
 
-print(f'{github.api_requests_remaining()} requests remaining')
+print(f'{github.get_remaining_api_requests()} requests remaining')

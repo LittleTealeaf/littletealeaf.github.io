@@ -255,5 +255,13 @@
         "circular": false,
         "width": null,
         "height": null
+    },
+    "config": {
+        "projects": {
+            "path": "./config/projects.json"
+        },
+        "resume": {
+            "path": "./config/resume.json"
+        }
     }
 }

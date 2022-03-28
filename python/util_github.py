@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import time
 from urllib.request import Request
 
@@ -27,7 +28,6 @@ if not TOKEN:
     print("Please provide a Github API key either as an environment variable API_GITHUB or within the file github_token")
     sys.exist(1)
 
-
 def GET(url: str, params: dict = {}, headers: dict = {}) -> Request:
     print(f'API: {url} {params}')
 
@@ -43,7 +43,10 @@ def GET(url: str, params: dict = {}, headers: dict = {}) -> Request:
         request = requests.get(url, headers=headers, params=params)
 
         if request.status_code != 200:
-            print(f'API Error: {request.json()["message"]}')
+            try:
+                print(f'API Error: {request.json()["message"]}')
+            except:
+                print(f'API Error: Unknown')
             print(f'Waiting {wait_time} seconds before reattempting')
             request = None
             time.sleep(wait_time)
@@ -252,7 +255,7 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, conf: dict
 
 
 def event(obj: dict, conf: dict = {}) -> tuple[dict,Asset]:
-    return {}
+    return {},Asset(seed=json.dumps(conf))
 
 
 def ref_event(obj: dict, conf: dict = {}):
