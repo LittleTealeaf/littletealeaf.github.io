@@ -32,7 +32,7 @@ if not TOKEN:
 def GET(url: str, params: dict = {}, headers: dict = {}) -> Request:
 
 
-    print(f'API: {url} {params}')
+    print(f'API: {url} {params} {headers}')
 
     headers = headers.copy()
     headers['authorization'] = f'token {TOKEN}'
@@ -76,11 +76,9 @@ def get_remaining_api_requests() -> int:
 
 def api(url: str, params: dict = {}, headers: dict = {}):
     key: str = f'{url} {json.dumps(params)} {json.dumps(headers)}'
-    
     data = cache.load(key)
-    if data:
-        return data
-    data = GET(url, params=params, headers=headers).json()
+    if data == None:
+        data = GET(url, params=params, headers=headers).json()
     cache.save(key,data)
     return data
 
@@ -279,7 +277,21 @@ def ref_event(obj: dict, conf: dict = {}):
 
 
 def tag(obj: dict, conf: dict = {}) -> tuple[dict,Asset]:
-    return {}
+    obj = obj.copy()
+    conf = config_merge(conf,'github','tags')
+
+    asset = Asset(dir=conf['path'],seed=obj['node_id'])
+
+    if asset.exists():
+        cached = uson.load(asset=asset)
+        obj = merge(obj,cached)
+    
+    if conf['commit']['include']:
+        obj['commit'] = ref_commit(url=obj['commit']['url'])
+
+    return obj,asset
+
+        
 
 
 def ref_tag(obj: dict, conf: dict = {}):
@@ -289,7 +301,14 @@ def ref_tag(obj: dict, conf: dict = {}):
 
 
 def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asset]:
-    return {}
+    if not url:
+        url = obj['url']
+    
+    conf = config_merge(conf,'github','commits')
+
+    asset = Asset(dir=conf['path'],seed=url)
+
+    return obj,asset
 
 
 def ref_commit(url: str = None, obj: dict = {}, conf: dict = {}) -> str:

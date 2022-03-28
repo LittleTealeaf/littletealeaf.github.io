@@ -39,7 +39,7 @@ def load(key: str):
 
 def hash_key(key: str) -> str:
     random.seed(key)
-    return ''.join(random.sample(assets.VALID_CHARACTERS,15))
+    return ''.join(random.sample(assets.VALID_CHARACTERS,30))
 
 
 def current_time() -> int:

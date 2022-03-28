@@ -63,7 +63,7 @@
                 "url_remove": ["{/branch}"]
             },
             "tags": {
-                "include": false
+                "include": true
             },
             "languages": {
                 "include": true
