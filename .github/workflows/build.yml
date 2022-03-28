@@ -18,10 +18,11 @@ jobs:
         with:
           ref: ${{github.event.pull_request.head.sha}}
       - name: Checkout Cache
-        uses: actions/checkout@v2
+        uses: actions/cache@v2
         id: littletealeaf-github-io
         with:
           path: .next/cache
+          key: ${{runner.os}}-primes
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
