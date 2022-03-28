@@ -134,7 +134,7 @@ def repository(url: str = None, obj: dict = None, conf: dict = {}) -> tuple[dict
         turl = format_url(obj['contributors_url'], conf['contributors'])
         items = api_list(turl, count=conft['count'])
         obj['contributors'] = uson.ref(
-            [ref_user(obj=item, conf=conft) for item in items])
+            [{'user': ref_user(obj=item, conf=conft), 'contributions': item['contributions']} for item in items])
 
     if conf['stargazers']['include'] and 'stargazers' not in obj:
         conft = config_merge(conf['stargazers'], 'github', 'users')
@@ -244,6 +244,10 @@ def user(username: str = None, url: str = None, obj: dict = None, conf: dict = {
 
         if not obj:
             return None
+
+    if conf['avatar']['include'] and 'avatar' not in obj:
+        conft = config_merge(conf['avatar'],'images')
+        obj['avatar'] = images.ref(obj['avatar_url'],dir=conft['path'],circular=conft['circular'])
 
     return (obj, asset)
 

@@ -67,7 +67,8 @@ const SocialPanel = (repo) => {
 const Languages = (repo) => {
     const languages = getAsset(repo.languages);
 
-    const max = languages.reduce((partial,item) => partial + item.value,0);
+    // const max = languages.reduce((partial,item) => partial + item.value,0);
+    const max = Object.keys(languages).reduce((partial,key) => partial + languages[key],0);
 
     const toPercentage = (value) => {
         const percentage = (100.0 * value) / max;
@@ -83,13 +84,13 @@ const Languages = (repo) => {
             </h2>
             <table className={style.widesection}>
                 {
-                  languages.map((lang,i) => (
+                  Object.keys(languages).map((key,i) => (
                     <tr key={i}>
                         <td style={{
                         'textAlign':'right',
                         'padding':'0px 10px'
-                    }}>{lang.name}</td>
-                        <td>{toPercentage(lang.value)}</td>
+                    }}>{key}</td>
+                        <td>{toPercentage(languages[key].value)}</td>
                         
                     </tr>
                 ))  
