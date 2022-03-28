@@ -195,7 +195,7 @@
             "author": {
                 "include": true
             },
-            "commiter": {
+            "committer": {
                 "include": true
             }
         },

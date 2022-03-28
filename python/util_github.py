@@ -280,7 +280,7 @@ def tag(obj: dict, conf: dict = {}) -> tuple[dict,Asset]:
     obj = obj.copy()
     conf = config_merge(conf,'github','tags')
 
-    asset = Asset(dir=conf['path'],seed=obj['node_id'])
+    asset = Asset(dir=conf['path'],seed=obj['node_id'],type=JSON)
 
     if asset.exists():
         cached = uson.load(asset=asset)
@@ -302,11 +302,24 @@ def ref_tag(obj: dict, conf: dict = {}):
 
 def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asset]:
     if not url:
-        url = obj['url']
+        if obj:
+            url = obj['url']
     
     conf = config_merge(conf,'github','commits')
 
-    asset = Asset(dir=conf['path'],seed=url)
+    asset = Asset(dir=conf['path'],seed=url,type=JSON)
+
+    if asset.exists():
+        obj = merge(obj,uson.load(asset=asset))
+    
+    if conf['author']['include'] and 'author' in obj and isinstance(obj['author'],dict):
+        conft = config_merge(conf['author'],'github','users')
+        conf['author'] = ref_user(obj=obj['author'],conf=conft)
+    
+    if conf['committer']['include'] and 'committer' in obj and isinstance(obj['committer'],dict):
+        conft = config_merge(conf['committer'],'github','users')
+        conf['committer'] = ref_user(obj=obj['committer'],conf=conft)
+        
 
     return obj,asset
 
