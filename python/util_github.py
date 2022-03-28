@@ -99,7 +99,7 @@ def api_list(url: str, params: dict = {}, headers: dict = {}, count: int = 30) -
     return obj
 
 
-def repository(url: str = None, obj: dict = None, conf: dict = {}) -> dict:
+def repository(url: str = None, obj: dict = None, conf: dict = {}) -> tuple[dict,Asset]:
     conf = config_merge(conf, 'github', 'repositories')
 
     if not url:
@@ -215,7 +215,7 @@ def ref_repository(url: str = None, obj: dict = None, conf: dict = {}):
     return asset.ref
 
 
-def user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}):
+def user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}) -> tuple[dict,Asset]:
     conf = config_merge(conf, 'github', 'users')
 
     if not url:
@@ -251,8 +251,8 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, conf: dict
     return asset.ref
 
 
-def event(obj: dict, conf: dict = {}):
-    ...
+def event(obj: dict, conf: dict = {}) -> tuple[dict,Asset]:
+    return {}
 
 
 def ref_event(obj: dict, conf: dict = {}):
@@ -261,8 +261,8 @@ def ref_event(obj: dict, conf: dict = {}):
     return asset.ref
 
 
-def tag(obj: dict, conf: dict = {}):
-    ...
+def tag(obj: dict, conf: dict = {}) -> tuple[dict,Asset]:
+    return {}
 
 
 def ref_tag(obj: dict, conf: dict = {}):
@@ -272,7 +272,7 @@ def ref_tag(obj: dict, conf: dict = {}):
 
 
 def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asset]:
-    ...
+    return {}
 
 
 def ref_commit(url: str = None, obj: dict = {}, conf: dict = {}) -> str:
@@ -282,7 +282,7 @@ def ref_commit(url: str = None, obj: dict = {}, conf: dict = {}) -> str:
 
 
 def contents(url: str = None, obj: dict = {}, conf: dict = {}):
-    ...
+    return {}
 
 
 def ref_contents(url: str = None, obj: dict = {}, conf: dict = {}):
@@ -292,7 +292,7 @@ def ref_contents(url: str = None, obj: dict = {}, conf: dict = {}):
 
 
 def issues(url: str = None, obj: dict = {}, conf: dict = {}):
-    ...
+    return {}
 
 
 def ref_issues(url: str = None, obj: dict = {}, conf: dict = {}):
