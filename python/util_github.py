@@ -13,6 +13,7 @@ from list_filetypes import *
 from util_assets import *
 from util_config import *
 from util_merge import *
+import util_cache as cache
 
 API_STATUS_KEY = config('github', 'api', 'keys', 'api_status')
 
@@ -29,6 +30,8 @@ if not TOKEN:
     sys.exist(1)
 
 def GET(url: str, params: dict = {}, headers: dict = {}) -> Request:
+
+
     print(f'API: {url} {params}')
 
     headers = headers.copy()
@@ -72,7 +75,14 @@ def get_remaining_api_requests() -> int:
 
 
 def api(url: str, params: dict = {}, headers: dict = {}):
-    return GET(url, params=params, headers=headers).json()
+    key: str = f'{url}{json.dumps(params)}{json.dumps(headers)}'
+    
+    data = cache.load(key)
+    if data:
+        return data
+    data = GET(url, params=params, headers=headers).json()
+    cache.save(key,data)
+    return data
 
 
 def ref_api(url: str, params: dict = {}, headers: dict = {}, asset: Asset = None):
@@ -258,8 +268,8 @@ def ref_user(username: str = None, url: str = None, obj: dict = None, conf: dict
     return asset.ref
 
 
-def event(obj: dict, conf: dict = {}) -> tuple[dict,Asset]:
-    return {},Asset(seed=json.dumps(conf))
+def event(obj: dict, conf: dict = {}) -> dict:
+    return {}, Asset(seed='abcd')
 
 
 def ref_event(obj: dict, conf: dict = {}):
