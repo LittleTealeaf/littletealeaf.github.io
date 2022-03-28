@@ -34,6 +34,7 @@ def load(key: str):
         with open(path) as file:
             data = json.load(file)
         if data['expires'] > current_time():
+            print(f'CHE: {key}')
             return data['value']
     return None
 
