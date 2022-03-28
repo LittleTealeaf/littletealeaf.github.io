@@ -2,17 +2,16 @@ import os
 import random
 import json
 import time
+import random
 import util_assets as assets
 
 
 
-def save(key: str, value: any, expire_hours: int = 24):
+def save(key: str, value: any, expire_min: int = 0, expire_max: int = 24):
     file_name: str = hash_key(key)
     path = os.path.join('.','cache',f'{file_name}.json')
 
-    expires = current_time() + expire_hours * 1000 * 60 * 60
-    
-    
+    expires = current_time() + random.randint(expire_min,expire_max) * 1000 * 60 * 60
 
     if not os.path.exists(os.path.join('.','cache')):
         os.mkdir(os.path.join('.','cache'))
