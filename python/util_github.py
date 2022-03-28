@@ -302,8 +302,8 @@ def ref_tag(obj: dict, conf: dict = {}):
 
 def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asset]:
     if not url:
-        if obj:
-            url = obj['url']
+        url = obj['url']
+            
     
     conf = config_merge(conf,'github','commits')
 
