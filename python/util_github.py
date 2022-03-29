@@ -15,6 +15,14 @@ from util_config import *
 from util_merge import *
 import util_cache as cache
 
+class FAKE_REQUEST:
+    def __init__(self,contents):
+        self.contents = contents
+    def json(self):
+        return self.contents
+
+    
+
 API_STATUS_KEY = config('github', 'api', 'keys', 'api_status')
 
 TOKEN: str = None
@@ -51,7 +59,15 @@ def GET(url: str, params: dict = {}, headers: dict = {}) -> Request:
             except:
                 print(f'API Error: Unknown')
             print(f'Waiting {wait_time} seconds before reattempting')
+
+            if request.json()["message"] == "This repository is empty.":
+                return FAKE_REQUEST([])
+
+
             request = None
+
+
+
             time.sleep(wait_time)
             if attempts > 0:
                 print('Waking up, attempting API fetch again')
@@ -303,7 +319,6 @@ def ref_tag(obj: dict, conf: dict = {}):
 def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asset]:
     if not url:
         url = obj['url']
-            
     
     conf = config_merge(conf,'github','commits')
 
@@ -312,13 +327,21 @@ def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asse
     if asset.exists():
         obj = merge(obj,uson.load(asset=asset))
     
+    if not obj or (conf['force_api'] and not obj[API_STATUS_KEY]):
+        obj_api = api(url)
+        obj = merge(obj_api, obj)
+        obj[API_STATUS_KEY] = True
+
+        if not obj:
+            return None
+
     if conf['author']['include'] and 'author' in obj and isinstance(obj['author'],dict):
         conft = config_merge(conf['author'],'github','users')
-        conf['author'] = ref_user(obj=obj['author'],conf=conft)
+        obj['author'] = ref_user(obj=obj['author'],conf=conft)
     
     if conf['committer']['include'] and 'committer' in obj and isinstance(obj['committer'],dict):
         conft = config_merge(conf['committer'],'github','users')
-        conf['committer'] = ref_user(obj=obj['committer'],conf=conft)
+        obj['committer'] = ref_user(obj=obj['committer'],conf=conft)
         
 
     return obj,asset
@@ -331,7 +354,22 @@ def ref_commit(url: str = None, obj: dict = {}, conf: dict = {}) -> str:
 
 
 def contents(url: str = None, obj: dict = {}, conf: dict = {}):
-    return {}
+    if not url:
+        url = obj['url']
+    
+    asset = Asset(dir=conf['path'],seed=url,type=JSON)
+
+    if asset.exists():
+        obj = merge(obj,uson.load(asset=asset))
+    
+    if not obj or (conf['force_api'] and not obj[API_STATUS_KEY]):
+        obj_api = api(url)
+        obj = merge(obj_api, obj)
+        obj[API_STATUS_KEY] = True
+
+        if not obj:
+            return None
+    return obj,asset
 
 
 def ref_contents(url: str = None, obj: dict = {}, conf: dict = {}):
@@ -348,3 +386,6 @@ def ref_issues(url: str = None, obj: dict = {}, conf: dict = {}):
     obj, asset = contents(url=url, obj=obj, conf=conf)
     uson.save(obj, asset=asset)
     return asset.ref
+
+def branch(obj: dict, conf: dict = {}):
+    conf = config_merge(conf,'github','branches')

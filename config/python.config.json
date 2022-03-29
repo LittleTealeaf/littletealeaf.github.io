@@ -59,7 +59,7 @@
                 "include": true
             },
             "branches": {
-                "include": false,
+                "include": true,
                 "url_remove": ["{/branch}"]
             },
             "tags": {
@@ -248,6 +248,14 @@
         "languages": {
             "force_api": false,
             "path": ["github", "languages"]
+        },
+        "branches": {
+            "force_api": false,
+            "count": 50,
+            "path": ["github","branches"],
+            "commit": {
+                "include": true
+            }
         }
     },
     "images": {
