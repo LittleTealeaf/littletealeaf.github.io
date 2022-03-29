@@ -156,7 +156,8 @@ def repository(url: str = None, obj: dict = None, conf: dict = {}) -> tuple[dict
     if conf['contributors']['include'] and 'contributors' not in obj:
         conft = config_merge(conf['contributors'], 'github', 'users')
         turl = format_url(obj['contributors_url'], conf['contributors'])
-        items = api_list(turl, count=conft['count'])
+        items = list(filter(lambda item: '[bot]' not in item['login'],api_list(turl, count=conft['count'])))
+        
         obj['contributors'] = uson.ref(
             [{'user': ref_user(obj=item, conf=conft), 'contributions': item['contributions']} for item in items])
 
