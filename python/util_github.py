@@ -1,88 +1,120 @@
 import os
-from urllib.request import Request
-import requests
 import sys
+import json
 import time
-import datetime
+from urllib.request import Request
+
+import requests
+
 import util_analytics as analytics
 import util_images as images
-import util_json as json
-from util_assets import Asset
+import util_json as uson
 from list_filetypes import *
-import util_config as configs
-import util_merge as merge
+from util_assets import *
+from util_config import *
+from util_merge import *
+import util_cache as cache
 
-DIR = ['github']
-DIR_USER = DIR + ['user']
-DIR_EVENT = DIR + ['event']
-DIR_REPO = DIR + ['repo']
+class FAKE_REQUEST:
+    def __init__(self,contents):
+        self.contents = contents
+    def json(self):
+        return self.contents
 
-# TODO: oh my god I need to like actually build the config file
+    
 
-TOKEN = None
+API_STATUS_KEY = config('github', 'api', 'keys', 'api_status')
+
+TOKEN: str = None
 if os.path.exists(os.path.join('.', 'github_token')):
-    with open(os.path.join('.', 'github_token')) as f:
-        TOKEN = f.readline()
+    with open(os.path.join('.', 'github_token')) as file:
+        TOKEN = file.readline()
 else:
     TOKEN = os.getenv('API_GITHUB')
 
 if not TOKEN:
     print("ERROR: NO GITHUB API TOKEN PROVIDED")
-    sys.exit(1)
+    print("Please provide a Github API key either as an environment variable API_GITHUB or within the file github_token")
+    sys.exist(1)
+
+def GET(url: str, params: dict = {}, headers: dict = {}) -> Request:
 
 
-def GET(url: str, parameters: dict = {}, headers: dict = {}) -> requests.Response:
-    print(f'API: {url} {parameters}')
+    print(f'API: {url} {params} {headers}')
 
     headers = headers.copy()
-    headers.update({
-        'authorization': f'token {TOKEN}'
-    })
+    headers['authorization'] = f'token {TOKEN}'
     analytics.ping_api()
-    wait_time = configs.config('github','api','timeout_delay')
-    max_attempts = 60 / wait_time
+
+    wait_time = config('github', 'api', 'timeout_delay')
+    attempts = 3600 / wait_time
     request: requests.Response = None
-    current_attempt = 0
-    while (not request or request.status_code != 200) and current_attempt < max_attempts:
-        current_attempt = current_attempt + 1
-        request = requests.get(url,headers=headers,params=parameters)
+    while not request and attempts > 0:
+        attempts -= 1
+        request = requests.get(url, headers=headers, params=params)
 
         if request.status_code != 200:
-            print(f'Error Attempt {current_attempt}: {request.json()["message"]}')
-            
-            if request.status_code == 403:
-                print(f'Waiting {wait_time} seconds before reattempting...')
-                time.sleep(wait_time)
-            elif request.status_code == 404:
-                return None
-    
-    if current_attempt < max_attempts:
-        print(f'Unable to get API')
+            try:
+                print(f'API Error: {request.json()["message"]}')
+            except:
+                print(f'API Error: Unknown')
+            print(f'Waiting {wait_time} seconds before reattempting')
+
+            if request.json()["message"] == "This repository is empty.":
+                return FAKE_REQUEST([])
+
+
+            request = None
+
+
+
+            time.sleep(wait_time)
+            if attempts > 0:
+                print('Waking up, attempting API fetch again')
+
+    if not request:
+        print(f'Unable to fetch API')
         sys.exit(1)
+
     return request
 
-def api_requests_remaining() -> int:
+
+def format_url(url: str, conf: dict = {}):
+    if 'url_remove' in conf:
+        for key in conf['url_remove']:
+            url = url.replace(key, '')
+    return url
+
+
+def get_remaining_api_requests() -> int:
     return GET('https://api.github.com').headers['x-ratelimit-remaining']
 
-def api(url: str, parameters: dict = {}) -> dict:
-    result = GET(url, parameters=parameters)
-    if result:
-        result_json = result.json()
-        if isinstance(result_json, dict):
-            [result_json.pop(key, None) for key in configs.config('github','remove_keys')]
-        return result_json
-    return None
 
-def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
+def api(url: str, params: dict = {}, headers: dict = {}):
+    key: str = f'{url} {json.dumps(params)} {json.dumps(headers)}'
+    data = cache.load(key)
+    if data == None:
+        data = GET(url, params=params, headers=headers).json()
+    cache.save(key,data)
+    return data
+
+
+def ref_api(url: str, params: dict = {}, headers: dict = {}, asset: Asset = None):
+    data = api(url, params=params, headers=headers)
+    if not asset:
+        asset = Asset(dir=config('github', 'path'), type=JSON, seed=url)
+    return uson.ref(data, asset)
+
+
+def api_list(url: str, params: dict = {}, headers: dict = {}, count: int = 30) -> list:
     obj = []
     page = 1
     per_page = min(100, count)
-    params = {}
-    params.update(parameters)
+    params = params.copy()
     params['per_page'] = per_page
     while len(obj) < count:
         params['page'] = page
-        api_segment = api(url, params)
+        api_segment = api(url, params=params, headers=headers)
         items_left = count - len(obj)
         if len(api_segment) == per_page and items_left < per_page:
             obj.extend(api_segment[:items_left])
@@ -90,172 +122,271 @@ def api_list(url: str, parameters: dict = {}, count: int=30) -> list:
             obj.extend(api_segment)
             if len(api_segment) < per_page:
                 break
-        page = page + 1
+        page += 1
     return obj
 
 
-def api_ref(url: str, parameters: dict={}, asset=None) -> str:
+def repository(url: str = None, obj: dict = None, conf: dict = {}) -> tuple[dict,Asset]:
+    conf = config_merge(conf, 'github', 'repositories')
 
-    data = api(url, parameters)
-    if not asset:
-        asset = Asset(dir=DIR, type=JSON, seed=url)
+    if not url:
+        url = obj['url']
 
-    return json.ref(data, asset)
+    url = format_url(url, conf)
+
+    asset = Asset(dir=conf['path'], type=JSON, seed=url)
+
+    if asset.exists():
+        cache = uson.load(asset=asset)
+        obj = merge(obj, cache) if obj else cache
+    else:
+        analytics.ping_repo()
+
+    if not obj or (conf['force_api'] and not obj[API_STATUS_KEY]):
+        obj_api = api(url)
+        obj = merge(obj_api, obj)
+        obj[API_STATUS_KEY] = True
+
+        if not obj:
+            return None
+
+    if conf['remove_keys']:
+        [obj.pop(item, None) for item in conf['remove_keys']]
+
+    if conf['contributors']['include'] and 'contributors' not in obj:
+        conft = config_merge(conf['contributors'], 'github', 'users')
+        turl = format_url(obj['contributors_url'], conf['contributors'])
+        items = list(filter(lambda item: '[bot]' not in item['login'],api_list(turl, count=conft['count'])))
+        
+        obj['contributors'] = uson.ref(
+            [{'user': ref_user(obj=item, conf=conft), 'contributions': item['contributions']} for item in items])
+
+    if conf['stargazers']['include'] and 'stargazers' not in obj:
+        conft = config_merge(conf['stargazers'], 'github', 'users')
+        turl = format_url(obj['stargazers_url'], conf['stargazers'])
+        items = api_list(turl, count=conft['count'])
+        obj['stargazers'] = uson.ref(
+            [ref_user(obj=item, conf=conft) for item in items])
+
+    if conf['subscribers']['include'] and 'subscribers' not in obj:
+        conft = config_merge(conf['subscribers'], 'github', 'users')
+        turl = format_url(obj['subscribers_url'], conf['subscribers'])
+        items = api_list(turl, count=conft['count'])
+        obj['subscribers'] = uson.ref(
+            [ref_user(obj=item, conf=conft) for item in items])
+
+    if conf['events']['include'] and 'events' not in obj:
+        conft = config_merge(conf['events'], 'github', 'events')
+        turl = format_url(obj['events_url'], conft)
+        items = api_list(turl, count=conft['count'])
+        obj['events'] = uson.ref(
+            [ref_event(obj=item, conf=conft) for item in items])
+
+    if conf['owner']['include'] and 'owner' in obj and isinstance(obj['owner'], dict):
+        obj['owner'] = ref_user(obj=obj['owner'], conf=conf['owner'])
+
+    if conf['template']['include'] and 'template_repository' in obj and isinstance(obj['template_repository'], dict):
+        obj['template_repository'] = ref_repository(
+            obj=obj['template_repository'], conf=conf['template'])
+
+    if conf['parent']['include'] and 'parent' in obj and isinstance(obj['parent'], dict):
+        obj['parent'] = ref_repository(obj=obj['parent'], conf=conf['parent'])
+
+    if conf['source']['include'] and 'source' in obj and isinstance(obj['source'], dict):
+        obj['source'] = ref_repository(obj=obj['source'], conf=conf['source'])
+
+    if conf['tags']['include'] and 'tags' not in obj:
+        conft = config_merge(conf['tags'], 'github', 'tags')
+        turl = format_url(obj['tags_url'], conft)
+        items = api_list(turl, count=conft['count'])
+        obj['tags'] = uson.ref([ref_tag(item, conft) for item in items])
+
+    if conf['languages']['include'] and 'languages' not in obj:
+        conft = config_merge(conf['languages'], 'github', 'languages')
+        obj['languages'] = uson.ref(
+            api(obj['languages_url']), dir=conft['path'])
+
+    if conf['commits']['include'] and 'commits' not in obj:
+        conft = config_merge(conf['commits'], 'github', 'commits')
+        turl = format_url(obj['commits_url'], conft)
+        items = api_list(turl, count=conft['count'])
+        obj['commits'] = uson.ref(
+            [ref_commit(obj=item, conf=conft) for item in items])
+
+    if conf['contents']['include'] and 'contents' not in obj:
+        conft = config_merge(conf['contents'], 'github', 'contents')
+        turl = format_url(obj['contents_url'], conft)
+        items = api_list(turl, count=conft['count'])
+        obj['contents'] = uson.ref(
+            [ref_contents(obj=item, conf=conft) for item in items])
+
+    if conf['issues']['include'] and 'issues' not in obj:
+        conft = config_merge(conf['issues'], 'github', 'issues')
+        turl = format_url(obj['issues_url'], conft)
+        items = api_list(turl, count=conft['count'])
+        obj['issues'] = uson.ref(
+            [ref_issues(obj=item, conf=conft) for item in items])
+
+    if conf['forks']['include'] and 'forks' not in obj:
+        conft = config_merge(conf['forks'], 'github', 'repositories')
+        turl = format_url(obj['forks_url'], conft)
+        items = api_list(turl, count=conft['count'])
+        obj['forks'] = uson.ref(
+            [ref_repository(obj=item, conf=conft) for item in items])
+
+    return (obj, asset)
 
 
-def ref_user(username: str = None, url: str = None, obj: dict = None, config: dict = {}) -> str:
-    config = configs.compile(config,'github','users')
-    key_followers = 'followers_list'
-    key_following = 'following_list'
+def ref_repository(url: str = None, obj: dict = None, conf: dict = {}):
+    obj, asset = repository(url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
+
+
+def user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}) -> tuple[dict,Asset]:
+    conf = config_merge(conf, 'github', 'users')
 
     if not url:
         if username:
             url = f'https://api.github.com/users/{username}'
         elif obj:
             url = obj['url']
+        else:
+            sys.exit(1)
 
-    asset = Asset(dir=DIR_USER, seed=url, type=JSON)
+    asset = Asset(dir=conf['path'], type=JSON, seed=url)
 
     if asset.exists():
-        cache = json.load(asset=asset)
-        if obj:
-            merge.update(cache,obj)
-        obj = cache
+        cache = uson.load(asset=asset)
+        obj = merge(obj, cache) if obj else cache
     else:
         analytics.ping_user()
-    
-    api_obj = None
-    if not obj or (config['force_api'] and not config['api_loaded']):
-        api_obj = api(url)
-        api_obj['api_loaded'] = True
-        if api_obj:
-            if not obj:
-                obj = api_obj
-            elif config['force_api']:
-                merge.update(obj,api_obj)
-        elif not obj:
+
+    if not obj or (conf['force_api'] and not obj[API_STATUS_KEY]):
+        obj_api = api(url)
+        obj = merge(obj_api, obj)
+        obj[API_STATUS_KEY] = True
+
+        if not obj:
             return None
-    
-    if config['followers']['include'] and key_followers not in obj:
-        obj[key_followers] = ref_user_list(obj['followers_url'],count=config['followers']['count'])
-    
-    if config['following']['include'] and key_following not in obj:
-        obj[key_following] = ref_user_list(obj['following_url'].replace('{/other_user}',''),count=config['following']['count'])
 
-    if config['events']['include'] and 'events' not in obj:
-        obj['events'] = ref_event_list(obj['events_url'].replace('{/privacy}','/public'),count=config['events']['count'], load_repo=config['events']['load_repo'])
-    
-    if config['starred']['include'] and 'starred' not in obj:
-        starred_repo = api_list(obj['starred_url'].replace('{/owner}{/repo}',''),count=config['starred']['count'])
-        obj['starred'] = json.ref([ref_repository(obj=repo) for repo in starred_repo])
+    if conf['avatar']['include'] and 'avatar' not in obj:
+        conft = config_merge(conf['avatar'],'images')
+        obj['avatar'] = images.ref(obj['avatar_url'],dir=conft['path'],circular=conft['circular'])
 
-    [obj.pop(key,None) for key in config['remove_keys']]
-
-    return json.ref(obj, asset)
+    return (obj, asset)
 
 
-def ref_user_list(url: str, config: dict={},count: int = configs.config('github','users','count')) -> str:
-    return json.ref([ref_user(obj=i,config=config.copy()) for i in api_list(url,count=count)])
+def ref_user(username: str = None, url: str = None, obj: dict = None, conf: dict = {}):
+    obj, asset = user(username=username, url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
 
 
-def ref_repository(url: str=None, obj: dict=None, config: dict={}) -> str:
+def event(obj: dict, conf: dict = {}) -> dict:
+    return {}, Asset(seed='abcd')
 
-    config = configs.compile(config,'github','repositories')
 
-    if not url:
-        url = obj['url']
+def ref_event(obj: dict, conf: dict = {}):
+    obj, asset = event(obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
 
-    asset = Asset(dir=DIR_REPO,type=JSON,seed=(url if url else obj['url']))
+
+def tag(obj: dict, conf: dict = {}) -> tuple[dict,Asset]:
+    obj = obj.copy()
+    conf = config_merge(conf,'github','tags')
+
+    asset = Asset(dir=conf['path'],seed=obj['node_id'],type=JSON)
 
     if asset.exists():
-        cache = json.load(asset=asset)
-        if obj:
-            for key in obj:
-                if key not in cache:
-                    cache[key] = obj[key]
-        obj = cache
-    else:
-        analytics.ping_repo()
+        cached = uson.load(asset=asset)
+        obj = merge(obj,cached)
     
-    if not obj or config['force_api']:
-        obj_api = api(url)
-        if obj_api:
-            obj['api_loaded'] = True
-            if not obj:
-                obj = obj_api
-            elif config['force_api']:
-                obj.update(obj_api)
-        elif not obj:
-            return None
-        
-    elif config['force_api'] and ('api_loaded' not in obj or not obj['api_loaded']):
-        obj.update(api(url))
-        obj['api_loaded'] = True
+    if conf['commit']['include']:
+        obj['commit'] = ref_commit(url=obj['commit']['url'])
 
-    # obj['name'] = obj['full_name'].partition('/')[1]
-
-    if 'owner' in obj and isinstance(obj['owner'],dict):
-        obj['owner'] = ref_user(obj=obj['owner'])
-    
-    if 'languages' not in obj and 'languages_url' in obj:
-        languages = api(obj['languages_url'])
-        obj['languages'] = json.ref([{'name':key,'value':languages[key]} for key in languages])
-    
-
-    if config['subscribers']['include'] and 'subscribers' not in obj:
-        obj['subscribers'] = ref_user_list(obj['subscribers_url'],count=config['subscribers']['count'])
-    
-    if config['stargazers']['include'] and 'stargazers' not in obj:
-        obj['stargazers'] = ref_user_list(obj['stargazers_url'],count=config['stargazers']['count'])
-
-    if config['events']['include'] and 'events' not in obj:
-        obj['events'] = ref_event_list(obj['events_url'],load_repo=False,count=config['events']['count'])
-    
-    if config['contributors']['include'] and 'contributors' not in obj:
-        contributors = []
-        for contributor in api_list(obj['contributors_url'], count=config['contributors']['count']):
-            if '[bot]' not in contributor['login'] or config['contributors']['include_bots']:
-                contributors.append(contributor)
-        obj['contributors'] = json.ref([{'contributions': i['contributions'],'user':ref_user(obj=i)} for i in contributors])
-    
-    if config['template']['include'] and 'template_repository' in obj and isinstance(obj['template_repository'],dict):
-        obj['template_repository'] = ref_repository(obj=obj['template_repository'])
-    
-    if config['parent']['include'] and 'parent' in obj and isinstance(obj['parent'],dict):
-        obj['parent'] = ref_repository(obj=obj['parent'])
-    
-    if config['source']['include'] and 'source' in obj and isinstance(obj['source'],dict):
-        obj['source'] = ref_repository(obj=obj['source'])
-    
-    if config['organization']['include'] and 'organization' in obj and isinstance(obj['organization'],dict):
-        obj['organization'] = ref_user(obj=obj['organization'])
-
-    [obj.pop(key,None) for key in config['remove_keys']]
-    
-    return json.ref(obj,asset=asset)
+    return obj,asset
 
         
-    
 
-def ref_event(obj: dict,load_repo: bool=False) -> str:
-    asset = Asset(dir=DIR_EVENT,type=JSON,seed=obj['id'])
-    if not asset.exists():
-        analytics.ping_event()
-        if 'repo' in obj:
-            if load_repo:
-                obj['repo'] = ref_repository(obj=obj['repo'])
-            else:
-                repo_asset = Asset(dir=DIR_REPO,seed=obj['repo']['url'],type=JSON)
-                if repo_asset.exists():
-                    obj['repo'] = repo_asset.ref
-                else:
-                    obj['repo'] = json.ref(obj['repo'],asset=repo_asset)
-        if 'actor' in obj:
-            obj['actor'] = ref_user(url=obj['actor']['url'])
-        json.save(obj,asset=asset)
+
+def ref_tag(obj: dict, conf: dict = {}):
+    obj, asset = tag(obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
     return asset.ref
-                
 
 
-def ref_event_list(url: str,count: int=configs.config('github','events','count'), load_repo: bool=False) -> str:
-    return json.ref([ref_event(i,load_repo=load_repo) for i in api_list(url,count=count)])
+def commit(url: str = None, obj: dict = {}, conf: dict = {}) -> tuple[dict, Asset]:
+    if not url:
+        url = obj['url']
+    
+    conf = config_merge(conf,'github','commits')
+
+    asset = Asset(dir=conf['path'],seed=url,type=JSON)
+
+    if asset.exists():
+        obj = merge(obj,uson.load(asset=asset))
+    
+    if not obj or (conf['force_api'] and not obj[API_STATUS_KEY]):
+        obj_api = api(url)
+        obj = merge(obj_api, obj)
+        obj[API_STATUS_KEY] = True
+
+        if not obj:
+            return None
+
+    if conf['author']['include'] and 'author' in obj and isinstance(obj['author'],dict):
+        conft = config_merge(conf['author'],'github','users')
+        obj['author'] = ref_user(obj=obj['author'],conf=conft)
+    
+    if conf['committer']['include'] and 'committer' in obj and isinstance(obj['committer'],dict):
+        conft = config_merge(conf['committer'],'github','users')
+        obj['committer'] = ref_user(obj=obj['committer'],conf=conft)
+        
+
+    return obj,asset
+
+
+def ref_commit(url: str = None, obj: dict = {}, conf: dict = {}) -> str:
+    obj, asset = commit(url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
+
+
+def contents(url: str = None, obj: dict = {}, conf: dict = {}):
+    if not url:
+        url = obj['url']
+    
+    asset = Asset(dir=conf['path'],seed=url,type=JSON)
+
+    if asset.exists():
+        obj = merge(obj,uson.load(asset=asset))
+    
+    if not obj or (conf['force_api'] and not obj[API_STATUS_KEY]):
+        obj_api = api(url)
+        obj = merge(obj_api, obj)
+        obj[API_STATUS_KEY] = True
+
+        if not obj:
+            return None
+    return obj,asset
+
+
+def ref_contents(url: str = None, obj: dict = {}, conf: dict = {}):
+    obj, asset = contents(url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
+
+
+def issues(url: str = None, obj: dict = {}, conf: dict = {}):
+    return {}
+
+
+def ref_issues(url: str = None, obj: dict = {}, conf: dict = {}):
+    obj, asset = contents(url=url, obj=obj, conf=conf)
+    uson.save(obj, asset=asset)
+    return asset.ref
+
+def branch(obj: dict, conf: dict = {}):
+    conf = config_merge(conf,'github','branches')

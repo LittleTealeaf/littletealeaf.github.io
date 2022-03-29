@@ -36,7 +36,7 @@ const ProjectDisplay = (projectref, index) => {
           </Link>
           <div>
             {
-              getAsset(repo.languages).map(language => language.name).join(', ')
+              Object.keys(getAsset(repo.languages)).join(', ')
             }
           </div>
         </center>

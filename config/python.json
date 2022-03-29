@@ -1,18 +1,18 @@
 {
     "output": {
-        "directory": [".","generated"],
-        "index_name":"index.json",
+        "directory": [".", "generated"],
+        "index_name": "index.json",
         "include_config": {
-            "navigation":"navigation.json"
+            "navigation": "navigation.json"
         }
     },
     "github": {
         "website_repository": "https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io",
         "repositories": {
             "count": 1000,
-            "force_api":true,
+            "force_api": true,
             "remove_keys": [
-                "permissions","allow_squash_merge","allow_merge_commit","allow_rebase_merge","allow_auto_merge","delete_branch_on_merge","temp_clone_token","allow_update_branch"
+                "permissions", "allow_squash_merge", "allow_merge_commit", "allow_rebase_merge", "allow_auto_merge", "delete_branch_on_merge", "temp_clone_token", "allow_update_branch"
             ],
             "contributors": {
                 "count": 20,
@@ -28,7 +28,7 @@
                 "include": false
             },
             "events": {
-                "count":100,
+                "count": 100,
                 "include": false
             },
             "template": {
@@ -86,10 +86,13 @@
             }
         },
         "api": {
-            "timeout_delay": 300
+            "timeout_delay": 300,
+            "keys": {
+                "api_status": "Api Loaded"
+            }
         },
         "remove_keys": [
-            "plan","two_factor_authentication","total_private_repos","owned_private_repos","private_gists","permissions"
+            "plan", "two_factor_authentication", "total_private_repos", "owned_private_repos", "private_gists", "permissions"
         ]
     },
     "config": {

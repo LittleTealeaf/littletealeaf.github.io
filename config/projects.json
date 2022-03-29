@@ -1,5 +1,4 @@
-[
-    {
+[{
         "repository": "https://api.github.com/repos/LittleTealeaf/paceManager",
         "attributes": {
             "name": "Pace Manager",

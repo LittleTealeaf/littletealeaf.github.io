@@ -45,7 +45,7 @@ const RepositoryStatistics = () => {
     const Languages = () => {
         const languages = getAsset(Repo.languages);
 
-        const max = languages.reduce((partial, item) => partial + item.value, 0);
+        const max = Object.keys(languages).reduce((partial, key) => partial + languages[key].value, 0);
 
         const toPercentage = (value) => {
             const percentage = (100.0 * value) / max;
@@ -61,13 +61,13 @@ const RepositoryStatistics = () => {
                 </center>
                 <table >
                     {
-                        languages.map((lang, i) => (
+                        Object.keys(languages).map((key, i) => (
                             <tr key={i}>
                                 <td style={{
                                     'textAlign': 'right',
                                     'padding': '0px 10px'
-                                }}>{lang.name}</td>
-                                <td>{toPercentage(lang.value)}</td>
+                                }}>{key}</td>
+                                <td>{toPercentage(languages[key].value)}</td>
 
                             </tr>
                         ))
