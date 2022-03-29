@@ -1,7 +1,7 @@
 
 
 import { useRouter } from 'next/router'
-import { getPath } from '../libs/resources'
+import { getPath } from '../libs/resources.js'
 
 export default function Home({ router, props }) {
 
