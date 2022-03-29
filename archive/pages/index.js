@@ -1,15 +1,13 @@
-
+import Head from 'next/head'
+import Header from '../components/header'
 
 import {useRouter} from 'next/router'
-import '../libs/cache'
-import { save } from '../libs/cache'
 
 export default function Home({router}) {
-  save('OAIWJEF','OIJWEOFJW')
-
   return (
     
     <div>
+      <Header router={router} title="LittleTealeaf"/>
       WARNING, THIS WEBSITE IS UNDER DEVELOPMENT. ALSO, I AM A BIRD
     </div>
   )

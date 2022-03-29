@@ -1,5 +1,4 @@
-
-import { AppProps } from 'next/app'
+import style from '../styles/style.css'
 import {useRouter} from 'next/router'
 
 const MyApp = ({ Component, pageProps }) => {
