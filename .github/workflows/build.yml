@@ -21,8 +21,10 @@ jobs:
         uses: actions/cache@v3
         id: littletealeaf-github-io
         with:
-          path: .next/cache
-          key: ${{runner.os}}-primes
+          path: |
+            .next/cache
+            cache
+          key: ${{github.event.pull_request.head.sha}}
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:

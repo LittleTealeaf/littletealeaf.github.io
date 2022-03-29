@@ -1,12 +1,12 @@
 import json
 import os
 import copy
-import util_merge as merge
+from util_merge import *
 
-
+# merging lists should instead replace. UNLESS, the merge INTO is a dict that has the merge type 'append' and a value list
 
 CONFIG: dict = {}
-with open(os.path.join('.','config','python.json')) as file:
+with open(os.path.join('.','config','python.config.json')) as file:
     CONFIG = json.load(file)
 
 def config(*path):
@@ -21,6 +21,7 @@ def get_config_file(filename: str):
         data = json.load(file)
     return data
 
-def compile(user_config: dict,*path):
-    return merge.update(config(*path),user_config)
+def config_merge(user_config: dict,*path):
+    return merge(config(*path),user_config)
+
 
