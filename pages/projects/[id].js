@@ -66,9 +66,10 @@ const SocialPanel = (repo) => {
 
 const Languages = (repo) => {
     const languages = getAsset(repo.languages);
-
+    
     // const max = languages.reduce((partial,item) => partial + item.value,0);
     const max = Object.keys(languages).reduce((partial,key) => partial + languages[key],0);
+
 
     const toPercentage = (value) => {
         const percentage = (100.0 * value) / max;
@@ -90,7 +91,7 @@ const Languages = (repo) => {
                         'textAlign':'right',
                         'padding':'0px 10px'
                     }}>{key}</td>
-                        <td>{toPercentage(languages[key].value)}</td>
+                        <td>{toPercentage(languages[key])}</td>
                         
                     </tr>
                 ))  
