@@ -1,19 +1,48 @@
-const RandomGen = require('random-seed');
+const fs = require('fs');
 
-function seedKey(key) {
-    const rand = RandomGen.create(key);
-    return rand.string(30);
+const DIR = './cache';
+const PATH_DATA = DIR + '/data.json'
+
+// clean up expired values
+const local_cache = loadCache();
+Object.keys(local_cache).forEach((item) => {
+    if(load(item) == null) {
+        delete local_cache[item];
+    }
+});
+saveCache(local_cache);
+
+function loadCache() {
+    if(fs.existsSync(PATH_DATA)) {
+        return JSON.parse(fs.readFileSync(PATH_DATA));
+    } else {
+        return {};
+    }
 }
 
-
+function saveCache(cache) {
+    if(!fs.existsSync(DIR)) {
+        fs.mkdirSync(DIR);
+    }
+    fs.writeFileSync(PATH_DATA,JSON.stringify(cache)); 
+}
 
 export function save(key, value) {
-    const data = {
-        key: key,
-        name: seedKey(key),
+    const cache = loadCache();
+    cache[key] = {
         time: Date.now(),
-        expires: Date.now() + 1000 * 60 * 60 * 24,
+        expires: Date.now() + 1000 * 60 * 60 * 12,
         value: value
     }
-    console.log(data);
+    saveCache(cache);
+       
+}
+
+export function load(key) {
+    const cache = loadCache();
+    if(cache[key] != null && cache[key].expires > Date.now()) {
+        return cache[key].value;
+    } else {
+        return null;
+    }
 }
