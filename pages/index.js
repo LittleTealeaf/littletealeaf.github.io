@@ -1,7 +1,8 @@
 
 
 import { useRouter } from 'next/router'
-import { getPath } from '../libs/resources.js'
+import { Cache, getPath } from '../libs/resources.js'
+
 
 export default function Home({ router, props }) {
 
@@ -17,11 +18,12 @@ export default function Home({ router, props }) {
 
 export async function getStaticProps(context) {
 
-  console.log(getPath('cache','python'));
+  // Cache.store('api','test','VALUE');
+  Cache.store('api','vscode','values');
 
   return {
     props: {
-      item: 'null'
+      item: Cache.get('api','vscode')
     }
   }
 }
