@@ -1,7 +1,7 @@
 
 
 import { useRouter } from 'next/router'
-import { load, save } from '../libs/cache'
+import { getPath } from '../libs/resources'
 
 export default function Home({ router, props }) {
 
@@ -17,11 +17,11 @@ export default function Home({ router, props }) {
 
 export async function getStaticProps(context) {
 
-  save('testb', ['I am a dummy text']);
+  console.log(getPath('cache','python'));
 
   return {
     props: {
-      item: load('testb')
+      item: 'null'
     }
   }
 }
