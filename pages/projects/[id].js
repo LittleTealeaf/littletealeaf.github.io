@@ -4,7 +4,7 @@ export default function Project({ projectData, router }) {
 
     return (<>
         <div>
-            {projectData.name}
+            
         </div>
     </>);
 }
