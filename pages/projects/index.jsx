@@ -1,22 +1,15 @@
-import {useRouter} from 'next/router'
+import { useRouter } from "next/router";
 
-export default function Home({router, props}) {
-  
-
+export default function Home({ router, props }) {
   return (
-    
-    <div>
-      standard blog post
-    </div>
-  )
+    <>
+      <div>This is the home page</div>
+    </>
+  );
 }
 
 export async function getStaticProps(context) {
-
-
   return {
-    props: {
-      
-    }
-  }
+    props: {},
+  };
 }
