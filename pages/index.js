@@ -1,7 +1,9 @@
 
 
+import { ApiError } from 'next/dist/server/api-utils';
 import { useRouter } from 'next/router'
-import { Cache, getPath } from '../libs/resources.js'
+import { Github } from '../libs/api.js';
+import { CacheManager, getPath } from '../libs/resources.js'
 
 
 export default function Home({ router, props }) {
@@ -19,11 +21,12 @@ export default function Home({ router, props }) {
 export async function getStaticProps(context) {
 
   // Cache.store('api','test','VALUE');
-  Cache.store('api','vscode','values');
+  CacheManager.store('api','vscode','values');
+  
 
   return {
     props: {
-      item: Cache.get('api','vscode')
+      item: await Github.getAPI('https://api.github.com/user')
     }
   }
 }

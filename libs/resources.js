@@ -1,7 +1,9 @@
 const paths = require('path');
 const fs = require('fs');
 
-export class Cache {
+//TODO: Create something like a "Cache Promise" object that can be used as a reference
+
+export class CacheManager {
     /**
      * Caches a value at a provided location
      * @param {string} type The type of cache to store. Will store in the file with the format \<type\>.json
@@ -57,3 +59,10 @@ export function writeFile(path, data) {
     fs.writeFileSync(path, data);
 }
 
+export function fileExists(path) {
+    return fs.existsSync(path);
+}
+
+export function readFile(path) {
+    return fs.readFileSync(path).toString();
+}
