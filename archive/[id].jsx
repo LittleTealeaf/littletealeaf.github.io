@@ -1,5 +1,5 @@
-import { Github } from '../../libs/api';
-import { getPathDeprecated, ResourceDeprecated } from '../../libs/resources';
+import { Github } from './libs2/api';
+import { getPathDeprecated, ResourceDeprecated } from '../libs/resources';
 const fs = require('fs');
 
 export default function Page({ id }) {
@@ -7,7 +7,7 @@ export default function Page({ id }) {
     const api = Github.getAPI("https://api.github.com")
 
     return (<>
-    
+        
     </>);
 }
 
