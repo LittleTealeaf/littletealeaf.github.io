@@ -7,7 +7,7 @@ export default function Page({ id }) {
     const api = Github.getAPI("https://api.github.com")
 
     return (<>
-        this is a test
+    
     </>);
 }
 
