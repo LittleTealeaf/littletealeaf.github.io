@@ -8,14 +8,15 @@ export class Github {
     static octokit = new Octokit({
         auth: fs.existsSync(getPath('github_token')) ? fs.readFileSync(getPath('github_token')).toString() : process.env.API_GITHUB
     });
+    static cache = new CacheManager('githubapi');
 
-    static async getAPI(url,type='GithubAPI') {
+    static async getAPI(url) {
 
         const key = `${url}`;
         
-        const cache = CacheManager.get(type,key);
-        if(cache != null) {
-            return cache;
+        const stored = this.cache.get(key);
+        if(stored != null) {
+            return stored;
         }
 
         console.log(`API: ${url}`)
@@ -25,7 +26,7 @@ export class Github {
             type: 'public'
         });
     
-        CacheManager.store(type,key,request.data);
+        this.cache.store(key,request.data);
         return request.data;
     }
 }

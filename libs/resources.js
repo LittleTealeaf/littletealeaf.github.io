@@ -1,51 +1,68 @@
 const paths = require('path');
 const fs = require('fs');
-
-//TODO: Create something like a "Cache Promise" object that can be used as a reference
+const uniqueFilename = require('unique-filename');
 
 export class CacheManager {
-    /**
-     * Caches a value at a provided location
-     * @param {string} type The type of cache to store. Will store in the file with the format \<type\>.json
-     * @param {string} key The key to store the value as 
-     * @param {any} value The value to store
-     */
-    static store(type, key, value) {
-        const che = this.loadCache(type);
-        che[key] = {
-            time: Date.now(),
-            expires: Date.now() + 1000 * 60 * 60 * 12,
-            value: value
-        };
-        this.saveCache(type,che);
+    constructor(type) {
+        this.type = type;
+        this.path = getPath('cache', `${type}.json`);
+        this.clean();
     }
 
-    static get(type, key) {
-        const che = this.loadCache(type);
-        if(che[key] != null && che[key].expires > Date.now()) {
-            return che[key].value;
-        } else {
-            return null;
-        }
+    clean() {
+        Object.keys(this.load()).forEach((key) => {
+            this.get(key);
+        });
     }
-    
-    static loadCache(type) {
-        const path = this.getCachePath(type);
-        if(fs.existsSync(path)) {
-            return JSON.parse(fs.readFileSync(path));
+
+    store(key, value) {
+        const cache = this.load();
+        cache[key] = {
+            time: Date.now(),
+            expires: Date.now() + 1000 * 60 * 60 * 24,
+            value: value
+        }
+        this.save(cache);
+    }
+
+    get(key) {
+        const cache = this.load();
+        if (cache[key] != null) {
+            if (cache[key].expires > Date.now()) {
+                return cache[key].value;
+            } else {
+                delete cache[key];
+                this.save(cache);
+            }
+        }
+        return null;
+    }
+
+    load() {
+        if (fs.existsSync(this.path)) {
+            return JSON.parse(fs.readFileSync(this.path));
         } else {
             return {};
         }
     }
 
-    static saveCache(type,cache) {
-        writeFile(this.getCachePath(type),JSON.stringify(cache));
-    }
-
-    static getCachePath(type) {
-        return getPath('cache',`${type}.json`);
+    save(cache) {
+        writeFile(this.path, JSON.stringify(cache));
     }
 }
+
+export class Resource {
+    static text(data) {
+        const filePath = uniqueFilename('./gen', null, data);
+        writeFile(filePath, data);
+        return filePath;
+    }
+
+    static json(data) {
+        return this.text(JSON.stringify(data));
+    }
+}
+
 
 export function getPath(...dirs) {
     return paths.join(process.cwd(), ...dirs);
