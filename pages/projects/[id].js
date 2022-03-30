@@ -1,7 +1,9 @@
+import { getPath } from '../../libs/resources';
+
 const fs = require('fs');
 
-export default function Project({ projectData, router }) {
-
+export default function Project({ project, router }) {
+    console.log(project);
     return (<>
         <div>
             
@@ -22,10 +24,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const projectData = {};
+    const project = {};
     return {
         props: {
-            projectData
+            project
         }
     }
 }
