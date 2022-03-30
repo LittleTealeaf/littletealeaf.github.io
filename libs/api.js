@@ -1,4 +1,4 @@
-import { CacheManager, getPath } from './resources';
+import { CacheManager, getPathDeprecated } from './resources';
 const { Octokit } = require("@octokit/core");
 
 const fs = require('fs');
@@ -6,15 +6,12 @@ const fs = require('fs');
 export class Github {
 
     static octokit = new Octokit({
-        auth: fs.existsSync(getPath('github_token')) ? fs.readFileSync(getPath('github_token')).toString() : process.env.API_GITHUB
+        auth: fs.existsSync(getPathDeprecated('github_token')) ? fs.readFileSync(getPathDeprecated('github_token')).toString() : process.env.API_GITHUB
     });
     static cache = new CacheManager('githubapi');
 
-    static async getAPI(url) {
-
-        const key = `${url}`;
-        
-        const stored = this.cache.get(key);
+    static async getAPI(url,getJson=false) {
+        const stored = this.cache.get(url);
         if(stored != null) {
             return stored;
         }
@@ -26,7 +23,11 @@ export class Github {
             type: 'public'
         });
     
-        this.cache.store(key,request.data);
-        return request.data;
+        this.cache.store(url,request.data);
+        return getJson ? request.data : url;
+    }
+
+    static getCached(key) {
+        
     }
 }

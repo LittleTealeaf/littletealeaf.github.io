@@ -1,3 +1,5 @@
+import { cwd } from 'process';
+
 const fs = require('fs');
 const uniqueFilename = require('unique-filename');
 const paths = require('path');
@@ -5,7 +7,7 @@ const paths = require('path');
 export class CacheManager {
     constructor(type) {
         this.type = type;
-        this.path = getPath('cache', `${type}.json`);
+        this.path = getPathDeprecated('cache', `${type}.json`);
         this.clean();
     }
 
@@ -51,7 +53,7 @@ export class CacheManager {
     }
 }
 
-export class Resource {
+export class ResourceDeprecated {
     static text(data) {
         const filePath = uniqueFilename('./gen', null, data);
         writeFile(filePath, data);
@@ -63,22 +65,49 @@ export class Resource {
     }
 }
 
-export function getPath(...dirs) {
+/**
+ * Deprecated
+ * @param  {...any} dirs 
+ * @returns 
+ */
+export function getPathDeprecated(...dirs) {
     return paths.join(process.cwd(), ...dirs);
 }
 
-export function writeFile(path, data) {
+/**
+ * Deprecated
+ * @param {*} path 
+ * @param {*} content 
+ */
+export function writeFile(path, content) {
     const dirpath = paths.basename(paths.dirname(path));
     if (!fs.existsSync(dirpath)) {
         fs.mkdirSync(dirpath);
     }
-    fs.writeFileSync(path, data);
+    fs.writeFileSync(path, content);
 }
 
-export function fileExists(path) {
-    return fs.existsSync(path);
+
+export class Resource {
+    /**
+     * 
+     * @param {String[]} route Array of path elements
+     * @param {String} content Text content to store
+     */
+    static text(route,content) {
+        writeFile(getFullPath(route),content);
+        return this.getPath(route);
+    }
+
+    static json(route,data) {
+        return this.text(route,JSON.stringify(data));
+    }
+
+    static getPath(route) {
+        return `../${route.join('/')}`;
+    }
 }
 
-export function readFile(path) {
-    return fs.readFileSync(path).toString();
+export function getFullPath(route) {
+    return paths.join(process.cwd(),...route);
 }
