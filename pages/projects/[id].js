@@ -22,10 +22,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const project = {};
     return {
         props: {
-            project
+            project: {}
         }
     }
 }
