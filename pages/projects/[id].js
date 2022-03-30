@@ -4,11 +4,9 @@ const fs = require('fs');
 
 export default function Page({ project }) {
     console.log(project);
-    return (
-        <>
-            
-        </>
-    );
+    return (<>
+
+    </>);
 }
 
 export async function getStaticPaths() {
