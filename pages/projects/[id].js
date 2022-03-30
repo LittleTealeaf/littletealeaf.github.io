@@ -2,19 +2,19 @@ import { getPath } from '../../libs/resources';
 
 const fs = require('fs');
 
-export default function Project({ project, router }) {
+export default function Page({ project }) {
     console.log(project);
-    return (<>
-        <div>
+    return (
+        <>
             
-        </div>
-    </>);
+        </>
+    );
 }
 
 export async function getStaticPaths() {
-    const paths = fs.readdirSync(getPath('assets','projects')).map((file) => ({
+    const paths = fs.readdirSync(getPath('assets', 'projects')).map((file) => ({
         params: {
-            id: JSON.parse(fs.readFileSync(getPath('assets','projects',file))).endpoint
+            id: JSON.parse(fs.readFileSync(getPath('assets', 'projects', file))).endpoint
         }
     }));
 
