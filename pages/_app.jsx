@@ -1,6 +1,7 @@
 
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import { Asset } from '../libs/resources'
 
 const MyApp = ({ Component, pageProps }) => {
     return (

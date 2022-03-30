@@ -50,3 +50,48 @@ export class CacheManager {
         FS.writeFileSync(this.path,JSON.stringify(values));
     }
 }
+
+/**
+ * Allows for storing resources during server-side rendering, and fetching resources during client-side
+ */
+export class Resource {
+
+    static store(path,content) {
+        const full_path = PATHS.join(process.cwd(),'resources',path);
+        buildDirectory(full_path);
+        FS.writeFileSync(full_path,content);
+        return path;
+    }
+
+    /**
+     * Stores an object as a .json file
+     * @param {String} route String of the directory path, separated by /
+     * @param {*} object 
+     */
+    static storeJSON(route,object) {
+        return this.store(`${route}.json`,JSON.stringify(object));
+    }
+
+    static load(route) {
+        try {
+         return require(`../resources/${route}`)
+        } catch {
+            return null;
+        }
+    }
+}
+
+/**
+ * Returns an asset stored in the Assets directory
+ * @param  {Array[String]} subdir Subdirectory within the assets list
+ */
+export function Asset(subdir) {
+    return require(`../assets/${subdir.join('/')}`);
+}
+
+function buildDirectory(path) {
+    const dirpath = PATHS.dirname(path);
+    if(!FS.existsSync(dirpath)) {
+        FS.mkdirSync(dirpath, {recursive: true});
+    }
+}
