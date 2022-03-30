@@ -1,7 +1,6 @@
 import { ApiError } from 'next/dist/server/api-utils';
-import { useRouter } from 'next/router'
-import { Github } from '../libs/api.js';
-import { CacheManager, getPath, Resource } from '../libs/resources.js'
+import { useRouter } from 'next/router';
+import { CacheManager, getPath, Resource } from '../libs/resources.js';
 
 
 export default function Home({ router, props }) {
@@ -19,11 +18,9 @@ export default function Home({ router, props }) {
 export async function getStaticProps(context) {
 
   
-  
-
   return {
     props: {
-      item: Resource.json(await Github.getAPI('https://api.github.com/'))
+      
     }
   }
 }

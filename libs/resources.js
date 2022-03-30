@@ -1,6 +1,6 @@
-const paths = require('path');
 const fs = require('fs');
 const uniqueFilename = require('unique-filename');
+const paths = require('path');
 
 export class CacheManager {
     constructor(type) {
@@ -62,7 +62,6 @@ export class Resource {
         return this.text(JSON.stringify(data));
     }
 }
-
 
 export function getPath(...dirs) {
     return paths.join(process.cwd(), ...dirs);
