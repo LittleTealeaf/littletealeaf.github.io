@@ -1,6 +1,17 @@
 const PATHS = require('path');
 const FS = require('fs');
 
+// TODO CHANGES:
+/*
+
+Separate into different directories dedicated for certain items:
+ - Resources: Files generated as resources and strictly used with requires() to fetch
+ - Assets: Files manually stored that are strictly fetched using requires()
+ - Content: Files used to generate Assets
+ - Cache: stored cache values
+
+*/
+
 /**
  * Manages caches. Only usable on Server-Side rendering
  */
@@ -47,6 +58,7 @@ export class CacheManager {
     }
 
     save(values) {
+        buildDirectory(this.path);
         FS.writeFileSync(this.path,JSON.stringify(values));
     }
 }
@@ -65,29 +77,35 @@ export class Resource {
 
     /**
      * Stores an object as a .json file
-     * @param {String} route String of the directory path, separated by /
+     * @param {String} path String of the directory path, separated by /
      * @param {*} object 
      */
-    static storeJSON(route,object) {
-        return this.store(`${route}.json`,JSON.stringify(object));
+    static storeJSON(path,object) {
+        return this.store(`${path}.json`,JSON.stringify(object));
     }
 
-    static load(route) {
+    static load(path) {
         try {
-         return require(`../resources/${route}`)
+         return require(`../resources/${path}`)
         } catch {
             return null;
         }
     }
 }
 
-/**
- * Returns an asset stored in the Assets directory
- * @param  {Array[String]} subdir Subdirectory within the assets list
- */
-export function Asset(subdir) {
-    return require(`../assets/${subdir.join('/')}`);
+export class Assets {
+    // static requireAsset(path) {
+    //     return require(`../assets/${path}`);
+    // }
+
+    static readAsset(path) {
+        return FS.readFileSync(`assets/${path}`);
+    }
 }
+
+// export function requireAsset(path) {
+//     return require(`../assets/${path}`);
+// }
 
 function buildDirectory(path) {
     const dirpath = PATHS.dirname(path);

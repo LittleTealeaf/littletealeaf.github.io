@@ -13,9 +13,11 @@ export class Github {
     static async getAPI(url) {
         const stored = this.cache.get(url);
         if(stored != null) {
+            console.log(`CHE: ${url}`);
             return stored;
         }
 
+        console.log(`API: ${url}`);
         const request = await this.octokit.request('GET', {
             url: url
         });
