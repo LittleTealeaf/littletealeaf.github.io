@@ -11,6 +11,11 @@ Separate into different directories dedicated for certain items:
 
 */
 
+/**
+ * Manages data stored within caches. Caches are found in the `cache/` directory. Each cache has a "category" in order to reduce the size of individual caches.  
+ * 
+ * Only usable during server-side scripts
+ */
 export class CacheManager {
     constructor(category) {
         this.category = category;
@@ -60,4 +65,36 @@ export class CacheManager {
         }
         fs.writeFileSync(this.path,JSON.stringify(values));
     }
+}
+
+/**
+ * Provides methods to access files within the `assets/` directory.
+ * 
+ * The assets directory contains files manually stored for use in rendering. Files in the assets directory are only accesssed using the `requires(...)` method.
+ */
+export class Assets {
+
+}
+
+/**
+ * Provides methods to access files within the `config/` directory
+ * 
+ * The `config/` directory contains files used to generate files. "Config" files are read using the file system library.
+ * 
+ * Only usable during server-side scripts
+ */
+export class Config {
+
+}
+
+/**
+ * Provides methods to access files created in the `generated/` directory
+ * 
+ * the `generated/` directory contains files dynamically generated during server-side scripts. This allows for the server-scripts to save large amounts of data for rendering to use.
+ * 
+ * Store functions are only accessibile during server-side scripts  
+ * Load functions utilize `requires()` to be usable during rendering.
+ */
+export class Generated {
+
 }
