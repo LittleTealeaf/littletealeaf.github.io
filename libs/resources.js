@@ -1,6 +1,15 @@
 const paths = require('path');
 const fs = require('fs');
 
+/*
+
+Separate into different directories dedicated for certain items:
+ - Resources: Files generated as resources and strictly used with requires() to fetch
+ - Assets: Files manually stored that are strictly fetched using requires()
+ - Content: Files used to generate Assets
+ - Cache: stored cache values
+
+*/
 
 export class CacheManager {
     constructor(category) {
