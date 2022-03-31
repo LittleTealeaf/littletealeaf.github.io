@@ -73,7 +73,9 @@ export class CacheManager {
  * The assets directory contains files manually stored for use in rendering. Files in the assets directory are only accesssed using the `requires(...)` method.
  */
 export class Assets {
-
+    static load(path) {
+        return requires(`../assets/${path}`);
+    }
 }
 
 /**
@@ -84,7 +86,13 @@ export class Assets {
  * Only usable during server-side scripts
  */
 export class Config {
+    static listDir(path) {
+        return fs.readdirSync(`config/${path}`);
+    }
 
+    static listDirNames(path) {
+        return this.listDir(path).map(file => file.replace(/\.[^/.]+$/, ""));
+    }
 }
 
 /**
@@ -96,5 +104,25 @@ export class Config {
  * Load functions utilize `requires()` to be usable during rendering.
  */
 export class Generated {
+    static storeJSON(path,object) {
+        const fullPath = `resources/${path}.json`;
+        buildDirs(fullPath);
+        fs.writeFileSync(fullPath,JSON.stringify(object));
+        return path;
+    }
 
+    static load(path) {
+        return require(`../resources/${path}`);
+    }
+}
+
+/**
+ * Recursively builds the directories if they do not exist
+ * @param {string} path The path to ensure the directories exist for
+ */
+function buildDirs(path) {
+    const dirpath = paths.dirname(path);
+    if(!fs.existsSync(dirpath)) {
+        fs.mkdirSync(dirpath,{recursive: true});
+    }
 }
