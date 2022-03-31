@@ -2,6 +2,10 @@ const PATHS = require('path');
 const FS = require('fs');
 
 // TODO CHANGES:
+
+/*
+https://blog.openreplay.com/creating-a-markdown-blog-powered-by-next-js-in-under-an-hour
+*/
 /*
 
 Separate into different directories dedicated for certain items:
