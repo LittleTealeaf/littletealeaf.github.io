@@ -1,4 +1,4 @@
-import { Github } from '../libs/api.js';
+import { Github } from '../archive/libs3/api.js';
 import { Resource } from '../libs/resources.js';
 
 
@@ -19,7 +19,6 @@ export async function getStaticProps(context) {
   
   return {
     props: {
-      resources: Resource.storeJSON('api/github/base',await Github.getAPI('https://api.github.com/'))
     }
   }
 }
