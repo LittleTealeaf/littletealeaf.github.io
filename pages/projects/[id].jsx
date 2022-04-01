@@ -2,11 +2,11 @@ import Head from "next/head";
 import { Github } from "../../libs/api";
 import { Config, Generated } from "../../libs/resources";
 
-export default function Page({ id }) {
-  if (id == null) {
+export default function Page({ id, resource }) {
+  if (resource == null) {
     return <></>;
   } else {
-    const project = Generated.load(`projects/${id}`);
+    const project = Generated.load(resource);
 
     return (
       <>
@@ -30,12 +30,12 @@ export async function getStaticPaths() {
           project.github.api.languages_url
         );
 
-        Generated.storeJSON(`projects/${id}`, project);
+        Generated.storeJSON(`projects/${id}`, project)
 
         return {
           params: {
-            id: id,
-          },
+            id: id
+          }
         };
       })
     ),
@@ -43,10 +43,10 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({params}) {
   return {
     props: {
-      id: params.id,
+      id: params.id
     },
   };
 }
