@@ -42,3 +42,7 @@ generated/
 tmp/
 
 cache/
+
+gen/
+
+resources/

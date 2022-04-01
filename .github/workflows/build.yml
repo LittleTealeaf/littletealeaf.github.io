@@ -24,28 +24,18 @@ jobs:
             ./.next/cache
             ./cache
           key: ${{runner.os}}${{github.event.pull_request.head.sha}}
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.9'
       - name: Set up Node 17
         uses: actions/setup-node@v3
         with:
           node-version: '17'
-      - name: Update Pip
-        run: python3 -m pip install --upgrade pip
-      - name: Install Python Dependencies
-        uses: BSFishy/pip-action@v1
-        with:
-          requirements: ./python/requirements.txt
       - name: Install Javascript Dependencies
         run: npm ci
-      - name: Run Python Build
-        run: python3 ./python/build.py
-        env:
-          API_GITHUB: ${{ secrets.API_GITHUB }}
+      - name: Run Setup Script
+        run: sh ./setup.sh
       - name: Run Node Compile
         run: npm run compile
+        env:
+          API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Publish to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: peaceiris/actions-gh-pages@v3
