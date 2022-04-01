@@ -25,7 +25,7 @@ export async function getStaticPaths() {
   return {
     paths: Config.listDirNames("projects").map((id) => ({
       params: {
-        id,
+        id: id,
       },
     })),
     fallback: true,
