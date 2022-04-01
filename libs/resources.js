@@ -108,15 +108,19 @@ export class Config {
  * Load functions utilize `requires()` to be usable during rendering.
  */
 export class Generated {
-    static storeJSON(path,object) {
-        const fullPath = `generated/${path}.json`;
+    static storeJSON(object,path) {
+        const fullPath = `generated/${path.join('/')}.json`;
         buildDirs(fullPath);
         fs.writeFileSync(fullPath,JSON.stringify(object));
         return path;
     }
 
     static load(path) {
-        return require(`../generated/${path}`);
+        if(path instanceof Array) {
+            return require(`../generated/${path.join('/')}`);
+        } else {
+            return require(`../generated/${path}`);
+        }
     }
 
     static sanitize(id) {

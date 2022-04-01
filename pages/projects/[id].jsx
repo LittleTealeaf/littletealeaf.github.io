@@ -6,7 +6,7 @@ export default function Page({ id }) {
   if (id == null) {
     return <></>;
   } else {
-    const project = Generated.load(`projects/${Generated.sanitize(id)}`);
+    const project = Generated.load(['projects',id]);
 
     return (
       <>
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
           project.github.api.languages_url
         );
 
-        Generated.storeJSON(`projects/${Generated.sanitize(id)}`, project)
+        Generated.storeJSON(project,['projects',id])
 
         return {
           params: {

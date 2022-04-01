@@ -14,15 +14,6 @@ export default function Home({ router, props }) {
 }
 
 export async function getStaticProps(context) {
-
-  const data = {
-    test: {
-      moreTest: true,
-      data: "string"
-    }
-  };
-  const path = 'home/data';
-  Generated.storeJSON(path,data);
   
   return {
     props: {
