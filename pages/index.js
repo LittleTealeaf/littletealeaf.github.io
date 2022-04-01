@@ -1,13 +1,8 @@
-import Head from 'next/head'
-import Header from '../components/header'
-
-import {useRouter} from 'next/router'
-
-export default function Home({router}) {
+export default function Home() {
   return (
     
     <div>
-      <Header router={router} title="LittleTealeaf"/>
+      
       WARNING, THIS WEBSITE IS UNDER DEVELOPMENT. ALSO, I AM A BIRD
     </div>
   )
