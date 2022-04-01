@@ -26,4 +26,8 @@ export class Github {
         this.cache.store(url,data);
         return data;
     }
+
+    static async getRepo(repo) {
+        return this.get(`https://api.github.com/repos/${repo}`)
+    }
 }

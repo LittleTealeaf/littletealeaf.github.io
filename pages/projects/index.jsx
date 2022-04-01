@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 export default function Home({ router, props }) {
   return (
     <>
-      <div>This is the home page</div>
+      <div>This is the projects page</div>
     </>
   );
 }

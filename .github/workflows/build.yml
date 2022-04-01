@@ -30,6 +30,8 @@ jobs:
           node-version: '17'
       - name: Install Javascript Dependencies
         run: npm ci
+      - name: Run Setup Script
+        run: sh ./setup.sh
       - name: Run Node Compile
         run: npm run compile
         env:

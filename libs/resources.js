@@ -93,6 +93,10 @@ export class Config {
     static listDirNames(path) {
         return this.listDir(path).map(file => file.replace(/\.[^/.]+$/, ""));
     }
+
+    static loadJSON(path) {
+        return JSON.parse(fs.readFileSync(`config/${path}.json`));
+    }
 }
 
 /**
@@ -105,14 +109,14 @@ export class Config {
  */
 export class Generated {
     static storeJSON(path,object) {
-        const fullPath = `resources/${path}.json`;
+        const fullPath = `generated/${path}.json`;
         buildDirs(fullPath);
         fs.writeFileSync(fullPath,JSON.stringify(object));
         return path;
     }
 
     static load(path) {
-        return require(`../resources/${path}`);
+        return require(`../generated/${path}`);
     }
 }
 
