@@ -2,46 +2,52 @@ import Head from "next/head";
 import { Github } from "../../libs/api";
 import { Config, Generated } from "../../libs/resources";
 
-export default function Page({ id, resourcePath }) {
-    if(resourcePath == null) {
-        return (<></>);
-    }
-
-    const project = Generated.load(resourcePath);
+export default function Page({ id }) {
+  if (id == null) {
+    return <></>;
+  } else {
+    const project = Generated.load(`projects/${id}`);
 
     return (
-        <>
+      <>
         <Head>
-            <title>{project.name}</title>
+          <title>{project.name}</title>
         </Head>
-        <body>
-
-        </body>
-        </>
+        <body></body>
+      </>
     );
+  }
 }
 
 export async function getStaticPaths() {
-  return {
-    paths: Config.listDirNames("projects").map((id) => ({
+  const buildSlug = async (id) => {
+    const project = Config.loadJSON(`projects/${id}`);
+
+    project.github.api = await Github.getRepo(project.github.repo);
+    project.github.languages = await Github.get(
+      project.github.api.languages_url
+    );
+
+    Generated.storeJSON(`projects/${id}`, project);
+
+    return {
       params: {
         id: id,
       },
-    })),
+    };
+  };
+  return {
+    paths: await Promise.all(
+      Config.listDirNames("projects").map((id) => buildSlug(id))
+    ),
     fallback: true,
   };
 }
 
 export async function getStaticProps({ params }) {
-  const project = Config.loadJSON(`projects/${params.id}`);
-
-  project.github.api = await Github.getRepo(project.github.repo);
-  project.github.languages = await Github.get(project.github.api.languages_url);
-
   return {
     props: {
       id: params.id,
-      resourcePath: Generated.storeJSON(`projects/${params.id}`, project),
     },
   };
 }
