@@ -20,25 +20,24 @@ export default function Page({ id }) {
 }
 
 export async function getStaticPaths() {
-  const buildSlug = async (id) => {
-    const project = Config.loadJSON(`projects/${id}`);
-
-    project.github.api = await Github.getRepo(project.github.repo);
-    project.github.languages = await Github.get(
-      project.github.api.languages_url
-    );
-
-    Generated.storeJSON(`projects/${id}`, project);
-
-    return {
-      params: {
-        id: id,
-      },
-    };
-  };
   return {
     paths: await Promise.all(
-      Config.listDirNames("projects").map((id) => buildSlug(id))
+      Config.listDirNames("projects").map(async (id) => {
+        const project = Config.loadJSON(`projects/${id}`);
+
+        project.github.api = await Github.getRepo(project.github.repo);
+        project.github.languages = await Github.get(
+          project.github.api.languages_url
+        );
+
+        Generated.storeJSON(`projects/${id}`, project);
+
+        return {
+          params: {
+            id: id,
+          },
+        };
+      })
     ),
     fallback: true,
   };
