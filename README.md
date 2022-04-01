@@ -24,5 +24,5 @@ The goal of the revamp: Move away from using python AND Javascript and just usin
 | :---: | :--- |
 | python | contains the python scripts |
 | config | contains configuration files used in python to compile into a `generated` directory |
-| *generated* | contains files created by the python script |
+| *generated* | contains files generated during build time|
 | *cache* | contains cache files used by any script to store files usable in future builds |
