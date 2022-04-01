@@ -2,11 +2,11 @@ import Head from "next/head";
 import { Github } from "../../libs/api";
 import { Config, Generated } from "../../libs/resources";
 
-export default function Page({ id, resource }) {
-  if (resource == null) {
+export default function Page({ id }) {
+  if (id == null) {
     return <></>;
   } else {
-    const project = Generated.load(resource);
+    const project = Generated.load(`projects/${Generated.sanitize(id)}`);
 
     return (
       <>
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
           project.github.api.languages_url
         );
 
-        Generated.storeJSON(`projects/${id}`, project)
+        Generated.storeJSON(`projects/${Generated.sanitize(id)}`, project)
 
         return {
           params: {

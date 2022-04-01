@@ -118,6 +118,10 @@ export class Generated {
     static load(path) {
         return require(`../generated/${path}`);
     }
+
+    static sanitize(id) {
+        return id.replace('.','');
+    }
 }
 
 /**
