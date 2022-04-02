@@ -13,8 +13,6 @@ jobs:
     name: "Build Website"
     runs-on: ubuntu-latest
     steps:
-#       - name: Debug
-#         run: echo "${{toJSON(github)}}"
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
@@ -25,7 +23,7 @@ jobs:
           path: |
             ./.next/cache
             ./cache
-          key: ${{runner.os}}${{github.event.pull_request.head.label}}
+          key: ${{ github.repository }} ${{ github.head_ref }}
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
