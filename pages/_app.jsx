@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps }) => {
             background: "pink"
             
         }}>
-            {"Hey, just wanted to give a heads up that this website is currently under development. I've decided that since I'm once again building from the ground up, I'll be scrapping the previous iteration and building from there. Sorry if there was any information you wanted to see, but for now I would like to give a more thorough work on the project with multiple branches like I did at first. I'm sure this message will disappear after a while, and the website will be updated, but I will see you until then!"}
+            {"Hello viewer! Yes, this website is currently in development. Yes, I have decided to develop on production. Why? Because I can, and because it's easier for me. Feel free to check on back to see the progress of my website, and hopefully eventually the final result! I think at that point, I'll work on NOT testing on production... :)"}
         </div>
         </center>
         <Component {...pageProps} />
