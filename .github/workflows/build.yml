@@ -48,6 +48,8 @@ jobs:
           API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Run Node Compile
         run: npm run compile
+        env:
+          API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Publish to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: peaceiris/actions-gh-pages@v3
