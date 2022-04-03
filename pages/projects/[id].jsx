@@ -20,28 +20,37 @@ export default function Page({id, data}) {
     )
 }
 
+function getData(id) {
+    return ['pages','projects',`${id}.json`];
+}
 
 export async function getStaticPaths() {
     return {
-        paths: Object.keys(getGenerated('index.json').pages.projects).map((key) => ({
-            params: {
-                id: key
-            }
+        paths: await Promise.all(Object.keys(getGenerated('index.json').pages.projects).map(async (id) => {
+            console.log("Getting Data for  " + id);
+            const project = getGenerated(getGenerated('index.json').pages.projects[id]);
+        
+            project.github.api = await Github.getURL(`https://api.github.com/repos/${project.github.repo}`);
+            project.github.languages = await Github.getURL(project.github.api.languages_url);
+            Build.storeJSON(project,...getData(id));
+
+            return ({
+                params: {
+                    id
+                }
+            });
         })),
         fallback: false
     }
 }
 
 export async function getStaticProps({ params }) {
-    const project = getGenerated(getGenerated('index.json').pages.projects[params.id]);
-
-    project.github.api = await Github.getURL(`https://api.github.com/repos/${project.github.repo}`);
-        
+    
 
     return {
         props: {
             id: params.id,
-            data: Build.storeJSON(project,'pages','projects',`${params.id}.json`)
+            data: getData(params.id).join('/')
         }
     }
 }
