@@ -3,6 +3,7 @@ import os
 import shutil
 import genutil as gen
 import configutil as conf
+from cacheutil import Cache
 
 
 index = {
@@ -19,3 +20,6 @@ for dir,dirs,files in os.walk(os.path.join(conf.PATH,'projects')):
             index['pages']['projects'][slug] = gen.ref(json.dumps(json.load(f)),'pages','projects',f'{slug}.json')
 
 gen.ref(json.dumps(index),'index.json')
+
+cache = Cache('test')
+cache.store('index',index)
