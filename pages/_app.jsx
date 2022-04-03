@@ -1,8 +1,9 @@
-
 import style from '../styles/style.css'
+import Header from '../components/header'
 
 const MyApp = ({ Component, pageProps }) => {
     return (<>
+        <Header />
         <center>
         <div style={{
             borderRadius: "100px",
