@@ -23,7 +23,7 @@ jobs:
           path: |
             ./.next/cache
             ./cache
-          key: ${{ github.repository }} ${{ github.head_ref }}
+          key: ${{ github.repository }}${{ github.head_ref }}
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
