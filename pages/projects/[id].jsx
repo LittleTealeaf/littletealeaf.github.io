@@ -1,9 +1,12 @@
 import { Build, getGenerated } from "../../libs/resources"
 import Head from 'next/head'
+import { Github } from "../../libs/api";
 
 
 export default function Page({id, data}) {
+    const project = Build.get(data);
     
+
     return (
         <>
         <Head>
@@ -11,7 +14,7 @@ export default function Page({id, data}) {
             </title>
         </Head>
         <div>
-            {JSON.stringify(getGenerated(data))}
+            {project.name}
         </div>
         </>
     )
@@ -31,6 +34,9 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const project = getGenerated(getGenerated('index.json').pages.projects[params.id]);
+
+    project.github.api = await Github.getURL(`https://api.github.com/repos/${project.github.repo}`);
+        
 
     return {
         props: {

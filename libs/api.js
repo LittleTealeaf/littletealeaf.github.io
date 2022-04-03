@@ -4,7 +4,7 @@ import CacheManager from "./caches";
 const fs = require('fs');
 
 export class Github {
-    static octocat = Octokit({
+    static octokit = new Octokit({
         auth: fs.existsSync('../github_token') ? fs.readFileSync('../github_token').toString() : process.env.API_GITHUB
     });
     static cache = new CacheManager('api','github');
