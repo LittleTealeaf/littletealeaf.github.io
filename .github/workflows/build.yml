@@ -28,18 +28,18 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./.next/cache
-          key: ${{github.repository}}/${{gitub.ref}-nextjs-${{github.sha}}
+          key: ${{github.repository}}/${{github.ref}-nextjs-${{github.sha}}
           restore-keys: |
-            ${{github.repository}}/${{gitub.ref}-nextjs-
+            ${{github.repository}}/${{github.ref}-nextjs-
             ${{github.repository}}/ref/heads/main-nextjs
       - name: Cache Build
         uses: actions/cache@v3
         with:
           path: |
             ./cache
-          key: ${{github.repository}}/${{gitub.ref}-cache-${{github.sha}}
+          key: ${{github.repository}}/${{github.ref}-cache-${{github.sha}}
           restore-keys: |
-            ${{github.repository}}/${{gitub.ref}-cache-
+            ${{github.repository}}/${{github.ref}-cache-
             ${{github.repository}}/ref/heads/main-cache-
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
