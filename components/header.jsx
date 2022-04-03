@@ -10,7 +10,7 @@ export default function Header({}) {
           <meta key={index} name={item.name} content={item.content} />
         ))}
       </Head>
-      <img src={require('../assets/placeholders/527-1000x150.jpg')} style={{
+      <img src={require('../assets/images/header.jpg')} alt="header image" style={{
         width: '100%'
       }}/>
       <div
