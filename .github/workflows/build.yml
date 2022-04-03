@@ -29,7 +29,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./.next/cache
-          key: ${{github.repository}}/${{github.head_ref}}-nextjs-${{ hashFiles(*)}}
+          key: ${{github.repository}}/${{github.head_ref}}-nextjs-${{ hashFiles(**)}}
           restore-keys: |
             ${{github.repository}}/${{github.head_ref}}-nextjs-
             ${{github.repository}}/-nextjs-
@@ -38,7 +38,7 @@ jobs:
         with:
           path: |
             ./cache
-          key: ${{github.repository}}/${{github.head_ref}}-cache-${{ hashFiles(*)}}
+          key: ${{github.repository}}/${{github.head_ref}}-cache-${{ hashFiles(**)}}
           restore-keys: |
             ${{github.repository}}/${{github.head_ref}}-cache-
             ${{github.repository}}/-cache-
