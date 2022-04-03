@@ -1,0 +1,15 @@
+[
+    {
+        "name": "Home",
+        "href": "/"
+    },{
+        "name": "About Me",
+        "href": "/about"
+    },{
+        "name": "Resume",
+        "href": "/"
+    },{
+        "name": "Github",
+        "href": "/"
+    }
+]
