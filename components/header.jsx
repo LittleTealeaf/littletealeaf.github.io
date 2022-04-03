@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-const HEADER_HEIGHT = 75;
+const HEADER_HEIGHT = 40;
 
 export default function Header({}) {
   return (
@@ -10,16 +10,16 @@ export default function Header({}) {
           <meta key={index} name={item.name} content={item.content} />
         ))}
       </Head>
-      <div>Non Sticky Stuff</div>
+      <img src={require('../assets/placeholders/527-1000x150.jpg')} style={{
+        width: '100%'
+      }}/>
       <div
         className="sticky top-0"
         style={{
           height: HEADER_HEIGHT,
-          width: '100%'
+          width: "100%",
         }}
-      >
-        STICKY
-      </div>
+      ></div>
       <div
         style={{
           height: HEADER_HEIGHT,
