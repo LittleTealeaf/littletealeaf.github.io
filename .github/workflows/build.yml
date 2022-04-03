@@ -21,7 +21,7 @@ jobs:
       - name: Debug Test
         run: |
           echo "${GITHUB_REF}"
-          echo "${{github.event.pull_request}}"
+          echo "${{toJSON(github)}}"
       - name: Cache npm
         uses: actions/cache@v3
         with:
