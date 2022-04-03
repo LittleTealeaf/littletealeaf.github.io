@@ -1,6 +1,6 @@
 import Cache from '../libs/caches'
 
-export default function Home() {
+export default function Content() {
   return (
     
     <div>
