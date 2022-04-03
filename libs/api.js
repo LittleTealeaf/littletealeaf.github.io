@@ -5,7 +5,7 @@ const fs = require('fs');
 
 export class Github {
     static octokit = new Octokit({
-        auth: fs.existsSync('../github_token') ? fs.readFileSync('../github_token').toString() : process.env.API_GITHUB
+        auth: fs.existsSync('github_token') ? fs.readFileSync('github_token').toString() : process.env.API_GITHUB
     });
     static cache = new CacheManager('api','github');
     static async getURL(url) {
