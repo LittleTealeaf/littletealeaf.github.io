@@ -1,0 +1,25 @@
+name: Clean Cache
+
+on:
+  schedule:
+  - cron: '0 0 1 * *'
+
+jobs:
+  clean-cache:
+    name: "Clean Caches"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - name: Checkout Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ./.next/cache
+            ./cache
+          key: ${{ github.repository }} ${{ github.head_ref }}
+      - name: Clear Cache
+        run: |
+          rm -r ./cache
+          rm -r ./.next/cache
+          mkdir ./cache
