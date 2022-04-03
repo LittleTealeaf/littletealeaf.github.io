@@ -25,11 +25,16 @@ jobs:
           key: ${{github.repository}}-node-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
             ${{github.repository}}-node-
+      - name: Cache Pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{github.repository}}-pip-${{hashFiles('**/requirements.txt')}}
       - name: Cache Next.js
         uses: actions/cache@v3
         with:
           path: ./.next/cache
-          key: ${{github.repository}}/${{github.head_ref}}-nextjs-${{ hashFiles('.next/**/*')}}
+          key: ${{github.repository}}/${{github.head_ref}}-nextjs-${{ hashFiles('.git/**')}}
           restore-keys: |
             ${{github.repository}}/${{github.head_ref}}-nextjs-
             ${{github.repository}}/-nextjs-
@@ -38,7 +43,7 @@ jobs:
         with:
           path: |
             ./cache
-          key: ${{github.repository}}/${{github.head_ref}}-cache-${{ hashFiles('cache/**/*')}}
+          key: ${{github.repository}}/${{github.head_ref}}-cache-${{ hashFiles('.git/**')}}
           restore-keys: |
             ${{github.repository}}/${{github.head_ref}}-cache-
             ${{github.repository}}/-cache-
