@@ -4,7 +4,11 @@ export default function Header({}) {
   return (
     <>
       <Head>
-        <meta name="author" content="Thomas Kwashnak" />
+        {
+          require('../assets/metas.json').map((item,index) => (
+            <meta key={index} name={item.name} content={item.content} />
+          ))
+        }
       </Head>
       <div>Headers are cool</div>
     </>
