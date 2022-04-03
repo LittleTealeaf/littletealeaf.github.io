@@ -23,6 +23,11 @@ export default function Page({id, data}) {
 function getData(id) {
     return ['pages','projects',`${id}.json`].join('/');
 }
+/*
+What's going on?
+
+Apparently, it only reads files that were loaded beforehand, so I can't just generate a file and then read from it within the same script for some odd reason, so now I gotta figure out how to work this out with pre-generating data and getting them to the other stuff.
+*/
 
 export async function getStaticPaths() {
     console.log("");
