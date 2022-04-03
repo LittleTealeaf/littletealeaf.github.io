@@ -1,9 +1,10 @@
 import style from '../styles/style.css'
 import Header from '../components/header'
+import {useRouter} from 'next/router'
 
 const MyApp = ({ Component, pageProps }) => {
     return (<>
-        <Header />
+        <Header/>
         <center>
         <div style={{
             borderRadius: "100px",
