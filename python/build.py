@@ -4,6 +4,7 @@ import shutil
 import genutil as gen
 import configutil as conf
 from cacheutil import Cache
+import buildutil
 
 
 index = {

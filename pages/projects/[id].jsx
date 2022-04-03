@@ -1,18 +1,17 @@
-import { getGenerated } from "../../libs/resources"
+import { Build, getGenerated } from "../../libs/resources"
 import Head from 'next/head'
 
 
-export default function Page({id, generatedRef}) {
-    const project = getGenerated(generatedRef);
+export default function Page({id, data}) {
+    
     return (
         <>
         <Head>
             <title>
-                {project.name}
             </title>
         </Head>
         <div>
-            {project.name}
+            {JSON.stringify(getGenerated(data))}
         </div>
         </>
     )
@@ -32,12 +31,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const genRef = getGenerated('index.json').pages.projects[params.id];
+    const project = getGenerated(getGenerated('index.json').pages.projects[params.id]);
 
     return {
         props: {
             id: params.id,
-            genRef
+            data: Build.storeJSON(project,'pages','projects',`${params.id}.json`)
         }
     }
 }
