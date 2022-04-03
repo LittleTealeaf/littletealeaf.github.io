@@ -32,33 +32,33 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.npm
-          key: ${{github.repository}}-node-${{ hashFiles('**/package-lock.json')}}
+          key: ${{runner.os}}-${{github.repository}}-node-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
-            ${{github.repository}}-node-
+            ${{runner.os}}-${{github.repository}}-node-
       - name: Cache Pip
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{github.repository}}-pip-${{hashFiles('**/requirements.txt')}}
+          key: ${{runner.os}}-${{github.repository}}-pip-${{hashFiles('**/requirements.txt')}}
           restore-keys: |
-            ${{github.repository}}-pip-
+            ${{runner.os}}-${{github.repository}}-pip-
       - name: Cache Next.js
         uses: actions/cache@v3
         with:
           path: ./.next/cache
-          key: ${{github.repository}}/${{github.head_ref}}-nextjs-${{ hashFiles('.git/**')}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{ hashFiles('.git/**')}}
           restore-keys: |
-            ${{github.repository}}/${{github.head_ref}}-nextjs-
-            ${{github.repository}}/-nextjs-
+            ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-
+            ${{runner.os}}-${{github.repository}}/-nextjs-
       - name: Cache Build
         uses: actions/cache@v3
         with:
           path: |
             ./cache
-          key: ${{github.repository}}/${{github.head_ref}}-cache-${{ hashFiles('.git/**')}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-${{ hashFiles('.git/**')}}
           restore-keys: |
-            ${{github.repository}}/${{github.head_ref}}-cache-
-            ${{github.repository}}/-cache-
+            ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-
+            ${{runner.os}}-${{github.repository}}/-cache-
       # - name: Update Pip
       #   run: python -m pip install --upgrade pip
       - name: Install Python Dependencies
