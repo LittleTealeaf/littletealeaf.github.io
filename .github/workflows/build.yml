@@ -23,7 +23,7 @@ jobs:
           path: ~/.npm
           key: ${{github.repository}}-node-${{ hashFiles('**/package-lock.json')}}
           restore-keys: |
-            ${{runner.os}}-node-
+            ${{github.repository}}-node-
       - name: Use Next.js Cache
         uses: actions/cache@v3
         with:
@@ -36,10 +36,9 @@ jobs:
         with:
           path: |
             ./cache
-          key: ${{github.repository}}-cache-(${{github.head_ref}})-${{github.sha}}
+          key: ${{github.repository}}-cache-${{github.sha}}
           restore-keys: |
-            ${{github.repository}}-cache-(${{github.head_ref}})-
-            ${{github.repository}}-cache-()-
+            ${{github.repository}}-cache-
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
