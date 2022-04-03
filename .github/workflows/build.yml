@@ -30,6 +30,8 @@ jobs:
         with:
           path: ~/.cache/pip
           key: ${{github.repository}}-pip-${{hashFiles('**/requirements.txt')}}
+          restore-keys: |
+            ${{github.repository}}-pip-
       - name: Cache Next.js
         uses: actions/cache@v3
         with:
