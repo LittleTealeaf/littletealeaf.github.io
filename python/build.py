@@ -21,5 +21,5 @@ for dir,dirs,files in os.walk(os.path.join(conf.PATH,'projects')):
 
 gen.ref(json.dumps(index),'index.json')
 
-cache = Cache('test')
+cache = Cache('pythontest')
 cache.store('index',index)

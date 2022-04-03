@@ -6,6 +6,10 @@ const withPlugins = require('next-compose-plugins');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config.resolve.fallback = {
+      fs: false,
+      path: false
+    }
     config.module.rules.push({
       test: /\.html$/i,
       use: [{
