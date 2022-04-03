@@ -31,7 +31,7 @@ jobs:
           key: ${{github.repository}}/${{github.ref}}-nextjs-${{github.sha}}
           restore-keys: |
             ${{github.repository}}/${{github.ref}}-nextjs-
-            ${{github.repository}}/ref/heads/main-nextjs
+            ${{github.repository}}/ref/heads/main-nextjs-
       - name: Cache Build
         uses: actions/cache@v3
         with:
