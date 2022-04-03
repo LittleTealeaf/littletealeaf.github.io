@@ -19,7 +19,7 @@ jobs:
         with:
           ref: ${{github.event.pull_request.head.sha}}
       - name: Debug Test
-        run: echo "${{ GITHUB_REF }}"
+        run: echo "${GITHUB_REF}"
       - name: Cache npm
         uses: actions/cache@v3
         with:
