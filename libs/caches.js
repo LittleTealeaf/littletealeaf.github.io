@@ -1,7 +1,7 @@
 const fs = require('fs');
 const paths = require('path');
 
-export default class Cache {
+export default class CacheManager {
     constructor(...category) {
         this.path = ['.','cache',category.join('/')].join('/') + '.json';
     }
