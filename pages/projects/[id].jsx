@@ -20,9 +20,8 @@ export default function Page({id, generatedRef}) {
 
 
 export async function getStaticPaths() {
-    const projects = getGenerated('index.json').pages.projects;
     return {
-        paths: Object.keys(projects).map((key) => ({
+        paths: Object.keys(getGenerated('index.json').pages.projects).map((key) => ({
             params: {
                 id: key
             }
