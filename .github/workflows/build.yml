@@ -39,7 +39,7 @@ jobs:
           key: ${{github.repository}}-cache-(${{github.head_ref}})-${{github.sha}}
           restore-keys: |
             ${{github.repository}}-cache-(${{github.head_ref}})-
-            ${{github.repository}}-cache-(${{github.base_ref}})-
+            ${{github.repository}}-cache-()-
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
