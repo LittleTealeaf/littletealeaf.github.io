@@ -1,3 +1,4 @@
+
 import style from '../styles/style.css'
 
 const MyApp = ({ Component, pageProps }) => {
