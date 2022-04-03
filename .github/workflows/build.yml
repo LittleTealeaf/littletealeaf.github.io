@@ -60,8 +60,6 @@ jobs:
           restore-keys: |
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-
             ${{runner.os}}-${{github.repository}}/-cache-
-      # - name: Update Pip
-      #   run: python -m pip install --upgrade pip
       - name: Install Python Dependencies
         run: python -m pip install -r python/requirements.txt
       - name: Install Javascript Dependencies
