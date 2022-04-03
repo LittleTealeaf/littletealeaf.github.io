@@ -15,8 +15,11 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+        id: checkout
         with:
           ref: ${{github.event.pull_request.head.sha}}
+      - name: Debug Test
+        run: echo "${{ GITHUB_REF }}"
       - name: Cache npm
         uses: actions/cache@v3
         with:
