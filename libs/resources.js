@@ -1,5 +1,5 @@
 
 
 export function getGenerated(...path) {
-    require(`../generated/${path.join('/')}`);
+    return require(`../generated/${path.join('/')}`);
 }
