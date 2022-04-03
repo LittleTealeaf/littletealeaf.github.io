@@ -34,7 +34,7 @@ export default function Header() {
               padding: "14px 16px",
             }}
           >
-            <Link href={item.href}>
+            <Link href={item.href} passHref>
               <p className="cursor-pointer">{item.name}</p>
             </Link>
           </li>
