@@ -48,7 +48,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./.next/cache
-          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}-${{github.run_number}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}-${{github.run_attempt}}
           restore-keys: |
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}-
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-
@@ -58,7 +58,7 @@ jobs:
         with:
           path: |
             ./cache
-          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-${{github.run_id}}-${{github.run_number}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-${{github.run_id}}-${{github.run_attempt}}
           restore-keys: |
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-${{github.run_id}}-
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-
