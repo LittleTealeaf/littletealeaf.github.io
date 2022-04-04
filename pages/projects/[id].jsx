@@ -3,8 +3,7 @@ import Head from 'next/head'
 import { Github } from "../../libs/api";
 
 
-export default function Page({id, data}) {
-    // const project = Build.get(data);
+export default function Page({id}) {
     
 
     return (
@@ -20,9 +19,6 @@ export default function Page({id, data}) {
     )
 }
 
-function getData(id) {
-    return ['pages','projects',`${id}.json`].join('/');
-}
 /*
 What's going on?
 
@@ -34,32 +30,36 @@ https://stackoverflow.com/questions/60899880/next-js-reduce-data-fetching-and-sh
 export async function getStaticPaths() {
     console.log("");
     return {
-        paths: await Promise.all(Object.keys(getGenerated('index.json').pages.projects).map(async (id) => {
-            const project = getGenerated(getGenerated('index.json').pages.projects[id]);
-        
-            project.github.api = await Github.getURL(`https://api.github.com/repos/${project.github.repo}`);
-            project.github.languages = await Github.getURL(project.github.api.languages_url);
-
-            console.log("Stored data in: " + Build.storeJSON(project,getData(id)));
-
-            return ({
-                params: {
-                    id
-                }
-            });
+        paths: Object.keys(getGenerated('index.json').pages.projects).map(id => ({
+            params: {
+                id
+            }
         })),
         fallback: false
     }
 }
 
 export async function getStaticProps({ params }) {
-    
 
-    console.log("Fetching Static Props for " + params.id);
+    const generated = getGenerated(getGenerated('index.json').pages.projects[params.id]);
+    const api = await Github.getURL(`https://api.github.com/repos/${generated.github.repo}`);
+
+    const promises = {
+        languages: Github.getURL(api.languages_url),
+    }
+
+
+    const project = {
+        name: generated.name,
+        languages: await promises.languages,
+        repository: api.html_url,
+        website: api.homepage
+    }
+    
     return {
         props: {
-            id: params.id,
-            data: getData(params.id)
+            id: params,
+            project
         }
     }
 }

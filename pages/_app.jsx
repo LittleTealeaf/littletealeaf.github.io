@@ -2,6 +2,8 @@ import style from '../styles/style.css'
 import Header from '../components/header'
 import {useRouter} from 'next/router'
 
+//Some thoughts: https://www.johanbleuzen.fr/blog/next-remove-clientside-javascript
+
 //todo: create a stylesheet (maybe use sass or scss)
 //https://www.w3schools.com/css/tryit.asp?filename=trycss_navbar_horizontal_responsive
 
