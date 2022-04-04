@@ -224,8 +224,6 @@ export default function Content() {
 }
 
 export async function getStaticProps(context) {
-  const cache = new Cache('javascript-test');
-  cache.store('test',await Github.paginate('https://api.github.com/users/LittleTealeaf/repos',100));
   return {
     props: {}, // will be passed to the page component as props
   }

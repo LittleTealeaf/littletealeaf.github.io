@@ -47,6 +47,7 @@ export async function getStaticProps({ params }) {
 
     const promises = {
         languages: Github.getURL(api.languages_url),
+        contributors: Github.paginate(api.contributors_url)
     }
 
 
