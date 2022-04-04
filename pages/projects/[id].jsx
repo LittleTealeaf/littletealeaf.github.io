@@ -1,4 +1,4 @@
-import { Build, getGenerated } from "../../libs/resources"
+import { getGenerated } from "../../libs/resources"
 import Head from 'next/head'
 import { Github } from "../../libs/api";
 
