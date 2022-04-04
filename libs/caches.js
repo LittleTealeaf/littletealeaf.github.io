@@ -31,7 +31,7 @@ export default class CacheManager {
     get(key) {
         const cache = this.load();
         if(cache[key] != null) {
-            if(cache[key].expires < Date.now()) {
+            if(cache[key].expires > Date.now()) {
                 return cache[key].value;
             }
         }
