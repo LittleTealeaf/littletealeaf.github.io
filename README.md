@@ -16,7 +16,7 @@ The goal of the revamp: Move away from using python AND Javascript and just usin
 
 - Use Python to setup / organize the page structure (creating a specific directory that contains a 'dynamic' based repository)
 - Then, use javascript to build the pages, including fetching the API and such
-- For the api in javascript, add in those extra ways we are able to use to get API endpoints -->
+- For the api in javascript, add in those extra ways we are able to use to get API endpoints-->
 
 ## Project Layout
 
