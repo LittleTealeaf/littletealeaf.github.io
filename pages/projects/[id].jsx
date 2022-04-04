@@ -3,13 +3,14 @@ import Head from 'next/head'
 import { Github } from "../../libs/api";
 
 
-export default function Page({id}) {
+export default function Page({id,project}) {
     
 
     return (
         <>
         <Head>
             <title>
+                {project.name}
             </title>
         </Head>
         <div>
