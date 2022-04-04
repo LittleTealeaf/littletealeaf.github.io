@@ -4,7 +4,7 @@ import { Github } from "../../libs/api";
 
 
 export default function Page({id, data}) {
-    const project = Build.get(data);
+    // const project = Build.get(data);
     
 
     return (
@@ -14,7 +14,7 @@ export default function Page({id, data}) {
             </title>
         </Head>
         <div>
-            {project.name}
+            
         </div>
         </>
     )
