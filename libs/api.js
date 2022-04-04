@@ -15,57 +15,85 @@ export class Github {
         auth: fs.existsSync('github_token') ? fs.readFileSync('github_token').toString() : process.env.API_GITHUB
     });
     static cache = new CacheManager('api','github');
-    static async getURL(url) {
-        const stored = this.cache.get(url);
+
+    static async getURL(url, headers={}) {
+        const key = `${url} headers:${JSON.stringify(headers)}`
+
+        const stored = this.cache.get(key);
         if(stored != null) {
-            console.log(`CHE: ${url}`);
+            console.log(`CHE: ${key}`);
             return stored;
         }
 
-        console.log(`API: ${url}`);
+        console.log(`API: ${key}`);
         const request = await this.octokit.request('GET', {
-            url: url
+            url: url,
+            headers
         });
 
         const data = request.data;
 
-        this.cache.store(url,data);
+        this.cache.store(key,data);
         return data;
 
     }
 
-    static async paginateEndpoint(name,endpoint,properties, count) {
-        const key = `${name} count:${count} properties: ${JSON.stringify(properties)}`
-        const stored = this.cache.get(key);
-        if(stored != null) {
-            console.log(`CHE: ${key}`);
-            // return stored;
-        }
-
-        const iterator = this.octokit.paginate.iterator(endpoint,properties);
-        const items = []
-        for await (const {data: issues} of iterator) {
-            for(const issue of issues) {
-                items.push(issue);
-                if(items.length >= count) {
-                    break;
+    static async paginate(url,count) {
+        const items = [];
+        var page = 1;
+        const per_page = 100;
+        while(items.length < count) {
+            const data = await this.getURL(url,{
+                per_page,
+                page
+            });
+            for(var i = 0; i < data.length; i++) {
+                if(items.length < count) {
+                    items.push(data[i]);
+                } else {
+                    return items;
                 }
             }
-            if(items.length >= count) {
-                break;
+            if(data.length < per_page) {
+                return items;
             }
+            page = page + 1;
         }
-
-        this.cache.store(key,items);
-        return items
+        return items;
     }
 
-    static async test() {
-        return await this.paginateEndpoint("data",this.octokit.rest.issues.listForRepo, {
-            owner: "LittleTealeaf",
-            repo: "littletealeaf.github.io",
-            per_page: 100
-        },100);
-    }
+    // static async paginateEndpoint(name,endpoint,properties, count) {
+    //     const key = `${name} count:${count} properties: ${JSON.stringify(properties)}`
+    //     const stored = this.cache.get(key);
+    //     if(stored != null) {
+    //         console.log(`CHE: ${key}`);
+    //         // return stored;
+    //     }
+
+    //     const iterator = this.octokit.paginate.iterator(endpoint,properties);
+    //     const items = []
+    //     for await (const {data: issues} of iterator) {
+    //         for(const issue of issues) {
+    //             items.push(issue);
+    //             if(items.length >= count) {
+    //                 break;
+    //             }
+    //         }
+    //         if(items.length >= count) {
+    //             break;
+    //         }
+    //     }
+
+    //     this.cache.store(key,items);
+    //     return items
+    // }
+
+    // static async test() {
+    //     return await this.paginateEndpoint("data",this.octokit.rest.issues.listForRepo, {
+    //         owner: "LittleTealeaf",
+    //         repo: "littletealeaf.github.io",
+    //         per_page: 100
+    //     },100);
+    // }
     
 }
