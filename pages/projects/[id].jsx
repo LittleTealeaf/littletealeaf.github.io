@@ -50,7 +50,7 @@ export async function getStaticProps({ params }) {
     project.github.api = await Github.getURL(`https://api.github.com/repos/${project.github.repo}`)
 
     const promises = {
-        languages: Github.getURL(project.github.api.langauges_url)
+        languages: Github.getURL(project.github.api.languages_url)
     }
 
     project.github.languages = await promises.languages;
