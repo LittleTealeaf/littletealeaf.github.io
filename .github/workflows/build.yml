@@ -63,12 +63,16 @@ jobs:
         run: python -m pip install -r python/requirements.txt
       - name: Install Javascript Dependencies
         run: npm install
-      - name: Run Python Build
-        run: python3 ./python/build.py
+      - name: Pre Run Python
+        run: python3 ./python/pre.py
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Run Node Compile
         run: npm run compile
+        env:
+          API_GITHUB: ${{ secrets.API_GITHUB }}
+      - name: Post Run Python
+        run: python3 ./python/post.py
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Publish to Github Pages
