@@ -20,9 +20,6 @@ export default function Page({id, data}) {
     )
 }
 
-function getData(id) {
-    return ['pages','projects',`${id}.json`].join('/');
-}
 /*
 What's going on?
 
