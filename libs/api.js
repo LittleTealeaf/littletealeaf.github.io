@@ -60,40 +60,5 @@ export class Github {
             page = page + 1;
         }
         return items;
-    }
-
-    // static async paginateEndpoint(name,endpoint,properties, count) {
-    //     const key = `${name} count:${count} properties: ${JSON.stringify(properties)}`
-    //     const stored = this.cache.get(key);
-    //     if(stored != null) {
-    //         console.log(`CHE: ${key}`);
-    //         // return stored;
-    //     }
-
-    //     const iterator = this.octokit.paginate.iterator(endpoint,properties);
-    //     const items = []
-    //     for await (const {data: issues} of iterator) {
-    //         for(const issue of issues) {
-    //             items.push(issue);
-    //             if(items.length >= count) {
-    //                 break;
-    //             }
-    //         }
-    //         if(items.length >= count) {
-    //             break;
-    //         }
-    //     }
-
-    //     this.cache.store(key,items);
-    //     return items
-    // }
-
-    // static async test() {
-    //     return await this.paginateEndpoint("data",this.octokit.rest.issues.listForRepo, {
-    //         owner: "LittleTealeaf",
-    //         repo: "littletealeaf.github.io",
-    //         per_page: 100
-    //     },100);
-    // }
-    
+    }    
 }
