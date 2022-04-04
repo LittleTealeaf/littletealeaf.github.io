@@ -23,9 +23,6 @@ on:
 
 jobs:
   analyze:
-    concurrency:
-      group: codeql-${{github.ref}}
-      cancel-in-progress: true
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
