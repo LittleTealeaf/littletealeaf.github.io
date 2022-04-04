@@ -6,6 +6,8 @@ import CacheManager from "./caches";
 
 const MyOctokit = Octokit.plugin(restEndpointMethods).plugin(paginateRest);
 
+//TODO: perhaps give up on the pagination and instead do it the manual way that I know? either that, or we figure out octokit
+
 const fs = require('fs');
 
 export class Github {
