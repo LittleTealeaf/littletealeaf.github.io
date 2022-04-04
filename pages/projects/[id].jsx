@@ -3,8 +3,7 @@ import Head from 'next/head'
 import { Github } from "../../libs/api";
 
 
-export default function Page({id, data}) {
-    // const project = Build.get(data);
+export default function Page({id}) {
     
 
     return (
@@ -42,19 +41,24 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 
-    const project =  getGenerated(getGenerated('index.json').pages.projects[params.id]);
-
-    project.github.api = await Github.getURL(`https://api.github.com/repos/${project.github.repo}`)
+    const generated = getGenerated(getGenerated('index.json').pages.projects[params.id]);
+    const api = await Github.getURL(`https://api.github.com/repos/${generated.github.repo}`);
 
     const promises = {
-        languages: Github.getURL(project.github.api.languages_url)
+        languages: Github.getURL(api.languages_url),
     }
 
-    project.github.languages = await promises.languages;
+
+    const project = {
+        name: generated.name,
+        languages: await promises.languages,
+        repository: api.html_url,
+        website: api.homepage
+    }
     
     return {
         props: {
-            id: params.id,
+            id: params,
             project
         }
     }
