@@ -1,10 +1,15 @@
 import { Octokit } from "@octokit/core";
+import { restEndpointMethods } from "@octokit/plugin-rest-endpoint-methods";
+import { paginateRest } from "@octokit/plugin-paginate-rest";
+
 import CacheManager from "./caches";
+
+const MyOctokit = Octokit.plugin(restEndpointMethods).plugin(paginateRest);
 
 const fs = require('fs');
 
 export class Github {
-    static octokit = new Octokit({
+    static octokit = new MyOctokit({
         auth: fs.existsSync('github_token') ? fs.readFileSync('github_token').toString() : process.env.API_GITHUB
     });
     static cache = new CacheManager('api','github');
@@ -26,4 +31,39 @@ export class Github {
         return data;
 
     }
+
+    static async paginateEndpoint(name,endpoint,properties, count) {
+        const key = `${name} count:${count} properties: ${JSON.stringify(properties)}`
+        const stored = this.cache.get(key);
+        if(stored != null) {
+            console.log(`CHE: ${key}`);
+            // return stored;
+        }
+
+        const iterator = this.octokit.paginate.iterator(endpoint,properties);
+        const items = []
+        for await (const {data: issues} of iterator) {
+            for(const issue of issues) {
+                items.push(issue);
+                if(items.length >= count) {
+                    break;
+                }
+            }
+            if(items.length >= count) {
+                break;
+            }
+        }
+
+        this.cache.store(key,items);
+        return items
+    }
+
+    static async test() {
+        return await this.paginateEndpoint("data",this.octokit.rest.issues.listForRepo, {
+            owner: "LittleTealeaf",
+            repo: "littletealeaf.github.io",
+            per_page: 100
+        },100);
+    }
+    
 }
