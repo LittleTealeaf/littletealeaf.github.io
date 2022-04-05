@@ -39,7 +39,7 @@ def getAPIList(url: str,headers: dict={}, params: dict={}, count: int = -1):
     while count == -1 or len(data) < count:
         fetched: list = getAPI(url,headers,params)
         length = len(fetched)
-        while len(fetched) > 0 and len(data) < count:
+        while len(fetched) > 0 and ( len(data) < count or count == -1):
             data.append(fetched.pop(0))
         if length < params['per_page']:
             break

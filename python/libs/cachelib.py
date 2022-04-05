@@ -18,7 +18,7 @@ class Cache:
     def save(self, cache):
         os.makedirs(os.path.dirname(self.path), exist_ok=True)
         with open(self.path, 'w') as file:
-            file.write(json.dumps(cache))
+            file.write(json.dumps(cache,separators=(',', ':')))
 
     def get(self, key):
         cache = self.load()
