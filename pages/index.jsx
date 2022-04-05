@@ -1,5 +1,10 @@
-import { Github } from '../libs/api';
-import Cache from '../libs/caches'
+
+
+export async function getStaticProps(context) {
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+}
 
 export default function Content() {
   return (
@@ -221,10 +226,4 @@ export default function Content() {
       </p>
     </div>
   )
-}
-
-export async function getStaticProps(context) {
-  return {
-    props: {}, // will be passed to the page component as props
-  }
 }

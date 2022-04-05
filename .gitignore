@@ -42,3 +42,5 @@ generated/
 tmp/
 
 cache/
+
+__pycache__
