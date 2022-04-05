@@ -40,7 +40,6 @@ class Cache:
             'value': value
         }
         self.save(cache)
-        print(f'Updated Cache: {key}')
 
 
 def get_time():
