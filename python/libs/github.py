@@ -22,7 +22,7 @@ def getRequest(url: str, headers: dict={}, params: dict={}):
         return None
 
 def getAPI(url: str,headers: dict={},params: dict={}):
-    key = f'{url} {json.dumps(headers)} {json.dumps(params)}'
+    key = f'{url} {headers} {params}'
     cached = cache.get(key)
     if cached:
         return cached
