@@ -40,6 +40,12 @@ class Cache:
             'value': value
         }
         self.save(cache)
+    
+    def analytics(self):
+        cache = self.load()
+        return {
+            'count': len(cache)
+        }
 
 
 def get_time():

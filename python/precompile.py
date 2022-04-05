@@ -21,6 +21,11 @@ for project_path in conf.getFiles('projects'):
     projects[Path(project_path[-1]).stem] = Gen('pages','projects',project_path[-1]).ref_json(project)
 index['pages']['projects'] = Gen('pageindexes','projects').ref_json(projects)
 
-index['rate_limits'] = Gen('api','github','rate_limits').ref_json( Github.getAPI('https://api.github.com/rate_limit',expires=-1))
+index['analytics'] = Gen('analytics').ref_json({
+    'github': {
+        'api': Github.getAnalytics(),
+        'rate_limits': Github.getAPI('https://api.github.com/rate_limit',expires=-1)
+    }
+})
 
 Gen('index').ref_json(index)
