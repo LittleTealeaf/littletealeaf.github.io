@@ -12,4 +12,4 @@ def getJSON(*path):
     return data
 
 def getFiles(*path):
-    return os.listdir(getPath(*path))
+    return [list(path) + [i] for i in os.listdir(getPath(*path))]

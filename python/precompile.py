@@ -10,5 +10,7 @@ index = {}
 index['projects'] = conf.getFiles('projects')
 index['blogs'] = conf.getFiles('blogs')
 
+# index['projects'] = []
+
 
 gen.refjson(index,'index.json')
