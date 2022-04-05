@@ -10,7 +10,7 @@ gen_initialize()
 index = {}
 
 index['pages'] = {}
-index['pages']['projects'] = []
+projects = {}
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
 
@@ -18,11 +18,8 @@ for project_path in conf.getFiles('projects'):
     project['github']['languages'] = Github.getAPI(project['github']['api']['languages_url'])
     project['github']['contributors'] = Github.getAPIList(project['github']['api']['contributors_url'])
 
-    index['pages']['projects'].append({
-        'name': Path(project_path[-1]).stem,
-        'ref': Gen('pages','projects',project_path[-1]).ref_json(project)
-    })
-index['pages']['projects'] = Gen('pages','projects').ref_json(index['pages']['projects'])
+    projects[Path(project_path[-1]).stem] = Gen('pages','projects',project_path[-1]).ref_json(project)
+index['pages']['projects'] = Gen('pageindexes','projects').ref_json(projects)
 
 index['rate_limits'] = Gen('api','github','rate_limits').ref_json( Github.getAPI('https://api.github.com/rate_limit',expires=-1))
 

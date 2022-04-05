@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { getGenerated, index } from '../../libs/resources'
 
 
 
@@ -11,57 +12,37 @@ https://stackoverflow.com/questions/60899880/next-js-reduce-data-fetching-and-sh
 */
 
 export async function getStaticPaths() {
-    // Object.keys(getGenerated('index.json').pages.projects).map(id => ({
-    //     params: {
-    //         id
-    //     }
-    // }))
     return {
-        paths: [],
+        paths: Object.keys(getGenerated(index.pages.projects)).map((slug) => ({
+            params: {
+                id: slug
+            }
+        })),
         fallback: false
     }
 }
 
 export async function getStaticProps({ params }) {
-
-    // const generated = getGenerated(getGenerated('index.json').pages.projects[params.id]);
-    // const api = await Github.getURL(`https://api.github.com/repos/${generated.github.repo}`);
-
-    // const promises = {
-    //     languages: Github.getURL(api.languages_url),
-    //     contributors: Github.paginate(api.contributors_url)
-    // }
-
-
-    // const project = {
-    //     name: generated.name,
-    //     languages: await promises.languages,
-    //     repository: api.html_url,
-    //     website: api.homepage,
-    //     owner_avatar: api.owner.avatar_url
-    // }
-    
+    console.log()
     return {
         props: {
-            id: params
+            id: params.id
         }
     }
 }
 
 
-export default function Page({id,project}) {
-    
+export default function Page({id}) {
+    const project = getGenerated(getGenerated(index.pages.projects)[id]);
 
     return (
         <>
         <Head>
             <title>
-                {project.name}
+                
             </title>
         </Head>
-        <div>
-            <img src={project.owner_avatar} alt="owner avatar"/>
-            
+        <div>    
         </div>
         </>
     )
