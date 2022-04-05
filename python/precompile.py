@@ -16,6 +16,7 @@ for project_path in conf.getFiles('projects'):
 
     project['github']['api'] = Github.getAPI(f"https://api.github.com/repos/{project['github']['repo']}")
     project['github']['languages'] = Github.getAPI(project['github']['api']['languages_url'])
+    project['github']['contributors'] = Github.getAPIList(project['github']['api']['contributors_url'])
 
     index['projects'].append(gen.refjson(project,'pages','projects',project_path[-1]))
 
