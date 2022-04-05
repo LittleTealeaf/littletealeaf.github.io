@@ -4,6 +4,7 @@ const paths = require('path');
 export default class CacheManager {
     constructor(...category) {
         this.path = ['.','cache',category.join('/')].join('/') + '.json';
+        Object.keys(this.load()).forEach(key => this.get(key));
     }
     
     load() {
@@ -33,6 +34,9 @@ export default class CacheManager {
         if(cache[key] != null) {
             if(cache[key].expires > Date.now()) {
                 return cache[key].value;
+            } else {
+                delete cache[key];
+                this.save(cache);
             }
         }
         return null;
