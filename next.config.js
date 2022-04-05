@@ -22,7 +22,8 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
-    disableStaticImages: true
+    disableStaticImages: true,
+    domains: ['githubusercontent.com']
   }
 }
 
