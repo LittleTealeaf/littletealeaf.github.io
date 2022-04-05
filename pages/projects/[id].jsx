@@ -1,6 +1,5 @@
-import { getGenerated } from "../../libs/resources"
 import Head from 'next/head'
-import { Github } from "../../libs/api";
+
 
 
 /*
@@ -12,40 +11,39 @@ https://stackoverflow.com/questions/60899880/next-js-reduce-data-fetching-and-sh
 */
 
 export async function getStaticPaths() {
-    console.log("");
+    // Object.keys(getGenerated('index.json').pages.projects).map(id => ({
+    //     params: {
+    //         id
+    //     }
+    // }))
     return {
-        paths: Object.keys(getGenerated('index.json').pages.projects).map(id => ({
-            params: {
-                id
-            }
-        })),
+        paths: [],
         fallback: false
     }
 }
 
 export async function getStaticProps({ params }) {
 
-    const generated = getGenerated(getGenerated('index.json').pages.projects[params.id]);
-    const api = await Github.getURL(`https://api.github.com/repos/${generated.github.repo}`);
+    // const generated = getGenerated(getGenerated('index.json').pages.projects[params.id]);
+    // const api = await Github.getURL(`https://api.github.com/repos/${generated.github.repo}`);
 
-    const promises = {
-        languages: Github.getURL(api.languages_url),
-        contributors: Github.paginate(api.contributors_url)
-    }
+    // const promises = {
+    //     languages: Github.getURL(api.languages_url),
+    //     contributors: Github.paginate(api.contributors_url)
+    // }
 
 
-    const project = {
-        name: generated.name,
-        languages: await promises.languages,
-        repository: api.html_url,
-        website: api.homepage,
-        owner_avatar: api.owner.avatar_url
-    }
+    // const project = {
+    //     name: generated.name,
+    //     languages: await promises.languages,
+    //     repository: api.html_url,
+    //     website: api.homepage,
+    //     owner_avatar: api.owner.avatar_url
+    // }
     
     return {
         props: {
-            id: params,
-            project
+            id: params
         }
     }
 }
