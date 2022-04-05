@@ -23,7 +23,7 @@ class Cache:
     def get(self, key):
         cache = self.load()
         if key in cache:
-            if cache[key]['expires'] > self.get_time():
+            if cache[key]['expires'] > get_time():
                 return cache[key]['value']
             else:
                 cache.pop(key)

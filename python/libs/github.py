@@ -1,5 +1,5 @@
 import os
-from cachelib import Cache
+from libs.cachelib import Cache
 import json
 import requests
 
