@@ -3,23 +3,6 @@ import Head from 'next/head'
 import { Github } from "../../libs/api";
 
 
-export default function Page({id,project}) {
-    
-
-    return (
-        <>
-        <Head>
-            <title>
-                {project.name}
-            </title>
-        </Head>
-        <div>
-            
-        </div>
-        </>
-    )
-}
-
 /*
 What's going on?
 
@@ -55,7 +38,8 @@ export async function getStaticProps({ params }) {
         name: generated.name,
         languages: await promises.languages,
         repository: api.html_url,
-        website: api.homepage
+        website: api.homepage,
+        owner_avatar: api.owner.avatar_url
     }
     
     return {
@@ -64,4 +48,23 @@ export async function getStaticProps({ params }) {
             project
         }
     }
+}
+
+
+export default function Page({id,project}) {
+    
+
+    return (
+        <>
+        <Head>
+            <title>
+                {project.name}
+            </title>
+        </Head>
+        <div>
+            <img src={project.owner_avatar} alt="owner avatar"/>
+            
+        </div>
+        </>
+    )
 }
