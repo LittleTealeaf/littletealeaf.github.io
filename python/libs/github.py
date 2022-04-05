@@ -4,7 +4,7 @@ import json
 import requests
 
 
-EXPIRES_DEFAULT = 24 * 60 * 60 * 1000
+EXPIRES_DEFAULT = 23 * 60 * 60 * 1000
 
 token: str = ''
 if os.path.exists(os.path.join('.', 'github_token')):
