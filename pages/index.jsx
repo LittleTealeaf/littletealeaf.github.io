@@ -1,18 +1,13 @@
-
-
 export async function getStaticProps(context) {
   return {
     props: {}, // will be passed to the page component as props
-  }
+  };
 }
 
 export default function Content() {
   return (
-    
     <div>
-      
       WARNING, THIS WEBSITE IS UNDER DEVELOPMENT. ALSO, I AM A BIRD
-
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia magni
         veniam eaque sunt. Ab sunt, minus tenetur, doloremque adipisci eveniet a
@@ -225,5 +220,5 @@ export default function Content() {
         velit! Amet adipisci atque sit inventore error rem id repudiandae
       </p>
     </div>
-  )
+  );
 }

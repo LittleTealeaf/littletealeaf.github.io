@@ -1,7 +1,5 @@
-import Head from 'next/head'
-import { getGenerated, index } from '../../libs/resources'
-
-
+import Head from "next/head";
+import { getGenerated, index } from "../../libs/resources";
 
 /*
 What's going on?
@@ -12,38 +10,34 @@ https://stackoverflow.com/questions/60899880/next-js-reduce-data-fetching-and-sh
 */
 
 export async function getStaticPaths() {
-    return {
-        paths: Object.keys(getGenerated(index.pages.projects)).map((slug) => ({
-            params: {
-                id: slug
-            }
-        })),
-        fallback: false
-    }
+  return {
+    paths: Object.keys(getGenerated(index.pages.projects)).map((slug) => ({
+      params: {
+        id: slug,
+      },
+    })),
+    fallback: false,
+  };
 }
 
 export async function getStaticProps({ params }) {
-    console.log()
-    return {
-        props: {
-            id: params.id
-        }
-    }
+  console.log();
+  return {
+    props: {
+      id: params.id,
+    },
+  };
 }
 
+export default function Page({ id }) {
+  const project = getGenerated(getGenerated(index.pages.projects)[id]);
 
-export default function Page({id}) {
-    const project = getGenerated(getGenerated(index.pages.projects)[id]);
-
-    return (
-        <>
-        <Head>
-            <title>
-                
-            </title>
-        </Head>
-        <div>    
-        </div>
-        </>
-    )
+  return (
+    <>
+      <Head>
+        <title></title>
+      </Head>
+      <div></div>
+    </>
+  );
 }
