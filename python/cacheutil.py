@@ -10,6 +10,8 @@ EXPIRE_TIME = 1000 * 60 * 60 * 24
 class Cache:
     def __init__(self,*path):
         self.path = os.path.join(PATH,*path) + '.json'
+        for key in self.load():
+            self.get(key)
     
     def load(self):
         cache = {}
@@ -28,6 +30,8 @@ class Cache:
         if key in cache:
             if cache[key]['expires'] > get_time():
                 return cache[key]['value']
+            cache.pop(key)
+            self.save(cache)
         return None
 
     def store(self,key,value):
