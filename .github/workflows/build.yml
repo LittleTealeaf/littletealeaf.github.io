@@ -72,7 +72,7 @@ jobs:
         env:
           RUN_NUMBER: ${{github.run_number}}
       - name: Run Python Build
-        run: python ./python/build.py
+        run: python ./python/precompile.py
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Run Node Compile
