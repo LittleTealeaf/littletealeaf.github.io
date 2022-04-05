@@ -23,6 +23,7 @@ on:
 
 jobs:
   analyze:
+    concurrency: 'codeql-${{github.head_ref || github.ref}}'
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
