@@ -1,14 +1,11 @@
 import libs.github as Github
-import libs.generated as gen
+from libs.generated import Gen, gen_initialize
 import libs.config as conf
 import json
 
-gen.initialize()
+gen_initialize()
 
 index = {}
-
-# index['projects'] = conf.getFiles('projects')
-# index['blogs'] = conf.getFiles('blogs')
 
 index['projects'] = []
 for project_path in conf.getFiles('projects'):
@@ -18,7 +15,7 @@ for project_path in conf.getFiles('projects'):
     project['github']['languages'] = Github.getAPI(project['github']['api']['languages_url'])
     project['github']['contributors'] = Github.getAPIList(project['github']['api']['contributors_url'])
 
-    index['projects'].append(gen.refjson(project,'pages','projects',project_path[-1]))
+    index['projects'].append(Gen('pages','projects',project_path[-1]).ref_json(project))
 
 
-gen.refjson(index,'index.json')
+Gen('index').ref_json(index)
