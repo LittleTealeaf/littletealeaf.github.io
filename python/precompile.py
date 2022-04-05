@@ -1,13 +1,16 @@
+from pathlib import Path
 import libs.github as Github
 from libs.generated import Gen, gen_initialize
 import libs.config as conf
+import os
 import json
 
 gen_initialize()
 
 index = {}
 
-index['projects'] = []
+index['pages'] = {}
+index['pages']['projects'] = []
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
 
@@ -15,7 +18,11 @@ for project_path in conf.getFiles('projects'):
     project['github']['languages'] = Github.getAPI(project['github']['api']['languages_url'])
     project['github']['contributors'] = Github.getAPIList(project['github']['api']['contributors_url'])
 
-    index['projects'].append(Gen('pages','projects',project_path[-1]).ref_json(project))
+    index['pages']['projects'].append({
+        'name': Path(project_path[-1]).stem,
+        'ref': Gen('pages','projects',project_path[-1]).ref_json(project)
+    })
+index['pages']['projects'] = Gen('pages','projects').ref_json(index['pages']['projects'])
 
 index['rate_limits'] = Gen('api','github','rate_limits').ref_json( Github.getAPI('https://api.github.com/rate_limit',expires=-1))
 
