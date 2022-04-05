@@ -28,9 +28,12 @@ def getAPI(url: str,headers: dict={},params: dict={}, expires: int = EXPIRES_DEF
     key = f'{url} {headers} {params}'
     cached = cache.get(key)
     if cached:
+        print(f'CACHE: {key}')
         return cached
+    print(f'API: {key}')
     data = getRequest(url,headers=headers,params=params).json()
     cache.set(key,data,expires=expires)
+
     return data
 
 def getAPIList(url: str,headers: dict={}, params: dict={}, count: int = -1, expires: int = EXPIRES_DEFAULT):
