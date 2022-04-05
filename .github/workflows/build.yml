@@ -10,7 +10,7 @@ on:
 jobs:
   build-website:
     concurrency:
-      group: build-website-${{github.ref}}
+      group: build-website-${{github.head_ref || github.run_id}}
     name: "Build Website"
     runs-on: ubuntu-latest
     steps:
