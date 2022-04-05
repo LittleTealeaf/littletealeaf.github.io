@@ -3,6 +3,9 @@ from libs.cachelib import Cache
 import json
 import requests
 
+
+EXPIRES_DEFAULT = 24 * 60 * 60 * 1000
+
 token: str = ''
 if os.path.exists(os.path.join('.','github_token')):
     with open(os.path.join('.','github_token')) as file:
@@ -21,23 +24,23 @@ def getRequest(url: str, headers: dict={}, params: dict={}):
     else:
         return None
 
-def getAPI(url: str,headers: dict={},params: dict={}):
+def getAPI(url: str,headers: dict={},params: dict={}, expires: int = EXPIRES_DEFAULT):
     key = f'{url} {headers} {params}'
     cached = cache.get(key)
     if cached:
         return cached
     data = getRequest(url,headers=headers,params=params).json()
-    cache.set(key,data)
+    cache.set(key,data,expires=expires)
     return data
 
-def getAPIList(url: str,headers: dict={}, params: dict={}, count: int = -1):
+def getAPIList(url: str,headers: dict={}, params: dict={}, count: int = -1, expires: int = EXPIRES_DEFAULT):
     data = []
     headers = headers.copy()
     params = params.copy()
     params['per_page'] = 100
     params['page'] = 1
     while count == -1 or len(data) < count:
-        fetched: list = getAPI(url,headers,params)
+        fetched: list = getAPI(url,headers,params, expires=expires)
         length = len(fetched)
         while len(fetched) > 0 and ( len(data) < count or count == -1):
             data.append(fetched.pop(0))

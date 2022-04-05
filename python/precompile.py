@@ -17,5 +17,6 @@ for project_path in conf.getFiles('projects'):
 
     index['projects'].append(Gen('pages','projects',project_path[-1]).ref_json(project))
 
+index['rate_limits'] = Gen('api','github','rate_limits').ref_json( Github.getAPI('https://api.github.com/rate_limit',expires=-1))
 
 Gen('index').ref_json(index)

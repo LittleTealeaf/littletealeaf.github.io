@@ -2,6 +2,9 @@ import os
 import json
 import time
 
+
+EXPIRES_DEFAULT = 1000 * 60 * 60 * 24
+
 class Cache:
     def __init__(self, *path):
         self.path = os.path.join('.', 'cache', *path) + '.json'
@@ -30,10 +33,10 @@ class Cache:
                 self.save(cache)
         return None
 
-    def set(self, key, value, expire_time=24 * 60 * 60 * 1000):
+    def set(self, key, value, expires= EXPIRES_DEFAULT):
         cache = self.load()
         cache[key] = {
-            'expires': get_time() + expire_time,
+            'expires': get_time() + expires,
             'value': value
         }
         self.save(cache)
