@@ -51,3 +51,8 @@ def getAPIList(url: str,headers: dict={}, params: dict={}, count: int = -1, expi
             break
         params['page'] = params['page'] + 1
     return data
+
+def getAnalytics():
+    return {
+        'cache': cache.analytics()
+    }
