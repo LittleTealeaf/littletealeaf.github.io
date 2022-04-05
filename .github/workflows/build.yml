@@ -48,8 +48,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./.next/cache
-          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}-${{github.run_attempt}}
           restore-keys: |
+            ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-${{github.run_id}}-
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-nextjs-
             ${{runner.os}}-${{github.repository}}/-nextjs-
       - name: Cache Build
@@ -57,8 +58,9 @@ jobs:
         with:
           path: |
             ./cache
-          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-${{github.run_id}}
+          key: ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-${{github.run_id}}-${{github.run_attempt}}
           restore-keys: |
+            ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-${{github.run_id}}-
             ${{runner.os}}-${{github.repository}}/${{github.head_ref}}-cache-
             ${{runner.os}}-${{github.repository}}/-cache-
       - name: Install Python Dependencies

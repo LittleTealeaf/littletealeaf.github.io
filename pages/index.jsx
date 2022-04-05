@@ -1,3 +1,4 @@
+import { Github } from '../libs/api';
 import Cache from '../libs/caches'
 
 export default function Content() {
@@ -223,8 +224,6 @@ export default function Content() {
 }
 
 export async function getStaticProps(context) {
-  const cache = new Cache('javascript-test');
-  cache.store('test','VALUE HERE');
   return {
     props: {}, // will be passed to the page component as props
   }
