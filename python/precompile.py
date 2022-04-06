@@ -2,6 +2,8 @@ from pathlib import Path
 import libs.github as Github
 from libs.generated import Gen, gen_initialize
 import libs.config as conf
+import frontmatter
+import markdown
 import os
 import json
 
@@ -25,6 +27,16 @@ for project_path in conf.getFiles('projects'):
     projects[Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)
 index['pages']['projects'] = Gen('pageindexes', 'projects').ref_json(projects)
+
+
+# Blogs
+blogs = {}
+for blog_path in conf.getFiles('blogs'):
+    md = None
+    post = frontmatter.load(conf.getPath(*blog_path)).to_dict()
+    post['content'] = markdown.markdown(post['content'],extensions=['tables'])
+    blogs[Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
+index['pages']['blogs'] = Gen('pageindexes','blogs').ref_json(blogs)
 
 index['analytics'] = Gen('analytics').ref_json({
     'github': {

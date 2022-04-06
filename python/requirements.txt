@@ -1,3 +1,4 @@
 markdown==3.3.6
 requests==2.27.1
 beautifulsoup4==4.10.0
+python-frontmatter==1.0.0
