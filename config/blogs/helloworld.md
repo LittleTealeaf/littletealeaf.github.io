@@ -49,3 +49,9 @@ The following lines should be a quote:
 > And I said: "I am a bird, of course!"
 
 And now I can't think of other features that I should test
+
+- But Lists
+  - Are cool
+
+1. and numbered lists
+2. Are even cooler
