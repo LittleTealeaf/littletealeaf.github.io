@@ -83,6 +83,7 @@ jobs:
         run: python ./python/precompile.py
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
+          RUN_NUMBER: ${{github.run_number}}
       - name: Run Node Compile
         run: npm run compile
         env:
