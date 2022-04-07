@@ -23,6 +23,7 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
     if request.status_code == 200:
         return request
     else:
+        print('ERROR: ' + json.dumps(request.content))
         return None
 
 
@@ -33,7 +34,7 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIR
         print(f'CACHE: {key}')
         return cached
     print(f'API: {key}')
-    
+
     request = getRequest(url, headers=headers, params=params)
     if request:
         data = request.json()
