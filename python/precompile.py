@@ -49,10 +49,10 @@ for project_path in conf.getFiles('projects'):
 
 for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
     repo = {
-        'api': repo_api,
-        'languages': Github.getAPI(repo_api['languages_url'])
+        'api': repo_api
     }
-
+    # if repo_api['languages_url']:
+    #     repo['languages'] = Github.getAPI(repo_api['languages_url'])
     index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json(repo)
 
 # Blogs
