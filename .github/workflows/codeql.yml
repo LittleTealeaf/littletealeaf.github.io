@@ -38,6 +38,7 @@ jobs:
         # Learn more about CodeQL language support at https://git.io/codeql-language-support
     concurrency: 
       group: codeql-${{github.head_ref || github.ref}}-${{matrix.language}}
+      cancel-in-progress: false
 
     steps:
       - name: Checkout repository
