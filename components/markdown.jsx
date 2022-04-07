@@ -18,7 +18,7 @@ const markdown_it = require("markdown-it")({
 export default function Markdown({ content }) {
   return (
     <div className={style.markdown}>
-      {html_parser.default(markdown_it.render(content).replace('\r\n\n','\n'))}
+      {html_parser.default(markdown_it.render(content.replace('\r\n\n','\n')))}
     </div>
   );
 }
