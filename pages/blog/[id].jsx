@@ -1,17 +1,22 @@
 import { getGenerated, index } from "../../libs/resources";
 import Head from "next/head";
-import hljs from "highlight.js";
-const html_parser = require('html-react-parser');
-const markdown_it = require('markdown-it')({
-    highlight: (str,lang) => {
-        if(lang && hljs.getLanguage(lang)) {
-            try {
-                return hljs.highlight(str, {language: lang}).value;
-            } catch(__) {}
-        }
-        return '';
-    }
-});
+import Markdown from "../../components/markdown";
+
+
+
+// import style from "../../styles/markdown.module.scss";
+// import hljs from "highlight.js";
+// const html_parser = require('html-react-parser');
+// const markdown_it = require('markdown-it')({
+//     highlight: (str,lang) => {
+//         if(lang && hljs.getLanguage(lang)) {
+//             try {
+//                 return hljs.highlight(str, {language: lang}).value;
+//             } catch(__) {}
+//         }
+//         return '';
+//     }
+// });
 
 
 export async function getStaticPaths() {
@@ -41,9 +46,11 @@ export default function Page({ id}) {
         <Head>
             {blog.title != null ? <title>{blog.title}</title> : ""}
         </Head>
-        <div>
+        {/* <div className={style.markdown}>
             {html_parser.default(markdown_it.render(blog.content))}
-        </div>
+        </div> */}
+        <Markdown content={blog.content} />
+
         </>
     )
 }
