@@ -16,7 +16,7 @@ import shutil
 # for line in file:
 #     print(line.decode('utf-8'))
 
-MARKDOWN_EXTENSIONS = ['tables','fenced_code']
+MARKDOWN_EXTENSIONS = ['tables', 'fenced_code']
 
 gen_initialize()
 

@@ -1,8 +1,7 @@
 export default function Content({}) {
-    return (
-      <>
-        <div>REPOS</div>
-      </>
-    );
-  }
-  
+  return (
+    <>
+      <div>REPOS</div>
+    </>
+  );
+}

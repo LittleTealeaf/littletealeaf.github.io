@@ -14,7 +14,7 @@ const nextConfig = {
       test: /\.html$/i,
       use: [{
         loader: "html-loader",
-        options:{}
+        options: {}
       }]
     })
     // Important: return the modified config
@@ -28,6 +28,6 @@ const nextConfig = {
 }
 
 module.exports = withPlugins([
-  [require('next-optimized-images'),{}]
-],nextConfig);
+  [require('next-optimized-images'), {}]
+], nextConfig);
 

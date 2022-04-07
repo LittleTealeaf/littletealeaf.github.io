@@ -3,14 +3,16 @@ import json
 from random import Random
 import time
 
-BASE_PATH = os.path.join('.','cache')
+BASE_PATH = os.path.join('.', 'cache')
 
 EXPIRES_DEFAULT = 1000 * 60 * 60 * 24
 
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789_-'
 
+
 def sanitize_key(key):
     rand = Random(key)
+
     def sanitize(char):
         if char in VALID_CHARACTERS:
             return char
@@ -18,14 +20,16 @@ def sanitize_key(key):
             return rand.choice(VALID_CHARACTERS)
     return ''.join([sanitize(c) for c in key])
 
+
 def get_time():
     return int(round(time.time() * 1000))
 
-class Cache:
-    def __init__(self,*path):
-        self.path = os.path.join(BASE_PATH,*path)
 
-    def get(self,key):
+class Cache:
+    def __init__(self, *path):
+        self.path = os.path.join(BASE_PATH, *path)
+
+    def get(self, key):
         path = self.file_name(key)
         if os.path.exists(path):
             with open(path) as file:
@@ -33,35 +37,35 @@ class Cache:
                 if data['expires'] > get_time():
                     return data['value']
         return None
-            
 
-    def set(self,key,value,expires=EXPIRES_DEFAULT):
+    def set(self, key, value, expires=EXPIRES_DEFAULT):
         path = self.file_name(key)
-        os.makedirs(os.path.dirname(path),exist_ok=True)
-        with open(path,'w') as file:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, 'w') as file:
             file.write(json.dumps({
                 'expires': get_time() + expires,
                 'value': value
             }))
-    
-    def remove(self,key):
+
+    def remove(self, key):
         os.remove(self.file_name(key))
-    
-    def file_name(self,key):
-        return os.path.join(self.path,f'{sanitize_key(key)}.json')
-    
+
+    def file_name(self, key):
+        return os.path.join(self.path, f'{sanitize_key(key)}.json')
+
     def analytics(self):
         return {}
 
+
 def clean():
     expired_files = []
-    for dir,dirs,files in os.walk(BASE_PATH):
+    for dir, dirs, files in os.walk(BASE_PATH):
         for fn in files:
             try:
-                with open(os.path.join(dir,fn)) as file:
+                with open(os.path.join(dir, fn)) as file:
                     data = json.load(file)
                     if data['expires'] < get_time():
-                        expired_files.append(os.path.join(dir,fn))
+                        expired_files.append(os.path.join(dir, fn))
             except:
                 ...
     for file in expired_files:
