@@ -11,7 +11,7 @@ https://stackoverflow.com/questions/60899880/next-js-reduce-data-fetching-and-sh
 
 export async function getStaticPaths() {
   return {
-    paths: Object.keys(getGenerated(index.pages.projects)).map((slug) => ({
+    paths: Object.keys(index.pages.projects).map((slug) => ({
       params: {
         id: slug,
       },
@@ -29,7 +29,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Page({ id }) {
-  const project = getGenerated(getGenerated(index.pages.projects)[id]);
+  const project = getGenerated(index.pages.projects[id]);
 
   return (
     <>
