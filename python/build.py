@@ -1,12 +1,20 @@
 from pathlib import Path
+
+import urllib3
 import libs.github as Github
 from libs.generated import Gen, gen_initialize
 import libs.config as conf
 import frontmatter
+
 import markdown
 import os
 import json
 import shutil
+
+# file = request.urlopen("https://raw.githubusercontent.com/LittleTealeaf/paceManager/main/.gitignore")
+
+# for line in file:
+#     print(line.decode('utf-8'))
 
 MARKDOWN_EXTENSIONS = ['tables','fenced_code']
 
@@ -21,17 +29,23 @@ index = {
 }
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
-
-    project['github']['api'] = Github.getAPI(
-        f"https://api.github.com/repos/{project['github']['repo']}")
-    project['github']['languages'] = Github.getAPI(
-        project['github']['api']['languages_url'])
-    project['github']['contributors'] = Github.getAPIList(
-        project['github']['api']['contributors_url'],count=1000,expires=72)
-    project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
-    project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=300,expires=6)
-    project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
-
+    if(project['github'] != None):
+        project['github']['api'] = Github.getAPI(
+            f"https://api.github.com/repos/{project['github']['repo']}")
+        project['github']['languages'] = Github.getAPI(
+            project['github']['api']['languages_url'])
+        project['github']['contributors'] = Github.getAPIList(
+            project['github']['api']['contributors_url'],count=1000,expires=72)
+        project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
+        project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=300,expires=6)
+        project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
+        project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).replace('{+path}',''))
+        for file in project['github']['contents']:
+            if str(file['name']).lower() == 'readme.md':
+                # project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in request.urlopen(file['download_url'])])
+                with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
+                    project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r])
+                
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)
 
