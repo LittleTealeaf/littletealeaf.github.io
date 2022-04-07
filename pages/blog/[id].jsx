@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { getGenerated, index } from "../../libs/resources";
-const html_parser = require('html-react-parser');
 
 
 export async function getStaticPaths() {
@@ -31,7 +30,7 @@ export default function Page({ id}) {
             {blog.title != null ? <title>{blog.title}</title> : ""}
         </Head>
         <div>
-            {html_parser(blog.content)}
+            {blog.content}
         </div>
         </>
     )

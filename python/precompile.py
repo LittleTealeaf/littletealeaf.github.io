@@ -37,7 +37,6 @@ blogs = {}
 for blog_path in conf.getFiles('blogs'):
     md = None
     post = frontmatter.load(conf.getPath(*blog_path)).to_dict()
-    post['content'] = markdown.markdown(post['content'],extensions=MARKDOWN_EXTENSIONS)
     blogs[Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
 index['pages']['blogs'] = Gen('pageindexes','blogs').ref_json(blogs)
 
