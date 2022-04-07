@@ -30,12 +30,15 @@ class Cache:
         self.path = os.path.join(BASE_PATH, *path)
 
     def get(self, key):
-        path = self.file_name(key)
-        if os.path.exists(path):
-            with open(path) as file:
-                data = json.load(file)
-                if data['expires'] > get_time():
-                    return data['value']
+        try:
+            path = self.file_name(key)
+            if os.path.exists(path):
+                with open(path) as file:
+                    data = json.load(file)
+                    if data['expires'] > get_time():
+                        return data['value']
+        except:
+            ...
         return None
 
     def set(self, key, value, expires=EXPIRES_DEFAULT):
