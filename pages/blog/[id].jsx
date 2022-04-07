@@ -1,6 +1,6 @@
-import hljs from "highlight.js";
-import Head from "next/head";
 import { getGenerated, index } from "../../libs/resources";
+import Head from "next/head";
+import hljs from "highlight.js";
 const html_parser = require('html-react-parser');
 const markdown_it = require('markdown-it')({
     highlight: (str,lang) => {
