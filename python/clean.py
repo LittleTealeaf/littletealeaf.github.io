@@ -17,7 +17,7 @@ def GB(size):
 
 def cleanDir(directory, max_bytes=GB(1)):
     size = 0
-    for dir, dirs, files in os.walk(directory):
+    for dir, _, files in os.walk(directory):
         for f in files:
             fp = os.path.join(dir, f)
             size += os.path.getsize(fp)
