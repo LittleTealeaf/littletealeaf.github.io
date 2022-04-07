@@ -29,6 +29,6 @@ def cleanDir(directory, max_bytes=GB(1)):
 
 cache.clean()
 
-cleanDir(os.path.join('.', 'cache'), GB(1))
-cleanDir(os.path.join('.', '.next', 'cache'), MB(200))
+cleanDir(os.path.join('.', 'cache'), GB(2))
+cleanDir(os.path.join('.', '.next', 'cache'))
 cleanDir(os.path.join('.', 'node_modules'))
