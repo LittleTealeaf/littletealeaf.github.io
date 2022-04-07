@@ -45,7 +45,7 @@ class Cache:
             file.write(json.dumps({
                 'expires': get_time() + expires,
                 'value': value
-            }))
+            },separators=(',',':')))
 
     def remove(self, key):
         os.remove(self.file_name(key))
