@@ -16,7 +16,7 @@ const markdown_it = require('markdown-it')({
 
 export async function getStaticPaths() {
     return {
-        paths: Object.keys(getGenerated(index.pages.blogs)).map((slug) => ({
+        paths: Object.keys(index.pages.blogs).map((slug) => ({
             params: {
                 id: slug
             }
@@ -34,7 +34,7 @@ export async function getStaticProps({params}) {
 }
 
 export default function Page({ id}) {
-    const blog = getGenerated(getGenerated(index.pages.blogs)[id]);
+    const blog = getGenerated(index.pages.blogs[id]);
 
     return (
         <>

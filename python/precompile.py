@@ -25,10 +25,13 @@ else:
     print("Skipping Cache Clearing")
 
 
-index = {}
-
-index['pages'] = {}
-projects = {}
+index = {
+    'pages': {
+        'blogs': {},
+        'projects': {},
+        'repositories': {}
+    }
+}
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
 
@@ -41,19 +44,22 @@ for project_path in conf.getFiles('projects'):
     project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
     project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=500,expires=6)
 
-    projects[Path(project_path[-1]).stem] = Gen('pages',
+    index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)
-index['pages']['projects'] = Gen('pageindexes', 'projects').ref_json(projects)
 
-index['repositories'] = Gen('github','repositories').ref_json(Github.getAPIList('https://api.github.com/user/repos'))
+for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
+    repo = {
+        'api': repo_api,
+        'languages': Github.getAPI(repo_api['languages_url'])
+    }
+
+    index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json(repo)
 
 # Blogs
-blogs = {}
 for blog_path in conf.getFiles('blogs'):
     md = None
     post = frontmatter.load(conf.getPath(*blog_path)).to_dict()
-    blogs[Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
-index['pages']['blogs'] = Gen('pageindexes','blogs').ref_json(blogs)
+    index['pages']['blogs'][Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
 
 index['analytics'] = Gen('analytics').ref_json({
     'github': {
