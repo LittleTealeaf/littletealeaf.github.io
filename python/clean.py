@@ -22,7 +22,7 @@ def cleanDir(directory,max_bytes=GB(1)):
         shutil.rmtree(directory)
         os.makedirs(directory,exist_ok=True)
 
-cleanDir(os.path.join('.','cache'),MB(100))
+cleanDir(os.path.join('.','cache'),GB(1))
 cleanDir(os.path.join('.','.next','cache'),MB(200))
 cleanDir(os.path.join('.','node_modules'))
 
