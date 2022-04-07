@@ -45,6 +45,7 @@ for project_path in conf.getFiles('projects'):
                                                 'projects', project_path[-1]).ref_json(project)
 index['pages']['projects'] = Gen('pageindexes', 'projects').ref_json(projects)
 
+index['repositories'] = Gen('github','repositories').ref_json(Github.getAPIList('https://api.github.com/user/repos'))
 
 # Blogs
 blogs = {}
