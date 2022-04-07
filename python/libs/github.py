@@ -2,10 +2,9 @@ import os
 from libs.cachelib import Cache
 import json
 import requests
-import random
 
 
-EXPIRES_DEFAULT = random.randint(12,24) * 60 * 60 * 1000 
+EXPIRES_DEFAULT = 20 * 60 * 60 * 1000 
 
 token: str = ''
 if os.path.exists(os.path.join('.', 'github_token')):
