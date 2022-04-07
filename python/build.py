@@ -46,7 +46,6 @@ for project_path in conf.getFiles('projects'):
         project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).replace('{+path}',''))
         for file in project['github']['contents']:
             if str(file['name']).lower() == 'readme.md':
-                # project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in request.urlopen(file['download_url'])])
                 with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
                     project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
                 
