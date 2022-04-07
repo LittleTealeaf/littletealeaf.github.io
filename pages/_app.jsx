@@ -1,6 +1,9 @@
-import style from "../styles/style.css";
 import Header from "../components/header";
 import { useRouter } from "next/router";
+
+// Styles
+import '../styles/style.css'
+import 'highlight.js/styles/github.css'
 
 //Some thoughts: https://www.johanbleuzen.fr/blog/next-remove-clientside-javascript
 
