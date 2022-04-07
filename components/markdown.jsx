@@ -10,6 +10,9 @@ const markdown_it = require("markdown-it")({
     }
     return "";
   },
+  linkify: true,
+  xhtmlOut: true,
+  html: true
 });
 
 export default function Markdown({ content }) {

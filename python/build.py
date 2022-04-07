@@ -44,7 +44,7 @@ for project_path in conf.getFiles('projects'):
             if str(file['name']).lower() == 'readme.md':
                 # project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in request.urlopen(file['download_url'])])
                 with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
-                    project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r])
+                    project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
                 
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)

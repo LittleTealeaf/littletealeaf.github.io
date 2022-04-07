@@ -27,11 +27,13 @@
     ul li {
         display: list-item;
         list-style-type: disc;
+        list-style-position: inside;
     }
 
     ol li {
         display: list-item;
         list-style-type: decimal;
+        list-style-position: inside;
     }
 
     blockquote {
