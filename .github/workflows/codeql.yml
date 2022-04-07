@@ -36,10 +36,6 @@ jobs:
         language: ['javascript', 'python']
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
         # Learn more about CodeQL language support at https://git.io/codeql-language-support
-    concurrency: 
-      group: codeql-${{github.head_ref || github.ref}}-${{matrix.language}}
-      cancel-in-progress: false
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
