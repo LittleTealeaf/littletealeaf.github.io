@@ -69,9 +69,14 @@ for blog_path in conf.getFiles('blogs'):
     index['pages']['blogs'][Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
 
 # User
-user = Github.getAPI('https://api.github.com/user')
+user_api = Github.getAPI('https://api.github.com/user')
+user = {
+    'api': user_api,
+    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''),expires=3)),
+    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000,expires=72))
+}
 index['github']['user'] = Gen('github','user').ref_json(user)
-index['github']['events'] = Gen('github','events').ref_json(Github.getAPIList(user['events_url'].replace('{/privacy}',''),expires=3))
+
 
 index['analytics'] = Gen('analytics').ref_json({
     'github': {
