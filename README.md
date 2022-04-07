@@ -8,16 +8,6 @@ It's currnetly in development, so... ha!!
 
 `Tealeaf Signing Off!`
 
-<!-- ## The revamp
-
-The goal of the revamp: Move away from using python AND Javascript and just using Javascript so I don't have to go back and forward and keep changin stuff
-
-### Revamp Structure
-
-- Use Python to setup / organize the page structure (creating a specific directory that contains a 'dynamic' based repository)
-- Then, use javascript to build the pages, including fetching the API and such
-- For the api in javascript, add in those extra ways we are able to use to get API endpoints-->
-
 ## Project Layout
 
 | Folder | Usage |

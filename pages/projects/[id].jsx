@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { getGenerated, index } from "../../libs/resources";
+import Markdown from '../../components/markdown';
 
 /*
 What's going on?
@@ -36,7 +37,11 @@ export default function Page({ id }) {
       <Head>
         <title></title>
       </Head>
-      <div></div>
+      <div style={{
+        'padding': '100px'
+      }}>
+        {project.github == null || project.github.readme == null ? <></> : <Markdown content={project.github.readme} />}
+      </div>
     </>
   );
 }

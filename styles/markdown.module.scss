@@ -20,13 +20,11 @@
     ul li {
         display: list-item;
         list-style-type: disc;
-        list-style-position: inside;
     }
 
     ol li {
         display: list-item;
         list-style-type: decimal;
-        list-style-position: inside;
     }
 
     blockquote {
@@ -35,4 +33,33 @@
         width: fit-content;
         border-left: 6px solid #6d6a6a;
     }
+    
+    h1, h2, h3 {
+        font-weight: bold;
+    }
+
+    h1 {
+        font-size: x-large;
+    }
+
+    h2 {
+        font-size: larger;
+    }
+    h3 {
+        font-size: large;
+    }
+
+    
+
+
+    p a img {
+        float: left;
+    }
+
+    p::after {
+        white-space: pre;
+        content: "\A"
+    }
+
+    
 }
