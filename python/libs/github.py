@@ -29,7 +29,7 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
 def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIRES_DEFAULT):
     key = f'{url} {headers} {params}'
     cached = cache.get(key)
-    if cached:
+    if cached != None:
         print(f'CACHE: {key}')
         return cached
     print(f'API: {key}')
