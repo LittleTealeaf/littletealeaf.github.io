@@ -23,7 +23,6 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
     if request.status_code == 200:
         return request
     else:
-        print('ERROR: ' + json.dumps(request.content))
         return None
 
 
