@@ -33,10 +33,15 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIR
         print(f'CACHE: {key}')
         return cached
     print(f'API: {key}')
-    data = getRequest(url, headers=headers, params=params).json()
-    cache.set(key, data, expires=expires * 60 * 60 * 1000)
 
-    return data
+    request = getRequest(url, headers=headers, params=params)
+    if request:
+        data = request.json()
+        cache.set(key, data, expires=expires * 60 * 60 * 1000)
+
+        return data
+
+    return None
 
 
 def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, expires: int = EXPIRES_DEFAULT):
