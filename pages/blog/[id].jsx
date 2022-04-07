@@ -1,5 +1,17 @@
+import hljs from "highlight.js";
 import Head from "next/head";
 import { getGenerated, index } from "../../libs/resources";
+const html_parser = require('html-react-parser');
+const markdown_it = require('markdown-it')({
+    highlight: (str,lang) => {
+        if(lang && hljs.getLanguage(lang)) {
+            try {
+                return hljs.highlight(str, {language: lang}).value;
+            } catch(__) {}
+        }
+        return '';
+    }
+});
 
 
 export async function getStaticPaths() {
@@ -30,7 +42,7 @@ export default function Page({ id}) {
             {blog.title != null ? <title>{blog.title}</title> : ""}
         </Head>
         <div>
-            {blog.content}
+            {html_parser.default(markdown_it.render(blog.content))}
         </div>
         </>
     )
