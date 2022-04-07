@@ -3,6 +3,7 @@ import json
 from random import Random
 import time
 
+BASE_PATH = os.path.join('.','cache')
 
 EXPIRES_DEFAULT = 1000 * 60 * 60 * 24
 
@@ -22,7 +23,7 @@ def get_time():
 
 class Cache:
     def __init__(self,*path):
-        self.path = os.path.join('.','cache',*path)
+        self.path = os.path.join(BASE_PATH,*path)
 
     def get(self,key):
         path = self.file_name(key)
@@ -51,3 +52,17 @@ class Cache:
     
     def analytics(self):
         return {}
+
+def clean():
+    expired_files = []
+    for dir,dirs,files in os.walk(BASE_PATH):
+        for fn in files:
+            try:
+                with open(os.path.join(dir,fn)) as file:
+                    data = json.load(file)
+                    if data['expires'] < get_time():
+                        expired_files.append(os.path.join(dir,fn))
+            except:
+                ...
+    for file in expired_files:
+        os.remove(file)

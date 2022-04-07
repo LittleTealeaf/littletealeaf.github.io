@@ -1,5 +1,6 @@
 import os
 import shutil
+import libs.cachelib as cache
 
 
 def kB(size):
@@ -21,6 +22,9 @@ def cleanDir(directory,max_bytes=GB(1)):
     if size > max_bytes or ('RUN_NUMBER' in os.environ and int(os.environ['RUN_NUMBER']) % 100 == 0):
         shutil.rmtree(directory)
         os.makedirs(directory,exist_ok=True)
+        
+
+cache.clean()
 
 cleanDir(os.path.join('.','cache'),GB(1))
 cleanDir(os.path.join('.','.next','cache'),MB(200))
