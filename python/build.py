@@ -25,8 +25,12 @@ index = {
         'blogs': {},
         'projects': {},
         'repositories': {}
+    },
+    'github': {
+
     }
 }
+
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
     if(project['github'] != None):
@@ -63,6 +67,11 @@ for blog_path in conf.getFiles('blogs'):
     md = None
     post = frontmatter.load(conf.getPath(*blog_path)).to_dict()
     index['pages']['blogs'][Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
+
+# User
+user = Github.getAPI('https://api.github.com/user')
+index['github']['user'] = Gen('github','user').ref_json(user)
+index['github']['events'] = Gen('github','events').ref_json(Github.getAPIList(user['events_url'].replace('{/privacy}',''),expires=3))
 
 index['analytics'] = Gen('analytics').ref_json({
     'github': {
