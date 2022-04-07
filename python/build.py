@@ -35,7 +35,7 @@ for project_path in conf.getFiles('projects'):
         project['github']['languages'] = Github.getAPI(
             project['github']['api']['languages_url'])
         project['github']['contributors'] = Github.getAPIList(
-            project['github']['api']['contributors_url'],count=1000,expires=72)
+            project['github']['api']['contributors_url'],count=3000,expires=72)
         project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
         project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=300,expires=6)
         project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
@@ -54,7 +54,7 @@ for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
         'api': repo_api,
         'languages': Github.getAPI(repo_api['languages_url']),
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
-        'contributors': Github.getAPIList(repo_api['contributors_url'],count=500,expires=72)
+        'contributors': Github.getAPIList(repo_api['contributors_url'],count=3000,expires=72)
     }
     index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json(repo)
 
