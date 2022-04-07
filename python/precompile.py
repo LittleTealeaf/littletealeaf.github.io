@@ -6,10 +6,24 @@ import frontmatter
 import markdown
 import os
 import json
+import shutil
 
 MARKDOWN_EXTENSIONS = ['tables','fenced_code']
 
 gen_initialize()
+
+if 'RUN_NUMBER' not in os.environ or int(os.environ['RUN_NUMBER']) % 100 == 0:
+    print("Cleaning Caches")
+    caches = [
+        os.path.join('.', 'cache')
+    ]
+
+    for cache in caches:
+        shutil.rmtree(cache)
+        os.makedirs(cache, exist_ok=True)
+else:
+    print("Skipping Cache Clearing")
+
 
 index = {}
 
