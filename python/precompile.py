@@ -12,7 +12,7 @@ MARKDOWN_EXTENSIONS = ['tables','fenced_code']
 
 gen_initialize()
 
-if 'RUN_NUMBER' not in os.environ or int(os.environ['RUN_NUMBER']) % 100 == 0:
+if 'RUN_NUMBER' in os.environ and int(os.environ['RUN_NUMBER']) % 100 == 0:
     print("Cleaning Caches")
     caches = [
         os.path.join('.', 'cache')
