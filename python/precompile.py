@@ -39,7 +39,7 @@ for project_path in conf.getFiles('projects'):
     project['github']['contributors'] = Github.getAPIList(
         project['github']['api']['contributors_url'])
     project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
-    project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=200,expires=6)
+    project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=500,expires=6)
 
     projects[Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)
