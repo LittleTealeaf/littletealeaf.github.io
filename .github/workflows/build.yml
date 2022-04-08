@@ -75,6 +75,10 @@ jobs:
         run: python -m pip install -r python/requirements.txt
       - name: Install Javascript Dependencies
         run: npm install
+      - name: Run Python Cleanup
+        run: python ./python/clean.py
+        env:
+          RUN_NUMBER: ${{github.run_number}}
       - name: Run Python Build
         run: python ./python/build.py
         env:
@@ -84,10 +88,6 @@ jobs:
         run: npm run compile
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
-      - name: Run Python Cleanup
-        run: python ./python/clean.py
-        env:
-          RUN_NUMBER: ${{github.run_number}}
       - name: Publish to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: peaceiris/actions-gh-pages@v3
