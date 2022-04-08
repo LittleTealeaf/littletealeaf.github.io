@@ -5,10 +5,14 @@ import time
 
 BASE_PATH = os.path.join('.', 'cache')
 
-EXPIRES_DEFAULT = 1000 * 60 * 60 * 24
+EXPIRES_DEFAULT_MIN = 1
+EXPIRES_DEFAULT_MAX = 168
+EXPIRES_DEFAULT = (EXPIRES_DEFAULT_MAX + EXPIRES_DEFAULT_MIN) / 2
 
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789_-'
 
+def millis(hours):
+    return int(round(hours * 60 * 60 * 1000))
 
 def sanitize_key(key):
     rand = Random(key)
@@ -41,12 +45,26 @@ class Cache:
             ...
         return None
 
-    def set(self, key, value, expires=EXPIRES_DEFAULT):
+    def set(self, key, value, expires=EXPIRES_DEFAULT, expires_min = EXPIRES_DEFAULT_MIN, expires_max = EXPIRES_DEFAULT_MAX, expires_dynamic=True):
         path = self.file_name(key)
-        os.makedirs(os.path.dirname(path), exist_ok=True)
+        expire_time = expires
+        if os.path.exists(path) and expires_dynamic:
+            try:
+                with open(path) as file:
+                    old = json.load(file)
+                    if 'cache_duration' in old:
+                        if old['value'] == value:
+                            expire_time = min(expires_max,old['cache_duration'] + 1)
+                        else:
+                            expire_time = max(expires_min,old['cache_duration'] - 1)
+            except:
+                ...
+        else:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, 'w') as file:
             file.write(json.dumps({
-                'expires': get_time() + expires,
+                'expires': get_time() + millis(expire_time),
+                'cache_duration': expire_time,
                 'value': value
             },separators=(',',':')))
 

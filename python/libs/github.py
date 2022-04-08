@@ -3,8 +3,9 @@ from libs.cachelib import Cache
 import json
 import requests
 
-
-EXPIRES_DEFAULT = 20
+EXPIRES_DEFAULT_MIN = 1
+EXPIRES_DEFAULT_MAX = 168
+EXPIRES_DEFAULT = 24
 
 token: str = ''
 if os.path.exists(os.path.join('.', 'github_token')):
@@ -26,7 +27,7 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
         return None
 
 
-def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIRES_DEFAULT):
+def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIRES_DEFAULT, expires_min: int = EXPIRES_DEFAULT_MIN, expires_max: int = EXPIRES_DEFAULT_MAX):
     key = f'{url} {headers} {params}'
     cached = cache.get(key)
     if cached != None:
@@ -37,21 +38,21 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIR
     request = getRequest(url, headers=headers, params=params)
     if request:
         data = request.json()
-        cache.set(key, data, expires=expires * 60 * 60 * 1000)
+        cache.set(key, data, expires=expires,expires_min=expires_min, expires_max=expires_max)
 
         return data
 
     return None
 
 
-def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, expires: int = EXPIRES_DEFAULT):
+def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, expires: int=EXPIRES_DEFAULT, expires_min: int=EXPIRES_DEFAULT_MIN, expires_max: int=EXPIRES_DEFAULT_MAX):
     data = []
     headers = headers.copy()
     params = params.copy()
     params['per_page'] = 100
     params['page'] = 1
     while count == -1 or len(data) < count:
-        fetched: list = getAPI(url, headers, params, expires=expires)
+        fetched: list = getAPI(url, headers, params, expires=expires, expires_min=expires_min,expires_max=expires_max)
         if fetched == None:
             return data
         length = len(fetched)
