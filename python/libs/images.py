@@ -24,6 +24,7 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
     if cached != None:
         return Image.fromarray(np.array(cached,dtype='uint8'))
 
+    print(f"IMAGE: {key}")
     img = Image.open(BytesIO(requests.get(url).content)).convert('RGBA')
 
     if circular:
