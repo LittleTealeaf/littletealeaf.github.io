@@ -41,7 +41,7 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIR
         cache.set(key, data, expires=expires,expires_min=expires_min, expires_max=expires_max)
 
         return data
-
+    cache.set(key,None,expires=expires,expires_min=expires_min,expires_max=expires_max)
     return None
 
 

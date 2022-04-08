@@ -21,8 +21,9 @@ def sanitize_key(key):
         if char in VALID_CHARACTERS:
             return char
         else:
-            return rand.choice(VALID_CHARACTERS)
-    return ''.join([sanitize(c) for c in key])
+            return ''
+    sanitized = ''.join([sanitize(c) for c in key])
+    return f"{sanitized}{''.join(rand.sample(VALID_CHARACTERS,len(key) - len(sanitized)))}"
 
 
 def get_time():
@@ -88,6 +89,6 @@ def clean():
                     if data['expires'] < get_time():
                         expired_files.append(os.path.join(dir, fn))
             except:
-                ...
+                expired_files.append(os.path.join(dir,fn))
     for file in expired_files:
         os.remove(file)
