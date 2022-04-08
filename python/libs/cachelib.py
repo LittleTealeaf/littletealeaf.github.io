@@ -87,7 +87,7 @@ def clean():
             try:
                 with open(os.path.join(dir, fn)) as file:
                     data = json.load(file)
-                    if data['expires'] < get_time():
+                    if data['expires'] < get_time() or 'value' not in data or 'cache_duration' not in data:
                         expired_files.append(os.path.join(dir, fn))
             except:
                 expired_files.append(os.path.join(dir,fn))
