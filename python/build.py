@@ -5,6 +5,7 @@ import libs.github as Github
 from libs.generated import Gen, gen_initialize
 import libs.config as conf
 import libs.images as images
+import libs.githubutil as GithubUtil
 import frontmatter
 
 import markdown
@@ -35,20 +36,21 @@ index = {
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
     if(project['github'] != None):
-        project['github']['api'] = Github.getAPI(
-            f"https://api.github.com/repos/{project['github']['repo']}")
-        project['github']['languages'] = Github.getAPI(
-            project['github']['api']['languages_url'])
-        project['github']['contributors'] = Github.getAPIList(
-            project['github']['api']['contributors_url'],count=1000)
-        project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
-        project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=500)
-        project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
-        project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).replace('{+path}',''))
-        for file in project['github']['contents']:
-            if str(file['name']).lower() == 'readme.md':
-                with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
-                    project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
+        project['github'] = GithubUtil.repo(f"https://api.github.com/repos/{project['github']['repo']}")
+        # project['github']['api'] = Github.getAPI(
+        #     f"https://api.github.com/repos/{project['github']['repo']}")
+        # project['github']['languages'] = Github.getAPI(
+        #     project['github']['api']['languages_url'])
+        # project['github']['contributors'] = Github.getAPIList(
+        #     project['github']['api']['contributors_url'],count=1000)
+        # project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
+        # project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=500)
+        # project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
+        # project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).replace('{+path}',''))
+        # for file in project['github']['contents']:
+        #     if str(file['name']).lower() == 'readme.md':
+        #         with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
+        #             project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
 
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)
