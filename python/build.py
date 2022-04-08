@@ -39,16 +39,16 @@ for project_path in conf.getFiles('projects'):
         project['github']['languages'] = Github.getAPI(
             project['github']['api']['languages_url'])
         project['github']['contributors'] = Github.getAPIList(
-            project['github']['api']['contributors_url'],count=1000,expires=72)
+            project['github']['api']['contributors_url'],count=1000)
         project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
-        project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=500,expires=5)
+        project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=500)
         project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
         project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).replace('{+path}',''))
         for file in project['github']['contents']:
             if str(file['name']).lower() == 'readme.md':
                 with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
                     project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
-                
+
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)
 
@@ -57,8 +57,8 @@ for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
         'api': repo_api,
         'languages': Github.getAPI(repo_api['languages_url']),
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
-        'contributors': Github.getAPIList(repo_api['contributors_url'],count=1000,expires=72),
-        'events':  Github.getAPIList(repo_api['events_url'],count=500,expires=5)
+        'contributors': Github.getAPIList(repo_api['contributors_url'],count=1000),
+        'events':  Github.getAPIList(repo_api['events_url'],count=500)
     }
     index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json(repo)
 
@@ -72,8 +72,8 @@ for blog_path in conf.getFiles('blogs'):
 user_api = Github.getAPI('https://api.github.com/user')
 user = {
     'api': user_api,
-    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''),expires=3)),
-    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000,expires=72))
+    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''))),
+    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000))
 }
 index['github']['user'] = Gen('github','user').ref_json(user)
 
@@ -81,8 +81,8 @@ index['github']['user'] = Gen('github','user').ref_json(user)
 index['analytics'] = Gen('analytics').ref_json({
     'github': {
         'api': Github.getAnalytics(),
-        'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage', expires=-1),
-        'rate_limits': Github.getAPI('https://api.github.com/rate_limit', expires=-1)
+        'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage'),
+        'rate_limits': Github.getAPI('https://api.github.com/rate_limit')
     }
 })
 
