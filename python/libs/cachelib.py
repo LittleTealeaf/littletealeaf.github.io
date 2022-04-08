@@ -8,6 +8,7 @@ BASE_PATH = os.path.join('.', 'cache')
 EXPIRES_DEFAULT_MIN = 1
 EXPIRES_DEFAULT_MAX = 168
 EXPIRES_DEFAULT = (EXPIRES_DEFAULT_MAX + EXPIRES_DEFAULT_MIN) / 2
+EXPIRES_DEFAULT_STEP = 5
 
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-'
 
@@ -46,7 +47,7 @@ class Cache:
             ...
         return None
 
-    def set(self, key, value, expires=EXPIRES_DEFAULT, expires_min = EXPIRES_DEFAULT_MIN, expires_max = EXPIRES_DEFAULT_MAX, expires_dynamic=True):
+    def set(self, key, value, expires=EXPIRES_DEFAULT, expires_min = EXPIRES_DEFAULT_MIN, expires_max = EXPIRES_DEFAULT_MAX, expires_step=EXPIRES_DEFAULT_STEP,expires_dynamic=True):
         path = self.file_name(key)
         expire_time = expires
         if os.path.exists(path) and expires_dynamic:
