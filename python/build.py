@@ -4,6 +4,7 @@ import urllib3
 import libs.github as Github
 from libs.generated import Gen, gen_initialize
 import libs.config as conf
+import libs.images as images
 import frontmatter
 
 import markdown
@@ -73,7 +74,8 @@ user_api = Github.getAPI('https://api.github.com/user')
 user = {
     'api': user_api,
     'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''))),
-    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000))
+    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000)),
+    'avatar': Gen('github','user','avatar').ref_image(images.get(user_api['avatar_url'],circular=True))
 }
 index['github']['user'] = Gen('github','user').ref_json(user)
 

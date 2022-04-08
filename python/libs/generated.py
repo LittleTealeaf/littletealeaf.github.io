@@ -1,5 +1,6 @@
 import os
 import json
+from PIL import Image
 import shutil
 
 GENERATED_DIRECTORY = os.path.join('.', 'generated')
@@ -30,4 +31,11 @@ class Gen:
             self.ref = self.ref + '.json'
         with open(self.path, 'w') as file:
             file.write(json.dumps(object, separators=(',', ':')))
+        return self.ref
+
+    def ref_image(self,img: Image.Image):
+        if not self.path.endswith('.png'):
+            self.path = self.path + '.png'
+            self.ref = self.ref + '.png'
+        img.save(self.path)
         return self.ref

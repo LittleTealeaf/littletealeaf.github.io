@@ -56,9 +56,9 @@ class Cache:
                     old = json.load(file)
                     if 'cache_duration' in old:
                         if old['value'] == value:
-                            expire_time = min(expires_max,old['cache_duration'] + 1)
+                            expire_time = min(expires_max,old['cache_duration'] + expires_step)
                         else:
-                            expire_time = max(expires_min,old['cache_duration'] - 1)
+                            expire_time = max(expires_min,old['cache_duration'] - expires_step)
             except:
                 ...
         else:
