@@ -37,7 +37,7 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIR
     request = getRequest(url, headers=headers, params=params)
     if request:
         data = request.json()
-        cache.set(key, data, expires=expires * 60 * 60 * 1000)
+        cache.set(key, data, expires=expires)
 
         return data
 
