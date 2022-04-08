@@ -92,4 +92,5 @@ def clean():
             except:
                 expired_files.append(os.path.join(dir,fn))
     for file in expired_files:
+        print(f"Cleaning Cache File: {file}")
         os.remove(file)
