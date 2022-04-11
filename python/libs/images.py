@@ -46,29 +46,3 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
     cache.set(key, np.array(img).tolist(), expires=expires,
               expires_min=expires_min, expires_max=expires_max, expires_step=expires_step, priority=priority)
     return img
-
-
-# def toJSON(img):
-#     base = -1
-#     arr = np.array(img).tolist()
-#     for a in arr:
-#         for b in a:
-#             for c in b:
-#                 if c > base:
-#                     base = c
-#     return {
-#         'base': base,
-#         'image': [[list_pack(b, size=base) for b in a] for a in arr]
-#     }
-
-
-# def fromJSON(value):
-#     return Image.fromarray(np.array([[list_unpack(b, size=value['base'], count=4) for b in a] for a in value['image']], dtype='uint8'))
-
-
-# def list_pack(data, size=256):
-#     return data[0] + size * (list_pack(data[1:], size=size) if len(data) > 1 else 0)
-
-
-# def list_unpack(data, size=256, count=0):
-#     return [data % size] + (list_unpack(math.floor(data/size), size=size, count=count-1) if data > size or count > 1 else [])
