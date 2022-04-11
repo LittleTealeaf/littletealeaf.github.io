@@ -24,7 +24,7 @@ const MyApp = ({ Component, pageProps }) => {
           }}
         >
           {
-            "Hello viewer! Yes, this website is currently in development. Yes, I have decided to develop on production. Why? Because I can, and because it's easier for me. Feel free to check on back to see the progress of my website, and hopefully eventually the final result! I think at that point, I'll work on NOT testing on production... :)"
+            "Hello viewer! Yes, this website is currently in development. Yes, I have decided to develop on production. Why? Because I can, and because it's easier for me. Feel free to check on back to see the progress of my website, and hopefully eventually the final result! I think at that point, I'll work on NOT testing on production...  Or maybe I will... :)"
           }
         </div>
       </center>

@@ -61,8 +61,12 @@
         font-size: large;
     }
 
-    p a img {
-        float: left;
+    p a {
+        color: #0b5ada;
+
+        img {
+            float: left;
+        }
     }
 
     p::after {
