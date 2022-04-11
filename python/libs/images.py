@@ -25,6 +25,7 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
     cached = cache.get(key)
     try:
         if cached != None:
+            print(f'CACHED IMAGE: {key}')
             return fromJSON(cached)
     except:
         ...
