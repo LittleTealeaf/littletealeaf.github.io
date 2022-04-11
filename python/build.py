@@ -79,8 +79,7 @@ user_api = Github.getAPI('https://api.github.com/user')
 user = {
     'api': user_api,
     'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''),priority=-1)),
-    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000)),
-    'avatar': Gen('github','user','avatar').ref_image(images.get(user_api['avatar_url'],circular=True))
+    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000))
 }
 index['github']['user'] = Gen('github','user').ref_json(user)
 
