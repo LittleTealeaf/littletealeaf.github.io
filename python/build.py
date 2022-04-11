@@ -60,7 +60,7 @@ for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
         'languages': Github.getAPI(repo_api['languages_url']),
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
         'contributors': Github.getAPIList(repo_api['contributors_url'],count=1000),
-        'events':  Github.getAPIList(repo_api['events_url'],count=500)
+        'events':  Github.getAPIList(repo_api['events_url'],priority=0,count=500)
     }
     index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json(repo)
 
@@ -74,7 +74,7 @@ for blog_path in conf.getFiles('blogs'):
 user_api = Github.getAPI('https://api.github.com/user')
 user = {
     'api': user_api,
-    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''))),
+    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''),priority=-1)),
     'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000)),
     'avatar': Gen('github','user','avatar').ref_image(images.get(user_api['avatar_url'],circular=True))
 }
