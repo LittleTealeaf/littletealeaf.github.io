@@ -14,7 +14,7 @@ EXPIRES_MIN = 0
 EXPIRES_STEP = 12
 
 
-cache = Cache('images')
+# cache = Cache('images')
 
 
 def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=EXPIRES_MIN, expires_max=EXPIRES_MAX, expires_step=EXPIRES_STEP):
@@ -22,13 +22,13 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
         'circular': circular
     }
 
-    try:
-        cached = cache.get(key,source=url)
-        if cached != None:
-            print(f'CACHED IMAGE: {url} {key}')
-            return Image.frombytes(cache.decode("hex"))
-    except:
-        ...
+    # try:
+    #     cached = cache.get(key,source=url)
+    #     if cached != None:
+    #         print(f'CACHED IMAGE: {url} {key}')
+    #         return Image.frombytes(cache.decode("hex"))
+    # except:
+    #     ...
 
     print(f"IMAGE: {url} {key}")
     img = Image.open(BytesIO(requests.get(url).content)).convert('RGBA')
@@ -42,6 +42,6 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
 
         img.putalpha(alpha.filter(ImageFilter.GaussianBlur(4)))
 
-    cache.set(key, str(img.tobytes().hex()),source=url, expires=expires,
-              expires_min=expires_min, expires_max=expires_max, expires_step=expires_step)
+    # cache.set(key, str(img.tobytes().hex()),source=url, expires=expires,
+    #           expires_min=expires_min, expires_max=expires_max, expires_step=expires_step)
     return img

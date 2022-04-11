@@ -67,6 +67,23 @@ def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1,
         params['page'] = params['page'] + 1
     return data
 
+def renderMarkdown(text):
+    cached = cache.get(text,source='https://api.github.com/markdown')
+    if cached != None:
+        print("CACHE: Markdown")
+        return cached
+
+    value = requests.post('https://api.github.com/markdown',json={
+        'mode': 'markdown',
+        'authorization': f'token {token}',
+        'text': text
+    }).text
+
+    print("API: Markdown")
+    cache.set(text,value,source='https://api.github.com/markdown',expires=EXPIRES_DEFAULT,expires_min=EXPIRES_DEFAULT_MIN,expires_max=24*365,expires_step=EXPIRES_DEFAULT_STEP)
+
+    return value
+
 
 def getAnalytics():
     return {

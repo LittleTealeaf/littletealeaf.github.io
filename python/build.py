@@ -47,12 +47,11 @@ for project_path in conf.getFiles('projects'):
         for file in project['github']['contents']:
             if str(file['name']).lower() == 'readme.md':
                 with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
-                    project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
+                    project['github']['readme'] = Github.renderMarkdown('\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n'))
         project['github']['contributors'] = []
         for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
             project['github']['contributors'].append({
-                'api': user_api,
-                # 'avatar': Gen('images','github','contributors',user_api['login']).ref_image(images.get(user_api['avatar_url'],circular=True))
+                'api': user_api
             })
 
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
