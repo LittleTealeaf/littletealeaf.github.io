@@ -41,7 +41,7 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
 
         img.putalpha(alpha.filter(ImageFilter.GaussianBlur(4)))
 
-    cache.set(key, toJSON(img), expires=-1,
+    cache.set(key, toJSON(img), expires=expires,
               expires_min=expires_min, expires_max=expires_max, expires_step=expires_step)
     return img
 
