@@ -1,3 +1,4 @@
+from ast import Bytes
 from io import BytesIO
 import json
 import math
@@ -27,7 +28,7 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
         cached = cache.get(key)
         if cached != None:
             print(f'CACHED IMAGE: {key}')
-            return Image.fromarray(np.array(cached,dtype='uint8'))
+            return Image.frombytes(cache.decode("hex"))
     except:
         ...
 
@@ -43,6 +44,6 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
 
         img.putalpha(alpha.filter(ImageFilter.GaussianBlur(4)))
 
-    cache.set(key, np.array(img).tolist(), expires=expires,
+    cache.set(key, str(img.tobytes().hex()), expires=expires,
               expires_min=expires_min, expires_max=expires_max, expires_step=expires_step, priority=priority)
     return img
