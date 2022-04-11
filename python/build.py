@@ -1,3 +1,4 @@
+from ossaudiodev import control_labels
 from pathlib import Path
 
 import urllib3
@@ -35,34 +36,37 @@ index = {
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
     if(project['github'] != None):
-        # project['github'] = GithubUtil.repo(f"https://api.github.com/repos/{project['github']['repo']}")
         project['github']['api'] = Github.getAPI(
             f"https://api.github.com/repos/{project['github']['repo']}")
         project['github']['languages'] = Github.getAPI(
             project['github']['api']['languages_url'])
-        project['github']['contributors'] = Github.getAPIList(
-            project['github']['api']['contributors_url'],count=1000)
         project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
         project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'])
-        project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
-        project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).replace('{+path}',''))
+        project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).format(**{'/id':''}))
+        project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).format(**{'+path':''}))
+
         for file in project['github']['contents']:
             if str(file['name']).lower() == 'readme.md':
                 with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
                     project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
+        project['github']['contributors'] = []
+        for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
+            project['github']['contributors'].append({
+                'api': user_api,
+                'avatar': Gen('images','github','contributors',user_api['login']).ref_image(images.get(user_api['avatar_url'],circular=True))
+            })
 
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
                                                 'projects', project_path[-1]).ref_json(project)
 
 for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
-    repo = {
+    index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json({
         'api': repo_api,
         'languages': Github.getAPI(repo_api['languages_url']),
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
-        'contributors': Github.getAPIList(repo_api['contributors_url'],count=1000),
+        'contributors': Github.getAPIList(repo_api['contributors_url']),
         'events':  Github.getAPIList(repo_api['events_url'],priority=0,count=500)
-    }
-    index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json(repo)
+    })
 
 # Blogs
 for blog_path in conf.getFiles('blogs'):
