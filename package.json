@@ -19,7 +19,7 @@
     "eslint-config-next": "12.1.4",
     "fs": "0.0.1-security",
     "gray-matter": "4.0.3",
-    "highlight.js": "11.5.0",
+    "highlight.js": "11.5.1",
     "html-react-parser": "1.4.10",
     "imagemin-optipng": "8.0.0",
     "markdown-it": "12.3.2",
