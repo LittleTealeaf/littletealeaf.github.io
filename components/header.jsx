@@ -29,7 +29,7 @@ export default function Header() {
         {require("../assets/navigation.json").map((item, index) => (
           <li
             key={index}
-            className="float-left transition-all bg-black hover:bg-gray-700 grow-[3] hover:grow-[4] text-center"
+            className="float-left transition-all bg-black hover:bg-gray-700 grow-[8] hover:grow-[9] text-center"
             style={{
               padding: "14px 16px",
             }}
