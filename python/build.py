@@ -43,7 +43,7 @@ for project_path in conf.getFiles('projects'):
         project['github']['contributors'] = Github.getAPIList(
             project['github']['api']['contributors_url'],count=1000)
         project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
-        project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'],count=500)
+        project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'])
         project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).replace('{/id}',''))
         project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).replace('{+path}',''))
         for file in project['github']['contents']:
