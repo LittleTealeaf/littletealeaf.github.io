@@ -84,8 +84,8 @@ index['github']['user'] = Gen('github','user').ref_json(user)
 index['analytics'] = Gen('analytics').ref_json({
     'github': {
         'api': Github.getAnalytics(),
-        'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage'),
-        'rate_limits': Github.getAPI('https://api.github.com/rate_limit',expires=-1,expires_max=-1,expires_min=-1)
+        'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage',expires=-1,expires_step=0),
+        'rate_limits': Github.getAPI('https://api.github.com/rate_limit',expires=-1,expires_step=0)
     }
 })
 
