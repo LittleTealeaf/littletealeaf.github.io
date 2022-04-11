@@ -47,7 +47,7 @@ class Cache:
             ...
         return None
 
-    def set(self, key, value, expires=EXPIRES_DEFAULT, expires_min = EXPIRES_DEFAULT_MIN, expires_max = EXPIRES_DEFAULT_MAX, expires_step=EXPIRES_DEFAULT_STEP,expires_dynamic=True):
+    def set(self, key, value, expires=EXPIRES_DEFAULT, expires_min = EXPIRES_DEFAULT_MIN, expires_max = EXPIRES_DEFAULT_MAX, expires_step=EXPIRES_DEFAULT_STEP,expires_dynamic=True, priority=1):
         path = self.file_name(key)
         expire_time = expires
         if os.path.exists(path) and expires_dynamic:
@@ -67,6 +67,7 @@ class Cache:
             file.write(json.dumps({
                 'expires': get_time() + millis(expire_time),
                 'cache_duration': expire_time,
+                'priority': priority,
                 'value': value
             },separators=(',',':')))
 
@@ -79,18 +80,44 @@ class Cache:
     def analytics(self):
         return {}
 
+CACHE_MAX_SIZE = 1 * 10**9
 
 def clean():
-    expired_files = []
-    for dir, dirs, files in os.walk(BASE_PATH):
-        for fn in files:
-            try:
-                with open(os.path.join(dir, fn)) as file:
-                    data = json.load(file)
-                    if data['expires'] < get_time() or 'value' not in data or 'cache_duration' not in data:
-                        expired_files.append(os.path.join(dir, fn))
-            except:
-                expired_files.append(os.path.join(dir,fn))
-    for file in expired_files:
-        print(f"Cleaning Cache File: {file}")
-        os.remove(file)
+    size = -1
+    while size == -1 or size > CACHE_MAX_SIZE:
+        size = 0
+        for dir,_,files in os.walk(BASE_PATH):
+            for f in files:
+                size += os.path.getsize(os.path.join(dir,f))
+        if size > CACHE_MAX_SIZE:
+            candidate = None
+            candidate_fp = None
+            for dir,_,files in os.walk(BASE_PATH):
+                for f in files:
+                    fp = os.path.join(dir,f)
+                    try:
+                        with open(fp) as file:
+                            vals = json.load(file)
+                            if candidate == None or vals['priority'] < candidate['priority'] or vals['expires'] < candidate['expires']:
+                                candidate = vals
+                                candidate_fp = fp
+                    except:
+                        print(f'Cleaning Unreadable Cache: {fp}')
+                        os.remove(fp)
+            print(f'Cleaning Cache File: {candidate_fp}')
+            os.remove(candidate_fp)
+
+
+    # expired_files = []
+    # for dir, dirs, files in os.walk(BASE_PATH):
+    #     for fn in files:
+    #         try:
+    #             with open(os.path.join(dir, fn)) as file:
+    #                 data = json.load(file)
+    #                 if data['expires'] < get_time() or 'value' not in data or 'cache_duration' not in data:
+    #                     expired_files.append(os.path.join(dir, fn))
+    #         except:
+    #             expired_files.append(os.path.join(dir,fn))
+    # for file in expired_files:
+    #     print(f"Cleaning Cache File: {file}")
+    #     os.remove(file)

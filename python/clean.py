@@ -29,6 +29,5 @@ def cleanDir(directory, max_bytes=GB(1), expire_interval=100):
 
 cache.clean()
 
-cleanDir(os.path.join('.', 'cache'), GB(2),expire_interval=-1)
 cleanDir(os.path.join('.', '.next', 'cache'),expire_interval=100)
 cleanDir(os.path.join('.', 'node_modules'),expire_interval=50)
