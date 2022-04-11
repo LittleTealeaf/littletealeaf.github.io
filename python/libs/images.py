@@ -21,7 +21,7 @@ def get(url: str, circular: bool = False, expires=EXPIRES_DEFAULT, expires_min=E
     key_dict = {
         'circular': circular
     }
-    key = f"{url}{key_dict}"
+    key = f"{url} {key_dict}"
 
     try:
         cached = cache.get(key)
