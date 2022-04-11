@@ -29,21 +29,24 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
         return None
 
 
-def getAPI(url: str, headers: dict = {}, params: dict = {}, expires: int = EXPIRES_DEFAULT, expires_min: int = EXPIRES_DEFAULT_MIN, expires_max: int = EXPIRES_DEFAULT_MAX, expires_step = EXPIRES_DEFAULT_STEP, priority: int = PRIORITY_DEFAULT):
+def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True, expires: int = EXPIRES_DEFAULT, expires_min: int = EXPIRES_DEFAULT_MIN, expires_max: int = EXPIRES_DEFAULT_MAX, expires_step = EXPIRES_DEFAULT_STEP, priority: int = PRIORITY_DEFAULT):
     key = f'{url} {headers} {params}'
-    cached = cache.get(key)
-    if cached != None:
-        print(f'CACHE: {key}')
-        return cached
+    if use_cache:
+        cached = cache.get(key)
+        if cached != None:
+            print(f'CACHE: {key}')
+            return cached
     print(f'API: {key}')
 
     request = getRequest(url, headers=headers, params=params)
     if request:
         data = request.json()
-        cache.set(key, data, expires=expires,expires_min=expires_min, expires_max=expires_max, expires_step=expires_step,priority=priority)
+        if use_cache:
+            cache.set(key, data, expires=expires,expires_min=expires_min, expires_max=expires_max, expires_step=expires_step,priority=priority)
 
         return data
-    cache.set(key,None,expires=expires,expires_min=expires_min,expires_max=expires_max)
+    if use_cache:
+         cache.set(key,None,expires=expires,expires_min=expires_min,expires_max=expires_max)
     return None
 
 
