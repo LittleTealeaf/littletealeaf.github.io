@@ -1,4 +1,3 @@
-from ossaudiodev import control_labels
 from pathlib import Path
 
 import urllib3
@@ -48,12 +47,11 @@ for project_path in conf.getFiles('projects'):
         for file in project['github']['contents']:
             if str(file['name']).lower() == 'readme.md':
                 with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
-                    project['github']['readme'] = '\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n')
+                    project['github']['readme'] = Github.renderMarkdown('\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n'))
         project['github']['contributors'] = []
         for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
             project['github']['contributors'].append({
-                'api': user_api,
-                'avatar': Gen('images','github','contributors',user_api['login']).ref_image(images.get(user_api['avatar_url'],circular=True))
+                'api': user_api
             })
 
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
@@ -65,7 +63,7 @@ for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
         'languages': Github.getAPI(repo_api['languages_url']),
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
         'contributors': Github.getAPIList(repo_api['contributors_url']),
-        'events':  Github.getAPIList(repo_api['events_url'],priority=0,count=500)
+        'events':  Github.getAPIList(repo_api['events_url'],count=500)
     })
 
 # Blogs
@@ -78,7 +76,7 @@ for blog_path in conf.getFiles('blogs'):
 user_api = Github.getAPI('https://api.github.com/user')
 user = {
     'api': user_api,
-    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''),priority=-1)),
+    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''))),
     'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000))
 }
 index['github']['user'] = Gen('github','user').ref_json(user)

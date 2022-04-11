@@ -1,3 +1,4 @@
+import math
 import os
 import json
 from random import Random
@@ -15,7 +16,7 @@ VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz12345678
 def millis(hours):
     return int(round(hours * 60 * 60 * 1000))
 
-def sanitize_key(key):
+def sanitize_source(key):
     rand = Random(key)
 
     def sanitize(char):
@@ -35,47 +36,45 @@ class Cache:
     def __init__(self, *path):
         self.path = os.path.join(BASE_PATH, *path)
 
-    def get(self, key):
+    def set(self,key,value,source='default', expires=EXPIRES_DEFAULT,expires_min=EXPIRES_DEFAULT_MIN,expires_max=EXPIRES_DEFAULT_MAX,expires_step=EXPIRES_DEFAULT_STEP):
+        duration = expires
+        src = self.load_source(source)
         try:
-            path = self.file_name(key)
-            if os.path.exists(path):
-                with open(path) as file:
-                    data = json.load(file)
-                    if data['expires'] > get_time():
-                        return data['value']
+            if src[key]['expires'] < get_time() and expires != -1:
+                if src[key]['value'] == value:
+                    duration = math.min(expires_max,src[key]['duration'] + expires_step)
+                else:
+                    duration = math.max(expires_min,src[key]['duration'] - expires_step)
         except:
             ...
-        return None
+        src[str(key)] = {
+            'expires': millis(duration) + get_time(),
+            'duration': duration,
+            'value': value
+        }
+        self.save_source(source,src)
 
-    def set(self, key, value, expires=EXPIRES_DEFAULT, expires_min = EXPIRES_DEFAULT_MIN, expires_max = EXPIRES_DEFAULT_MAX, expires_step=EXPIRES_DEFAULT_STEP, priority=1):
-        path = self.file_name(key)
-        expire_time = expires
-        if os.path.exists(path) and expires != -1:
-            try:
-                with open(path) as file:
-                    old = json.load(file)
-                    if 'cache_duration' in old:
-                        if 'value' in old and old['value'] == value:
-                            expire_time = min(expires_max,old['cache_duration'] + expires_step)
-                        else:
-                            expire_time = max(expires_min,old['cache_duration'] - expires_step)
-            except:
-                ...
-        else:
-            os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, 'w') as file:
-            file.write(json.dumps({
-                'expires': get_time() + millis(expire_time),
-                'cache_duration': expire_time,
-                'priority': priority,
-                'value': value
-            },separators=(',',':')))
 
-    def remove(self, key):
-        os.remove(self.file_name(key))
 
-    def file_name(self, key):
-        return os.path.join(self.path, f'{sanitize_key(key)}.json')
+    def get(self,key,source='default'):
+        try:
+            src = self.load_source(source)
+            if src[key]['expires'] > get_time():
+                return src[key]['value']
+        except:
+            return None
+
+    def load_source(self,source):
+        try:
+            with open(os.path.join(self.path,f"{sanitize_source(source)}.json")) as file:
+                return json.load(file)
+        except:
+            return {}
+    def save_source(self,source,values):
+        path = os.path.join(self.path,f'{sanitize_source(source)}.json')
+        os.makedirs(os.path.dirname(path),exist_ok=True)
+        with open(path,'w') as file:
+            file.write(json.dumps(values,separators=(',',':')))
 
     def analytics(self):
         return {}
@@ -90,24 +89,25 @@ def cache_size():
     return size
 
 def clean(partial_wipe=False, full_wipe = False):
-    print("Cleaning Build Cache")
-    print(f"Start Cache Size (bytes): {cache_size()}")
-    # Clean all expired caches
-    for dir,_,files in os.walk(BASE_PATH):
-        for f in files:
-            fp = os.path.join(dir,f)
-            if not full_wipe:
-                try:
-                    data = None
-                    with open(fp) as file:
-                        data = json.load(file)
-                    if (partial_wipe or data['expires'] < get_time()) and 'value' in data:
-                        del data['value']
-                        with open(fp,'w') as file:
-                            print(f'Removing data: {fp}')
-                            file.write(json.dumps(data))
-                except:
-                    os.remove(fp)
-            else:
-                os.remove(fp)
-    print(f"Final Cache Size (bytes): {cache_size()}")
+    print("Temporary cleaning situation")
+    # print("Cleaning Build Cache")
+    # print(f"Start Cache Size (bytes): {cache_size()}")
+    # # Clean all expired caches
+    # for dir,_,files in os.walk(BASE_PATH):
+    #     for f in files:
+    #         fp = os.path.join(dir,f)
+    #         if not full_wipe:
+    #             try:
+    #                 data = None
+    #                 with open(fp) as file:
+    #                     data = json.load(file)
+    #                 if (partial_wipe or data['expires'] < get_time()) and 'value' in data:
+    #                     del data['value']
+    #                     with open(fp,'w') as file:
+    #                         print(f'Removing data: {fp}')
+    #                         file.write(json.dumps(data))
+    #             except:
+    #                 os.remove(fp)
+    #         else:
+    #             os.remove(fp)
+    # print(f"Final Cache Size (bytes): {cache_size()}")
