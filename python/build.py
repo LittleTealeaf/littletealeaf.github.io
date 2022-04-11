@@ -53,7 +53,7 @@ for project_path in conf.getFiles('projects'):
         for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
             project['github']['contributors'].append({
                 'api': user_api,
-                'avatar': Gen('images','github','contributors',user_api['login']).ref_image(images.get(user_api['avatar_url'],circular=True))
+                # 'avatar': Gen('images','github','contributors',user_api['login']).ref_image(images.get(user_api['avatar_url'],circular=True))
             })
 
     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
@@ -65,7 +65,7 @@ for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
         'languages': Github.getAPI(repo_api['languages_url']),
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
         'contributors': Github.getAPIList(repo_api['contributors_url']),
-        'events':  Github.getAPIList(repo_api['events_url'],priority=0,count=500)
+        'events':  Github.getAPIList(repo_api['events_url'],count=500)
     })
 
 # Blogs
@@ -78,7 +78,7 @@ for blog_path in conf.getFiles('blogs'):
 user_api = Github.getAPI('https://api.github.com/user')
 user = {
     'api': user_api,
-    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''),priority=-1)),
+    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''))),
     'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000)),
     'avatar': Gen('github','user','avatar').ref_image(images.get(user_api['avatar_url'],circular=True))
 }

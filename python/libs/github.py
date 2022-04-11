@@ -7,7 +7,6 @@ EXPIRES_DEFAULT_MIN = -1
 EXPIRES_DEFAULT_STEP = 5
 EXPIRES_DEFAULT_MAX = 168
 EXPIRES_DEFAULT = 24
-PRIORITY_DEFAULT = 1
 
 token: str = ''
 if os.path.exists(os.path.join('.', 'github_token')):
@@ -29,20 +28,20 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
         return None
 
 
-def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True, expires: int = EXPIRES_DEFAULT, expires_min: int = EXPIRES_DEFAULT_MIN, expires_max: int = EXPIRES_DEFAULT_MAX, expires_step = EXPIRES_DEFAULT_STEP, priority: int = PRIORITY_DEFAULT):
-    key = f'{url} {headers} {params}'
+def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True, expires: int = EXPIRES_DEFAULT, expires_min: int = EXPIRES_DEFAULT_MIN, expires_max: int = EXPIRES_DEFAULT_MAX, expires_step = EXPIRES_DEFAULT_STEP):
+    key = f'{headers} {params}'
     if use_cache:
-        cached = cache.get(key)
+        cached = cache.get(key,source=url)
         if cached != None:
-            print(f'CACHE: {key}')
+            print(f'CACHE: {url} {key}')
             return cached
-    print(f'API: {key}')
+    print(f'API: {url} {key}')
 
     request = getRequest(url, headers=headers, params=params)
     if request:
         data = request.json()
         if use_cache:
-            cache.set(key, data, expires=expires,expires_min=expires_min, expires_max=expires_max, expires_step=expires_step,priority=priority)
+            cache.set(key, data,source=url, expires=expires,expires_min=expires_min, expires_max=expires_max, expires_step=expires_step)
 
         return data
     if use_cache:
@@ -50,14 +49,14 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
     return None
 
 
-def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, expires: int=EXPIRES_DEFAULT, expires_min: int=EXPIRES_DEFAULT_MIN, expires_max: int=EXPIRES_DEFAULT_MAX, expires_step: int=EXPIRES_DEFAULT_STEP, priority: int=PRIORITY_DEFAULT):
+def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, expires: int=EXPIRES_DEFAULT, expires_min: int=EXPIRES_DEFAULT_MIN, expires_max: int=EXPIRES_DEFAULT_MAX, expires_step: int=EXPIRES_DEFAULT_STEP):
     data = []
     headers = headers.copy()
     params = params.copy()
     params['per_page'] = 100
     params['page'] = 1
     while count == -1 or len(data) < count:
-        fetched: list = getAPI(url, headers, params, expires=expires, expires_min=expires_min,expires_max=expires_max,expires_step=expires_step,priority=priority)
+        fetched: list = getAPI(url, headers, params, expires=expires, expires_min=expires_min,expires_max=expires_max,expires_step=expires_step)
         if fetched == None:
             return data
         length = len(fetched)
