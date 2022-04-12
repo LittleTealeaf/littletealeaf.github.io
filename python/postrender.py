@@ -5,7 +5,17 @@ import bs4
 import htmlmin
 
 
+
 PATH = os.path.join('.','out')
+
+def get_size():
+    size = 0
+    for dir,_,files in os.walk(PATH):
+        for file in files:
+            size += os.path.getsize(os.path.join(dir,file))
+    return size
+
+print(f'Start Out Size: {get_size()}')
 
 for dir,_,files in os.walk(PATH):
     for file in files:
@@ -18,3 +28,5 @@ for dir,_,files in os.walk(PATH):
                 comments.extract()
             with open(os.path.join(dir,file),'w',encoding='utf-8') as f:
                 f.write(htmlmin.minify(str(soup)))
+
+print(f'Final Out Size: {get_size()}')
