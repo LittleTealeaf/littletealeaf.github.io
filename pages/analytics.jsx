@@ -1,5 +1,5 @@
 import { getGenerated, index } from "../libs/resources";
-import Markdown from "../components/markdown";
+import {RenderMarkdown} from "../components/markdown";
 
 export default function Page({}) {
   const analytics = getGenerated(index.analytics);
@@ -8,7 +8,7 @@ export default function Page({}) {
 
   return (
     <>
-      <Markdown content={json_string} />
+      <RenderMarkdown content={json_string} />
     </>
   );
 }

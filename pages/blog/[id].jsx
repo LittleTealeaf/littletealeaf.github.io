@@ -1,6 +1,6 @@
 import { getGenerated, index } from "../../libs/resources";
 import Head from "next/head";
-import Markdown from "../../components/markdown";
+import {RenderMarkdown} from "../../components/markdown";
 
 
 
@@ -46,10 +46,7 @@ export default function Page({ id}) {
         <Head>
             {blog.title != null ? <title>{blog.title}</title> : ""}
         </Head>
-        {/* <div className={style.markdown}>
-            {html_parser.default(markdown_it.render(blog.content))}
-        </div> */}
-        <Markdown content={blog.content} />
+        <RenderMarkdown content={blog.content} />
 
         </>
     )

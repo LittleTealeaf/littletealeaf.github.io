@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { getGenerated, index } from "../../libs/resources";
-import Markdown from "../../components/markdown";
+import { RenderMarkdown } from "../../components/markdown";
 
 /*
 What's going on?
@@ -45,7 +45,7 @@ export default function Page({ id }) {
         {project.github == null || project.github.readme == null ? (
           <></>
         ) : (
-          <Markdown content={project.github.readme} />
+          <RenderMarkdown content={project.github.readme} />
         )}
       </div>
     </>
