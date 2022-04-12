@@ -76,7 +76,7 @@ def renderMarkdown(text):
 
     cached = cache.get(text,source='https://api.github.com/markdown')
     if cached != None:
-        print("CACHE: Markdown")
+        print(f"CACHE: https://api.github.com/markdown")
         return cached
 
     value = requests.post('https://api.github.com/markdown',json={
@@ -85,7 +85,7 @@ def renderMarkdown(text):
         'text': text
     }).text
 
-    print("API: Markdown")
+    print(f"API: https://api.github.com/markdown")
     cache.set(text,value,source='https://api.github.com/markdown',expires=EXPIRES_DEFAULT,expires_min=EXPIRES_DEFAULT_MIN,expires_max=24*365,expires_step=EXPIRES_DEFAULT_STEP)
 
     return value
