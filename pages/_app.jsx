@@ -1,9 +1,9 @@
 import Header from "../components/header";
-import { useRouter } from "next/router";
 
 // Styles
 import "../styles/style.css";
-import "highlight.js/scss/github-dark.scss";
+import "@primer/css/index.scss"
+import "github-syntax-light/lib/github-light.css"
 
 //Some thoughts: https://www.johanbleuzen.fr/blog/next-remove-clientside-javascript
 
