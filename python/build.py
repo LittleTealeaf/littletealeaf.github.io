@@ -42,7 +42,7 @@ for project_path in conf.getFiles('projects'):
         api = Github.getAPI(f"https://api.github.com/repos/{project['github']['repo']}")
         project['github'].update({
             'api': api,
-            'readme': GithubWrapper.README(repo_api = api),
+            'readme': GithubWrapper.README(project['github']['repo']),
             'languages': Github.getAPI(api['languages_url']),
             'events': Github.getAPIList(api['events_url']),
             'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''}))
