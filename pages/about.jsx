@@ -1,11 +1,11 @@
+import Markdown from "../components/markdown";
+import { index } from "../libs/resources";
+import { getGenerated } from "../libs/resources";
 
-
-export default function Page({}) {
-
-
-    return (<>
-    <div>
-        {"Hello! This is a page about me. Uh..... I like working on code! I like Dungeons & Dragons! and uh... err... Pi"}
-    </div>
-    </>)
+export default function Page({ }) {
+    return (
+        <>
+            <Markdown content={getGenerated(index.snippets.aboutme)} />
+        </>
+    );
 }
