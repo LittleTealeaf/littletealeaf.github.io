@@ -68,6 +68,12 @@ def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1,
     return data
 
 def renderMarkdown(text):
+    while '\n\n' in text:
+        text = text.replace('\n\n','\n')
+
+    while '\r\n' in text:
+        text = text.replace('\r\n','\n')
+
     cached = cache.get(text,source='https://api.github.com/markdown')
     if cached != None:
         print("CACHE: Markdown")
