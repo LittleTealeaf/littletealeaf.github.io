@@ -5,3 +5,4 @@ python-frontmatter==1.0.0
 urllib3==1.26.9
 pillow==9.1.0
 numpy==1.22.3
+htmlmin==0.1.12
