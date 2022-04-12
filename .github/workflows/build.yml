@@ -30,13 +30,6 @@ jobs:
         with:
           node-version: '17'
           cache: 'npm'
-      - name: Cache npm
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{runner.os}}-${{github.repository}}-node-${{ hashFiles('**/package-lock.json')}}
-          restore-keys: |
-            ${{runner.os}}-${{github.repository}}-node-
       - name: Cache Pip
         uses: actions/cache@v3
         with:
