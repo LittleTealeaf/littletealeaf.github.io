@@ -27,6 +27,6 @@ for dir,_,files in os.walk(PATH):
             for comments in soup.findAll(text=lambda text: isinstance(text,bs4.Comment)):
                 comments.extract()
             with open(os.path.join(dir,file),'w',encoding='utf-8') as f:
-                f.write(htmlmin.minify(str(soup)))
+                f.write(str(soup))
 
 print(f'Final Out Size: {get_size()}')
