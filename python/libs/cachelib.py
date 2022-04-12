@@ -106,7 +106,7 @@ def clean(partial_wipe=False, full_wipe = False):
                             print(f'Removing Key: {fp} {key}')
                             del data[key]['value']
                     with open(fp,'w') as file:
-                        file.write(json.dumps(data))
+                        file.write(json.dumps(data,separators=(',',':')))
                 except:
                     print(f'Crash-Cleaning {fp}')
                     os.remove(fp)
