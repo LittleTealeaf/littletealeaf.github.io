@@ -5,7 +5,7 @@ import bs4
 # Wrapper for some common functions used in github
 
 
-def render_README(repo_api=None,repo_url=None):
+def README(repo_api=None,repo_url=None):
     if not repo_api:
         repo_api = Github.getAPI(repo_url)
     contents = Github.getAPI(str(repo_api['contents_url']).format(**{'+path':''}))

@@ -44,7 +44,7 @@ for project_path in conf.getFiles('projects'):
         project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'])
         project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).format(**{'/id':''}))
         project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).format(**{'+path':''}))
-        project['github']['readme'] = GithubWrapper.render_README(repo_api=project['github']['api'])
+        project['github']['readme'] = GithubWrapper.README(repo_api=project['github']['api'])
         project['github']['contributors'] = []
         for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
             project['github']['contributors'].append({
@@ -61,7 +61,7 @@ for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
         'contributors': Github.getAPIList(repo_api['contributors_url']),
         'events':  Github.getAPIList(repo_api['events_url'],count=500),
-        'readme': GithubWrapper.render_README(repo_api=repo_api)
+        'readme': GithubWrapper.README(repo_api=repo_api)
     })
 
 # Blogs
