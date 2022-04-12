@@ -108,5 +108,6 @@ def clean(partial_wipe=False, full_wipe = False):
                     with open(fp,'w') as file:
                         file.write(json.dumps(data))
                 except:
+                    print(f'Crash-Cleaning {fp}')
                     os.remove(fp)
     print(f"Final Cache Size (bytes): {cache_size()}")
