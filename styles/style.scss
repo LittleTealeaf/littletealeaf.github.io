@@ -1,0 +1,10 @@
+.markdown-body {
+
+    p img {
+        float: left;
+    }
+    p::after {
+        white-space: pre;
+        content: "\A";
+    }
+}

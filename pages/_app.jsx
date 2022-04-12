@@ -1,7 +1,8 @@
 import Header from "../components/header";
 
 // Styles
-import "../styles/style.css";
+import "../styles/globals.css";
+import "../styles/style.scss";
 import "@primer/css/index.scss"
 import "github-syntax-light/lib/github-light.css"
 import Announcement from "../components/announcement";

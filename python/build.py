@@ -18,6 +18,8 @@ import shutil
 # for line in file:
 #     print(line.decode('utf-8'))
 
+
+
 MARKDOWN_EXTENSIONS = ['tables', 'fenced_code']
 
 gen_initialize()
@@ -33,36 +35,42 @@ index = {
     }
 }
 
+# for project_path in conf.getFiles('projects'):
+#     project = conf.getJSON(*project_path)
+#     if(project['github'] != None):
+#         project['github']['api'] = Github.getAPI(
+#             f"https://api.github.com/repos/{project['github']['repo']}")
+#         project['github']['languages'] = Github.getAPI(
+#             project['github']['api']['languages_url'])
+#         project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
+#         project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'])
+#         project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).format(**{'/id':''}))
+#         project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).format(**{'+path':''}))
+#         project['github']['readme'] = GithubWrapper.README(repo_api=project['github']['api'])
+#         project['github']['contributors'] = []
+#         for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
+#             project['github']['contributors'].append({
+#                 'api': user_api
+#             })
+
+#     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
+#                                                 'projects', project_path[-1]).ref_json(project)
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
-    if(project['github'] != None):
-        project['github']['api'] = Github.getAPI(
-            f"https://api.github.com/repos/{project['github']['repo']}")
-        project['github']['languages'] = Github.getAPI(
-            project['github']['api']['languages_url'])
-        project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
-        project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'])
-        project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).format(**{'/id':''}))
-        project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).format(**{'+path':''}))
-        project['github']['readme'] = GithubWrapper.README(repo_api=project['github']['api'])
-        project['github']['contributors'] = []
-        for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
-            project['github']['contributors'].append({
-                'api': user_api
-            })
+    stem = Path(project_path[-1]).stem
 
-    index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
-                                                'projects', project_path[-1]).ref_json(project)
+    if project['github'] != None:
+        api = Github.getAPI(f"https://api.github.com/repos/{project['github']['repo']}")
+        project['github'].update({
+            'api': api,
+            'readme': GithubWrapper.README(repo_api = api),
+            'languages': Github.getAPI(api['languages_url']),
+            'events': Github.getAPIList(api['events_url']),
+            'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''}))
+        })
 
-for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
-    index['pages']['repositories'][repo_api['name']] = Gen('pages','repositories',repo_api['name']).ref_json({
-        'api': repo_api,
-        'languages': Github.getAPI(repo_api['languages_url']),
-        'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
-        'contributors': Github.getAPIList(repo_api['contributors_url']),
-        'events':  Github.getAPIList(repo_api['events_url'],count=500),
-        'readme': GithubWrapper.README(repo_api=repo_api)
-    })
+    index['pages']['projects'][stem] = Gen('pages','projects',stem).ref_json(project)
+
 
 # Blogs
 for blog_path in conf.getFiles('blogs'):
