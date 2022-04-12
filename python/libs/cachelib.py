@@ -1,3 +1,4 @@
+from functools import partial
 import math
 import os
 import json
@@ -89,25 +90,23 @@ def cache_size():
     return size
 
 def clean(partial_wipe=False, full_wipe = False):
-    print("Temporary cleaning situation")
-    # print("Cleaning Build Cache")
-    # print(f"Start Cache Size (bytes): {cache_size()}")
-    # # Clean all expired caches
-    # for dir,_,files in os.walk(BASE_PATH):
-    #     for f in files:
-    #         fp = os.path.join(dir,f)
-    #         if not full_wipe:
-    #             try:
-    #                 data = None
-    #                 with open(fp) as file:
-    #                     data = json.load(file)
-    #                 if (partial_wipe or data['expires'] < get_time()) and 'value' in data:
-    #                     del data['value']
-    #                     with open(fp,'w') as file:
-    #                         print(f'Removing data: {fp}')
-    #                         file.write(json.dumps(data))
-    #             except:
-    #                 os.remove(fp)
-    #         else:
-    #             os.remove(fp)
-    # print(f"Final Cache Size (bytes): {cache_size()}")
+    print(f"Start Cache Size (bytes): {cache_size()}")
+    for dir,_,files in os.walk(BASE_PATH):
+        for f in files:
+            fp = os.path.join(dir,f)
+            if full_wipe:
+                os.remove(fp)
+            else:
+                try:
+                    data = None
+                    with open(fp) as file:
+                        data = json.load(file)
+                    for key in data:
+                        if partial_wipe or data[key]['expires'] < get_time() and 'value' in data[key]:
+                            print(f'Removing Key: {fp} {key}')
+                            del data[key]['value']
+                    with open(fp,'w') as file:
+                        file.write(json.dumps(data))
+                except:
+                    os.remove(fp)
+    print(f"Final Cache Size (bytes): {cache_size()}")
