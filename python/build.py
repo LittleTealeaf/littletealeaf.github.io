@@ -20,8 +20,6 @@ import shutil
 
 
 
-MARKDOWN_EXTENSIONS = ['tables', 'fenced_code']
-
 gen_initialize()
 
 index = {
@@ -32,29 +30,10 @@ index = {
     },
     'github': {
 
-    }
+    },
+    'snippets': {}
 }
 
-# for project_path in conf.getFiles('projects'):
-#     project = conf.getJSON(*project_path)
-#     if(project['github'] != None):
-#         project['github']['api'] = Github.getAPI(
-#             f"https://api.github.com/repos/{project['github']['repo']}")
-#         project['github']['languages'] = Github.getAPI(
-#             project['github']['api']['languages_url'])
-#         project['github']['tags'] = Github.getAPIList(project['github']['api']['tags_url'])
-#         project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'])
-#         project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).format(**{'/id':''}))
-#         project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).format(**{'+path':''}))
-#         project['github']['readme'] = GithubWrapper.README(repo_api=project['github']['api'])
-#         project['github']['contributors'] = []
-#         for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
-#             project['github']['contributors'].append({
-#                 'api': user_api
-#             })
-
-#     index['pages']['projects'][Path(project_path[-1]).stem] = Gen('pages',
-#                                                 'projects', project_path[-1]).ref_json(project)
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
     stem = Path(project_path[-1]).stem
@@ -87,6 +66,12 @@ user = {
 }
 index['github']['user'] = Gen('github','user').ref_json(user)
 
+
+# Markdown Snippets
+for snippet_path in conf.getFiles('markdown'):
+    snippet = frontmatter.load(conf.getPath(*snippet_path)).to_dict()
+    stem = Path(snippet_path[-1]).stem
+    index['snippets'][stem] = Gen('markdown',stem).ref_json(Github.renderMarkdown(snippet['content']))
 
 # Announcements
 index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcements.json'))
