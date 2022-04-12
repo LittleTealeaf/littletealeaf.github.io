@@ -73,7 +73,7 @@ jobs:
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
           # RUN_NUMBER: ${{github.run_number}}
-      - name: Run Node Compile
+      - name: Run Next Compile
         run: npm run compile
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
