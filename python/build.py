@@ -2,6 +2,7 @@ from pathlib import Path
 
 import urllib3
 import libs.github as Github
+import libs.githubwrapper as GithubWrapper
 from libs.generated import Gen, gen_initialize
 import libs.config as conf
 import libs.images as images
@@ -43,11 +44,7 @@ for project_path in conf.getFiles('projects'):
         project['github']['events'] = Github.getAPIList(project['github']['api']['events_url'])
         project['github']['releases'] = Github.getAPIList(str(project['github']['api']['releases_url']).format(**{'/id':''}))
         project['github']['contents'] = Github.getAPI(str(project['github']['api']['contents_url']).format(**{'+path':''}))
-
-        for file in project['github']['contents']:
-            if str(file['name']).lower() == 'readme.md':
-                with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
-                    project['github']['readme'] = Github.renderMarkdown('\n'.join([line.decode('utf-8') for line in r]).replace('\r\n\n','\n'))
+        project['github']['readme'] = GithubWrapper.render_README(repo_api=project['github']['api'])
         project['github']['contributors'] = []
         for user_api in Github.getAPIList(project['github']['api']['contributors_url']):
             project['github']['contributors'].append({
@@ -63,7 +60,8 @@ for repo_api in Github.getAPIList('https://api.github.com/user/repos'):
         'languages': Github.getAPI(repo_api['languages_url']),
         'releases': Github.getAPIList(str(repo_api['releases_url']).replace('{/id}','')),
         'contributors': Github.getAPIList(repo_api['contributors_url']),
-        'events':  Github.getAPIList(repo_api['events_url'],count=500)
+        'events':  Github.getAPIList(repo_api['events_url'],count=500),
+        'readme': GithubWrapper.render_README(repo_api=repo_api)
     })
 
 # Blogs
