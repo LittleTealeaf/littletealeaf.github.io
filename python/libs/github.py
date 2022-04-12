@@ -67,7 +67,7 @@ def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1,
         params['page'] = params['page'] + 1
     return data
 
-def renderMarkdown(text):
+def renderMarkdown(text, context: str =  None):
     while '\n\n' in text:
         text = text.replace('\n\n','\n')
 
@@ -81,7 +81,8 @@ def renderMarkdown(text):
 
     value = requests.post('https://api.github.com/markdown',json={
         'mode': 'markdown',
-        'text': text
+        'text': text,
+        'context': context
     },headers={
         'authorization': f'token {token}'
     }).text
