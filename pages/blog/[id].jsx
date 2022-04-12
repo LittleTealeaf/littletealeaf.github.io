@@ -2,23 +2,6 @@ import { getGenerated, index } from "../../libs/resources";
 import Head from "next/head";
 import {RenderMarkdown} from "../../components/markdown";
 
-
-
-// import style from "../../styles/markdown.module.scss";
-// import hljs from "highlight.js";
-// const html_parser = require('html-react-parser');
-// const markdown_it = require('markdown-it')({
-//     highlight: (str,lang) => {
-//         if(lang && hljs.getLanguage(lang)) {
-//             try {
-//                 return hljs.highlight(str, {language: lang}).value;
-//             } catch(__) {}
-//         }
-//         return '';
-//     }
-// });
-
-
 export async function getStaticPaths() {
     return {
         paths: Object.keys(index.pages.blogs).map((slug) => ({
