@@ -11,7 +11,7 @@ EXPIRES_DEFAULT = 24
 token: str = ''
 if os.path.exists(os.path.join('.', 'github_token')):
     with open(os.path.join('.', 'github_token')) as file:
-        token = file.readline()
+        token = file.readline().partition('\n')[0]
 else:
     token = os.environ['API_GITHUB']
 
@@ -81,8 +81,9 @@ def renderMarkdown(text):
 
     value = requests.post('https://api.github.com/markdown',json={
         'mode': 'markdown',
-        'authorization': f'token {token}',
         'text': text
+    },headers={
+        'authorization': f'token {token}'
     }).text
 
     print(f"API: https://api.github.com/markdown")
