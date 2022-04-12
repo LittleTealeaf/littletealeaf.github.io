@@ -80,6 +80,9 @@ user = {
 index['github']['user'] = Gen('github','user').ref_json(user)
 
 
+# Announcements
+index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcements.json'))
+
 index['analytics'] = Gen('analytics').ref_json({
     'github': {
         'api': Github.getAnalytics(),
