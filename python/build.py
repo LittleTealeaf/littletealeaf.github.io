@@ -57,15 +57,6 @@ for blog_path in conf.getFiles('blogs'):
     post = frontmatter.load(conf.getPath(*blog_path)).to_dict()
     index['pages']['blogs'][Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
 
-# User
-user_api = Github.getAPI('https://api.github.com/user')
-user = {
-    'api': user_api,
-    'events': Gen('github','user','events').ref_json(Github.getAPIList(user_api['events_url'].replace('{/privacy}',''))),
-    'followers_url': Gen('github','user','followers').ref_json(Github.getAPIList(user_api['followers_url'],count=1000))
-}
-index['github']['user'] = Gen('github','user').ref_json(user)
-
 
 # Markdown Snippets
 for snippet_path in conf.getFiles('markdown'):
