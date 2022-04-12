@@ -84,7 +84,7 @@ jobs:
         run: npm run compile
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
-      - name: Run Python PostRender
+      - name: Run Python Post Render
         run: python ./python/postrender.py
       - name: Publish to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
