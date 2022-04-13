@@ -19,7 +19,7 @@ jobs:
         id: checkout
         with:
           ref: ${{github.event.pull_request.head.sha}}
-      - name: Set up Python 3.9
+      - name: Set up Python
         uses: actions/setup-python@v3
         with:
           python-version: '3.9'
@@ -30,13 +30,6 @@ jobs:
         with:
           node-version: '17'
           cache: 'npm'
-#       - name: Cache Pip
-#         uses: actions/cache@v3
-#         with:
-#           path: ~/.cache/pip
-#           key: ${{runner.os}}-${{github.repository}}-pip-${{hashFiles('**/requirements.txt')}}
-#           restore-keys: |
-#             ${{runner.os}}-${{github.repository}}-pip-
       - name: Cache Python
         uses: actions/cache@v3
         with:
@@ -64,18 +57,18 @@ jobs:
             ${{runner.os}}-${{github.repository}}/-cache-
       - name: Install Python Dependencies
         run: python -m pip install -r python/requirements.txt
-      - name: Install Javascript Dependencies
+      - name: Install Node Dependencies
         run: npm install
-      - name: Run Python Build
+      - name: Python Build
         run: python ./python/build.py
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
-          # RUN_NUMBER: ${{github.run_number}}
-      - name: Run Next Compile
+      - name: Next.js Compile
+      # TODO change name to render
         run: npm run compile
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
-      - name: Run Python Post Render
+      - name: Post Post Render
         run: python ./python/postrender.py
       - name: Publish to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
@@ -83,7 +76,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./out/
-      - name: Run Python Cleanup
+      - name: Python Cleanup
         run: python ./python/clean.py
         env:
           RUN_NUMBER: ${{github.run_number}}
