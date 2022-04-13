@@ -5,7 +5,7 @@ const withPlugins = require('next-compose-plugins');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+  webpack: (config) => {
     config.resolve.fallback = {
       fs: false,
       path: false
@@ -30,4 +30,3 @@ const nextConfig = {
 module.exports = withPlugins([
   [require('next-optimized-images'), {}]
 ], nextConfig);
-
