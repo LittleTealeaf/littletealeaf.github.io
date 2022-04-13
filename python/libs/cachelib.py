@@ -103,7 +103,8 @@ def clean(partial_wipe=False, full_wipe = False):
                         data = json.load(file)
                     for key in data:
                         if partial_wipe or data[key]['expires'] < get_time() and 'value' in data[key]:
-                            print(f'Removing Key: {fp} {key}')
+                            keyname = str(key[:100]).replace('\n','')
+                            print(f'Removing Key: {fp} {keyname}{"..." if len(key) > 100 else ""}')
                             del data[key]['value']
                     with open(fp,'w') as file:
                         file.write(json.dumps(data,separators=(',',':')))
