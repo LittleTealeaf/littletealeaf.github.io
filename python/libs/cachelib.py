@@ -102,16 +102,19 @@ def clean(partial_wipe=False, full_wipe = False):
                     data = None
                     with open(fp) as file:
                         data = json.load(file)
+                    wipe_keys = []
                     for key in data:
                         if partial_wipe or data[key]['expires'] < get_time() and 'value' in data[key]:
-                            keyname = str(key[:100]).replace('\n','')
-                            print(f'Removing Key: {fp} {keyname}{"..." if len(key) > 100 else ""}')
+                            print(f'Removing Key: {fp} {key[:100]}{"..." if len(key) > 100 else ""}')
                             del data[key]['value']
-                        elif data[key]['expires'] > get_time() - EXPIRES_DELETE_TIME * 1000 * 60 * 60:
-                            del data[key]
+                        elif data[key]['expires'] < get_time() - EXPIRES_DELETE_TIME * 1000 * 60 * 60:
+                            wipe_keys.append(key)
+                    for key in wipe_keys:
+                        del data[key]
                     with open(fp,'w') as file:
                         file.write(json.dumps(data,separators=(',',':')))
-                except:
+                except Exception as e:
+                    print(e)
                     print(f'Crash-Cleaning {fp}')
                     os.remove(fp)
     print(f"Final Cache Size (bytes): {cache_size()}")
