@@ -4,6 +4,7 @@ export default function Page({ }) {
     return (
         <>
         <Snippet name='aboutme' />
+        <Snippet name='interests' />
         </>
     );
 }
