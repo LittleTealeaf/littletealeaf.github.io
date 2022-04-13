@@ -1,6 +1,3 @@
-[
-    {
-        "name": "author",
-        "content": "Thomas Kwashnak"
-    }
-]
+{
+    "author": "Thomas Kwashnak"
+}

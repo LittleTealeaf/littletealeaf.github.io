@@ -1,16 +1,12 @@
-import Head from "next/head";
 import Link from "next/link";
+import Meta from "./meta";
 
 const HEADER_HEIGHT = 60;
 
 export default function Header() {
   return (
     <>
-      <Head>
-        {require("../assets/metas.json").map((item, index) => (
-          <meta key={index} name={item.name} content={item.content} />
-        ))}
-      </Head>
+      <Meta values={require("../assets/metas.json")} />
       <img
         src={require("../assets/images/header.jpg")}
         alt="header image"
