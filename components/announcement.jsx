@@ -4,8 +4,7 @@ export default function Announcement({}) {
   const announcements = getGenerated(index.announcements);
 
   return (
-    <>
-      <center>
+    <center>
         {announcements.map((item, index) => (
           <div
             key={index}
@@ -20,6 +19,5 @@ export default function Announcement({}) {
           </div>
         ))}
       </center>
-    </>
   );
 }
