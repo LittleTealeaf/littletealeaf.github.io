@@ -1,4 +1,3 @@
-from functools import partial
 import math
 import os
 import json
@@ -11,6 +10,8 @@ EXPIRES_DEFAULT_MIN = 1
 EXPIRES_DEFAULT_MAX = 168
 EXPIRES_DEFAULT = (EXPIRES_DEFAULT_MAX + EXPIRES_DEFAULT_MIN) / 2
 EXPIRES_DEFAULT_STEP = 5
+
+EXPIRES_DELETE_TIME = 24 * 7
 
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-'
 
@@ -106,6 +107,8 @@ def clean(partial_wipe=False, full_wipe = False):
                             keyname = str(key[:100]).replace('\n','')
                             print(f'Removing Key: {fp} {keyname}{"..." if len(key) > 100 else ""}')
                             del data[key]['value']
+                        elif data[key]['expires'] > get_time() - EXPIRES_DELETE_TIME * 1000 * 60 * 60:
+                            del data[key]
                     with open(fp,'w') as file:
                         file.write(json.dumps(data,separators=(',',':')))
                 except:

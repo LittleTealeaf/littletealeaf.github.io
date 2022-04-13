@@ -2,7 +2,7 @@ import os
 import shutil
 import libs.cachelib as cache
 
-BUILD_CACHE_PARTIAL = 50
+BUILD_CACHE_PARTIAL = 250
 BUILD_CACHE_FULL = 1000
 NEXTJS_CACHE_FULL = 70
 
