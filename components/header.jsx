@@ -6,7 +6,7 @@ const HEADER_HEIGHT = 60;
 export default function Header() {
   return (
     <>
-      <Meta values={require('../assets/metas.json')} />
+      <Meta values={require("../assets/metas.json")} />
       <img
         src={require("../assets/images/header.jpg")}
         alt="header image"
