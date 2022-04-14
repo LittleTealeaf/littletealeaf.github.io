@@ -1,6 +1,4 @@
 from pathlib import Path
-
-import urllib3
 import libs.github as Github
 import libs.githubwrapper as GithubWrapper
 from libs.generated import Gen, gen_initialize
@@ -8,15 +6,7 @@ import libs.config as conf
 import libs.images as images
 import frontmatter
 
-import markdown
-import os
 import json
-import shutil
-
-# file = request.urlopen("https://raw.githubusercontent.com/LittleTealeaf/paceManager/main/.gitignore")
-
-# for line in file:
-#     print(line.decode('utf-8'))
 
 
 
@@ -70,9 +60,14 @@ index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcemen
 user_api = Github.getAPI('https://api.github.com/user')
 
 index['github'] = {
-    'user': Gen('github','user').ref_json(user_api),
-    'repositories': Gen('github','repositories').ref_json(Github.getAPIList(user_api['repos_url'])),
-    'events': Gen('github','events').ref_json(Github.getAPIList(str(user_api['events_url']).format(**{'/privacy':''})))
+    'user': Gen('github','user','api').ref_json(user_api),
+    'repositories': Gen('github','user','repositories').ref_json(Github.getAPIList(user_api['repos_url'])),
+    'events': Gen('github','user','events').ref_json(Github.getAPIList(str(user_api['events_url']).format(**{'/privacy':''}))),
+    'followers': Gen('github','user','followers').ref_json(Github.getAPIList(str(user_api['followers_url']))),
+    'following': Gen('github','user','following').ref_json(Github.getAPIList(str(user_api['following_url']).format(**{'/other_user':''}))),
+    'starred': Gen('github','user','starred').ref_json(Github.getAPIList(str(user_api['starred_url']).format(**{'/owner':'','/repo':''}))),
+    'gists': Gen('github','user','gists').ref_json(Github.getAPIList(str(user_api['gists_url']).format(**{'/gist_id':''}))),
+    'organizations': Gen('github','user','organizations').ref_json(Github.getAPIList(str(user_api['organizations_url'])))
 }
 
 
