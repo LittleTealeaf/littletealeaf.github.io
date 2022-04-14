@@ -7,6 +7,10 @@ on:
   schedule:
   - cron: '0 */6 * * *'
 
+env:
+  NODE_ENV: production
+  RUN_NUMBER: ${{github.run_number}}
+
 jobs:
   build-website:
     concurrency:
@@ -80,5 +84,3 @@ jobs:
           publish_dir: ./out/
       - name: Python Cleanup
         run: python ./python/clean.py
-        env:
-          RUN_NUMBER: ${{github.run_number}}
