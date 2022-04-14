@@ -1,5 +1,5 @@
-import { Snippet } from "../components/markdown";
-import Meta from "../components/meta";
+import { Snippet } from "components/markdown";
+import Meta from "components/meta";
 
 export default function Page({}) {
   return (

@@ -1,7 +1,7 @@
-const index = require('../generated/index.json')
+const index = require('generated/index.json')
 
 export function getGenerated(ref) {
-    return require(`../generated/${ref}`);
+    return require(`generated/${ref}`);
 }
 
 export {index}

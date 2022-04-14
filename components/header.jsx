@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Meta from "./meta";
+import Meta from "components/meta";
 
 const HEADER_HEIGHT = 60;
 

@@ -1,4 +1,4 @@
-import { index } from "../../libs/resources";
+import { index } from "libs/resources";
 import Link from "next/link";
 
 export default function Content({}) {

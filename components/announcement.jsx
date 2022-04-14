@@ -1,4 +1,4 @@
-import { getGenerated, index } from "../libs/resources";
+import { getGenerated, index } from "libs/resources";
 
 export default function Announcement({}) {
   const announcements = getGenerated(index.announcements);

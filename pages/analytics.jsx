@@ -1,5 +1,5 @@
-import { getGenerated, index } from "../libs/resources";
-import { RenderMarkdown } from "../components/markdown";
+import { getGenerated, index } from "libs/resources";
+import { RenderMarkdown } from "components/markdown";
 
 export default function Page({}) {
   const analytics = getGenerated(index.analytics);

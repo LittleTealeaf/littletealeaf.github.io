@@ -1,4 +1,4 @@
-import { getGenerated, index } from "../libs/resources";
+import { getGenerated, index } from "libs/resources";
 const html_parser = require("html-react-parser");
 
 export function RenderMarkdown({ content }) {
