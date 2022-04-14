@@ -14,13 +14,12 @@ def get_size():
             size += os.path.getsize(os.path.join(dir,file))
     return size
 
-print(f'Starting Size: {get_size()}')
+print(f'Initial Size: {get_size()} B')
 
 for dir,_,files in os.walk(PATH):
     for file in files:
         if file.endswith('.html'):
-            print(f'\t{file}')
-            print(f'\t\tInitial: {os.path.getsize(os.path.join(dir,file))} B')
+            initialSize = os.path.getsize(os.path.join(dir,file))
             contents = None
             with open(os.path.join(dir,file),encoding='utf-8') as f:
                 contents = f.read()
@@ -29,7 +28,7 @@ for dir,_,files in os.walk(PATH):
                 comments.extract()
             with open(os.path.join(dir,file),'w',encoding='utf-8') as f:
                 f.write(str(soup))
-            print(f'\t\tReduced: {os.path.getsize(os.path.join(dir,file))} B')
+            print(f'Compressed {file}: \n\t{initialSize} B -> {os.path.getsize(os.path.join(dir,file))} B')
 
 
-print(f'Final Size: {get_size()}')
+print(f'Final Size: {get_size()} B')
