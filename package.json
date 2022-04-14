@@ -13,7 +13,9 @@
   "dependencies": {
     "@primer/css": "19.8.2",
     "@primer/react": "35.1.0",
-    "@types/react": "18.0.4",
+    "@types/react": "^18.0.4",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-router-dom": "^5.3.3",
     "@types/tailwindcss": "3.0.10",
     "@types/webpack": "5.28.0",
     "autoprefixer": "10.4.4",
