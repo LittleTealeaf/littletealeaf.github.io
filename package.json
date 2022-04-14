@@ -42,6 +42,6 @@
     "@types/react-dom": "18.0.0",
     "@types/react-router-dom": "5.3.3",
     "@types/tailwindcss": "3.0.10",
-    "@types/webpack": "^5.28.0"
+    "@types/webpack": "5.28.0"
   }
 }
