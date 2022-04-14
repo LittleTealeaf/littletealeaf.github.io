@@ -67,12 +67,13 @@ for snippet_path in conf.getFiles('markdown'):
 # Announcements
 index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcements.json'))
 
-index['analytics'] = Gen('analytics').ref_json({
+analytics = {
     'github': {
         'api': Github.getAnalytics(),
         'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage',expires=-1,expires_step=0),
         'rate_limits': Github.getAPI('https://api.github.com/rate_limit',expires=-1,expires_step=0)
     }
-})
+}
+index['snippets']['analytics'] = Gen('markdown','analytics').ref_json(Github.renderMarkdown(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```'))
 
 Gen('index').ref_json(index)
