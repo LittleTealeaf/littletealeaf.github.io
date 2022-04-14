@@ -66,6 +66,8 @@ for snippet_path in conf.getFiles('markdown'):
 
 # Announcements
 index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcements.json'))
+index['repositories'] = Gen('github','repositories').ref_json(Github.getAPIList('https://api.github.com/user/repos'))
+
 
 analytics = {
     'github': {
