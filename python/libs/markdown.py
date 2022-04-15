@@ -14,7 +14,7 @@ HASH_CHARACTERS.remove('\\')
 HASH_CHARACTERS.remove('"')
 
 def hashText(text):
-    return ''.join(Random(text).choices(HASH_CHARACTERS,k=len(text)))
+    return ''.join(Random(text).choices(HASH_CHARACTERS,k=min(len(text),100)))
 
 def renderURL(url,context=None,link_src="",link_href=""):
     cached = cache.get(url,source='url')
