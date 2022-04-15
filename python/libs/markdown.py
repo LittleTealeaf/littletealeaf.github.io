@@ -22,7 +22,7 @@ def renderURL(url,context=None):
 
     with urllib3.PoolManager().request('GET',url,preload_content=False) as r:
         print(f'API MARKDOWN URL {url}')
-        value = Github.renderMarkdown(''.join([line.decode('utf-8') for line in r]),context)
+        value = Github.renderMarkdown(''.join([line.decode('utf-8') for line in r]),context=context)
         cache.set(url,value,source='url')
         return value
 
