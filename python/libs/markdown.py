@@ -46,7 +46,7 @@ def renderHash(text,link_src="",link_href=""):
     """
     Similar to renderRaw, but hashes the text as the key
     """
-    key = hashText(text)
+    key = hashText(text + str(link_src) + str(link_href))
     cached = cache.get(key,source='hash')
     if cached != None:
         print(f'CACHE MARKDOWN HASH {key[:100]}')
