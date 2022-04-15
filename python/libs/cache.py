@@ -113,11 +113,11 @@ def clean(partial_wipe=False, full_wipe=False):
                         elif data[key]['expires'] < getTime() - convertHours(EXPIRES_DELETE_TIME) or data[key]['version'] != VERSION:
                             wipe_keys.append(key)
                     for key in wipe_keys:
+                        print(f'Removing Key: {fp} {key[:100]}')
                         del data[key]
                     with open(fp,'w') as file:
                         file.write(json.dumps(data,separators=(',',':')))
                 except Exception as e:
-                    print(e)
                     print(f'Crash-Cleaning {fp}')
                     os.remove(fp)
     print(f"Final Cache Size (bytes): {cache_size()}")
