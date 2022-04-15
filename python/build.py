@@ -53,7 +53,7 @@ for blog_path in conf.getFiles('blogs'):
 for snippet_path in conf.getFiles('markdown'):
     snippet = frontmatter.load(conf.getPath(*snippet_path)).to_dict()
     stem = Path(snippet_path[-1]).stem
-    index['snippets'][stem] = Gen('markdown',stem).ref_json(Markdown.renderHash(snippet['content']))
+    index['snippets'][stem] = Gen('markdown',stem).ref_json(Markdown.renderHash(snippet['content'],link_href='https://github.com/LittleTealeaf/littletealeaf.github.io/tree/main/config/markdown/',link_src='https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/config/markdown/'))
 
 # Announcements
 index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcements.json'))

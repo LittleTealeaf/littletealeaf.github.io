@@ -8,10 +8,11 @@ import bs4
 
 
 def README(repo_name):
+    api = Github.getAPI(f'https://api.github.com/repos/{repo_name}')
     contents = Github.getAPI(f'https://api.github.com/repos/{repo_name}/contents')
     for file in contents:
         if str(file['name']).lower() == 'readme.md':
-            return Markdown.renderURL(file['download_url'],context=repo_name)
+            return Markdown.renderURL(file['download_url'],context=repo_name,link_src=f'https://github.com/{repo_name}/raw/main/',link_href=f'{api["html_url"]}/blob/{api["default_branch"]}/')
 
 def correct_links(html_data, repo_name):
     default_branch = Github.getAPI(f'https://api.github.com/repos/{repo_name}')['default_branch']
