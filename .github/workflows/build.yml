@@ -40,8 +40,6 @@ jobs:
           path: |
             python/**/__pycache__
           key: ${{runner.os}}-${{github.repository}}-python-${{hashFiles('python/**/*.py')}}
-          restore-keys: |
-            ${{runner.os}}-${{github.repository}}-python-
       - name: Cache Next.js
         uses: actions/cache@v3
         with:
