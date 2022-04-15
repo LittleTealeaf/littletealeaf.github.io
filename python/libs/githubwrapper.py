@@ -1,5 +1,6 @@
 import os
 import libs.github as Github
+import libs.markdown as Markdown
 import urllib3
 import bs4
 # Wrapper for some common functions used in github
@@ -9,11 +10,12 @@ def README(repo_name):
     contents = Github.getAPI(f'https://api.github.com/repos/{repo_name}/contents')
     for file in contents:
         if str(file['name']).lower() == 'readme.md':
-            with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
-                content = Github.renderMarkdown('\n'.join([line.decode('utf-8') for line in r]),context=repo_name)
-                content = correct_links(content,repo_name)
+            return Markdown.renderURL(file['download_url'])
+            # with urllib3.PoolManager().request('GET',file['download_url'],preload_content=False) as r:
+            #     content = Github.renderMarkdown('\n'.join([line.decode('utf-8') for line in r]),context=repo_name,key=file['download_url'])
+            #     content = correct_links(content,repo_name)
 
-                return content
+            #     return content
 
 def correct_links(html_data, repo_name):
     default_branch = Github.getAPI(f'https://api.github.com/repos/{repo_name}')['default_branch']

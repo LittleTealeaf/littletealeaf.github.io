@@ -1,9 +1,9 @@
 import os
-from libs.cachelib import Cache
+from libs.cache import Cache
 import json
 import requests
 
-EXPIRES_DEFAULT_MIN = -1
+EXPIRES_DEFAULT_MIN = 1
 EXPIRES_DEFAULT_STEP = 5
 EXPIRES_DEFAULT_MAX = 168
 EXPIRES_DEFAULT = 24
@@ -15,7 +15,7 @@ if os.path.exists(os.path.join('.', 'github_token')):
 else:
     token = os.environ['API_GITHUB']
 
-cache = Cache('api', 'github')
+cache = Cache('api')
 
 
 def getRequest(url: str, headers: dict = {}, params: dict = {}):
@@ -28,8 +28,8 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
         return None
 
 
-def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True, expires: int = EXPIRES_DEFAULT, expires_min: int = EXPIRES_DEFAULT_MIN, expires_max: int = EXPIRES_DEFAULT_MAX, expires_step = EXPIRES_DEFAULT_STEP):
-    key = f'{headers} {params}'
+def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True):
+    key = f'{headers}{params}'
     if use_cache:
         cached = cache.get(key,source=url)
         if cached != None:
@@ -41,22 +41,22 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
     if request:
         data = request.json()
         if use_cache:
-            cache.set(key, data,source=url, expires=expires,expires_min=expires_min, expires_max=expires_max, expires_step=expires_step)
+            cache.set(key, data,source=url)
 
         return data
     if use_cache:
-         cache.set(key,None,expires=expires,expires_min=expires_min,expires_max=expires_max)
+         cache.set(key,None,source=url)
     return None
 
 
-def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, expires: int=EXPIRES_DEFAULT, expires_min: int=EXPIRES_DEFAULT_MIN, expires_max: int=EXPIRES_DEFAULT_MAX, expires_step: int=EXPIRES_DEFAULT_STEP):
+def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, use_cache: bool = True):
     data = []
     headers = headers.copy()
     params = params.copy()
     params['per_page'] = 100
     params['page'] = 1
     while count == -1 or len(data) < count:
-        fetched: list = getAPI(url, headers, params, expires=expires, expires_min=expires_min,expires_max=expires_max,expires_step=expires_step)
+        fetched: list = getAPI(url, headers, params,use_cache=use_cache)
         if fetched == None:
             return data
         length = len(fetched)
@@ -68,29 +68,13 @@ def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1,
     return data
 
 def renderMarkdown(text, context: str =  None):
-    while '\n\n' in text:
-        text = text.replace('\n\n','\n')
-
-    while '\r\n' in text:
-        text = text.replace('\r\n','\n')
-
-    cached = cache.get(text,source='https://api.github.com/markdown')
-    if cached != None:
-        print(f"CACHE: https://api.github.com/markdown")
-        return cached
-
-    value = requests.post('https://api.github.com/markdown',json={
+    return requests.post('https://api.github.com/markdown',json={
         'mode': 'markdown',
         'text': text,
         'context': context
     },headers={
         'authorization': f'token {token}'
     }).text
-
-    print(f"API: https://api.github.com/markdown")
-    cache.set(text,value,source='https://api.github.com/markdown',expires=EXPIRES_DEFAULT,expires_min=EXPIRES_DEFAULT_MIN,expires_max=24*365,expires_step=EXPIRES_DEFAULT_STEP)
-
-    return value
 
 
 def getAnalytics():

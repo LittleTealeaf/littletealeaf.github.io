@@ -2,6 +2,7 @@ from pathlib import Path
 import libs.github as Github
 import libs.githubwrapper as GithubWrapper
 from libs.generated import Gen, gen_initialize
+import libs.markdown as Markdown
 import libs.config as conf
 import libs.images as images
 import frontmatter
@@ -52,7 +53,7 @@ for blog_path in conf.getFiles('blogs'):
 for snippet_path in conf.getFiles('markdown'):
     snippet = frontmatter.load(conf.getPath(*snippet_path)).to_dict()
     stem = Path(snippet_path[-1]).stem
-    index['snippets'][stem] = Gen('markdown',stem).ref_json(Github.renderMarkdown(snippet['content']))
+    index['snippets'][stem] = Gen('markdown',stem).ref_json(Markdown.renderHash(snippet['content']))
 
 # Announcements
 index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcements.json'))
@@ -67,17 +68,18 @@ index['github'] = {
     'following': Gen('github','user','following').ref_json(Github.getAPIList(str(user_api['following_url']).format(**{'/other_user':''}))),
     'starred': Gen('github','user','starred').ref_json(Github.getAPIList(str(user_api['starred_url']).format(**{'/owner':'','/repo':''}))),
     'gists': Gen('github','user','gists').ref_json(Github.getAPIList(str(user_api['gists_url']).format(**{'/gist_id':''}))),
-    'organizations': Gen('github','user','organizations').ref_json(Github.getAPIList(str(user_api['organizations_url'])))
+    'organizations': Gen('github','user','organizations').ref_json(Github.getAPIList(str(user_api['organizations_url']))),
+    'readme': Gen('github','user','readme').ref_json(GithubWrapper.README(f"{user_api['login']}/{user_api['login']}"))
 }
 
 
 analytics = {
     'github': {
         'api': Github.getAnalytics(),
-        'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage',expires=-1,expires_step=0),
-        'rate_limits': Github.getAPI('https://api.github.com/rate_limit',expires=-1,expires_step=0)
+        'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage',use_cache=False),
+        'rate_limits': Github.getAPI('https://api.github.com/rate_limit',use_cache=False)
     }
 }
-index['snippets']['analytics'] = Gen('markdown','analytics').ref_json(Github.renderMarkdown(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```'))
+index['snippets']['analytics'] = Gen('markdown','analytics').ref_json(Markdown.renderHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```'))
 
 Gen('index').ref_json(index)

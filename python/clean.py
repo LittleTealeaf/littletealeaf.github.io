@@ -1,6 +1,6 @@
 import os
 import shutil
-import libs.cachelib as cache
+import libs.cache as cache
 
 BUILD_CACHE_PARTIAL = 250
 BUILD_CACHE_FULL = 1000
