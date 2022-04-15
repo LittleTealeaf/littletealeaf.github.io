@@ -2,6 +2,10 @@ import {Snippet} from 'components/markdown'
 
 export default function Page({}) {
     return (
-        <Snippet name='markdowntest' />
+        <div style={{
+            padding: '50px'
+        }}>
+            <Snippet name='markdowntest' />
+        </div>
     )
 }
