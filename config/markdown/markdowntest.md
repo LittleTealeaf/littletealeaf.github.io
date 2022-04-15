@@ -53,7 +53,13 @@ This is really***very***important text.
 
 ## Images
 
+### Local Images
+
 ![image](../../assets/images/header.jpg)
+
+### Link Images
+
+![avatar](https://avatars.githubusercontent.com/u/35083315?v=4)
 
 ## Links
 
