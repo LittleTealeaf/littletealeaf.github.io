@@ -16,7 +16,7 @@ EXPIRES_DELETE_TIME = 24 * 7
 VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-'
 
 def millis(hours):
-    return int(round(hours * 60 * 60 * 1000))
+    return int(round(hours * 3.6 * 10**6))
 
 def sanitize_source(key):
     rand = Random(key)

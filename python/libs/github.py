@@ -33,7 +33,7 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
     if use_cache:
         cached = cache.get(key,source=url)
         if cached != None:
-            print(f'CACHE: {url} {key}')
+            print(f'CACHE: {url} <{key}>')
             return cached
     print(f'API: {url} {key}')
 
