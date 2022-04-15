@@ -242,3 +242,48 @@ public class ChatFragment extends Fragment {
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
+
+### Markdown
+
+```markdown
+### Both
+
+This text is ***really important***.
+
+This text is ___really important___.
+
+This text is __*really important*__.
+
+This text is **_really important_**.
+
+This is really***very***important text.
+
+## Block Quotes
+
+> This is a block quote
+
+> item a
+>
+> Item b
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+>
+>> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+
+> #### The quarterly results look great!
+>
+> - Revenue was off the chart.
+> - Profits were higher than ever.
+>
+>  *Everything* is going according to **plan**.
+
+## Images
+
+### Local Images
+
+![image](../../assets/images/header.jpg)
+
+### Link Images
+
+![avatar](https://avatars.githubusercontent.com/u/35083315?v=4)
+```

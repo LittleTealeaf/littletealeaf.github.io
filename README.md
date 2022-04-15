@@ -46,7 +46,7 @@ And the following to compile into the out directory
 npm run compile
 ```
 
-## Additional Notes 
+## Additional Notes
 
 The following is used in order to test rendering readmes.. Yes
 
