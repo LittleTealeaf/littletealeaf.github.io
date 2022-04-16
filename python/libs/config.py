@@ -15,3 +15,6 @@ def getJSON(*path):
 
 def getFiles(*path):
     return [list(path) + [i] for i in os.listdir(getPath(*path))]
+
+def getConfig():
+    return getJSON('python.config.json')

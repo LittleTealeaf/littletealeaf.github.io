@@ -3,10 +3,10 @@ from libs.cache import Cache
 import json
 import requests
 
-EXPIRES_DEFAULT_MIN = 1
-EXPIRES_DEFAULT_STEP = 5
-EXPIRES_DEFAULT_MAX = 168
-EXPIRES_DEFAULT = 24
+# EXPIRES_DEFAULT_MIN = 1
+# EXPIRES_DEFAULT_STEP = 5
+# EXPIRES_DEFAULT_MAX = 168
+# EXPIRES_DEFAULT = 24
 
 token: str = ''
 if os.path.exists(os.path.join('.', 'github_token')):
