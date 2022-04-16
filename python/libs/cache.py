@@ -2,19 +2,21 @@ import os
 import json
 from random import Random
 import time
+import libs.config
 
+conf = libs.config.getConfig()['cache']
 
-BASE_PATH = os.path.join('.','cache')
-DURATION = 6
-EXPIRES_MIN = 1
-EXPIRES_MAX = 24 * 14
-EXPIRES_SCALE_UP = 1.5
-EXPIRES_SCALE_DOWN = 0.5
-EXPIRES_DELETE_TIME = 24
+BASE_PATH = os.path.join(*conf['base_path'])
+DURATION = conf['duration']['default']
+DURATION_MIN = conf['duration']['min']
+DURATION_MAX = conf['duration']['max']
+DURATION_SCALE_UP = conf['duration']['scale']['up']
+DURATION_SCALE_DOWN = conf['duration']['scale']['down']
+DELETE_TIME = conf['delete']
 
-VERSION = 4
+VERSION = conf['version']
 
-VALID_CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-'
+VALID_CHARACTERS = conf['characters']
 
 # Add markdown file to handle both markdown from a url and from a text
 
@@ -44,14 +46,14 @@ class Cache:
     def __init__(self,*path):
         self.path = os.path.join(BASE_PATH,*path)
 
-    def set(self,key,value,source='default',duration:int=6,expires_min:int=EXPIRES_MIN,expires_max:int=EXPIRES_MAX,expires_scale_up:int=EXPIRES_SCALE_UP,expires_scale_down:int=EXPIRES_SCALE_DOWN):
+    def set(self,key,value,source='default',duration:int=DURATION,duration_min:int=DURATION_MIN,duration_max:int=DURATION_MAX,duration_scale_up:int=DURATION_SCALE_UP,duration_scale_down:int=DURATION_SCALE_DOWN):
         src = self.load_source(source)
         try:
             if src[key]['expires'] < getTime() or duration==-1:
                 if src[key]['value'] == value:
-                    duration = min(expires_max,src[key]['duration'] * expires_scale_up)
+                    duration = min(duration_max,src[key]['duration'] * duration_scale_up)
                 else:
-                    duration = max(expires_min,src[key]['duration'] * expires_scale_down)
+                    duration = max(duration_min,src[key]['duration'] * duration_scale_down)
         except:
             ...
         src[key] = {
@@ -110,7 +112,7 @@ def clean(partial_wipe=False, full_wipe=False):
                         if partial_wipe or data[key]['expires'] < getTime() and 'value' in data[key]:
                             print(f'Removing Key: {fp} {key[:100]}{"..." if len(key) > 100 else ""}')
                             del data[key]['value']
-                        elif data[key]['expires'] < getTime() - convertHours(EXPIRES_DELETE_TIME) or data[key]['version'] != VERSION:
+                        elif data[key]['expires'] < getTime() - convertHours(DELETE_TIME) or data[key]['version'] != VERSION:
                             wipe_keys.append(key)
                     for key in wipe_keys:
                         print(f'Removing Key: {fp} {key[:100]}')

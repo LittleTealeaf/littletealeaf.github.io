@@ -1,0 +1,17 @@
+{
+    "cache": {
+        "base_path": [".","cache"],
+        "duration": {
+            "default": 6,
+            "min": 3,
+            "max": 336,
+            "scale": {
+                "up": 1.5,
+                "down": 0.5
+            }
+        },
+        "delete": 24,
+        "characters": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-",
+        "version": 4
+    }
+}
