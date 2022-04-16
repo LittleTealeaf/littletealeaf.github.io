@@ -2,28 +2,19 @@ from pathlib import Path
 import libs.github as Github
 import libs.githubwrapper as GithubWrapper
 from libs.generated import Gen, gen_initialize
+import libs.temp as Temp
 import libs.markdown as Markdown
 import libs.config as conf
 import libs.images as images
+import libs.index as Index
 import frontmatter
 
 import json
 
-
-
+Temp.clean()
 gen_initialize()
 
-index = {
-    'pages': {
-        'blogs': {},
-        'projects': {},
-        'repositories': {}
-    },
-    'github': {
 
-    },
-    'snippets': {}
-}
 
 for project_path in conf.getFiles('projects'):
     project = conf.getJSON(*project_path)
@@ -38,29 +29,29 @@ for project_path in conf.getFiles('projects'):
             'events': Github.getAPIList(api['events_url']),
             'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''}))
         })
+    Index.set(['pages','projects',stem],Gen('pages','projects',stem).ref_json(project))
 
-    index['pages']['projects'][stem] = Gen('pages','projects',stem).ref_json(project)
 
 
 # Blogs
 for blog_path in conf.getFiles('blogs'):
     md = None
     post = frontmatter.load(conf.getPath(*blog_path)).to_dict()
-    index['pages']['blogs'][Path(blog_path[-1]).stem] = Gen('pages','blogs',blog_path[-1]).ref_json(post)
+    Index.set(['pages','blogs',Path(blog_path[-1]).stem],Gen('pages','blogs',blog_path[-1]).ref_json(post))
 
 
 # Markdown Snippets
 for snippet_path in conf.getFiles('markdown'):
     snippet = frontmatter.load(conf.getPath(*snippet_path)).to_dict()
     stem = Path(snippet_path[-1]).stem
-    index['snippets'][stem] = Gen('markdown',stem).ref_json(Markdown.renderHash(snippet['content'],link_href='https://github.com/LittleTealeaf/littletealeaf.github.io/tree/main/config/markdown/',link_src='https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/config/markdown/'))
+    Index.set(['snippets',stem],Gen('markdown',stem).ref_json(Markdown.renderHash(snippet['content'],link_href='https://github.com/LittleTealeaf/littletealeaf.github.io/tree/main/config/markdown/',link_src='https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/config/markdown/')))
 
 # Announcements
-index['announcements'] = Gen('announcements').ref_json(conf.getJSON('announcements.json'))
+Index.set(['announcements'],Gen('announcements').ref_json(conf.getJSON('announcements.json')))
 
 user_api = Github.getAPI('https://api.github.com/user')
 
-index['github'] = {
+Index.set(['github'],{
     'user': Gen('github','user','api').ref_json(user_api),
     'repositories': Gen('github','user','repositories').ref_json(Github.getAPIList(user_api['repos_url'])),
     'events': Gen('github','user','events').ref_json(Github.getAPIList(str(user_api['events_url']).format(**{'/privacy':''}))),
@@ -70,7 +61,7 @@ index['github'] = {
     'gists': Gen('github','user','gists').ref_json(Github.getAPIList(str(user_api['gists_url']).format(**{'/gist_id':''}))),
     'organizations': Gen('github','user','organizations').ref_json(Github.getAPIList(str(user_api['organizations_url']))),
     'readme': Gen('github','user','readme').ref_json(GithubWrapper.README(f"{user_api['login']}/{user_api['login']}"))
-}
+})
 
 
 analytics = {
@@ -80,6 +71,7 @@ analytics = {
         'rate_limits': Github.getAPI('https://api.github.com/rate_limit',use_cache=False)
     }
 }
-index['snippets']['analytics'] = Gen('markdown','analytics').ref_json(Markdown.renderHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```'))
 
-Gen('index').ref_json(index)
+Index.set(['snippets','analytics'],Gen('markdown','analytics').ref_json(Markdown.renderHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```')))
+
+Index.export()
