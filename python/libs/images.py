@@ -5,7 +5,7 @@ import math
 import os
 from PIL import Image, ImageDraw, ImageFilter
 import requests
-from libs.cachelibold import Cache
+from libs.cache import Cache
 import numpy as np
 
 EXPIRES_DEFAULT = 24
