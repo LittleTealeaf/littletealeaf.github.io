@@ -1,4 +1,4 @@
-import { index } from "libs/resources";
+import { Index } from "libs/resources";
 import Link from "next/link";
 
 export default function Content({}) {
@@ -6,7 +6,7 @@ export default function Content({}) {
     <>
       <div>Oh cool, a projects page!</div>
       <ul>
-        {Object.keys(index.pages.projects).map((item, index) => {
+        {Object.keys(Index.pages.projects).map((item, index) => {
           return (
             <li key={index}>
               <Link href={`/projects/${item}`}>{item}</Link>

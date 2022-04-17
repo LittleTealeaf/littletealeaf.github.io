@@ -1,11 +1,11 @@
-import { getGenerated, index } from "libs/resources";
+import { getGenerated, Index } from "libs/resources";
 
 export default function Announcement({}) {
-  const announcements = getGenerated(index.announcements);
+
 
   return (
     <center>
-      {announcements.map((item, index) => (
+      {/* {announcements.map((item, index) => (
         <div
           key={index}
           style={{
@@ -17,7 +17,10 @@ export default function Announcement({}) {
         >
           {item}
         </div>
-      ))}
+      ))} */}
+      {/* {Object.keys(index.markdown.announcements).map((key) => (
+
+      ))} */}
     </center>
   );
 }
