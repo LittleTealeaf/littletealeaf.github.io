@@ -98,7 +98,7 @@ def renderDirectory():
                 stem = Path(fpath).stem
                 post['content'] = renderHash(post['content'],**{
                     'link_href': f'https://github.com/LittleTealeaf/littletealeaf.github.io/tree/main/markdown/{"/".join(route) if len(route) > 0 else "."}/',
-                    'link_src': f'https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/config/markdown/{"/".join(route) if len(route) > 0 else "."}/'
+                    'link_src': f'https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/markdown/{"/".join(route) if len(route) > 0 else "."}/'
                 })
                 post['markdown generator'] = 'Github Markdown API'
                 Index.set(['markdown'] + route + [stem],Gen(*(['markdown'] + route + [stem])).ref_json(post))
