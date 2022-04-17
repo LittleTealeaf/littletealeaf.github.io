@@ -4,16 +4,14 @@ from random import Random
 import time
 import libs.config
 
-conf = libs.config.getConfig()['cache']
-
-BASE_PATH = os.path.join(*conf['base_path'])
-DURATION = conf['duration']['default']
-DURATION_MIN = conf['duration']['min']
-DURATION_MAX = conf['duration']['max']
-DURATION_SCALE_UP = conf['duration']['scale']['up']
-DURATION_SCALE_DOWN = conf['duration']['scale']['down']
-DELETE_TIME = conf['delete']
-VALID_CHARACTERS = conf['characters']
+BASE_PATH = os.path.join('.','cache')
+DURATION = 6
+DURATION_MIN = 3
+DURATION_MAX = 24 * 14
+DURATION_SCALE_UP = 1.5
+DURATION_SCALE_DOWN = 0.5
+DELETE_TIME = 24
+VALID_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-"
 
 VERSION = 5
 
