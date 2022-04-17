@@ -14,14 +14,11 @@ DURATION_SCALE_UP = conf['duration']['scale']['up']
 DURATION_SCALE_DOWN = conf['duration']['scale']['down']
 DELETE_TIME = conf['delete']
 
-VERSION = conf['version']
+VERSION = 5
 
 VALID_CHARACTERS = conf['characters']
 
 # Add markdown file to handle both markdown from a url and from a text
-
-def getTime():
-    return int(round(time.time()))
 
 def convertHours(hours):
     return hours * 60 * 60
@@ -49,7 +46,7 @@ class Cache:
     def set(self,key,value,source='default',duration:int=DURATION,duration_min:int=DURATION_MIN,duration_max:int=DURATION_MAX,duration_scale_up:int=DURATION_SCALE_UP,duration_scale_down:int=DURATION_SCALE_DOWN):
         src = self.load_source(source)
         try:
-            if src[key]['expires'] < getTime() or duration==-1:
+            if src[key]['expires'] < time.time() or duration==-1:
                 if src[key]['value'] == value:
                     duration = min(duration_max,src[key]['duration'] * duration_scale_up)
                 else:
@@ -57,7 +54,7 @@ class Cache:
         except:
             ...
         src[key] = {
-            'expires': getTime() + convertHours(duration),
+            'expires': time.time() + convertHours(duration),
             'duration': duration,
             'version': VERSION,
             'value': value
@@ -67,7 +64,7 @@ class Cache:
     def get(self,key,source='default'):
         try:
             src = self.load_source(source)
-            if src[key]['expires'] > getTime() and src[key]['version'] == VERSION:
+            if src[key]['expires'] > time.time() and src[key]['version'] == VERSION:
                 return src[key]['value']
         except:
             return None
@@ -109,10 +106,10 @@ def clean(partial_wipe=False, full_wipe=False):
                         data = json.load(file)
                     wipe_keys = []
                     for key in data:
-                        if partial_wipe or data[key]['expires'] < getTime() and 'value' in data[key]:
+                        if partial_wipe or data[key]['expires'] < time.time() and 'value' in data[key]:
                             print(f'Removing Key: {fp} {key[:100]}{"..." if len(key) > 100 else ""}')
                             del data[key]['value']
-                        elif data[key]['expires'] < getTime() - convertHours(DELETE_TIME) or data[key]['version'] != VERSION:
+                        elif data[key]['expires'] < time.time() - convertHours(DELETE_TIME) or data[key]['version'] != VERSION:
                             wipe_keys.append(key)
                     for key in wipe_keys:
                         print(f'Removing Key: {fp} {key[:100]}')
