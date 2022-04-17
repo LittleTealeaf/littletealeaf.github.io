@@ -65,9 +65,8 @@ jobs:
         run: python ./python/build.py
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
-      - name: Next.js Compile
-      # TODO change name to render
-        run: npm run compile
+      - name: Next.js Render
+        run: npm run render
         env:
           API_GITHUB: ${{ secrets.API_GITHUB }}
       - name: Python Post Render
