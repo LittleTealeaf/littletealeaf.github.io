@@ -93,11 +93,16 @@ def clean_link(url):
     while '.' in parsed:
         parsed.remove('.')
 
-    while '..' in parsed:
+    force_break = False
+
+    while '..' in parsed and not force_break:
         for i in range(len(parsed)):
             if parsed[i] == '..':
-                parsed.pop(i)
-                parsed.pop(i-1)
+                if i > 1:
+                    parsed.pop(i)
+                    parsed.pop(i-1)
+                else:
+                    force_break = True
                 break
     return '/'.join(parsed)
 
