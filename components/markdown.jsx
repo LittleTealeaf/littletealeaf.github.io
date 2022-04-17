@@ -6,6 +6,9 @@ export function RenderMarkdown({ content }) {
   return <div className="markdown-body">{html_parser.default(content)}</div>;
 }
 
+/**
+ * Deprecated
+ */
 export function Snippet({ name }) {
   return <RenderMarkdown content={getGenerated(Index.snippets[name])} />;
 }
