@@ -27,7 +27,8 @@ for project_path in conf.getFiles('projects'):
             'readme': GithubWrapper.README(project['github']['repo']),
             'languages': Github.getAPI(api['languages_url']),
             'events': Github.getAPIList(api['events_url']),
-            'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''}))
+            'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''})),
+            'contributors': Github.getAPIList(str(api['contributors_url']))
         })
     Index.set(['pages','projects',stem],Gen('pages','projects',stem).ref_json(project))
 
