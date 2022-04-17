@@ -27,7 +27,7 @@ export default function Page({ id }) {
   return (
     <>
       <Head>
-        <title></title>
+        <title>{project.name}</title>
       </Head>
       <div
         style={{
@@ -43,4 +43,3 @@ export default function Page({ id }) {
     </>
   );
 }
-
