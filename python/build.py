@@ -28,7 +28,8 @@ for project_path in conf.getFiles('projects'):
             'languages': Github.getAPI(api['languages_url']),
             'events': Github.getAPIList(api['events_url']),
             'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''})),
-            'contributors': Github.getAPIList(str(api['contributors_url']))
+            'contributors': Github.getAPIList(str(api['contributors_url'])),
+            'tags': Github.getAPIList(str(api['tags_url']))
         })
     Index.set(['pages','projects',stem],Gen('pages','projects',stem).ref_json(project))
 
