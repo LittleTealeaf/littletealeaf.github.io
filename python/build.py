@@ -31,23 +31,7 @@ for project_path in conf.getFiles('projects'):
         })
     Index.set(['pages','projects',stem],Gen('pages','projects',stem).ref_json(project))
 
-
-
-# Blogs
-for blog_path in conf.getFiles('blogs'):
-    md = None
-    post = frontmatter.load(conf.getPath(*blog_path)).to_dict()
-    Index.set(['pages','blogs',Path(blog_path[-1]).stem],Gen('pages','blogs',blog_path[-1]).ref_json(post))
-
-
-# Markdown Snippets
-for snippet_path in conf.getFiles('markdown'):
-    snippet = frontmatter.load(conf.getPath(*snippet_path)).to_dict()
-    stem = Path(snippet_path[-1]).stem
-    Index.set(['snippets',stem],Gen('markdown',stem).ref_json(Markdown.renderHash(snippet['content'],link_href='https://github.com/LittleTealeaf/littletealeaf.github.io/tree/main/config/markdown/',link_src='https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/config/markdown/')))
-
-# Announcements
-Index.set(['announcements'],Gen('announcements').ref_json(conf.getJSON('announcements.json')))
+Markdown.renderDirectory()
 
 user_api = Github.getAPI('https://api.github.com/user')
 
@@ -72,6 +56,6 @@ analytics = {
     }
 }
 
-Index.set(['snippets','analytics'],Gen('markdown','analytics').ref_json(Markdown.renderHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```')))
+Index.set(['analytics'],Gen('markdown','analytics').ref_json(Markdown.renderHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```')))
 
 Index.export()

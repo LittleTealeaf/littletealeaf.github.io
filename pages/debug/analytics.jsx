@@ -1,10 +1,11 @@
-import {Snippet} from 'components/markdown'
+import {MarkdownAsset, RenderMarkdown} from 'components/markdown'
+import {getGenerated, Index} from 'libs/resources'
 
 export default function Page({}) {
 
   return (
     <>
-    <Snippet name={'analytics'} />
+    <RenderMarkdown content={getGenerated(Index.analytics)} />
     </>
   );
 }

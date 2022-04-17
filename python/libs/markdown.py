@@ -1,13 +1,21 @@
 
+import os
 from random import Random
 from urllib.parse import urlparse
+import frontmatter
 import urllib3
 from libs.cache import Cache
 import libs.github as Github
+import libs.index as Index
 from bs4 import BeautifulSoup
+from pathlib import Path
 
+from libs.generated import Gen
 
 cache = Cache('markdown')
+
+
+PATH = os.path.join('.','markdown')
 
 HASH_CHARACTERS = [chr(i) for i in range(32,127)]
 HASH_CHARACTERS.remove('\\')
@@ -78,3 +86,20 @@ def relink_html(html,link_href,link_src):
                     ...
 
     return str(soup)
+
+def renderDirectory():
+    def iteration(path,route=[]):
+        for file in os.listdir(path):
+            fpath = os.path.join(path,file)
+            if os.path.isdir(fpath):
+                iteration(fpath,route + [file])
+            else:
+                post = frontmatter.load(fpath).to_dict()
+                stem = Path(fpath).stem
+                post['content'] = renderHash(post['content'],**{
+                    'link_href': f'https://github.com/LittleTealeaf/littletealeaf.github.io/tree/main/markdown/{"/".join(route) if len(route) > 0 else "."}/',
+                    'link_src': f'https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/config/markdown/{"/".join(route) if len(route) > 0 else "."}/'
+                })
+                post['markdown generator'] = 'Github Markdown API'
+                Index.set(['markdown'] + route + [stem],Gen(*(['markdown'] + route + [stem])).ref_json(post))
+    iteration(PATH)

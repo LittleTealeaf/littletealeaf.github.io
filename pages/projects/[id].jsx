@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { getGenerated, index } from "libs/resources";
+import { getGenerated, Index } from "libs/resources";
 import { RenderMarkdown } from "components/markdown";
 
 export async function getStaticPaths() {
   return {
-    paths: Object.keys(index.pages.projects).map((slug) => ({
+    paths: Object.keys(Index.pages.projects).map((slug) => ({
       params: {
         id: slug,
       },
@@ -22,7 +22,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Page({ id }) {
-  const project = getGenerated(index.pages.projects[id]);
+  const project = getGenerated(Index.pages.projects[id]);
 
   return (
     <>
@@ -43,3 +43,4 @@ export default function Page({ id }) {
     </>
   );
 }
+

@@ -1,4 +1,5 @@
-import { Snippet } from "components/markdown";
+import { MarkdownAsset } from "components/markdown";
+import {Index} from 'libs/resources'
 import Meta from "components/meta";
 
 export default function Page({}) {
@@ -9,8 +10,7 @@ export default function Page({}) {
           page: "about",
         }}
       />
-      <Snippet name="aboutme" />
-      <Snippet name="interests" />
+      <MarkdownAsset asset={Index.markdown.snippets.aboutme} />
     </>
   );
 }

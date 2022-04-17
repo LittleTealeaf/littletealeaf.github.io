@@ -1,10 +1,10 @@
-import { getGenerated, index } from "libs/resources";
+import { getGenerated, Index } from "libs/resources";
 import Head from "next/head";
 import { RenderMarkdown } from "components/markdown";
 
 export async function getStaticPaths() {
   return {
-    paths: Object.keys(index.pages.blogs).map((slug) => ({
+    paths: Object.keys(Index.markdown.blogs).map((slug) => ({
       params: {
         id: slug,
       },
@@ -22,7 +22,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Page({ id }) {
-  const blog = getGenerated(index.pages.blogs[id]);
+  const blog = getGenerated(Index.markdown.blogs[id]);
 
   return (
     <>
