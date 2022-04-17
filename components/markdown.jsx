@@ -3,7 +3,7 @@ const html_parser = require("html-react-parser");
 import Meta from 'components/meta'
 
 export function RenderMarkdown({ content }) {
-  return <div className="markdown-body">{html_parser.default(content)}</div>;
+  return <article className="markdown-body">{html_parser.default(content)}</article>;
 }
 
 /**
