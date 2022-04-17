@@ -1,7 +1,6 @@
 ---
 webstatus: Active Development
 ---
+Hello Viewer! If parts of this website feel uncompleted or buggy, that's because I'm currently working on building this website. There may be gaps in development as I attempt to balance this between school projects and assignments, but do not fear, for I will *eventually* finish this. Either that, or I'll scrap this whole thing and restart
 
-Hello Viewer! Yes, this website is **CURRENTLY UNDER DEVELOPMENT**. That being said, *I do not have a nice website to publish, so I'm developing on the production branch*.
-Feel free to check back on this website as I continue to slowly work on it (amid school projects and assignments).
-If you want to see my progress, feel free to check out the [Github Repository](https://github.com/LittleTealeaf/littletealeaf.github.io)
+On another note, if you want to see what my current progress is, feel free to check out the [Github Repository](https://github.com/LittleTealeaf/littletealeaf.github.io) responsible for this website!
