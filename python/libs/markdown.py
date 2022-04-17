@@ -73,7 +73,7 @@ def relink_html(html,link_href,link_src):
             for i in soup.findAll(tag):
                 try:
                     if not (bool(urlparse(i['href']).netloc) or '#' in i['href']):
-                        i['href'] = link_href + i['href']
+                        i['href'] = clean_link(link_href + i['href'])
                 except:
                     ...
     if link_src != None:
@@ -81,11 +81,26 @@ def relink_html(html,link_href,link_src):
             for i in soup.findAll(tag):
                 try:
                     if not (bool(urlparse(i['src']).netloc) or '#' in i['src']):
-                        i['src'] = link_src + i['src']
+                        i['src'] = clean_link(link_src + i['src'])
                 except:
                     ...
 
     return str(soup)
+
+def clean_link(url):
+    parsed = str(url).split('/')
+    # Remove single .
+    while '.' in parsed:
+        parsed.remove('.')
+
+    while '..' in parsed:
+        for i in range(len(parsed)):
+            if parsed[i] == '..':
+                parsed.pop(i)
+                parsed.pop(i-1)
+                break
+    return '/'.join(parsed)
+
 
 def renderDirectory():
     def iteration(path,route=[]):
