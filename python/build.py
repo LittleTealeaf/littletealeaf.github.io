@@ -31,8 +31,6 @@ for project_path in conf.getFiles('projects'):
         })
     Index.set(['pages','projects',stem],Gen('pages','projects',stem).ref_json(project))
 
-Markdown.renderDirectory()
-
 user_api = Github.getAPI('https://api.github.com/user')
 
 Index.set(['github'],{
@@ -47,6 +45,7 @@ Index.set(['github'],{
     'readme': Gen('github','user','readme').ref_json(GithubWrapper.README(f"{user_api['login']}/{user_api['login']}"))
 })
 
+Markdown.renderDirectory()
 
 analytics = {
     'github': {
