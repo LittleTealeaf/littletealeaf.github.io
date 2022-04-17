@@ -13,20 +13,13 @@ DURATION_MAX = conf['duration']['max']
 DURATION_SCALE_UP = conf['duration']['scale']['up']
 DURATION_SCALE_DOWN = conf['duration']['scale']['down']
 DELETE_TIME = conf['delete']
+VALID_CHARACTERS = conf['characters']
 
 VERSION = 5
 
-VALID_CHARACTERS = conf['characters']
-
-# Add markdown file to handle both markdown from a url and from a text
 
 def convertHours(hours):
     return hours * 60 * 60
-
-# def hashKey(key):
-#     length = max(int(len(key) / 2),10) if key != None else 10
-
-#     return ''.join(Random(str(key)).choices(VALID_CHARACTERS,k=length))
 
 def sanitize_source(key):
     rand = Random(key)
