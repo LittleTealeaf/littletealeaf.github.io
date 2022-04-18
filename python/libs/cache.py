@@ -143,7 +143,7 @@ def reportCaches():
                     for key in data:
                         filereport[key] = {
                             'expires': data[key]['expires'],
-                            'expires_in': data[key]['expires'] - time.time(),
+                            # 'expires_in': data[key]['expires'] - time.time(),
                             'duration': data[key]['duration'],
                             'populated': 'value' in data[key] and data[key]['value'] != None
                         }
