@@ -79,3 +79,5 @@ jobs:
           publish_dir: ./out/
       - name: Python Cleanup
         run: python ./python/clean.py
+      - name: Python Debug Cache
+        run: python ./python/postrender.py
