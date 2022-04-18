@@ -120,4 +120,4 @@ def printCaches():
                 data = json.load(file)
                 for key in data:
                     print(f'{f} {key[:100]}')
-                    print(f'\t{data[key]["expires"]} ({data[key]["expires"] - time.time()}) - Duration: {data[key]["duration"]}')
+                    print(f'\t{data[key]["expires"]} ({data[key]["expires"] - time.time()}), Duration: {data[key]["duration"]}, Populated: {data[key]["value"] != None}')
