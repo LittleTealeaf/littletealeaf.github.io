@@ -121,3 +121,33 @@ def printCaches():
                 for key in data:
                     print(f'{f} {key[:100]}')
                     print(f'\t{data[key]["expires"]} ({data[key]["expires"] - time.time()}), Duration: {data[key]["duration"]}, Populated: {"value" in data[key] and data[key]["value"] != None}')
+
+def reportCaches():
+    report = {}
+    def addReport(dictionary, path,name,value):
+        if len(path) > 0:
+            if path[0] not in dictionary:
+                dictionary[path[0]] = {}
+            addReport(dictionary[path[0]],path[1:],name,value)
+        else:
+            dictionary[name] = value
+    def list_dir(path,route=[]):
+        for file in os.listdir(path):
+            fpath = os.path.join(path,file)
+            if os.path.isdir(fpath):
+                list_dir(fpath,route + [file])
+            else:
+                filereport = {}
+                with open(fpath) as ofile:
+                    data = json.load(ofile)
+                    for key in data:
+                        filereport[key] = {
+                            'expires': data[key]['expires'],
+                            'expires_in': data[key]['expires'] - time.time(),
+                            'duration': data[key]['duration'],
+                            'populated': 'value' in data[key] and data[key]['value'] != None
+                        }
+
+                addReport(report,route,file,filereport)
+    list_dir(BASE_PATH)
+    return report

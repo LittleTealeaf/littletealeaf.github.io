@@ -37,6 +37,13 @@ def renderURL(url,context=None,link_src="",link_href=""):
         cache.set(url,value,source='url')
         return value
 
+def buildURL(url,context=None,link_src="",link_href="",attributes:dict={}):
+    data = attributes.copy()
+    data['content'] = renderURL(url,context,link_src=link_src,link_href=link_href)
+    data[f'markdown {url} source'] = link_src
+    data[f'markdown {url} href'] = link_href
+    return data
+
 def renderRaw(text,link_src="",link_href=""):
 
     cached = cache.get(text,source='raw')
@@ -49,6 +56,11 @@ def renderRaw(text,link_src="",link_href=""):
     value = relink_html(value,link_href=link_href,link_src=link_src)
     cache.set(text,value,source='raw')
     return value
+
+def buildRaw(text,link_src="",link_href="",):
+    attributes = attributes.copy()
+    attributes['content'] = renderRaw(text,link_src=link_src,link_href=link_href)
+    return attributes
 
 def renderHash(text,link_src="",link_href=""):
     """
@@ -65,6 +77,11 @@ def renderHash(text,link_src="",link_href=""):
     value = relink_html(value,link_href=link_href,link_src=link_src)
     cache.set(key,value,source='hash')
     return value
+
+def buildHash(text,link_src="",link_href="",attributes: dict={}):
+    attributes = attributes.copy()
+    attributes['content'] = renderHash(text,link_src=link_src,link_href=link_href)
+    return attributes
 
 def relink_html(html,link_href,link_src):
     soup = BeautifulSoup(html,features='html.parser')

@@ -7,6 +7,7 @@ import libs.markdown as Markdown
 import libs.config as conf
 import libs.images as images
 import libs.index as Index
+import libs.cache as Cache
 import frontmatter
 
 import json
@@ -57,6 +58,8 @@ analytics = {
     }
 }
 
-Index.set(['analytics'],Gen('markdown','analytics').ref_json(Markdown.renderHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```')))
+Index.set(['debug','cache'],Gen('markdown','debug','cache').ref_json(Markdown.buildHash(f'```json\n{json.dumps(Cache.reportCaches(),indent=4,sort_keys=True)}\n```')))
+
+Index.set(['analytics'],Gen('markdown','debug','analytics').ref_json(Markdown.renderHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```')))
 
 Index.export()
