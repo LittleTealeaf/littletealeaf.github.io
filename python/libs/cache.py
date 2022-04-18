@@ -7,7 +7,7 @@ import libs.config
 BASE_PATH = os.path.join('.','cache')
 DURATION = 6.0
 DURATION_MIN = 1.0
-DURATION_MAX = 24 * 14.0
+DURATION_MAX = 24 * 10.0
 DURATION_SCALE_UP = 1.5
 DURATION_SCALE_DOWN = 0.5
 DELETE_TIME = 24.0
