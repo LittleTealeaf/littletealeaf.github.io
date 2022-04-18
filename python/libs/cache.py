@@ -111,3 +111,6 @@ def clean(partial_wipe=False, full_wipe=False):
                     print(f'Crash-Cleaning {fp}')
                     os.remove(fp)
     print(f"Final Cache Size (bytes): {cache_size()}")
+
+def printCaches():
+    ...
