@@ -113,4 +113,14 @@ def clean(partial_wipe=False, full_wipe=False):
     print(f"Final Cache Size (bytes): {cache_size()}")
 
 def printCaches():
-    ...
+    for dir,_,files in os.walk(BASE_PATH):
+        for f in files:
+            fp = os.path.join(dir,f)
+            print(f)
+            with open(fp) as file:
+                data = json.load(file)
+                for key in data:
+                    print(f'- {key[:100]}')
+                    print(f'  - Expires: {data[key]["expires"]}')
+                    print(f'  - Expires in: {data[key]["expires"] - time.time()}')
+                    print(f'  - Duration: {data[key]["duration"]}')
