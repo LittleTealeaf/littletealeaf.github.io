@@ -119,6 +119,5 @@ def printCaches():
             with open(fp) as file:
                 data = json.load(file)
                 for key in data:
-                    print(f'{f} {key[:50]}')
-                    print(f'\t{data[key]["expires"]} ({data[key]["expires"] - time.time()})')
-                    print(f'\tDuration: {data[key]["duration"]}')
+                    print(f'{f} {key[:100]}')
+                    print(f'\t{data[key]["expires"]} ({data[key]["expires"] - time.time()}) - Duration: {data[key]["duration"]}')
