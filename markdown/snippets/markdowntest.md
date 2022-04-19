@@ -51,6 +51,15 @@ This is really***very***important text.
 >
 >  *Everything* is going according to **plan**.
 
+## Tables
+
+| Header A | Header B | Header C |
+| :--: | --: | :-- |
+| This should be centered | This should be right aligned | This should be left aligned |
+| Hi | Hello | Py |
+| 0.10 | 12412 | **BOLD** |
+| *Italics* | ~~something~~ | Oh! that's cool |
+
 ## Images
 
 ### Local Images

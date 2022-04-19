@@ -16,15 +16,18 @@ export function Snippet({ name }) {
 }
 
 export function MarkdownAsset({ asset }) {
-  const item = getGenerated(asset);
+  return <MarkdownObject object={getGenerated(asset)} />
+}
+
+export function MarkdownObject({object}) {
   return (
     <>
-      {Object.keys(item)
+      {Object.keys(object)
         .filter((key) => key != "content")
         .map((key) => (
-          <Meta key={key} name={key} content={item[key]} />
+          <Meta key={key} name={key} content={object[key]} />
         ))}
-      <RenderMarkdown content={item["content"]} />
+      <RenderMarkdown content={object["content"]} />
     </>
-  );``
+  );
 }

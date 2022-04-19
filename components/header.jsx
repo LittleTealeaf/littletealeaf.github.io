@@ -51,7 +51,7 @@ export default function Header() {
           padding: "0px 5px 0px 5px",
         }}
       >
-        Website Github
+        View on Github
       </a>
     </>
   );
