@@ -37,8 +37,8 @@ class Cache:
     def set(self,key,value,source='default',duration:int=DURATION,duration_min:int=DURATION_MIN,duration_max:int=DURATION_MAX,duration_scale_up:int=DURATION_SCALE_UP,duration_scale_down:int=DURATION_SCALE_DOWN):
         src = self.load_source(source)
         try:
-            if key in src or duration==-1:
-                if 'value' in src[key] and src[key]['value'] == value:
+            if  key in src or duration==-1:
+                if value != None and 'value' in src[key] and src[key]['value'] == value:
                     duration = min(duration_max,src[key]['duration'] * duration_scale_up)
                 else:
                     duration = max(duration_min,src[key]['duration'] * duration_scale_down)
