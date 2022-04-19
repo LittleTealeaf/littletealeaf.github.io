@@ -17,7 +17,7 @@ It's currnetly in development, so... Yea!
 Once you've downloaded the repo, use the following commands to install all necessary repositories
 
 ```sh
-python -m pip instal -r python/requirements.txt
+python -m pip install -r python/requirements.txt
 npm install
 ```
 
