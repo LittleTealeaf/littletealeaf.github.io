@@ -37,13 +37,13 @@ class Cache:
     def set(self,key,value,source='default',duration:int=DURATION,duration_min:int=DURATION_MIN,duration_max:int=DURATION_MAX,duration_scale_up:int=DURATION_SCALE_UP,duration_scale_down:int=DURATION_SCALE_DOWN):
         src = self.load_source(source)
         try:
-            if src[key]['expires'] < time.time() or duration==-1:
-                if src[key]['value'] == value:
+            if key in src or duration==-1:
+                if 'value' in src[key] and src[key]['value'] == value:
                     duration = min(duration_max,src[key]['duration'] * duration_scale_up)
                 else:
                     duration = max(duration_min,src[key]['duration'] * duration_scale_down)
-        except:
-            ...
+        except Exception as e:
+            print(e)
         src[key] = {
             'expires': time.time() + convertHours(duration),
             'duration': duration,
@@ -97,8 +97,8 @@ def clean(partial_wipe=False, full_wipe=False):
                         data = json.load(file)
                     wipe_keys = []
                     for key in data:
-                        if partial_wipe or data[key]['expires'] < time.time() and 'value' in data[key]:
-                            print(f'Removing Key: {fp} {key[:100]}{"..." if len(key) > 100 else ""}')
+                        if (partial_wipe or data[key]['expires'] < time.time()) and 'value' in data[key]:
+                            print(f'Removing Value: {fp} {key[:100]}{"..." if len(key) > 100 else ""}')
                             del data[key]['value']
                         elif data[key]['expires'] < time.time() - convertHours(DELETE_TIME) or data[key]['version'] != VERSION:
                             wipe_keys.append(key)
