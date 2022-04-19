@@ -2,6 +2,7 @@ import os
 from libs.cache import Cache
 import json
 import requests
+import libs.analytics as Analytics
 
 # EXPIRES_DEFAULT_MIN = 1
 # EXPIRES_DEFAULT_STEP = 5
@@ -34,6 +35,7 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
         cached = cache.get(key,source=url)
         if cached != None:
             print(f'CACHE: {url} {key}')
+            Analytics.incrementCounter('api','github','cached')
             return cached
     print(f'API: {url} {key}')
 
@@ -50,6 +52,7 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
 
 
 def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, use_cache: bool = True):
+    Analytics.incrementCounter('api','github','list')
     data = []
     headers = headers.copy()
     params = params.copy()
@@ -68,6 +71,7 @@ def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1,
     return data
 
 def renderMarkdown(text, context: str =  None):
+    Analytics.incrementCounter('api','github','markdown')
     return requests.post('https://api.github.com/markdown',json={
         'mode': 'markdown',
         'text': text,

@@ -15,5 +15,8 @@ def store(name,value):
         file.write(json.dumps(value))
 
 def get(name):
-    with open(os.path.join(PATH,f'{name}.json')) as file:
-        return json.load(file)
+    try:
+        with open(os.path.join(PATH,f'{name}.json')) as file:
+            return json.load(file)
+    except:
+        return None
