@@ -1,6 +1,6 @@
 {
     "name": "Parking App",
-    "github": {
+    "github": [{
         "repo": "LittleTealeaf/CSC-109-ParkingApp"
-    }
+    }]
 }

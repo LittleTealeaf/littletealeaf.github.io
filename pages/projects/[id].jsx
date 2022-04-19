@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { getGenerated, Index } from "libs/resources";
-import { RenderMarkdown } from "components/markdown";
+import { MarkdownAsset, MarkdownObject } from "components/markdown";
 
 export async function getStaticPaths() {
   return {
@@ -34,10 +34,12 @@ export default function Page({ id }) {
           padding: "100px",
         }}
       >
-        {project.github == null || project.github.readme == null ? (
+        {project.github == null ? (
           <></>
         ) : (
-          <RenderMarkdown content={project.github.readme} />
+          project.github.map((item, index) => (
+            <MarkdownObject object={item.readme} key={index} />
+          ))
         )}
       </div>
     </>

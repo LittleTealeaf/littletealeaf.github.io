@@ -1,6 +1,8 @@
 {
-    "name": "Personal Website",
-    "github": {
-        "repo": "LittleTealeaf/littletealeaf.github.io"
+  "name": "Personal Website",
+  "github": [
+    {
+      "repo": "LittleTealeaf/littletealeaf.github.io"
     }
+  ]
 }

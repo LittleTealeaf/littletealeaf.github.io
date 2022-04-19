@@ -22,16 +22,23 @@ for project_path in conf.getFiles('projects'):
     stem = Path(project_path[-1]).stem
 
     if project['github'] != None:
-        api = Github.getAPI(f"https://api.github.com/repos/{project['github']['repo']}")
-        project['github'].update({
-            'api': api,
-            'readme': GithubWrapper.README(project['github']['repo']),
-            'languages': Github.getAPI(api['languages_url']),
-            'events': Github.getAPIList(api['events_url']),
-            'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''})),
-            'contributors': Github.getAPIList(str(api['contributors_url'])),
-            'tags': Github.getAPIList(str(api['tags_url']))
-        })
+        # api = Github.getAPI(f"https://api.github.com/repos/{project['github']['repo']}")
+        # project['github'].update({
+        #     'api': api,
+
+        # })
+        def compileRepo(repoConfig):
+            api = Github.getAPI(f'https://api.github.com/repos/{repoConfig["repo"]}')
+            return {
+                'api': api,
+                'readme': GithubWrapper.README(repoConfig['repo']),
+                'languages': Github.getAPI(api['languages_url']),
+                'events': Github.getAPIList(api['events_url']),
+                'releases': Github.getAPIList(str(api['releases_url']).format(**{'/id':''})),
+                'contributors': Github.getAPIList(str(api['contributors_url'])),
+                'tags': Github.getAPIList(str(api['tags_url']))
+            }
+        project['github'] = [compileRepo(item) for item in project['github']]
     Index.set(['pages','projects',stem],Gen('pages','projects',stem).ref_json(project))
 
 user_api = Github.getAPI('https://api.github.com/user')
