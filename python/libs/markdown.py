@@ -1,4 +1,5 @@
 
+import json
 import os
 from random import Random
 from urllib.parse import urlparse
@@ -6,6 +7,7 @@ import frontmatter
 import urllib3
 from libs.cache import Cache
 import libs.github as Github
+import libs.analytics as Analytics
 import libs.index as Index
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -27,11 +29,13 @@ def hashText(text):
 def renderURL(url,context=None,link_src="",link_href=""):
     cached = cache.get(url,source='url')
     if cached != None:
+        Analytics.incrementCounter('markdown','render','url','cached')
         print(f'CACHE MARKDOWN URL {url}')
         return cached
 
     with urllib3.PoolManager().request('GET',url,preload_content=False) as r:
         print(f'API MARKDOWN URL {url}')
+        Analytics.incrementCounter('markdown','render','url','api')
         value = Github.renderMarkdown(''.join([line.decode('utf-8') for line in r]),context=context)
         value = relink_html(value,link_href=link_href,link_src=link_src)
         cache.set(url,value,source='url')
@@ -39,6 +43,7 @@ def renderURL(url,context=None,link_src="",link_href=""):
 
 def buildURL(url,context=None,link_src="",link_href="",attributes:dict={}):
     data = attributes.copy()
+    Analytics.incrementCounter('markdown','render','url','build')
     data['content'] = renderURL(url,context,link_src=link_src,link_href=link_href)
     data[f'markdown {url} source'] = link_src
     data[f'markdown {url} href'] = link_href
@@ -49,9 +54,11 @@ def renderRaw(text,link_src="",link_href=""):
     cached = cache.get(text,source='raw')
     if cached != None:
         print(f'CACHE MARKDOWN RAW')
+        Analytics.incrementCounter('markdown','render','raw','cached')
         return cached
 
     print(f'API MARKDOWN RAW')
+    Analytics.incrementCounter('markdown','render','raw','api')
     value = Github.renderMarkdown(text)
     value = relink_html(value,link_href=link_href,link_src=link_src)
     cache.set(text,value,source='raw')
@@ -59,6 +66,7 @@ def renderRaw(text,link_src="",link_href=""):
 
 def buildRaw(text,link_src="",link_href="",):
     attributes = attributes.copy()
+    Analytics.incrementCounter('markdown','render','raw','build')
     attributes['content'] = renderRaw(text,link_src=link_src,link_href=link_href)
     return attributes
 
@@ -69,16 +77,19 @@ def renderHash(text,link_src="",link_href=""):
     key = hashText(text + str(link_src) + str(link_href))
     cached = cache.get(key,source='hash')
     if cached != None:
+        Analytics.incrementCounter('markdown','render','hash','cached')
         print(f'CACHE MARKDOWN HASH {key[:100]}')
         return cached
 
     print(f'API MARKDOWN HASH {key[:100]}')
+    Analytics.incrementCounter('markdown','render','hash','api')
     value = Github.renderMarkdown(text)
     value = relink_html(value,link_href=link_href,link_src=link_src)
     cache.set(key,value,source='hash')
     return value
 
 def buildHash(text,link_src="",link_href="",attributes: dict={}):
+    Analytics.incrementCounter('markdown','render','hash','build')
     attributes = attributes.copy()
     attributes['content'] = renderHash(text,link_src=link_src,link_href=link_href)
     return attributes
@@ -123,6 +134,8 @@ def clean_link(url):
                 break
     return '/'.join(parsed)
 
+def renderPrintJSON(object):
+    return buildHash(f'```json\n{json.dumps(object,indent=4)}\n```')
 
 def renderDirectory():
     def iteration(path,route=[]):

@@ -18,7 +18,8 @@ def export():
     Gen('index').ref_json(Temp.get('index'))
 
 def load():
-    try:
-        return Temp.get('index')
-    except:
+    tmp = Temp.get('index')
+    if tmp == None:
         return {}
+    else:
+        return tmp

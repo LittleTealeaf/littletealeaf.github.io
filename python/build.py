@@ -51,15 +51,16 @@ Index.set(['github'],{
 Markdown.renderDirectory()
 
 analytics = {
+    'build': Temp.get('analytics'),
     'github': {
         'cache': Github.getAPI('https://api.github.com/repos/LittleTealeaf/littletealeaf.github.io/actions/cache/usage',use_cache=False),
         'rate_limits': Github.getAPI('https://api.github.com/rate_limit',use_cache=False)
     }
 }
 
-Index.set(['markdown','debug','cache'],Gen('markdown','debug','cache').ref_json(Markdown.buildHash(f'```json\n{json.dumps(Cache.reportCaches(),indent=4,sort_keys=True)}\n```')))
+Index.set(['markdown','debug','cache'],Gen('markdown','debug','cache').ref_json(Markdown.renderPrintJSON(Cache.reportCaches())))
 
-Index.set(['markdown','debug','analytics'],Gen('markdown','debug','analytics').ref_json(Markdown.buildHash(f'```json\n{json.dumps(analytics,indent=4,sort_keys=True)}\n```')))
+Index.set(['markdown','debug','analytics'],Gen('markdown','debug','analytics').ref_json(Markdown.renderPrintJSON(analytics)))
 
 
 Index.export()
