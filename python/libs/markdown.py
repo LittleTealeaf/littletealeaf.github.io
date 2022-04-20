@@ -98,6 +98,14 @@ def buildHash(text,link_src="",link_href="",attributes: dict={}):
     attributes['content'] = renderHash(text,link_src=link_src,link_href=link_href)
     return attributes
 
+def buildFile(path,link_src="",link_href=""):
+    Analytics.incrementCounter('markdown','render','file','build')
+    file = frontmatter.load(path).to_dict()
+    file['content'] = renderHash(file['content'],link_src=link_src,link_href=link_href)
+    return file
+
+
+
 def relink_html(html,link_href,link_src):
     soup = BeautifulSoup(html,features='html.parser')
     if link_href != None:

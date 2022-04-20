@@ -1,0 +1,68 @@
+{
+    "github": {
+        "Projects": [
+            {
+                "repo": "LittleTealeaf/GDD-140-Project-1.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-2.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-3.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-4.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-5.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-6.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-7.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-8.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-9.2"
+              },{
+                "repo": "LittleTealeaf/GDD-140-Project-10.2"
+              }
+        ],
+        "Exercises": [
+            {
+                "repo": "LittleTealeaf/GDD-140-Exercise-1.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-1.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-2.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-2.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-3.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-3.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-4.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-4.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-5.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-5.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-6.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-6.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-7.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-7.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-8.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-9.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-9.1"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-10.0"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Exercise-10.1"
+            }
+        ]
+    }
+}
