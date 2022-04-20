@@ -29,7 +29,7 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
         return None
 
 
-def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True):
+def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True, cache_empty: bool = True):
     key = f'{headers}{params}'
     if use_cache:
         cached = cache.get(key,source=url)
@@ -42,11 +42,11 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
     request = getRequest(url, headers=headers, params=params)
     if request:
         data = request.json()
-        if use_cache:
+        if use_cache and (cache_empty or not isEmpty(data)):
             cache.set(key, data,source=url)
 
         return data
-    if use_cache:
+    if use_cache and cache_empty:
          cache.set(key,None,source=url)
     return None
 
@@ -59,7 +59,7 @@ def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1,
     params['per_page'] = 100
     params['page'] = 1
     while count == -1 or len(data) < count:
-        fetched: list = getAPI(url, headers, params,use_cache=use_cache)
+        fetched: list = getAPI(url, headers, params,use_cache=use_cache,cache_empty=False)
         if fetched == None:
             return data
         length = len(fetched)
@@ -85,3 +85,6 @@ def getAnalytics():
     return {
         'cache': cache.analytics()
     }
+
+def isEmpty(value):
+    return value in [[],None,{}]
