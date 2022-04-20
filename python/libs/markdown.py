@@ -25,6 +25,8 @@ HASH_CHARACTERS.remove('"')
 
 HASH_LENGTH = 150
 
+# TODO: add renderFile
+
 def hashText(text):
     return ''.join(Random(text).choices(HASH_CHARACTERS,k=min(len(text),HASH_LENGTH)))
 
