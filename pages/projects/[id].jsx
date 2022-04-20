@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { getGenerated, Index } from "libs/resources";
 import { MarkdownAsset, MarkdownObject } from "components/markdown";
+import Title from "components/title";
 
 export async function getStaticPaths() {
   return {
@@ -26,9 +27,7 @@ export default function Page({ id }) {
 
   return (
     <>
-      <Head>
-        <title>{project.name}</title>
-      </Head>
+      <Title content={project.name} />
       <div
         style={{
           padding: "100px",
