@@ -47,8 +47,6 @@ def buildURL(url,context=None,link_src="",link_href="",attributes:dict={}):
     data = attributes.copy()
     Analytics.incrementCounter('markdown','render','url','build')
     data['content'] = renderURL(url,context,link_src=link_src,link_href=link_href)
-    data[f'markdown {url} source'] = link_src
-    data[f'markdown {url} href'] = link_href
     return data
 
 def renderRaw(text,link_src="",link_href=""):
