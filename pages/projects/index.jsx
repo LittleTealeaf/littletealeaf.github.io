@@ -8,9 +8,9 @@ export default function Content({}) {
       <Title content="Projects" />
       <div>Oh cool, a projects page!</div>
       <ul>
-        {Object.keys(Index.pages.projects).map((item, index) => {
+        {Object.keys(Index.projects).map((item) => {
           return (
-            <li key={index}>
+            <li key={"projects index " + item}>
               <Link href={`/projects/${item}`}>{item}</Link>
             </li>
           );

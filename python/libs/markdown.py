@@ -25,6 +25,10 @@ HASH_CHARACTERS.remove('"')
 
 HASH_LENGTH = 150
 
+# TODO: add renderFile
+
+# add renderfile
+
 def hashText(text):
     return ''.join(Random(text).choices(HASH_CHARACTERS,k=min(len(text),HASH_LENGTH)))
 
@@ -47,8 +51,6 @@ def buildURL(url,context=None,link_src="",link_href="",attributes:dict={}):
     data = attributes.copy()
     Analytics.incrementCounter('markdown','render','url','build')
     data['content'] = renderURL(url,context,link_src=link_src,link_href=link_href)
-    data[f'markdown {url} source'] = link_src
-    data[f'markdown {url} href'] = link_href
     return data
 
 def renderRaw(text,link_src="",link_href=""):
@@ -95,6 +97,14 @@ def buildHash(text,link_src="",link_href="",attributes: dict={}):
     attributes = attributes.copy()
     attributes['content'] = renderHash(text,link_src=link_src,link_href=link_href)
     return attributes
+
+def buildFile(path,link_src="",link_href=""):
+    Analytics.incrementCounter('markdown','render','file','build')
+    file = frontmatter.load(path).to_dict()
+    file['content'] = renderHash(file['content'],link_src=link_src,link_href=link_href)
+    return file
+
+
 
 def relink_html(html,link_href,link_src):
     soup = BeautifulSoup(html,features='html.parser')
