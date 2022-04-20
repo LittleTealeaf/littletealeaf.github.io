@@ -22,11 +22,6 @@ for project_path in conf.getFiles('projects'):
     stem = Path(project_path[-1]).stem
 
     if project['github'] != None:
-        # api = Github.getAPI(f"https://api.github.com/repos/{project['github']['repo']}")
-        # project['github'].update({
-        #     'api': api,
-
-        # })
         def compileRepo(repoConfig):
             api = Github.getAPI(f'https://api.github.com/repos/{repoConfig["repo"]}')
             return {
