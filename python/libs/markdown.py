@@ -23,8 +23,10 @@ HASH_CHARACTERS = [chr(i) for i in range(32,127)]
 HASH_CHARACTERS.remove('\\')
 HASH_CHARACTERS.remove('"')
 
+HASH_LENGTH = 150
+
 def hashText(text):
-    return ''.join(Random(text).choices(HASH_CHARACTERS,k=min(len(text),100)))
+    return ''.join(Random(text).choices(HASH_CHARACTERS,k=min(len(text),HASH_LENGTH)))
 
 def renderURL(url,context=None,link_src="",link_href=""):
     cached = cache.get(url,source='url')
