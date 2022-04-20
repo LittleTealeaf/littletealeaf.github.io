@@ -42,7 +42,7 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
     request = getRequest(url, headers=headers, params=params)
     if request:
         data = request.json()
-        if use_cache and (cache_empty or not isEmpty(data)):
+        if use_cache and (cache_empty or (not isEmpty(data))):
             cache.set(key, data,source=url)
 
         return data
@@ -59,7 +59,7 @@ def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1,
     params['per_page'] = 100
     params['page'] = 1
     while count == -1 or len(data) < count:
-        fetched: list = getAPI(url, headers, params,use_cache=use_cache,cache_empty=False)
+        fetched: list = getAPI(url, headers, params,use_cache=use_cache,cache_empty=(params['page'] == 1))
         if fetched == None:
             return data
         length = len(fetched)
