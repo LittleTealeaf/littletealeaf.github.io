@@ -16,10 +16,10 @@ export function Snippet({ name }) {
 }
 
 export function MarkdownAsset({ asset }) {
-  return <MarkdownObject object={getGenerated(asset)} />
+  return <MarkdownObject object={getGenerated(asset)} />;
 }
 
-export function MarkdownObject({object}) {
+export function MarkdownObject({ object }) {
   return (
     <>
       {Object.keys(object)

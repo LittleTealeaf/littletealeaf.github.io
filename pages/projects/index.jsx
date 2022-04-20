@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Content({}) {
   return (
     <>
-    <Title content="Projects" />
+      <Title content="Projects" />
       <div>Oh cool, a projects page!</div>
       <ul>
         {Object.keys(Index.pages.projects).map((item, index) => {

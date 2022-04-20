@@ -1,5 +1,5 @@
 import { MarkdownAsset } from "components/markdown";
-import {Index} from 'libs/resources'
+import { Index } from "libs/resources";
 import Meta from "components/meta";
 import Title from "components/title";
 
