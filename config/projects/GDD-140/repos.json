@@ -63,6 +63,15 @@
             },{
                 "repo": "LittleTealeaf/GDD-140-Exercise-10.1"
             }
+        ],
+        "Additional Projects": [
+            {
+                "repo": "LittleTealeaf/GDD-140-Spheres-Wallpaper"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Template"
+            },{
+                "repo": "LittleTealeaf/GDD-140-Midterm"
+            }
         ]
     }
 }
