@@ -9,7 +9,7 @@ export const RenderMarkdown = ({ content }) => <article className="markdown-body
  * @param {} param0
  * @returns
  */
-export const Snippet = ({ name }) => <RenderMarkdown contnet={getGenerated(Index.snippets[name])} />;
+export const Snippet = ({ name }) => <RenderMarkdown content={getGenerated(Index.snippets[name])} />;
 
 export const MarkdownAsset = ({ asset }) => <MarkdownObject object={getGenerated(asset)} />;
 
