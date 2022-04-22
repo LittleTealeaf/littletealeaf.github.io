@@ -8,6 +8,22 @@ It's currnetly in development, so... Yea!
 
 `Tealeaf Signing Off!`
 
+## Dev Thoughts
+
+Maybe this is the chance to convert completely to javascript/typescript.
+
+Remove the need for python scripts
+
+something like
+
+- Create separate javascript scripts that manage stuff
+- Javascript Libraries to manage rendering and stuff. Split up libraries between "precompile" or "compile" paths
+
+Or maybe not...
+
+First, see if I can figure out a way to read a markdown with the tags infront like using frontmatter
+Second, see if I can 
+
 ## Project Layout
 
 > TODO: render project layout
