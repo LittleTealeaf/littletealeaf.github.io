@@ -1,5 +1,5 @@
-import { getGenerated, Index } from "libs/resources";
-import {MarkdownAsset} from 'components/markdown';
+import { getGenerated, Index } from "archive/libs/resources";
+import {MarkdownAsset} from 'archive/components/markdown';
 
 export default function Announcement({}) {
 

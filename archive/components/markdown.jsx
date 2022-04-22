@@ -1,6 +1,6 @@
-import { getGenerated, Index } from "libs/resources";
+import { getGenerated, Index } from "archive/libs/resources";
 const html_parser = require("html-react-parser");
-import Meta from "components/meta";
+import Meta from "archive/components/meta";
 
 export const RenderMarkdown = ({ content }) => <article className="markdown-body">{html_parser.default(content)}</article>;
 

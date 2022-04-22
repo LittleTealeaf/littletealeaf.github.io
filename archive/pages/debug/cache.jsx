@@ -1,6 +1,6 @@
-import { MarkdownAsset } from "components/markdown";
-import Title from "components/title";
-import { Index } from "libs/resources";
+import { MarkdownAsset } from "archive/components/markdown";
+import Title from "archive/components/title";
+import { Index } from "archive/libs/resources";
 
 export default function Page({}) {
   return (

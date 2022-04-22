@@ -1,6 +1,6 @@
-import { getGenerated, Index } from "libs/resources";
+import { getGenerated, Index } from "archive/libs/resources";
 import Head from "next/head";
-import { RenderMarkdown } from "components/markdown";
+import { RenderMarkdown } from "archive/components/markdown";
 
 export async function getStaticPaths() {
   return {

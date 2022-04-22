@@ -1,6 +1,6 @@
-import { getGenerated, Index } from "libs/resources";
-import { MarkdownAsset, MarkdownObject } from "components/markdown";
-import Title from "components/title";
+import { getGenerated, Index } from "archive/libs/resources";
+import { MarkdownAsset, MarkdownObject } from "archive/components/markdown";
+import Title from "archive/components/title";
 
 export async function getStaticPaths() {
   return {

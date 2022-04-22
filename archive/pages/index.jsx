@@ -1,4 +1,4 @@
-import Title from "components/title";
+import Title from "archive/components/title";
 
 export async function getStaticProps(context) {
   return {
