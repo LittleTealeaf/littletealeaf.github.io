@@ -22,7 +22,11 @@ something like
 Or maybe not...
 
 First, see if I can figure out a way to read a markdown with the tags infront like using frontmatter
-Second, see if I can 
+Second, see if I can
+
+/*
+maybe converting to full javascript wouldn't be a bad idea
+*/
 
 ## Project Layout
 
