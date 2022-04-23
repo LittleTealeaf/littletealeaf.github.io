@@ -107,6 +107,11 @@ def clean(partial_wipe=False, full_wipe=False):
                         del data[key]
                     with open(fp,'w') as file:
                         file.write(json.dumps(data,separators=(',',':')))
+                    with open(fp) as file:
+                        data = json.load(file)
+                    if len(data) == 0:
+                        print(f'Removing empty file: {fp}')
+                        os.remove(fp)
                 except Exception as e:
                     print(f'Crash-Cleaning {fp}')
                     os.remove(fp)
