@@ -3,7 +3,7 @@ import json
 from PIL import Image
 import shutil
 
-GENERATED_DIRECTORY = os.path.join('.', 'generated')
+GENERATED_DIRECTORY = os.path.join('.', 'assets')
 
 
 def gen_initialize():
@@ -21,7 +21,7 @@ def refjson(object, *path):
 
 class Gen:
     def __init__(self, *path):
-        self.path = os.path.join('.', 'generated', *path)
+        self.path = os.path.join('.', 'assets', *path)
         self.ref = '/'.join(path)
         os.makedirs(os.path.dirname(self.path), exist_ok=True)
 
@@ -38,4 +38,8 @@ class Gen:
             self.path = self.path + '.png'
             self.ref = self.ref + '.png'
         img.save(self.path)
+        return self.ref
+
+    def ref_file(self,filepath):
+        shutil.copyfile(filepath,self.path)
         return self.ref

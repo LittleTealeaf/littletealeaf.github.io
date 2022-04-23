@@ -12,7 +12,7 @@ import libs.index as Index
 from bs4 import BeautifulSoup
 from pathlib import Path
 
-from libs.generated import Gen
+from libs.out import Gen
 
 cache = Cache('markdown')
 

@@ -1,3 +1,4 @@
+import { getAsset, Index } from "libs/assets";
 import Link from "next/link";
 import React from "react";
 
@@ -13,7 +14,7 @@ const Header = ({}) => (
         fontSize: "28px",
       }}
     >
-      {require("assets/navigation.json").map((item, index) => (
+      {getAsset(Index.assets.navigation_json).map((item, index) => (
         <li
           key={index}
           className="float-left transition-all bg-black hover:bg-gray-700 grow-[8] hover:grow-[9] text-center"

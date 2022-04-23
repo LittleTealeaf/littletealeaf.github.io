@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "libs/components/Title";
 import Markdown from "libs/components/Markdown";
-import { Index } from "libs/generated";
+import { Index } from "libs/assets";
 
 const Page = ({}) => (
   <>

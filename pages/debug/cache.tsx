@@ -1,9 +1,9 @@
 import Markdown from "libs/components/Markdown";
 import Title from "libs/components/Title";
-import { Index } from "libs/generated";
+import { Index } from "libs/assets";
 import React from "react";
 
-const Page = ({}) => {
+const Page =  ({}) => {
   return (
     <>
       <Title text="Cache Debug" />

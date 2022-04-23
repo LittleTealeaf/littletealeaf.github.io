@@ -1,8 +1,7 @@
 import os
-from pathlib import Path
 import libs.github as Github
 import libs.githubwrapper as GithubWrapper
-from libs.generated import Gen, gen_initialize
+from libs.out import Gen, gen_initialize
 import libs.temp as Temp
 import libs.markdown as Markdown
 import libs.config as conf
@@ -74,5 +73,16 @@ Index.set(['markdown', 'debug', 'cache'], Gen('markdown', 'debug',
 Index.set(['markdown', 'debug', 'analytics'], Gen('markdown', 'debug',
           'analytics').ref_json(Markdown.renderPrintJSON(analytics)))
 
+# Copy over all the asset files
+path = conf.getPath('assets')
+def iterateAssets(filepath,path):
+    for file in os.listdir(filepath):
+        fullpath = os.path.join(filepath,file)
+        if os.path.isdir(fullpath):
+            iterateAssets(fullpath,path + [file])
+        else:
+            Index.set(path + [file.replace('.','_')],Gen(*(path + [file])).ref_file(fullpath))
+
+iterateAssets(conf.getPath('assets'),['assets'])
 
 Index.export()
