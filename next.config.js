@@ -1,4 +1,7 @@
 
+/*
+maybe converting to full javascript wouldn't be a bad idea
+*/
 
 const withPlugins = require('next-compose-plugins');
 
