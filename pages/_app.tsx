@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "libs/header";
+import Header from "libs/components/Header";
 
 const MyApp = ({ Component, pageProps }) => (
   <>

@@ -1,10 +1,11 @@
 import React from "react";
-import { Markdown, Title } from "libs/components";
-import { Index } from "libs";
+import Title from "libs/components/Title";
+import Markdown from "libs/components/Markdown";
+import { Index } from "libs/generated";
 
 const Page = ({}) => (
   <>
-    <Title value="LittleTealeaf" />
+    <Title text="LittleTealeaf" />
     <Markdown asset={Index.markdown.debug.cache} />
   </>
 );
