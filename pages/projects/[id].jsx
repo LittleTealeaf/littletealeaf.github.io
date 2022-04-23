@@ -30,31 +30,18 @@ export default function Page({ id }) {
         padding: "50px",
       }}
     >
-      <Title content={project.index.name} />
-      <MarkdownObject object={project.post} />
+      <Title content={project.name} />
+      <MarkdownObject object={project.about} />
 
-      {Object.keys(project.repos).map((category) => (
-        <details key={category}>
-          <summary>{category}</summary>
-          {Object.keys(project.repos[category]).map((repo) => (
-            <details
-              key={repo}
-              style={{
-                padding: "0px 20px",
-              }}
-            >
-              <summary>{project.repos[category][repo].name}</summary>
-              <div
-                style={{
-                  padding: "5px 10px",
-                }}
-              >
-                <MarkdownObject object={project.repos[category][repo].readme} />
-              </div>
-            </details>
-          ))}
-        </details>
-      ))}
+      {Object.keys(project.repos).map((reponame) => {
+        const repo = getGenerated(project.repos[reponame]);
+        return (
+          <details key={reponame}>
+            <summary>{reponame}</summary>
+            <MarkdownObject object={repo.readme} />
+          </details>
+        );
+      })}
     </div>
   );
 }
