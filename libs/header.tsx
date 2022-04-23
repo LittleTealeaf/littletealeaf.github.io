@@ -48,18 +48,4 @@ const Header = ({}) => (
   </>
 );
 
-export const Metas = ({ values }) => (
-  <Head>
-    {Object.keys(values).map((key) => (
-      <meta key={key} name={key} content={values[key]} />
-    ))}
-  </Head>
-);
-
-export const Title = ({ value }) => (
-  <Head>
-    <title>{value}</title>
-  </Head>
-);
-
 export default Header;
