@@ -1,10 +1,12 @@
 {
-    "name": "PROJECT NAME",
-    "github": {
-        "repos": [
-            {
-                "repo": "LittleTealeaf/littletealeaf.github.io"
-            }
-        ]
-    }
+    "name": "the name of the project",
+    "description": "basic description",
+    "readme": "if post.md exists, uses that, otherwise uses the main repo",
+    "repo": "The main project repo, this readme is always rendered somewhere",
+    "repos": [
+        {
+            "name": "list of other repositories",
+            "categories": ["subcategories"]
+        }
+    ]
 }

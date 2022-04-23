@@ -10,7 +10,7 @@ DURATION_MIN = 1.0
 DURATION_MAX = 24 * 10.0
 DURATION_SCALE_UP = 1.5
 DURATION_SCALE_DOWN = 0.5
-DELETE_TIME = 24.0
+DELETE_TIME = 24.0 * 7
 VALID_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-"
 
 VERSION = 5
@@ -95,6 +95,9 @@ def clean(partial_wipe=False, full_wipe=False):
                     data = None
                     with open(fp) as file:
                         data = json.load(file)
+                    if len(data) == 0:
+                        print(f'Removing file {fp}')
+                        os.remove(fp)
                     wipe_keys = []
                     for key in data:
                         if (partial_wipe or data[key]['expires'] < time.time()) and 'value' in data[key]:

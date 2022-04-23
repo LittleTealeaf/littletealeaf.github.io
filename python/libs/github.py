@@ -29,7 +29,8 @@ def getRequest(url: str, headers: dict = {}, params: dict = {}):
         return None
 
 
-def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True, cache_empty: bool = True):
+def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = True, cache_empty: bool = True,formats: dict={}):
+    url = url.format(**formats)
     key = f'{headers}{params}'
     if use_cache:
         cached = cache.get(key,source=url)
@@ -51,7 +52,8 @@ def getAPI(url: str, headers: dict = {}, params: dict = {}, use_cache: bool = Tr
     return None
 
 
-def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, use_cache: bool = True):
+def getAPIList(url: str, headers: dict = {}, params: dict = {}, count: int = -1, use_cache: bool = True, formats: dict = {}):
+    url = url.format(**formats)
     Analytics.incrementCounter('api','github','list')
     data = []
     headers = headers.copy()
