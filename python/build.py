@@ -21,35 +21,28 @@ for project_path in conf.getFiles('projects'):
 
     def fileExists(name): return os.path.exists(
         conf.getPath(*(project_path + [name])))
-    project = {}
+    project = conf.getJSON(*(project_path + ['index.json']))
 
-    if fileExists('index.json'):
-        project['index'] = conf.getJSON(*(project_path + ['index.json']))
+    if 'repos' in project:
+        for repo in project['repos']:
+            api = Github.getAPI(f'https://api.github.com/repos/{repo}')
+            project['repos'][repo].update({
+                'api': api,
+                'contributors': Github.getAPIList(api['contributors_url']),
+                'readme': GithubWrapper.README(api['full_name']),
+                'events': Github.getAPIList(api['events_url']),
+                'languages': Github.getAPI(api['languages_url'])
+            })
+            project['repos'][repo] = Gen('projects', endpoint, 'repos', api['node_id']).ref_json(project['repos'][repo])
 
-    if fileExists('post.md'):
-        project['post'] = Markdown.buildFile(
-            conf.getPath(*(project_path + ['post.md'])),**{
+    if fileExists('about.md'):
+        project['about'] = Markdown.buildFile(
+            conf.getPath(*(project_path + ['about.md'])), **{
                 'link_src': f'https://raw.githubusercontent.com/LittleTealeaf/littletealeaf.github.io/main/config/projects/{endpoint}/',
                 'link_href': f'https://github.com/LittleTealeaf/littletealeaf.github.io/tree/main/config/projects/{endpoint}/'
             })
-    if fileExists('repos.json'):
-        repos = conf.getJSON(*(project_path + ['repos.json']))
-        project['repos'] = {}
-        for group in repos['github']:
-            if group not in project['repos']:
-                project['repos'][group] = []
-            for repo in repos['github'][group]:
-                api = Github.getAPI(f'https://api.github.com/repos/{repo["repo"]}')
-                project['repos'][group].append({
-                    'name': api['name'],
-                    'full_name': repo['repo'],
-                    'readme': GithubWrapper.README(repo['repo']),
-                    'owner': api['owner'],
-                    'languages': Github.getAPI(api['languages_url']),
-                    'contributors': Github.getAPIList(str(api['contributors_url']))
-                })
     Index.set(['projects', endpoint], Gen(
-        'projects', endpoint).ref_json(project))
+        'projects', endpoint, 'index').ref_json(project))
 
 user_api = Github.getAPI('https://api.github.com/user')
 
