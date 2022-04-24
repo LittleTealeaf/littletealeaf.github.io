@@ -44,4 +44,6 @@ tmp/
 cache/
 
 __pycache__
+
 assets/
+!*/assets/
