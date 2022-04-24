@@ -45,5 +45,4 @@ cache/
 
 __pycache__
 
-assets/
-!*/assets/
+resources/

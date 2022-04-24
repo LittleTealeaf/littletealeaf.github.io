@@ -1,6 +1,6 @@
-export const getAsset = (ref: string) => require(`assets/${ref}`);
+export const getResource = (ref: string) => require(`resources/${ref}`);
 
-import ImportedIndex from "assets/index.json";
+import ImportedIndex from "resources/index.json";
 
 export const Index = ImportedIndex;
 

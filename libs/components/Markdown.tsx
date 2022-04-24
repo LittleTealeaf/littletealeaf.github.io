@@ -1,6 +1,6 @@
 import React from "react";
 import HTMLReactParser from "html-react-parser";
-import { getAsset } from "libs/assets";
+import { getResource } from "libs/assets";
 
 interface MarkdownObject {
   content?: string;
@@ -14,7 +14,7 @@ interface MarkdownProps {
 
 const Markdown = ({ content = "", object = null, asset = null }: MarkdownProps) => {
   if (asset != null) {
-    object = getAsset(asset);
+    object = getResource(asset);
   }
   if (object != null) {
     content = object.content;
