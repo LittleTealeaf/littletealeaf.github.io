@@ -30,7 +30,7 @@
     "next-optimized-images": "2.6.2",
     "postcss": "8.4.12",
     "react": "18.1.0",
-    "react-dom": "18.0.0",
+    "react-dom": "18.1.0",
     "react-markdown": "8.0.3",
     "react-router-dom": "6.3.0",
     "react-syntax-highlighter": "15.5.0",
