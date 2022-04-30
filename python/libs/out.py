@@ -3,7 +3,9 @@ import json
 from PIL import Image
 import shutil
 
-GENERATED_DIRECTORY = os.path.join('.', 'assets')
+DIR_NAME = 'resources'
+
+GENERATED_DIRECTORY = os.path.join('.', DIR_NAME)
 
 
 def gen_initialize():
@@ -21,7 +23,7 @@ def refjson(object, *path):
 
 class Gen:
     def __init__(self, *path):
-        self.path = os.path.join('.', 'assets', *path)
+        self.path = os.path.join('.', DIR_NAME, *path)
         self.ref = '/'.join(path)
         os.makedirs(os.path.dirname(self.path), exist_ok=True)
 
