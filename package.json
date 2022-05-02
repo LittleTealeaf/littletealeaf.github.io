@@ -17,7 +17,7 @@
     "@mui/material": "5.6.4",
     "@primer/css": "20.0.0",
     "@primer/react": "35.2.0",
-    "autoprefixer": "10.4.5",
+    "autoprefixer": "10.4.7",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5",
     "fs": "0.0.1-security",
