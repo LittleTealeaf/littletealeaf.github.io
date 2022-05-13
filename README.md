@@ -6,8 +6,6 @@ Hi! Welcome to the repository that builds and deploys [littletealeaf.github.io](
 
 It's currnetly in development, so... Yea!
 
-`Tealeaf Signing Off!`
-
 ## Project Layout
 
 > TODO: render project layout
