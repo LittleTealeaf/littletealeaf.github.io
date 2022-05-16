@@ -1,17 +1,7 @@
-import Header from "components/header";
-import "styles/globals.css";
-import "styles/style.scss";
-import "@primer/css/index.scss";
-import "github-syntax-light/lib/github-light.css";
-import Announcement from "components/announcement";
+import '../styles/globals.css'
 
-const MyApp = ({ Component, pageProps }) => {
-  return (
-    <>
-      <Header />
-      <Announcement />
-      <Component {...pageProps} />
-    </>
-  );
-};
-export default MyApp;
+function MyApp({ Component, pageProps }) {
+  return <Component {...pageProps} />
+}
+
+export default MyApp

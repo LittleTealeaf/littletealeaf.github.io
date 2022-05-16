@@ -1,5 +1,4 @@
 
-
 const withPlugins = require('next-compose-plugins');
 
 
@@ -10,14 +9,6 @@ const nextConfig = {
       fs: false,
       path: false
     }
-    config.module.rules.push({
-      test: /\.html$/i,
-      use: [{
-        loader: "html-loader",
-        options: {}
-      }]
-    })
-    // Important: return the modified config
     return config
   },
   reactStrictMode: true,
