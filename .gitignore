@@ -30,3 +30,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+.env
+next-env.d.ts
+next-env.d.js
+GITHUB_TOKEN
+cache/

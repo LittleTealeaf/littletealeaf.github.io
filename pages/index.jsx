@@ -1,3 +1,5 @@
+import { client } from "libs/githubapi"
+
 
 
 export default function Home() {
@@ -8,4 +10,12 @@ export default function Home() {
     </div>
     </>
   )
+}
+
+
+export function getStaticProps({params}) {
+  console.log(client)
+  return {
+    props: {}
+  }
 }

@@ -7,7 +7,8 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.fallback = {
       fs: false,
-      path: false
+      path: false,
+      dotenv: false
     }
     return config
   },
