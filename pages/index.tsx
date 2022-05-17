@@ -98,16 +98,13 @@ const AboutMe = ({}) => (
   </>
 );
 
-const Content = ({ repos }) => (
+const Content = ({}: {}) => (
   <>
     <Head>
       <title>Thomas Kwashnak</title>
     </Head>
     <Home />
     <AboutMe />
-    <div>
-      <p>{JSON.stringify(repos)}</p>
-    </div>
   </>
 );
 
