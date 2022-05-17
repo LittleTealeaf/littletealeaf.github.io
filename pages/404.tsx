@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@emotion/react";
 import { Button, createTheme, ThemeOptions } from "@mui/material";
+import Head from "next/head";
 import Script from "next/script";
 
 // export const config = {
@@ -20,11 +21,14 @@ const theme = createTheme({
 export default function Content() {
   return (
     <>
+    <Head>
+      <title>404 | Page not found</title>
+    </Head>
     <Script id="update-url" strategy="lazyOnload">
       {`document.getElementById('url').innerHTML = window.location.href`}
     </Script>
       <ThemeProvider theme={theme}>
-        <div 
+        <div
           style={{
             background: `url(${require("assets/images/404.jpg")}) no-repeat top center`,
             backgroundSize: "cover !important",
