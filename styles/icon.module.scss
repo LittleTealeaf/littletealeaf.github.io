@@ -1,11 +1,11 @@
 .container {
     color: #FFFFFF;
     transition-duration: 0.3s;
-    transition: color .3s ease-in-out;
+    transition: color .2s ease-in-out;
 
     :hover {
         color: #9e2711;
-        transition: color .3s ease-in-out;
+        transition: color .2s ease-in-out;
     }
 }
 

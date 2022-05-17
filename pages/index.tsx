@@ -3,7 +3,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from '@mui/icons-material/Email';
 import { Icon } from "@mui/material";
-const iconStyle = require("styles/icon.module.scss");
+import iconStyle from "styles/icon.module.scss";
 
 
 
@@ -64,7 +64,7 @@ const Home = ({}) => (
           fontFamily: "monospace",
         }}
       >
-        <p>Computer Scientist | Data Scientist | Software Engineer</p>
+        <p>Computer Science | Data Science | Software Engineering</p>
         <p>Student at Quinnipiac University</p>
       </div>
       <ul style={{
@@ -86,26 +86,22 @@ const Home = ({}) => (
   </div>
 );
 
+const AboutMe = ({}) => (
+  <>
+    <div>
+
+    </div>
+  </>
+);
+
 const Content = ({}) => (
   <>
     <Head>
       <title>Thomas Kwashnak</title>
     </Head>
     <Home />
-    <div>
-      <div
-        style={{
-          backgroundColor: "#392821",
-          color: "white",
-          position: "sticky",
-          top: 0,
-          margin: "auto",
-          width: "80%",
-        }}
-      >
-        testing
-      </div>
-    </div>
+    <AboutMe />
+
   </>
 );
 
