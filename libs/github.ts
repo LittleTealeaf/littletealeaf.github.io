@@ -30,7 +30,7 @@ const handle = async (
   }
 };
 
-export const client = {
+export const githubClient = {
   repos: {
     get: async (
       params: RequestParameters &
