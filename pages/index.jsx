@@ -1,4 +1,4 @@
-import { client } from "libs/githubapi"
+import { client } from "libs/github"
 
 
 
