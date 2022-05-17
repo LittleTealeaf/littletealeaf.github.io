@@ -5,6 +5,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import { Icon } from "@mui/material";
 const iconStyle = require("styles/icon.module.scss");
 
+
+
 export const config = {
   unstable_runtimeJS: false,
 };
@@ -80,6 +82,7 @@ const Home = ({}) => (
         ))}
       </ul>
     </div>
+
   </div>
 );
 
