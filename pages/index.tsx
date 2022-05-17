@@ -1,24 +1,41 @@
-import { height } from "@mui/system";
-import { AppProps } from "next/app";
+import Head from "next/head";
 
 export const config = {
-  unstable_runtimeJS: false
+  unstable_runtimeJS: false,
 };
 
-export default function Content({test}) {
-  return (
-    <>
-    <div>
-      {test}
-    </div>
-    </>
-  );
-}
+const Content = ({}) => (
+  <>
+    <Head>
+      <title>Thomas Kwashnak</title>
+    </Head>
+    <div
+      style={{
+        background: `url(${require("assets/images/background.png")})`,
+        width: "100%",
+        height: "100vh",
+        color: "white",
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        margin: 'auto',
+        justifyContent: 'center',
+      }}
+    >
 
-export const getStaticProps = ({stuff}) => {
-  return {
-    props: {
-      test: "test"
-    }
-  }
-}
+      <div style={{
+        height: '0%',
+        width: '100%',
+        textAlign: 'center',
+        fontFamily: 'cursive',
+        fontSize: '100px',
+        flexGrow: 1,
+      }}>
+        <p>Thomas Kwashnak</p>
+      </div>
+
+    </div>
+  </>
+);
+
+export default Content;
