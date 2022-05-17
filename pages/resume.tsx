@@ -1,7 +1,7 @@
 import { GitHubAPI } from "libs/github";
 
 
-const Page = ({}) => {
+const Page = ({user}) => {
   const resume = require('content/resume.json');
   return <></>;
 };

@@ -1,5 +1,5 @@
 import { Octokit, RestEndpointMethodTypes } from "@octokit/rest";
-import { getCache, setCache } from "./cache";
+import { getCacheValue, setCacheValue } from "./cache";
 
 const octokit = new Octokit({
   auth: process.env.API_GITHUB,
@@ -7,12 +7,12 @@ const octokit = new Octokit({
 });
 
 const handle = async (type: Array<string>, params: Object, fallback: Function) => {
-  const cache = getCache(type, params);
+  const cache = getCacheValue(type, params);
   if (cache != null) {
     return cache;
   } else {
     const value = await fallback();
-    setCache(type, params, value);
+    setCacheValue(type, params, value);
     return value;
   }
 };
