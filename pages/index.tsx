@@ -1,17 +1,24 @@
+import { height } from "@mui/system";
+import { AppProps } from "next/app";
 
+export const config = {
+  unstable_runtimeJS: false
+};
 
-export default function Home() {
+export default function Content({test}) {
   return (
     <>
-      <div>Hello world</div>
+    <div>
+      {test}
+    </div>
     </>
   );
 }
 
-export function getStaticProps({ params }) {
+export const getStaticProps = ({stuff}) => {
   return {
     props: {
-
-    },
-  };
+      test: "test"
+    }
+  }
 }

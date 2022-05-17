@@ -16,7 +16,8 @@ const nextConfig = {
   images: {
     disableStaticImages: true,
     domains: ['githubusercontent.com']
-  }
+  },
+  unstable_runtimeJS: false
 }
 
 module.exports = withPlugins([
