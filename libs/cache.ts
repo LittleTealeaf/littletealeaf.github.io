@@ -23,20 +23,18 @@ const getDirectory = (type: Array<string>): string => path.join("cache", ...type
 
 const getFile = (type: Array<string>, keys: Object): string => path.join(getDirectory(type), `${hashKeys(keys)}.cache`);
 
-
 const getCache = (type: Array<string>, keys: Object): Cache | null => {
   const filePath = getFile(type, keys);
   const cache: Cache = existsSync(filePath) ? parse(readFileSync(filePath).toString()) : null;
   return cache != null && cache.version == VERSION ? cache : null;
 };
 
-export const getCacheValue = (type: Array<string>, keys: Object): Object | null => {
+export const getCacheValue = (type: Array<string>, keys: Object): any | null => {
   const cache: Cache = getCache(type, keys);
-  return cache != null && cache.expires >= Date.now() ? cache : null;
+  return cache != null && cache.expires >= Date.now() ? cache.value : null;
 };
 
 export const setCacheValue = (type: Array<string>, keys: Object, value: Object): void => {
-
   const path = getDirectory(type);
   if (!existsSync(path)) {
     mkdirSync(path, {
