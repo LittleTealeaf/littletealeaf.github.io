@@ -1,3 +1,5 @@
+
+
 export default function Home() {
   return (
     <>
@@ -8,6 +10,8 @@ export default function Home() {
 
 export function getStaticProps({ params }) {
   return {
-    props: {},
+    props: {
+
+    },
   };
 }

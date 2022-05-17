@@ -1,5 +1,4 @@
 import { Octokit, RestEndpointMethodTypes } from "@octokit/rest";
-import { RequestParameters } from "@octokit/types";
 import { getCache, setCache } from "./cache";
 
 const octokit = new Octokit({
@@ -12,14 +11,13 @@ const handle = async (type: Array<string>, params: Object, fallback: Function) =
   if (cache != null) {
     return cache;
   } else {
-    console.log("HELLO");
     const value = await fallback();
     setCache(type, params, value);
     return value;
   }
 };
 
-export const githubClient = {
+export const GitHubAPI = {
   repos: {
     get: async (params: RestEndpointMethodTypes["repos"]["get"]["parameters"]): Promise<RestEndpointMethodTypes["repos"]["get"]["response"]> =>
       handle(["repos", "get"], params, () => octokit.repos.get(params)),
