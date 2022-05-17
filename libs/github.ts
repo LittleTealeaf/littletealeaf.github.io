@@ -23,7 +23,7 @@ const handle = async (
   if (cache != null) {
     return cache;
   } else {
-      console.log("HELLO");
+    console.log("HELLO");
     const value = await fallback();
     setCache(type, params, value);
     return value;
