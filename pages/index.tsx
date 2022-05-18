@@ -20,7 +20,7 @@ const IconLink = ({ component, href }) => (
   </a>
 );
 
-const Home = ({}) => (
+const Home = ({ content }: { content: { name: string; subheader: string; position: string } }) => (
   <div
     style={{
       background: `url(${require("assets/images/background.jpg")}) no-repeat top center`,
@@ -49,7 +49,7 @@ const Home = ({}) => (
           marginTop: 250,
         }}
       >
-        Thomas Kwashnak
+        {content.name}
       </div>
       <hr
         style={{
@@ -67,8 +67,8 @@ const Home = ({}) => (
           fontFamily: "monospace",
         }}
       >
-        <p>Computer Science | Data Science | Software Engineering</p>
-        <p>Student at Quinnipiac University</p>
+        <p>{content.subheader}</p>
+        <p>{content.position}</p>
       </div>
       <ul
         style={{
@@ -95,7 +95,7 @@ const Home = ({}) => (
   </div>
 );
 
-const AboutMe = ({}) => (
+const AboutMe = ({ content: introduction }: { content: Array<string> }) => (
   <>
     <div
       style={{
@@ -117,14 +117,25 @@ const AboutMe = ({}) => (
       >
         <div
           style={{
-            flexGrow: 1,
+            flexGrow: 2,
             padding: "0px 20px 0px 20px",
             wordWrap: "normal",
             width: "70%",
+            fontFamily: "sans-serif",
           }}
         >
-          i am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi
-          am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super bird
+          <h2
+            style={{
+              width: "50%",
+              margin: "auto",
+              textAlign: "center",
+            }}
+          >
+            Hello! My name is Thomas Kwashnak!
+          </h2>
+          {introduction.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
         </div>
         <div
           className={utilStyle.square}
@@ -146,66 +157,28 @@ const AboutMe = ({}) => (
             }}
           />
         </div>
-
-        {/* <div
-          style={{
-            display: "inline-block",
-            flexGrow: 0.5,
-          }}
-        >
-
-          <Avatar
-            alt="An image of me"
-            src={require("assets/images/home/aboutme.jpg")}
-            sx={{
-              width: 300,
-              height: 300,
-            }}
-            style={{
-              boxShadow: "5px 5px 30px 10px rgba(0,0,0,0.5)",
-              width: "100",
-              maxWidth: 300,
-            }}
-          />
-        </div> */}
       </div>
     </div>
-    <div>helloawefawefawefawef</div>
   </>
 );
 
-const Content = ({ recentRepositories }: { recentRepositories: RestEndpointMethodTypes["repos"]["get"]["response"]["data"][] }) => (
-  <>
-    <Head>
-      <title>Thomas Kwashnak</title>
-    </Head>
-    <Home />
-    <AboutMe />
-  </>
-);
+const Content = ({}) => {
+  const json = require("content/index.json");
+
+  return (
+    <>
+      <Head>
+        <title>Thomas Kwashnak</title>
+      </Head>
+      <Home content={json.home} />
+      <AboutMe content={json.introduction} />
+    </>
+  );
+};
 
 export const getStaticProps = async ({}) => {
-  const activity = await GitHubAPI.activity.listPublicEventsForUser({
-    username: "LittleTealeaf",
-    page: 1,
-    per_page: 100,
-  });
-
-  const recentRepositories = await Promise.all(
-    activity
-      .map((event) => event.repo.name)
-      .filter(filterUnique)
-      .map((name) => ({
-        owner: name.split("/")[0],
-        repo: name.split("/")[1],
-      }))
-      .map(GitHubAPI.repos.get)
-  );
-
   return {
-    props: {
-      recentRepositories,
-    },
+    props: {},
   };
 };
 
