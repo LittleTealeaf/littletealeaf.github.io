@@ -1,10 +1,11 @@
-import { Avatar, Icon } from "@mui/material";
+import { Avatar, Button, Icon } from "@mui/material";
 import Head from "next/head";
 
 type ImageEntry = {
   src: string;
   credits: string;
   title: string;
+  url?: string;
 };
 
 const Values: Array<ImageEntry> = [
@@ -17,11 +18,12 @@ const Values: Array<ImageEntry> = [
     src: require("assets/images/index/home.jpg"),
     title: "Warframe Ivara Fashion",
     credits: "Fashion created and Picture taken by Thomas Kwashnak (LittleTealeaf)",
-  },{
-    src: require('assets/images/404.jpg'),
+  },
+  {
+    src: require("assets/images/404.jpg"),
     title: "Enjoying the Drifter View",
-    credits: "Scenic Image taken in Warframe by Thomas Kwashnak (LittleTealeaf)"
-  }
+    credits: "Scenic Image taken in Warframe by Thomas Kwashnak (LittleTealeaf)",
+  },
 ];
 
 const ImageCard = ({ entry }: { entry: ImageEntry }) => (
@@ -31,10 +33,10 @@ const ImageCard = ({ entry }: { entry: ImageEntry }) => (
         background: "#283334",
         borderRadius: "30px",
         padding: "20px",
-        marginBottom: '60px',
-        margin: 'auto',
+        margin: "auto",
+        display: "block",
         boxShadow: "10px 20px 50px 10px",
-        width: '400px'
+        width: "400px",
       }}
     >
       <Avatar
@@ -43,7 +45,7 @@ const ImageCard = ({ entry }: { entry: ImageEntry }) => (
         sx={{ width: 300, height: 300 }}
         style={{
           boxShadow: "5px 10px  50px 5px",
-          margin: 'auto',
+          margin: "auto",
         }}
       />
       <div
@@ -72,6 +74,20 @@ const ImageCard = ({ entry }: { entry: ImageEntry }) => (
         >
           {entry.credits}
         </p>
+        {entry.url != null ? (
+          <>
+            <div
+              style={{
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              <Button href={entry.url}>View Source</Button>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   </>
@@ -79,24 +95,26 @@ const ImageCard = ({ entry }: { entry: ImageEntry }) => (
 
 const Content = ({}) => (
   <>
-  <Head>
-    <title>Website Credits</title>
-  </Head>
-    <div style={{
-        margin: 'auto',
-        textAlign: 'center',
-        color: 'white',
-
-    }}>
-      <p style={{
-        fontSize: '60px',
-        fontWeight: 'bolder',
-        backgroundColor: '#283334',
-        borderRadius: '20px',
-        display: 'inline-block',
-        padding: '10px 20px',
-      }}>
-      Image Credits
+    <Head>
+      <title>Website Credits</title>
+    </Head>
+    <div
+      style={{
+        margin: "auto",
+        textAlign: "center",
+        color: "white",
+      }}
+    >
+      <p
+        style={{
+          fontSize: "60px",
+          fontWeight: "bolder",
+          borderRadius: "20px",
+          display: "inline-block",
+          padding: "10px 20px",
+        }}
+      >
+        Image Credits
       </p>
     </div>
     <div
@@ -105,6 +123,7 @@ const Content = ({}) => (
         flexWrap: "wrap",
         width: "90%",
         margin: "auto",
+        gap: "20px",
       }}
     >
       {Values.map((entry) => (

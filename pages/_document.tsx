@@ -6,9 +6,11 @@ class MyDocument extends Document {
   render = () => (
     <Html>
       <Head />
-      <body style={{
-        overflowX: "hidden"
-      }}>
+      <body
+        style={{
+          overflowX: "hidden",
+        }}
+      >
         <Main />
         <NextScript />
       </body>

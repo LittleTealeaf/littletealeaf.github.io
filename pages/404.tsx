@@ -10,23 +10,23 @@ import Script from "next/script";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#195c86',
+      main: "#195c86",
     },
     secondary: {
-      main: '#0c326b',
+      main: "#0c326b",
     },
   },
-})
+});
 
 export default function Content() {
   return (
     <>
-    <Head>
-      <title>404 | Page not found</title>
-    </Head>
-    <Script id="update-url" strategy="lazyOnload">
-      {`document.getElementById('url').innerHTML = window.location.href`}
-    </Script>
+      <Head>
+        <title>404 | Page not found</title>
+      </Head>
+      <Script id="update-url" strategy="lazyOnload">
+        {`document.getElementById('url').innerHTML = window.location.href`}
+      </Script>
       <ThemeProvider theme={theme}>
         <div
           style={{
@@ -42,7 +42,7 @@ export default function Content() {
         >
           <div
             style={{
-              textShadow: '2px 2px rgba(0,0,0,0.5)',
+              textShadow: "2px 2px rgba(0,0,0,0.5)",
               display: "inline-block",
               verticalAlign: "middle",
               margin: "0 auto",
