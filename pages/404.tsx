@@ -48,7 +48,7 @@ export default function Content() {
               margin: "0 auto",
               width: "60%",
               paddingBottom: "30px",
-              marginTop: 250,
+              marginTop: 200,
             }}
           >
             <div

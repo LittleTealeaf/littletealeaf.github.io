@@ -6,6 +6,7 @@ import { Icon } from "@mui/material";
 import iconStyle from "styles/icon.module.scss";
 import { GitHubAPI } from "libs/github";
 import { filterUnique } from "libs/utils";
+import { RestEndpointMethodTypes } from "@octokit/rest";
 
 export const config = {
   unstable_runtimeJS: false,
@@ -98,13 +99,18 @@ const AboutMe = ({}) => (
   </>
 );
 
-const Content = ({}: {}) => (
+const Content = ({ recentRepositories }: {
+  recentRepositories: RestEndpointMethodTypes["repos"]["get"]["response"]["data"][]
+}) => (
   <>
     <Head>
       <title>Thomas Kwashnak</title>
     </Head>
     <Home />
     <AboutMe />
+    {recentRepositories.map((item) => (
+      <p key={item.id}>{JSON.stringify(item)}</p>
+    ))}
   </>
 );
 
@@ -115,11 +121,20 @@ export const getStaticProps = async ({}) => {
     per_page: 100,
   });
 
-  const repos: string[] = activity.map((event) => event.repo.name).filter(filterUnique);
+  const recentRepositories = await Promise.all(
+    activity
+      .map((event) => event.repo.name)
+      .filter(filterUnique)
+      .map((name) => ({
+        owner: name.split("/")[0],
+        repo: name.split("/")[1],
+      }))
+      .map(GitHubAPI.repos.get)
+  );
 
   return {
     props: {
-      repos,
+      recentRepositories,
     },
   };
 };
