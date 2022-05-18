@@ -49,7 +49,6 @@
   }
 }
 
-
 .aboutme {
   background-color: #283334;
   color: white;
@@ -84,11 +83,9 @@
         font-size: 18px;
         padding-top: 10px;
       }
-
     }
 
     .avatar {
-
       display: inline-block;
       min-width: 300px;
       padding: 10px 20px 20px 20xp;
@@ -97,20 +94,18 @@
 
       * {
         margin: auto;
-        box-shadow: 0px 10px 50px 5px rgba(0,0,0,0.5);
+        box-shadow: 0px 10px 50px 5px rgba(0, 0, 0, 0.5);
       }
     }
-
   }
-
 }
 
 .iconholder {
-  color: #FFFFFF;
-  transition: color .2s ease-in-out;
+  color: #ffffff;
+  transition: color 0.2s ease-in-out;
 
   :hover {
-      color: #9e2711;
-      transition: color .2s ease-in-out;
+    color: #9e2711;
+    transition: color 0.2s ease-in-out;
   }
 }
