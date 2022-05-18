@@ -10,7 +10,7 @@ import Script from "next/script";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#33192B',
+      main: '#195c86',
     },
     secondary: {
       main: '#0c326b',
@@ -74,7 +74,7 @@ export default function Content() {
               </h3>
               <p id="url"></p>
               <p>In the meantime, feel free to hang around, or return to the main page!</p>
-              <Button href="/" color="secondary" variant="contained">
+              <Button href="/" color="primary" variant="contained">
                 Back to littletealeaf.github.io
               </Button>
             </div>
