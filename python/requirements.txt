@@ -1,7 +1,1 @@
-markdown==3.3.7
-requests==2.27.1
-beautifulsoup4==4.11.1
-python-frontmatter==1.0.0
-urllib3==1.26.9
-pillow==9.1.1
-numpy==1.22.3
+numpy

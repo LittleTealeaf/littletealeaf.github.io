@@ -1,0 +1,60 @@
+.header {
+    margin: auto;
+    text-align: center;
+    color: white;
+
+    p {
+        font-size: 60px;
+        font-weight: bolder;
+        border-radius: 20px;
+        display: inline-block;
+        padding: 10px 20px;
+    }
+}
+
+.cardLayout {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+    gap: 20px;
+}
+
+.card {
+    background: #283334;
+    border-radius: 30px;
+    padding: 20px;
+    margin: auto;
+    display: block;
+    box-shadow: 10px 20px 50px 10px;
+    width: 400px;
+
+    .avatar {
+        box-shadow: 5px 10px 50px 5px;
+        margin: auto;
+    }
+
+    .content {
+        width: 95%;
+
+        .title {
+            padding-top: 20px;
+            color: white;
+            width: 90%;
+            text-align: center;
+            margin: auto;
+        }
+
+        .credits {
+            color: white;
+            width: 100%;
+            text-align: center;
+            word-wrap: normal;
+        }
+
+        .buttonHolder {
+            text-align: center;
+            width: 100%;
+        }
+    }
+}

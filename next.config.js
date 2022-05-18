@@ -1,29 +1,26 @@
 
-
 const withPlugins = require('next-compose-plugins');
 
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => {
+  webpack: (config, { isServer}) => {
+
     config.resolve.fallback = {
       fs: false,
-      path: false
+      path: false,
+      dotenv: false
     }
-    config.module.rules.push({
-      test: /\.html$/i,
-      use: [{
-        loader: "html-loader",
-        options: {}
-      }]
-    })
-    // Important: return the modified config
     return config
   },
   reactStrictMode: true,
   images: {
     disableStaticImages: true,
     domains: ['githubusercontent.com']
+  },
+  unstable_runtimeJS: false,
+  env: {
+    CACHE_LOADED: "false"
   }
 }
 
