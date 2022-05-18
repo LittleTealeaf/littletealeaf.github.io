@@ -108,35 +108,43 @@ const AboutMe = ({}) => (
         style={{
           display: "flex",
           flexWrap: "wrap-reverse",
-          wordWrap: 'normal',
-          padding: "50px 20px 50px 0px",
+          wordWrap: "normal",
+          padding: "50px 0px 50px 0px",
           width: "100%",
-          height: '100%',
+          height: "100%",
           margin: "auto",
         }}
       >
         <div
           style={{
             flexGrow: 1,
-            padding: '0px 20px 0px 20px',
-            wordWrap: 'normal',
-            width: '70%'
+            padding: "0px 20px 0px 20px",
+            wordWrap: "normal",
+            width: "70%",
           }}
         >
-          i am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super bird
+          i am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi
+          am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super bird
         </div>
         <div
           className={utilStyle.square}
           style={{
-            display: 'inline-block',
+            display: "inline-block",
             minWidth: "300px",
+            padding: "10px 20px 20px 20px",
             flexGrow: 0,
-            margin: 'auto',
+            margin: "auto",
           }}
         >
-          <Avatar alt="An image of me" src={require("assets/images/home/aboutme.jpg")} sx={{ width: 300, height: 300 }} style={{
-            margin: 'auto'
-          }}/>
+          <Avatar
+            alt="An image of me"
+            src={require("assets/images/home/aboutme.jpg")}
+            sx={{ width: 300, height: 300 }}
+            style={{
+              margin: "auto",
+              boxShadow: "0px 10px 50px 5px rgba(0,0,0,0.5)",
+            }}
+          />
         </div>
 
         {/* <div
@@ -162,9 +170,7 @@ const AboutMe = ({}) => (
         </div> */}
       </div>
     </div>
-    <div>
-      helloawefawefawefawef
-    </div>
+    <div>helloawefawefawefawef</div>
   </>
 );
 
