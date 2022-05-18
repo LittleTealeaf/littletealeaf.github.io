@@ -7,9 +7,6 @@ class MyDocument extends Document {
     <Html>
       <Head />
       <body
-        style={{
-          overflowX: "hidden",
-        }}
       >
         <Main />
         <NextScript />
