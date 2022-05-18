@@ -1,31 +1,28 @@
 .home {
-  height: 100vh;
-  min-height: 700px;
+  min-height: 100vh;
+  height: fit-content;
   width: 100%;
   text-align: center;
-  display: block;
   background-size: cover !important;
   color: white;
 
   .content {
     display: inline-block;
-    vertical-align: middle;
-    margin: 0 auto;
     width: 85%;
-    padding-bottom: 30px;
-
     font-family: monospace;
+    margin-top: 250px;
+    margin-bottom: 100px;
+    word-wrap: break-word;
 
-    .name {
-      font-size: 70px;
-      margin-top: 250px;
-    }
+    font-size: 70px;
+
 
     hr {
       width: 600px;
       border-color: rgba(150, 150, 150, 0.5);
       border: solid #e3e3e3;
       border-width: 1px 0 0;
+      max-width: 100%;
       clear: both;
       height: 0;
     }
@@ -36,12 +33,17 @@
 
     ul {
       list-style: none outside;
+      margin: auto 0;
+      padding-inline-start: 0px;
 
       li {
         display: inline-block;
         padding-inline: 5px;
 
+
         * {
+          margin: 0;
+          padding: 0;
           font-size: 35px;
         }
       }
@@ -60,7 +62,6 @@
     word-wrap: normal;
     padding: 50px 0px 50px 0px;
     width: 90%;
-    height: 100%;
     margin: auto;
 
     .text {
@@ -76,9 +77,9 @@
       }
 
       p {
-        width: 80%;
+        width: 95%;
         margin: auto;
-        text-indent: 40px;
+        text-indent: 20px;
         line-height: 1.8;
         font-size: 18px;
         padding-top: 10px;
@@ -87,13 +88,14 @@
 
     .avatar {
       display: inline-block;
-      min-width: 300px;
+      // min-width: 300px;
       padding: 10px 20px 20px 20xp;
       flex-grow: 0;
       margin: auto;
 
       * {
         margin: auto;
+
         box-shadow: 0px 10px 50px 5px rgba(0, 0, 0, 0.5);
       }
     }

@@ -27,7 +27,7 @@ const Home = ({ content }: { content: { name: string; subheader: string; positio
     }}
   >
     <div className={scss.content}>
-      <div className={scss.name}>{content.name}</div>
+      {content.name}
       <hr />
       <p>{content.subheader}</p>
       <p>{content.position}</p>
@@ -62,7 +62,7 @@ const AboutMe = ({
           ))}
         </div>
         <div className={classNames("square", scss.avatar)}>
-          <Avatar alt="An image of me" src={require("assets/images/index/aboutme.jpg")} sx={{ width: 300, height: 300 }} />
+          <Avatar alt="An image of me" src={require("assets/images/index/aboutme.jpg")} sx={{ width: "100%", height: "100%", maxWidth: "300px", maxHeight: "300px" }} />
         </div>
       </div>
     </div>

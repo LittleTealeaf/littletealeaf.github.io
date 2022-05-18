@@ -1,19 +1,15 @@
 .background {
     background-size: cover !important;
     height: 100vh;
-    width: 100%;
     color: white;
     text-align: center;
-    display: block;
+    min-height: 500px;
 
     .content {
         text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
         display: inline-block;
-        vertical-align: middle;
-        margin: 0 auto;
-        width: 60%;
-        padding-bottom: 30px;
-        margin-top: 200px;
+        margin-top: 10%;
+        width: 80%;
         font-size: 18px;
         font-family: sans-serif;
 
