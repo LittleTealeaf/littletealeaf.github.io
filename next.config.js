@@ -4,7 +4,8 @@ const withPlugins = require('next-compose-plugins');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => {
+  webpack: (config, { isServer}) => {
+
     config.resolve.fallback = {
       fs: false,
       path: false,
@@ -17,7 +18,10 @@ const nextConfig = {
     disableStaticImages: true,
     domains: ['githubusercontent.com']
   },
-  unstable_runtimeJS: false
+  unstable_runtimeJS: false,
+  env: {
+    CACHE_LOADED: "false"
+  }
 }
 
 module.exports = withPlugins([

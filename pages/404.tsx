@@ -2,6 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Button, createTheme, ThemeOptions } from "@mui/material";
 import Head from "next/head";
 import Script from "next/script";
+import scss from "styles/404.module.scss";
 
 // export const config = {
 //   unstable_runtimeJS: false,
@@ -29,55 +30,20 @@ export default function Content() {
       </Script>
       <ThemeProvider theme={theme}>
         <div
+          className={scss.background}
           style={{
             background: `url(${require("assets/images/404.jpg")}) no-repeat top center`,
-            backgroundSize: "cover !important",
             WebkitBackgroundSize: "cover !important",
-            height: "100vh",
-            width: "100%",
-            color: "white",
-            textAlign: "center",
-            display: "block",
           }}
         >
-          <div
-            style={{
-              textShadow: "2px 2px rgba(0,0,0,0.5)",
-              display: "inline-block",
-              verticalAlign: "middle",
-              margin: "0 auto",
-              width: "60%",
-              paddingBottom: "30px",
-              marginTop: 200,
-            }}
-          >
-            <div
-              style={{
-                fontSize: "18px",
-                margin: "0",
-                fontFamily: "sans-serif",
-              }}
-            >
-              <h1
-                style={{
-                  fontSize: "40px",
-                }}
-              >
-                {"Oh No! Page not found!"}
-              </h1>
-              <h3
-                style={{
-                  fontSize: "20px",
-                }}
-              >
-                Check the url, it might be incorrect
-              </h3>
-              <p id="url"></p>
-              <p>In the meantime, feel free to hang around, or return to the main page!</p>
-              <Button href="/" color="primary" variant="contained">
-                Back to littletealeaf.github.io
-              </Button>
-            </div>
+          <div className={scss.content}>
+            <h1>{"Oh No! Page not found!"}</h1>
+            <h3>Check the url, it might be incorrect</h3>
+            <p id="url"></p>
+            <p>In the meantime, feel free to hang around, or return to the main page!</p>
+            <Button href="/" color="primary" variant="contained">
+              Back to littletealeaf.github.io
+            </Button>
           </div>
         </div>
       </ThemeProvider>
