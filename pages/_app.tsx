@@ -3,7 +3,7 @@ import "styles/globals.scss";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>
-    {process.env.NODE_ENV == "production" ? (
+    {/* {process.env.NODE_ENV == "production" ? (
       <div
         style={{
           position: "absolute",
@@ -20,7 +20,7 @@ const App = ({ Component, pageProps }: AppProps) => (
       </div>
     ) : (
       <></>
-    )}
+    )} */}
     <Component {...pageProps} />
   </>
 );
