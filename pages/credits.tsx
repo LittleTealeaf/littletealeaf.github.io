@@ -13,7 +13,7 @@ const Values: Array<ImageEntry> = [
   {
     src: require("assets/images/index/aboutme.jpg"),
     title: "Hiking Image",
-    credits: "Picture taken by Christina Bellanich",
+    credits: "Picture taken by a friend",
   },
   {
     src: require("assets/images/index/home.jpg"),
