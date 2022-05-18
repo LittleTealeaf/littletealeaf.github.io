@@ -9,6 +9,7 @@ import utilStyle from "styles/util.module.scss";
 import { GitHubAPI } from "libs/github";
 import { filterUnique } from "libs/utils";
 import { RestEndpointMethodTypes } from "@octokit/rest";
+import Spacer from "components/spacer";
 
 export const config = {
   unstable_runtimeJS: false,
@@ -23,7 +24,7 @@ const IconLink = ({ component, href }) => (
 const Home = ({ content }: { content: { name: string; subheader: string; position: string } }) => (
   <div
     style={{
-      background: `url(${require("assets/images/background.jpg")}) no-repeat top center`,
+      background: `url(${require("assets/images/index/home.jpg")}) no-repeat top center`,
       backgroundSize: "cover !important",
       WebkitBackgroundSize: "cover !important",
       height: "100vh",
@@ -95,7 +96,14 @@ const Home = ({ content }: { content: { name: string; subheader: string; positio
   </div>
 );
 
-const AboutMe = ({ content: introduction }: { content: Array<string> }) => (
+const AboutMe = ({
+  content,
+}: {
+  content: {
+    title: string;
+    paragraphs: Array<string>;
+  };
+}) => (
   <>
     <div
       style={{
@@ -110,7 +118,7 @@ const AboutMe = ({ content: introduction }: { content: Array<string> }) => (
           flexWrap: "wrap-reverse",
           wordWrap: "normal",
           padding: "50px 0px 50px 0px",
-          width: "100%",
+          width: "90%",
           height: "100%",
           margin: "auto",
         }}
@@ -126,16 +134,26 @@ const AboutMe = ({ content: introduction }: { content: Array<string> }) => (
         >
           <h2
             style={{
-              width: "50%",
-              margin: "auto",
+              width: "100%",
               textAlign: "center",
+              fontFamily: "cursive",
             }}
           >
-            Hello! My name is Thomas Kwashnak!
+            {content.title}
           </h2>
-          {introduction.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))}
+          <div
+            style={{
+              width: "80%",
+              margin: "auto",
+              textIndent: "40px",
+              lineHeight: 1.8,
+              fontSize: 18,
+            }}
+          >
+            {content.paragraphs.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
         </div>
         <div
           className={utilStyle.square}
@@ -149,7 +167,7 @@ const AboutMe = ({ content: introduction }: { content: Array<string> }) => (
         >
           <Avatar
             alt="An image of me"
-            src={require("assets/images/home/aboutme.jpg")}
+            src={require("assets/images/index/aboutme.jpg")}
             sx={{ width: 300, height: 300 }}
             style={{
               margin: "auto",
@@ -172,6 +190,7 @@ const Content = ({}) => {
       </Head>
       <Home content={json.home} />
       <AboutMe content={json.introduction} />
+      <Spacer height={"150px"} />
     </>
   );
 };
