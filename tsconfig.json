@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "baseUrl": ".",
     "target": "es5",
     "lib": [

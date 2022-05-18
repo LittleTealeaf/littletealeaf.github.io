@@ -1,5 +1,8 @@
 {
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///f%3A/Github/littletealeaf.github.io/.github/workflows/build.yml"
-    }
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///f%3A/Github/littletealeaf.github.io/.github/workflows/build.yml",
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
