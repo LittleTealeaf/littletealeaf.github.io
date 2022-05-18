@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
-import { Icon } from "@mui/material";
+import { Avatar, Icon } from "@mui/material";
 import iconStyle from "styles/icon.module.scss";
+import utilStyle from "styles/util.module.scss";
 import { GitHubAPI } from "libs/github";
 import { filterUnique } from "libs/utils";
 import { RestEndpointMethodTypes } from "@octokit/rest";
@@ -95,22 +97,84 @@ const Home = ({}) => (
 
 const AboutMe = ({}) => (
   <>
-    <div></div>
+    <div
+      style={{
+        backgroundColor: "#283334",
+        color: "white",
+        boxShadow: "10px 30px 50px 30px rgba(0,0,0,0.5)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap-reverse",
+          wordWrap: 'normal',
+          padding: "50px 20px 50px 0px",
+          width: "100%",
+          height: '100%',
+          margin: "auto",
+        }}
+      >
+        <div
+          style={{
+            flexGrow: 1,
+            padding: '0px 20px 0px 20px',
+            wordWrap: 'normal',
+            width: '70%'
+          }}
+        >
+          i am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super birdi am a super bird
+        </div>
+        <div
+          className={utilStyle.square}
+          style={{
+            display: 'inline-block',
+            minWidth: "300px",
+            flexGrow: 0,
+            margin: 'auto',
+          }}
+        >
+          <Avatar alt="An image of me" src={require("assets/images/home/aboutme.jpg")} sx={{ width: 300, height: 300 }} style={{
+            margin: 'auto'
+          }}/>
+        </div>
+
+        {/* <div
+          style={{
+            display: "inline-block",
+            flexGrow: 0.5,
+          }}
+        >
+
+          <Avatar
+            alt="An image of me"
+            src={require("assets/images/home/aboutme.jpg")}
+            sx={{
+              width: 300,
+              height: 300,
+            }}
+            style={{
+              boxShadow: "5px 5px 30px 10px rgba(0,0,0,0.5)",
+              width: "100",
+              maxWidth: 300,
+            }}
+          />
+        </div> */}
+      </div>
+    </div>
+    <div>
+      helloawefawefawefawef
+    </div>
   </>
 );
 
-const Content = ({ recentRepositories }: {
-  recentRepositories: RestEndpointMethodTypes["repos"]["get"]["response"]["data"][]
-}) => (
+const Content = ({ recentRepositories }: { recentRepositories: RestEndpointMethodTypes["repos"]["get"]["response"]["data"][] }) => (
   <>
     <Head>
       <title>Thomas Kwashnak</title>
     </Head>
     <Home />
     <AboutMe />
-    {recentRepositories.map((item) => (
-      <p key={item.id}>{JSON.stringify(item)}</p>
-    ))}
   </>
 );
 
