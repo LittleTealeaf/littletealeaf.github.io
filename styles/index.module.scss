@@ -16,6 +16,20 @@
 
     font-size: 70px;
 
+    .labels {
+      display: flex;
+      flex-wrap: wrap;
+      width: 600px;
+      max-width: 100%;
+      min-width: 300px;
+      margin: auto;
+
+      p {
+        margin: auto;
+        padding-inline: 10px;
+      }
+    }
+
 
     hr {
       width: 600px;

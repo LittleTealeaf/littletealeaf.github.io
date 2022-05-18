@@ -1,7 +1,7 @@
 {
   "home": {
     "name": "Thomas Kwashnak",
-    "subheader": "Computer Science | Data Science | Software Engineering",
+    "labels": ["Computer Science", "Data Science", "Software Engineering"],
     "position": "Student at Quinnipiac University"
   },
   "introduction": {
@@ -11,7 +11,5 @@
       "Outside of technology, I've committed myself to martial arts. Currently, I am a 3rd degree Black Belt in my federation, and enjoy both learning and teaching martial arts. "
     ]
   },
-  "stations": {
-
-  }
+  "stations": {}
 }

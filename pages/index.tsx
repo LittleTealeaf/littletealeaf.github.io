@@ -18,7 +18,7 @@ const IconLink = ({ component, href }) => (
   </a>
 );
 
-const Home = ({ content }: { content: { name: string; subheader: string; position: string } }) => (
+const Home = ({ content }: { content: { name: string; labels: string[]; position: string } }) => (
   <div
     className={scss.home}
     style={{
@@ -29,7 +29,12 @@ const Home = ({ content }: { content: { name: string; subheader: string; positio
     <div className={scss.content}>
       {content.name}
       <hr />
-      <p>{content.subheader}</p>
+      <div className={scss.labels}>
+        {content.labels.map((label, index) => (
+          <p key={index}>{label}</p>
+        ))}
+      </div>
+
       <p>{content.position}</p>
       <ul>
         {[
