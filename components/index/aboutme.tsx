@@ -19,6 +19,7 @@ const Component = ({
             <p key={index}>{paragraph}</p>
           ))}
         </div>
+        {/* Plans: Instead of having the content values, hard-code this in because it's easier */}
         <div className={classNames("square", scss.avatar)}>
           <Avatar alt="An image of me" src={require("assets/images/index/aboutme.jpg")} sx={{ width: "100%", height: "100%", maxWidth: "300px", maxHeight: "300px" }} />
         </div>
