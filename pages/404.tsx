@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { Button, createTheme, ThemeOptions } from "@mui/material";
 import Head from "next/head";
 import Script from "next/script";
-import scss from "styles/404.module.scss";
+import scss from "styles/pages/404.module.scss";
 
 // export const config = {
 //   unstable_runtimeJS: false,

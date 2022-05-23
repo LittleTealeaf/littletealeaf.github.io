@@ -1,6 +1,6 @@
 import { Avatar, Button, Icon } from "@mui/material";
 import Head from "next/head";
-import scss from "styles/credits.module.scss";
+import scss from "styles/pages/credits.module.scss";
 
 type ImageEntry = {
   src: string;
