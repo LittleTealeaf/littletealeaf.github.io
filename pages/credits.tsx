@@ -25,9 +25,17 @@ const Values: Array<ImageEntry> = [
     title: "Enjoying the Drifter View",
     credits: "Scenic Image taken in Warframe by Thomas Kwashnak (LittleTealeaf)",
   },{
-    src: require("assets/images/codesnippets/ser225menuoption.png"),
+    src: require("assets/images/index/projects.png"),
     title: "SER-225 Code Snippet",
-    credits: "Code written and screenshotted by Thomas KWashnak"
+    credits: "Code written and screenshotted by Thomas Kwashnak"
+  },{
+    src: require("assets/images/projects/ser210final.png"),
+    title: "SER-210 Final Product Screenshot",
+    credits: "App Created and Image Taken by Thomas Kwashnak"
+  },{
+    src: require('assets/images/projects/ser225project.png'),
+    title: "SER-225 Game Screenshot",
+    credits: "Original Game (tile art) by Alex Themineur, Developed for course by Thomas Kwashnak, Jake Conrad, Nicholas Tourony, and Ty Hutchison. Screenshot taken by Thomas Kwashnak"
   }
 ];
 

@@ -3,6 +3,11 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import { Icon } from "@mui/material";
+import { BgImg } from "libs/utils";
+
+const labels: string[] = [
+  "Computer Science","Data Science","Software Engineering"
+]
 
 const IconLink = ({ component, href }) => (
   <a href={href} className={scss.iconholder}>
@@ -10,25 +15,25 @@ const IconLink = ({ component, href }) => (
   </a>
 );
 
-const Component = ({ content }: { content: { name: string; labels: string[]; position: string } }) => (
+const Component = ({}) => (
   <>
     <div
       className={scss.component}
       style={{
-        background: `url(${require("assets/images/index/home.jpg")}) no-repeat top center`,
+        background: BgImg(require('assets/images/index/home.jpg'),'no-repeat top center'),
         WebkitBackgroundSize: "cover !important",
       }}
     >
       <div className={scss.content}>
-        {content.name}
+        {"Thomas Kwashnak"}
         <hr />
         <div className={scss.labels}>
-          {content.labels.map((label, index) => (
+          {labels.map((label, index) => (
             <p key={index}>{label}</p>
           ))}
         </div>
 
-        <p>{content.position}</p>
+        <p>{"Student at Quinnipiac University"}</p>
         <ul>
           {[
             <IconLink key={"github"} component={GitHubIcon} href={"https://www.github.com/LittleTealeaf"} />,

@@ -6,8 +6,7 @@ class MyDocument extends Document {
   render = () => (
     <Html>
       <Head />
-      <body
-      >
+      <body>
         <Main />
         <NextScript />
       </body>
