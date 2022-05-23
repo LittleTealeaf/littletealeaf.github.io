@@ -1,0 +1,13 @@
+.page {
+    background-color: white;
+    min-height: 100vh;
+    min-width: 100%;
+}
+
+
+
+@media print {
+    .print_hide {
+        display: none;
+    }
+}

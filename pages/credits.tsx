@@ -24,23 +24,27 @@ const Values: Array<ImageEntry> = [
     src: require("assets/images/404.jpg"),
     title: "Enjoying the Drifter View",
     credits: "Scenic Image taken in Warframe by Thomas Kwashnak (LittleTealeaf)",
-  },{
+  },
+  {
     src: require("assets/images/index/projects.png"),
     title: "SER-225 Code Snippet",
-    credits: "Code written and screenshotted by Thomas Kwashnak"
-  },{
+    credits: "Code written and screenshotted by Thomas Kwashnak",
+  },
+  {
     src: require("assets/images/projects/ser210final.png"),
     title: "SER-210 Final Product Screenshot",
-    credits: "App Created and Image Taken by Thomas Kwashnak"
-  },{
-    src: require('assets/images/projects/ser225project.png'),
+    credits: "App Created and Image Taken by Thomas Kwashnak",
+  },
+  {
+    src: require("assets/images/projects/ser225project.png"),
     title: "SER-225 Game Screenshot",
-    credits: "Original Game (tile art) by Alex Themineur, Developed for course by Thomas Kwashnak, Jake Conrad, Nicholas Tourony, and Ty Hutchison. Screenshot taken by Thomas Kwashnak"
-  },{
-    src: require('assets/images/projects/gdd140datavisualization.png'),
+    credits: "Original Game (tile art) by Alex Themineur, Developed for course by Thomas Kwashnak, Jake Conrad, Nicholas Tourony, and Ty Hutchison. Screenshot taken by Thomas Kwashnak",
+  },
+  {
+    src: require("assets/images/projects/gdd140datavisualization.png"),
     title: "GDD-140 Data Visualization Project",
-    credits: "App Created and Screenshot Taken by Thomas Kwashnak"
-  }
+    credits: "App Created and Screenshot Taken by Thomas Kwashnak",
+  },
 ];
 
 const ImageCard = ({ entry }: { entry: ImageEntry }) => (
@@ -69,13 +73,15 @@ const Content = ({}) => (
     <Head>
       <title>Website Credits</title>
     </Head>
-    <div className={scss.header}>
-      <p>Image Credits</p>
-    </div>
-    <div className={scss.cardLayout}>
-      {Values.map((entry) => (
-        <ImageCard key={entry.src} entry={entry} />
-      ))}
+    <div className={scss.page}>
+      <div className={scss.header}>
+        <p>Image Credits</p>
+      </div>
+      <div className={scss.cardLayout}>
+        {Values.map((entry) => (
+          <ImageCard key={entry.src} entry={entry} />
+        ))}
+      </div>
     </div>
   </>
 );
