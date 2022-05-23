@@ -34,6 +34,7 @@ const projects: Array<Project> = [
   {
     name: "Java Markdown",
     description: "A Markdown Writer library for Java",
+    github: "https://github.com/LittleTealeaf/JavaMarkdown"
   },
   {
     name: "Connect-4 Evaluator",
