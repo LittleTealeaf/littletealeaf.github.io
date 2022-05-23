@@ -2,7 +2,6 @@ import path from "path";
 import { stringify, parse } from "zipson";
 import Sha1 from "sha1";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import {env} from 'process';
 
 const VERSION: number = 2;
 
