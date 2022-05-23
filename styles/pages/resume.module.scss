@@ -1,13 +1,57 @@
 .page {
     background-color: white;
-    min-height: 100vh;
-    min-width: 100%;
+    width: 100%;
+    padding: 20px;
 }
 
+.header {
+    display: flex;
 
+
+    * {
+        margin-inline: 15px;
+    }
+}
+
+.header_name {
+    font-size: 16px;
+    font-size: 4vw;
+    margin: auto;
+}
+
+.header_info {
+
+    ul {
+        list-style: none inside;
+        padding-inline-start: 0px;
+    }
+
+    li {
+
+        a {
+            display: flex;
+            * {
+                margin-inline: 2px;
+            }
+        }
+    }
+
+    * {
+        font-size: 15px;
+    }
+}
+
+.education {
+    h1 {
+        text-align: center;
+    }
+}
 
 @media print {
     .print_hide {
         display: none;
+    }
+    .page {
+        padding: 0px;
     }
 }
