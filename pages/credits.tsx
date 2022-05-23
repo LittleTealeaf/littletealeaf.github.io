@@ -24,7 +24,11 @@ const Values: Array<ImageEntry> = [
     src: require("assets/images/404.jpg"),
     title: "Enjoying the Drifter View",
     credits: "Scenic Image taken in Warframe by Thomas Kwashnak (LittleTealeaf)",
-  },
+  },{
+    src: require("assets/images/codesnippets/ser225menuoption.png"),
+    title: "SER-225 Code Snippet",
+    credits: "Code written and screenshotted by Thomas KWashnak"
+  }
 ];
 
 const ImageCard = ({ entry }: { entry: ImageEntry }) => (

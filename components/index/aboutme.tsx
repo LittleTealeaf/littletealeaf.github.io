@@ -2,24 +2,20 @@ import scss from "styles/components/index/aboutme.module.scss";
 import classNames from "classnames";
 import { Avatar } from "@mui/material";
 
-const Component = ({
-  content,
-}: {
-  content: {
-    title: string;
-    paragraphs: Array<string>;
-  };
-}) => (
+const Component = ({}) => (
   <>
     <div className={scss.component}>
       <div className={scss.content}>
         <div className={scss.text}>
-          <h2>{content.title}</h2>
-          {content.paragraphs.map((paragraph, index) => (
+          <h2>{"About Me"}</h2>
+          {[
+            "I'm Thomas Kwashnak, a self-motivated nerd from Connecticut, where I am currently in college studying Computer Science and Data Science. Apart from programming, I love playing video games, practicing martial arts, and many other things!",
+            "In martial arts, I am currently a third degree black belt in my federation. I've been practicing since I was very young. I've furthered my learning by teaching martial arts to younger kids, as well as teaching weapons to all ages.",
+            "I love video games with a story. As you've probably noticed from the image above, I enjoy playing Warframe. Some other video games that I enjoy (but not limited to) are: Horizon: Zero Dawn/Forbidden West, Dungeons & Dragons Online, Minecraft, and World of Tanks."
+          ].map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
-        {/* Plans: Instead of having the content values, hard-code this in because it's easier */}
         <div className={classNames("square", scss.avatar)}>
           <Avatar alt="An image of me" src={require("assets/images/index/aboutme.jpg")} sx={{ width: "100%", height: "100%", maxWidth: "300px", maxHeight: "300px" }} />
         </div>

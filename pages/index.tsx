@@ -17,7 +17,7 @@ const Content = ({}) => {
         <title>Thomas Kwashnak</title>
       </Head>
       <Home content={json.home} />
-      <AboutMe content={json.introduction} />
+      <AboutMe/>
       <Spacer height={"150px"} />
     </>
   );
