@@ -36,6 +36,10 @@ const Values: Array<ImageEntry> = [
     src: require('assets/images/projects/ser225project.png'),
     title: "SER-225 Game Screenshot",
     credits: "Original Game (tile art) by Alex Themineur, Developed for course by Thomas Kwashnak, Jake Conrad, Nicholas Tourony, and Ty Hutchison. Screenshot taken by Thomas Kwashnak"
+  },{
+    src: require('assets/images/projects/gdd140datavisualization.png'),
+    title: "GDD-140 Data Visualization Project",
+    credits: "App Created and Screenshot Taken by Thomas Kwashnak"
   }
 ];
 
