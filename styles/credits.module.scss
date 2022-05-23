@@ -28,33 +28,33 @@
     display: block;
     box-shadow: 10px 20px 50px 10px;
     width: 400px;
+}
 
-    .avatar {
-        box-shadow: 5px 10px 50px 5px;
-        margin: auto;
-    }
+.avatar {
+    box-shadow: 5px 10px 50px 5px;
+    margin: auto;
+}
 
-    .content {
-        width: 95%;
+.content {
+    width: 95%;
+}
 
-        .title {
-            padding-top: 20px;
-            color: white;
-            width: 90%;
-            text-align: center;
-            margin: auto;
-        }
+.title {
+    padding-top: 20px;
+    color: white;
+    width: 90%;
+    text-align: center;
+    margin: auto;
+}
 
-        .credits {
-            color: white;
-            width: 100%;
-            text-align: center;
-            word-wrap: normal;
-        }
+.credits {
+    color: white;
+    width: 100%;
+    text-align: center;
+    word-wrap: normal;
+}
 
-        .buttonHolder {
-            text-align: center;
-            width: 100%;
-        }
-    }
+.buttonHolder {
+    text-align: center;
+    width: 100%;
 }
