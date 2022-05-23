@@ -51,9 +51,9 @@ const projects: Array<Project> = [
 
 const Component = ({}) => (
   <>
-    <div id="projects" className={scss.content}>
-      <h1 className={scss.titlecontainer}>{"Projects"}</h1>
-      <div className={scss.projectflex}>
+    <div id="projects" className={scss.component}>
+      <h1 className={scss.title}>{"Projects"}</h1>
+      <div className={scss.flex}>
         {projects.map((project, i) => (
           <Card key={i} project={project} />
         ))}
@@ -64,9 +64,9 @@ const Component = ({}) => (
 
 const Card = ({ project }: { project: Project; key: number }) => (
   <>
-    <div className={scss.cardcontainer}>
-      <div className={scss.card}>
-        <div className={scss.cardcontent}>
+    <div className={scss.card}>
+      <div className={scss.card_container}>
+        <div className={scss.card_content}>
           <h3>{project.name}</h3>
           <p>{project.description}</p>
           <ul>

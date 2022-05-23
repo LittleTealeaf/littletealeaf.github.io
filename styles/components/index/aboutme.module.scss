@@ -1,14 +1,12 @@
 .component {
   background-color: #283334;
-  color: white;
   box-shadow: 10px 30px 50px 30px rgba(0, 0, 0, 0.5);
-  z-index: 10;
 }
 
-.content {
+.container {
   display: flex;
   flex-wrap: wrap-reverse;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+
   word-wrap: normal;
   padding: 50px 0px 50px 0px;
   width: 90%;
@@ -16,9 +14,13 @@
 }
 
 .text {
+
+  color: white;
   flex-grow: 2;
   padding: 0px 20px 0px 20px;
   width: 70%;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+
 
   h2 {
     width: 100%;
