@@ -35,7 +35,8 @@ const projects: Array<Project> = [
     name: "p5.js Data Visualization",
     description: "Using a combination of p5.js and python (jupyter notebook), I compiled and visualized data from the 2021 stack-overflow survey. The visualization describes what languages programmers currently use versus what they want to use.",
     github: "https://github.com/LittleTealeaf/GDD-140-Project-6.2",
-    website: "https://littletealeaf.github.io/GDD-140-Project-6.2"
+    website: "https://littletealeaf.github.io/GDD-140-Project-6.2",
+    report: "https://github.com/LittleTealeaf/GDD-140-Project-6.2/blob/main/python/notebook.ipynb"
   },
   {
     name: "Java Markdown",
@@ -78,8 +79,8 @@ const Card = ({ project }: { project: Project; key: number }) => (
           <p>{project.description}</p>
           <ul>
             <IconIf component={GitHubIcon} href={project.github} />
-            <IconIf component={ArticleIcon} href={project.report} />
             <IconIf component={LanguageIcon} href={project.website} />
+            <IconIf component={ArticleIcon} href={project.report} />
           </ul>
         </div>
         {project.image != null ? <img src={project.image} alt={project.name} /> : <></>}
