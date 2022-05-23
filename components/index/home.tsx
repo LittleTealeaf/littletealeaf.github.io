@@ -18,6 +18,7 @@ const IconLink = ({ component, href }) => (
 const Component = ({}) => (
   <>
     <div
+      id="home"
       className={scss.component}
       style={{
         background: BgImg(require('assets/images/index/home.jpg'),'no-repeat top center'),

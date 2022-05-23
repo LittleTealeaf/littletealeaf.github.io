@@ -20,14 +20,16 @@ const projects: Array<Project> = [
   {
     image: require("assets/images/projects/ser210final.png"),
     name: "GitHub Chat App",
-    description: "A Chat App created as a final project for SER-210. The app provides a simple chat room that you can join for any github repository. The app uses your GitHub account to authenticate and sign in.",
+    description:
+      "A Chat App created as a final project for SER-210. The app provides a simple chat room that you can join for any github repository. The app uses your GitHub account to authenticate and sign in.",
     github: "https://github.com/LittleTealeaf/SER-210-Final",
   },
   {
     image: require("assets/images/projects/ser225project.png"),
     name: "SER-225 Platform Game",
-    description: "A platformer game created for SER-225. At the beginning of the semester, my group was given a project that previous groups have worked on, and told to continue development. I spent my efforts rebuilding the menu and other core libraries to improve their usability and efficiency.",
-    github: "https://github.com/LittleTealeaf/SER-225-Team-A2"
+    description:
+      "A platformer game created for SER-225. At the beginning of the semester, my group was given a project that previous groups have worked on, and told to continue development. I spent my efforts rebuilding the menu and other core libraries to improve their usability and efficiency.",
+    github: "https://github.com/LittleTealeaf/SER-225-Team-A2",
   },
   {
     name: "Java Markdown",
@@ -43,13 +45,13 @@ const projects: Array<Project> = [
     name: "littletealeaf.github.io",
     description: "The very website you're looking at",
     github: "https://github.com/LittleTealeaf/littletealeaf.github.io",
-    website: "https://littletealeaf.github.io/",
+    website: "#home",
   },
 ];
 
 const Component = ({}) => (
   <>
-    <div className={scss.content}>
+    <div id="projects" className={scss.content}>
       <h1 className={scss.titlecontainer}>{"Projects"}</h1>
       <div className={scss.projectflex}>
         {projects.map((project, i) => (

@@ -7,79 +7,75 @@
   color: white;
   opacity: 1;
   box-shadow: 10px 30px 50px 30px rgba(0, 0, 0, 0.5);
-
   padding: 20px;
   padding-bottom: 75px;
   padding-top: 75px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
 
-  .titlecontainer {
-    width: 20%;
-    min-width: fit-content;
-    padding: 20px;
-    margin: auto;
-    opacity: 1;
-    font-size: 50px;
-    color: white;
-    border-radius: 20px;
-  }
+.titlecontainer {
+  width: 20%;
+  min-width: fit-content;
+  padding: 20px;
+  margin: auto;
+  opacity: 1;
+  font-size: 50px;
+  color: white;
+  border-radius: 20px;
+}
 
-  .projectflex {
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-  }
+.projectflex {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
 .cardcontainer {
   margin-inline: 20px;
-
   display: inline-block;
   margin: auto;
-
   min-width: 30%;
+}
 
+.card {
+  background-color: #262d2e;
+  flex-wrap: wrap-reverse;
+  box-shadow: 0px 0px 30px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  margin: 20px;
+  display: flex;
 
-  .card {
-    background-color: #262d2e;
-    flex-wrap: wrap-reverse;
+  p {
+    text-align: center;
+  }
 
-    box-shadow: 0px 0px 30px 30px rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
-    margin: 20px;
+  ul {
+    list-style: none outside;
+    margin: auto 0;
+    padding-inline-start: 0px;
+  }
 
-    display: flex;
+  li {
+    display: inline-block;
+    padding-inline: 5px;
 
-    .cardcontent {
-      margin: auto;
-      padding: 30px;
-      max-width: 500px;
-      display: block;
-
-      ul {
-        list-style: none outside;
-        margin: auto 0;
-        padding-inline-start: 0px;
-      }
-
-      li {
-        display: inline-block;
-        padding-inline: 5px;
-
-        * {
-          font-size: 30px;
-          color: #ffffff;
-          transition: color 0.2s ease-in-out;
-        }
-      }
-    }
-
-    img {
-      max-width: 100%;
-      max-height: 400px;
-      width: auto;
-      border-radius: 20px;
-      margin: auto;
+    * {
+      font-size: 30px;
     }
   }
+
+  img {
+    max-width: 100%;
+    max-height: 400px;
+    width: auto;
+    border-radius: 20px;
+    margin: auto;
+  }
+}
+
+.cardcontent {
+  margin: auto;
+  padding: 30px;
+  max-width: 500px;
+  display: block;
 }

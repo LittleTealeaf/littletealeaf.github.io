@@ -4,7 +4,7 @@ import { Avatar } from "@mui/material";
 
 const Component = ({}) => (
   <>
-    <div className={scss.component}>
+    <div id="aboutme" className={scss.component}>
       <div className={scss.content}>
         <div className={scss.text}>
           <h2>{"About Me"}</h2>
