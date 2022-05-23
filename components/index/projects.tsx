@@ -30,6 +30,12 @@ const projects: Array<Project> = [
     description:
       "A platformer game created for SER-225. At the beginning of the semester, my group was given a project that previous groups have worked on, and told to continue development. I spent my efforts rebuilding the menu and other core libraries to improve their usability and efficiency.",
     github: "https://github.com/LittleTealeaf/SER-225-Team-A2",
+  },{
+    image: require('assets/images/projects/gdd140datavisualization.png'),
+    name: "p5.js Data Visualization",
+    description: "Using a combination of p5.js and python (jupyter notebook), I compiled and visualized data from the 2021 stack-overflow survey. The visualization describes what languages programmers currently use versus what they want to use.",
+    github: "https://github.com/LittleTealeaf/GDD-140-Project-6.2",
+    website: "https://littletealeaf.github.io/GDD-140-Project-6.2"
   },
   {
     name: "Java Markdown",
