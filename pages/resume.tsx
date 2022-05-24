@@ -1,4 +1,4 @@
-import scss from "styles/pages/resume.module.scss";
+import css from "styles/pages/resume.module.scss";
 import { GitHubAPI } from "libs/github";
 import Fab from "@mui/material/Fab";
 import cs from "classnames";
@@ -17,9 +17,9 @@ const print = () => window.print();
 
 const Header = ({}) => (
   <>
-    <div className={scss.header}>
-      <div className={scss.header_name}>{"Thomas Kwashnak"}</div>
-      <div className={scss.header_info}>
+    <div className={css.header}>
+      <div className={css.header_name}>{"Thomas Kwashnak"}</div>
+      <div className={css.header_info}>
         <ul>
           <HeaderLink component={EmailIcon} href={"mailto:thomaskwashnak@gmail.com"} text={"thomaskwashnak@gmail.com"} />
           <HeaderLink component={LinkedInIcon} href={"https://www.linkedin.com/in/thomas-kwashnak"} text={"www.linkedin.com/in/thomas-kwashnak"} />
@@ -42,7 +42,7 @@ const HeaderLink = ({ component, href, text }: { component: any; href: string; t
 
 const Education = ({}) => (
   <>
-    <div className={scss.education}>
+    <div className={css.education}>
       <h1>{"Education"}</h1>
     </div>
   </>
@@ -55,7 +55,7 @@ const Page = ({}) => (
     <Head>
       <title>{"Thomas Kwashnak - Resume"}</title>
     </Head>
-    <div className={scss.page}>
+    <div className={css.page}>
       <Header />
       <hr />
       <Education />
@@ -63,7 +63,7 @@ const Page = ({}) => (
       <Employment />
     </div>
     <Fab
-      className={scss.print_hide}
+      className={css.print_hide}
       style={{
         position: "absolute",
         right: "20px",

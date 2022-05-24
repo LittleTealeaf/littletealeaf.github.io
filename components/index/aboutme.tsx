@@ -1,12 +1,12 @@
-import scss from "styles/components/index/aboutme.module.scss";
+import css from "styles/components/index/aboutme.module.scss";
 import classNames from "classnames";
 import { Avatar } from "@mui/material";
 
 const Component = ({}) => (
   <>
-    <div id="aboutme" className={scss.component}>
-      <div className={scss.container}>
-        <div className={scss.text}>
+    <div id="aboutme" className={css.component}>
+      <div className={css.container}>
+        <div className={css.text}>
           <h2>{"About Me"}</h2>
           {[
             "I'm Thomas Kwashnak, a self-motivated nerd from Connecticut, where I am currently in college studying Computer Science and Data Science. Apart from programming, I love playing video games, practicing martial arts, and many other things!",
@@ -16,7 +16,7 @@ const Component = ({}) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
-        <div className={classNames("square", scss.avatar)}>
+        <div className={classNames("square", css.avatar)}>
           <Avatar alt="An image of me" src={require("assets/images/index/aboutme.jpg")} sx={{ width: "100%", height: "100%", maxWidth: "300px", maxHeight: "300px" }} />
         </div>
       </div>

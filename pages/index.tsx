@@ -3,7 +3,7 @@ import Head from "next/head";
 import Spacer from "components/spacer";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
-import Component from "components/index/projects";
+import Projects from "components/index/projects";
 import scss from "styles/pages/index.module.scss";
 
 export const config = {
@@ -24,7 +24,7 @@ const Content = ({}) => {
         </Head>
         <Home />
         <AboutMe />
-        <Component />
+        <Projects />
       </div>
     </>
   );

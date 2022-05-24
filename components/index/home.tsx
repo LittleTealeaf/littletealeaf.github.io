@@ -1,4 +1,4 @@
-import scss from "styles/components/index/home.module.scss";
+import css from "styles/components/index/home.module.scss";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
@@ -10,7 +10,7 @@ const labels: string[] = [
 ]
 
 const IconLink = ({ component, href }) => (
-  <a href={href} className={scss.iconholder}>
+  <a href={href} className={css.iconholder}>
     <Icon component={component} />
   </a>
 );
@@ -19,16 +19,16 @@ const Component = ({}) => (
   <>
     <div
       id="home"
-      className={scss.component}
+      className={css.component}
       style={{
         background: BgImg(require('assets/images/index/home.jpg'),'no-repeat top center'),
         WebkitBackgroundSize: "cover !important",
       }}
     >
-      <div className={scss.content}>
+      <div className={css.content}>
         {"Thomas Kwashnak"}
         <hr />
-        <div className={scss.labels}>
+        <div className={css.labels}>
           {labels.map((label, index) => (
             <p key={index}>{label}</p>
           ))}

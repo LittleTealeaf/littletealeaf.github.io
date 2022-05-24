@@ -1,8 +1,8 @@
 import { ThemeProvider } from "@emotion/react";
-import { Button, createTheme, ThemeOptions } from "@mui/material";
+import { Button, createTheme } from "@mui/material";
 import Head from "next/head";
 import Script from "next/script";
-import scss from "styles/pages/404.module.scss";
+import css from "styles/pages/404.module.scss";
 
 // export const config = {
 //   unstable_runtimeJS: false,
@@ -30,13 +30,13 @@ export default function Content() {
       </Script>
       <ThemeProvider theme={theme}>
         <div
-          className={scss.background}
+          className={css.background}
           style={{
             background: `url(${require("assets/images/404.jpg")}) no-repeat top center`,
             WebkitBackgroundSize: "cover !important",
           }}
         >
-          <div className={scss.content}>
+          <div className={css.content}>
             <h1>{"Oh No! Page not found!"}</h1>
             <h3>Check the url, it might be incorrect</h3>
             <p id="url"></p>
