@@ -26,7 +26,7 @@ const Card = ({ project, key }: { project: Project; key: number }) => (
       <div className={css.card_container}>
         <div className={css.card_content}>
           <h3>{project.name}</h3>
-          <p>{project.description}</p>
+          {project.description.map((item,index) => <p key={index}>{item}</p>)}
           <ul>
             <IconIf component={GitHubIcon} href={project.github} />
             <IconIf component={LanguageIcon} href={project.website} />
