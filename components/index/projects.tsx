@@ -54,7 +54,7 @@ const LinksIf = ({ links }: { links: null | Links }) =>
   links == null ? (
     <></>
   ) : (
-    <ul>
+    <ul className={css.links}>
       <IconIf component={GitHubIcon} href={links.github} />
       <IconIf component={LanguageIcon} href={links.website} />
       <IconIf component={ArticleIcon} href={links.report} />

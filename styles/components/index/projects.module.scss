@@ -50,28 +50,35 @@
     text-align: center;
   }
 
-  ul {
-    list-style: none outside;
-    margin: auto 0;
-    padding-inline-start: 0px;
-  }
-
-  li {
-    display: inline-block;
-    padding-inline: 5px;
-
-    * {
-      font-size: 30px;
-    }
-  }
-
   img {
     max-width: 100%;
     max-height: 400px;
     width: auto;
     border-radius: 20px;
     margin: auto;
-    box-shadow: 0px 0px 20px 20px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.links {
+
+  list-style: none outside;
+  margin: auto 0;
+  padding-inline-start: 0px;
+
+  li {
+    display: inline-block;
+    padding-inline: 5px;
+    color: white;
+    transition-duration: 0.3s;
+
+    * {
+      font-size: 30px;
+    }
+  }
+
+  li:hover {
+    color: #89351b;
   }
 }
 
