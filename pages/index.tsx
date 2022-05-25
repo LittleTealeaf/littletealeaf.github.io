@@ -4,6 +4,7 @@ import Spacer from "components/spacer";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
+import github from 'libs/github';
 import css from "styles/pages/index.module.scss";
 
 
@@ -50,6 +51,8 @@ export const getStaticProps = async ({}) => {
   // );
 
   return {
+
+
     props: {
     },
   };

@@ -1,5 +1,4 @@
 import css from "styles/pages/resume.module.scss";
-import { GitHubAPI } from "libs/github";
 import Fab from "@mui/material/Fab";
 import cs from "classnames";
 import PrintIcon from "@mui/icons-material/Print";

@@ -159,10 +159,6 @@ const GitHubAPI = {
     listForTeamDiscussionInOrg: build(['reactions','listForTeamDiscussionInOrg'],octokit.reactions.listForTeamDiscussionInOrg),
   },
   repos: {
-    // get: build(["repos", "get"], octokit.repos.get),
-    // listLanguages: build(["repos", "listLanguages"], octokit.repos.listLanguages),
-    // getContributorStats: buildForceTypes<RestEndpointMethodTypes["repos"]["getContributorsStats"]>(["repos", "getContributorsStats"], octokit.repos.getContributorsStats),
-    // getReadme: build(["repos", "getReadme"], octokit.repos.getReadme),
     checkCollaborator: build(['repos','checkCollaborator'],octokit.repos.checkCollaborator),
     checkVulnerabilityAlerts: build(['repos','checkVulnerabilityAlerts'],octokit.repos.checkVulnerabilityAlerts),
     compareCommitsWithBasehead: build(['repos','compareCommitsWithBasehead'],octokit.repos.compareCommitsWithBasehead),
