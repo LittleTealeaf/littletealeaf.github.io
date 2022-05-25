@@ -286,8 +286,4 @@ const Client = {
   paginate,
 };
 
-Client.paginate(Client.repos.listForUser, {
-  username: "Littletealeaf",
-});
-
 export default Client;
