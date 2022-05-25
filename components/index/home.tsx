@@ -5,12 +5,10 @@ import EmailIcon from "@mui/icons-material/Email";
 import { Icon } from "@mui/material";
 import { BgImg } from "libs/utils";
 
-const labels: string[] = [
-  "Computer Science","Data Science","Software Engineering"
-]
+const labels: string[] = ["Computer Science", "Data Science", "Software Engineering"];
 
 const IconLink = ({ component, href }) => (
-  <a href={href} className={css.iconholder}>
+  <a target="_blank" href={href} className={css.iconholder} rel="noreferrer">
     <Icon component={component} />
   </a>
 );
@@ -21,7 +19,7 @@ const Component = ({}) => (
       id="home"
       className={css.component}
       style={{
-        background: BgImg(require('assets/images/index/home.jpg'),'no-repeat top center'),
+        background: BgImg(require("assets/images/index/home.jpg"), "no-repeat top center"),
         WebkitBackgroundSize: "cover !important",
       }}
     >

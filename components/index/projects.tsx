@@ -32,8 +32,7 @@ const Card = ({ project, key }: { project: Project; key: number }) => (
           <LabelsIf labels={project.labels} />
           <LinksIf links={project.links} />
         </div>
-        {project.image != null ?
-        <img src={project.image} alt={project.name} />: <></>}
+        {project.image != null ? <img src={project.image} alt={project.name} /> : <></>}
       </div>
     </div>
   </>
@@ -45,7 +44,9 @@ const LabelsIf = ({ labels }: { labels: Array<string> }) =>
   ) : (
     <>
       <div className={css.labels_container}>
-        {labels.map((label,key) => <div key={key}>{label}</div>)}
+        {labels.map((label, key) => (
+          <div key={key}>{label}</div>
+        ))}
       </div>
     </>
   );
@@ -66,7 +67,7 @@ const IconIf = ({ component, href }) =>
     <></>
   ) : (
     <li>
-      <a href={href}>
+      <a target="_blank" href={href} rel="noreferrer">
         <Icon component={component} />
       </a>
     </li>
