@@ -48,6 +48,7 @@ const projects: Array<Project> = [
     ],
     links: {
       report: "https://littletealeaf.github.io/DS-210-Final/report.pdf",
+      website: "https://littletealeaf.github.io/DS-210-Final"
     },
     github: {
       owner: "LittleTealeaf",
