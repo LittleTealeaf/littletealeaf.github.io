@@ -21,14 +21,19 @@ const hashKeys = (keys: Object): string =>
 
 const getDirectory = (type: Array<string>): string => {
   return path.join("cache", path.join(...type));
-}
+};
 
 const getFile = (type: Array<string>, keys: Object): string => path.join(getDirectory(type), `${hashKeys(keys)}.cache`);
 
 const getCache = (type: Array<string>, keys: Object): Cache | null => {
-  const filePath = getFile(type, keys);
-  const cache: Cache = existsSync(filePath) ? parse(readFileSync(filePath).toString()) : null;
-  return cache != null && cache.version == VERSION ? cache : null;
+  try {
+    const filePath = getFile(type, keys);
+    const cache: Cache = existsSync(filePath) ? parse(readFileSync(filePath).toString()) : null;
+    return cache != null && cache.version == VERSION ? cache : null;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 export const getCacheValue = (type: Array<string>, keys: Object): any | null => {
