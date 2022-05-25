@@ -47,7 +47,7 @@ const projects: Array<Project> = [
       " Using a dataset of states of Connect-4 and their outcome, I attempted to train a naive neural network to predict the winner of a given board.",
     ],
     links: {
-      report: "https://github.com/LittleTealeaf/DS-210-Final/blob/main/report/report.pdf",
+      report: "https://littletealeaf.github.io/DS-210-Final/report.pdf",
     },
     github: {
       owner: "LittleTealeaf",
