@@ -4,13 +4,14 @@ import Spacer from "components/spacer";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
-import scss from "styles/pages/index.module.scss";
+import css from "styles/pages/index.module.scss";
+
 
 export const config = {
   unstable_runtimeJS: false,
 };
 
-const Content = ({}) => {
+const Content = ({ }) => {
   return (
     <>
       <div
@@ -24,15 +25,33 @@ const Content = ({}) => {
         </Head>
         <Home />
         <AboutMe />
-        <Projects />
+        <Projects/>
       </div>
     </>
   );
 };
 
 export const getStaticProps = async ({}) => {
+
+  // const projectLanguages = await Promise.all(
+  //   projectlist
+  //     .filter((project) => project.github != null)
+  //     .map((project) =>
+  //       GitHubAPI.repos.listLanguages(project.github).then((response) => ({
+  //         repo: GitHubRepoToString(project.github),
+  //         lang: response,
+  //       }))
+  //     )
+  // ).then((list) =>
+  //   list.reduce((map, obj) => {
+  //     map[obj.repo] = obj.lang;
+  //     return map;
+  //   }, {})
+  // );
+
   return {
-    props: {},
+    props: {
+    },
   };
 };
 

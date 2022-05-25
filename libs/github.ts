@@ -6,10 +6,12 @@ const octokit = new Octokit({
   userAgent: "littletealeaf.github.io v0.1.0",
 });
 
+
 export const GitHubAPI = {
   repos: {
     get: async (params: RestEndpointMethodTypes["repos"]["get"]["parameters"]): Promise<RestEndpointMethodTypes["repos"]["get"]["response"]["data"]> =>
       handle(["repos", "get"], params, octokit.repos.get),
+    listLanguages: async (params: RestEndpointMethodTypes["repos"]["listLanguages"]["parameters"]): Promise<{[key: string]: number}> => handle(["repos","listLanguages"], params, octokit.repos.listLanguages),
   },
   users: {
     getByUsername: async (params: RestEndpointMethodTypes["users"]["getByUsername"]["parameters"]): Promise<RestEndpointMethodTypes["users"]["getByUsername"]["response"]["data"]> =>

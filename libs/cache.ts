@@ -19,7 +19,9 @@ const hashKeys = (keys: Object): string =>
       .join("")
   );
 
-const getDirectory = (type: Array<string>): string => path.join("cache", ...type);
+const getDirectory = (type: Array<string>): string => {
+  return path.join("cache", path.join(...type));
+}
 
 const getFile = (type: Array<string>, keys: Object): string => path.join(getDirectory(type), `${hashKeys(keys)}.cache`);
 

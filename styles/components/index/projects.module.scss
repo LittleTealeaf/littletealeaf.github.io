@@ -81,3 +81,18 @@
   max-width: 500px;
   display: block;
 }
+
+
+.labels_container {
+  display: inline-flex;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  text-align: center;
+
+
+  * {
+    margin-inline: 5px;
+    flex-grow: 1;
+    overflow: none;
+  }
+}
