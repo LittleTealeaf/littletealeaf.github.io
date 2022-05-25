@@ -4,7 +4,7 @@ import Spacer from "components/spacer";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
-import github from 'libs/github';
+import GitHub from 'libs/github';
 import css from "styles/pages/index.module.scss";
 
 
@@ -33,22 +33,7 @@ const Content = ({ }) => {
 };
 
 export const getStaticProps = async ({}) => {
-
-  // const projectLanguages = await Promise.all(
-  //   projectlist
-  //     .filter((project) => project.github != null)
-  //     .map((project) =>
-  //       GitHubAPI.repos.listLanguages(project.github).then((response) => ({
-  //         repo: GitHubRepoToString(project.github),
-  //         lang: response,
-  //       }))
-  //     )
-  // ).then((list) =>
-  //   list.reduce((map, obj) => {
-  //     map[obj.repo] = obj.lang;
-  //     return map;
-  //   }, {})
-  // );
+  
 
   return {
 
