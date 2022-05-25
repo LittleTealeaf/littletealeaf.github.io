@@ -1,4 +1,4 @@
-import { Avatar, Button, Icon } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import Head from "next/head";
 import css from "styles/pages/credits.module.scss";
 

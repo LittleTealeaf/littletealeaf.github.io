@@ -3,8 +3,7 @@ import { Icon } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import ArticleIcon from "@mui/icons-material/Article";
 import LanguageIcon from "@mui/icons-material/Language";
-import projects, { Links } from "content/projects";
-import { Project } from "content/projects";
+import projects, { Links, Project } from "content/projects";
 import css from "styles/components/index/projects.module.scss";
 
 const Component = ({}) => (
