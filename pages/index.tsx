@@ -4,7 +4,7 @@ import Spacer from "components/spacer";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
-import GitHub from 'libs/github';
+import API from 'libs/github';
 import css from "styles/pages/index.module.scss";
 
 
@@ -33,8 +33,6 @@ const Content = ({ }) => {
 };
 
 export const getStaticProps = async ({}) => {
-  
-
   return {
 
 
