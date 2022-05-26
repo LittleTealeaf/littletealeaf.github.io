@@ -44,7 +44,7 @@ const Values: Array<ImageEntry> = [
     src: require("assets/images/projects/gdd140datavisualization.png"),
     title: "GDD-140 Data Visualization Project",
     credits: "App Created and Screenshot Taken by Thomas Kwashnak",
-  },
+  }
 ];
 
 const ImageCard = ({ entry }: { entry: ImageEntry }) => (

@@ -1,77 +1,95 @@
 import css from "styles/pages/resume.module.scss";
 import Fab from "@mui/material/Fab";
-import cs from "classnames";
 import PrintIcon from "@mui/icons-material/Print";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import PhoneIcon from "@mui/icons-material/Phone";
-import { Icon } from "@mui/material";
-import data from "content/resume.json";
-import EmailIcon from "@mui/icons-material/Email";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LanguageIcon from "@mui/icons-material/Language";
-
+import cn from "classnames";
 import Head from "next/head";
+import { Contacts, ContactType, Languages, Skills, Summary } from "content/resume";
 
-const print = () => window.print();
+const PrintButton = ({}) => (
+  <>
+    <Fab className={cn(css.print_hide, css.print_button)} onClick={() => window.print()}>
+      <PrintIcon />
+    </Fab>
+  </>
+);
+
+const Contact = ({ contact }: { contact: ContactType }) => (
+  <>
+    <div className={css.contact}>
+      <a href={contact.href} target={"_blank"} rel="noreferrer">
+        <contact.icon />
+        <span>{contact.contact}</span>
+      </a>
+    </div>
+  </>
+);
 
 const Header = ({}) => (
   <>
     <div className={css.header}>
-      <div className={css.header_name}>{"Thomas Kwashnak"}</div>
-      <div className={css.header_info}>
-        <ul>
-          <HeaderLink component={EmailIcon} href={"mailto:thomaskwashnak@gmail.com"} text={"thomaskwashnak@gmail.com"} />
-          <HeaderLink component={LinkedInIcon} href={"https://www.linkedin.com/in/thomas-kwashnak"} text={"www.linkedin.com/in/thomas-kwashnak"} />
-          <HeaderLink component={GitHubIcon} href={"https://github.com/LittleTealeaf"} text={"github.com/LittleTealeaf"} />
-          <HeaderLink component={LanguageIcon} href={"https://littletealeaf.github.io"} text={"littletealeaf.github.io"} />
-        </ul>
+      <h1>{"Thomas Kwashnak"}</h1>
+      <div className={css.contacts}>
+        {Contacts.map((contact, key) => (
+          <Contact contact={contact} key={key} />
+        ))}
       </div>
+      <hr />
     </div>
   </>
 );
 
-const HeaderLink = ({ component, href, text }: { component: any; href: string; text?: string }) => (
-  <li>
-    <a href={href}>
-      <Icon component={component} />
-      <span>{text == null ? href : text}</span>
-    </a>
-  </li>
+const Section = ({ children, name, className }: { children?: any; name: string; className?: string }) => (
+  <div className={className == null ? css.section : cn(css.section, className)}>
+    <h3>{name}</h3>
+    {children != null ? children : <></>}
+  </div>
 );
 
-const Education = ({}) => (
-  <>
-    <div className={css.education}>
-      <h1>{"Education"}</h1>
-    </div>
-  </>
+const SummarySection = ({}) => (
+  <Section name="Summary">
+    <p>{Summary}</p>
+  </Section>
 );
 
-const Employment = ({}) => <></>;
+const LanguagesSection = ({}) => (
+  <Section name="Programming Languages" className={css.section_list}>
+    <ul>
+      {Languages.map((language, index) => (
+        <li key={index}>
+          {language.name}
+          {language.frameworks == null ? <></> : ` (${language.frameworks.join(", ")})`}
+        </li>
+      ))}
+    </ul>
+  </Section>
+);
+
+const SkillsSection = ({}) => (
+  <Section name="Skills" className={css.section_list}>
+    <ul>
+      {Skills.map((skill, index) => (
+        <li key={index}>{skill}</li>
+      ))}
+    </ul>
+  </Section>
+);
 
 const Page = ({}) => (
   <>
     <Head>
       <title>{"Thomas Kwashnak - Resume"}</title>
     </Head>
-    <div className={css.page}>
-      <Header />
-      <hr />
-      <Education />
-      <hr />
-      <Employment />
+    <div className={css.background}>
+      <div className={cn(css.page, css.no_box_shadow)}>
+        <Header />
+        <div className={css.content}>
+          <SummarySection />
+          <SkillsSection />
+          <LanguagesSection />
+        </div>
+      </div>
     </div>
-    <Fab
-      className={css.print_hide}
-      style={{
-        position: "absolute",
-        right: "20px",
-        bottom: "20px",
-      }}
-      onClick={print}
-    >
-      <PrintIcon />
-    </Fab>
+    <PrintButton />
   </>
 );
 
