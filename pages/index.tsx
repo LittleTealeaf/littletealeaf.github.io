@@ -33,6 +33,9 @@ const Content = ({ }) => {
 };
 
 export const getStaticProps = async ({}) => {
+
+
+
   return {
 
 
