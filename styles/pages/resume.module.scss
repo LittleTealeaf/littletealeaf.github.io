@@ -16,7 +16,7 @@
 }
 
 .print_button {
-    position: fixed;
+    position: fixed !important;
     right: 20px;
     bottom: 20px;
     background-color: #c2cecf;
@@ -121,7 +121,7 @@
     }
 
     .print_hide {
-        display: none;
+        display: none !important;
     }
 
     .no_box_shadow {

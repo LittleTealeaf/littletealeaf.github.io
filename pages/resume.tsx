@@ -3,9 +3,9 @@ import Fab from "@mui/material/Fab";
 import PrintIcon from "@mui/icons-material/Print";
 import cn from "classnames";
 import Head from "next/head";
-import { Contacts, ContactType, Languages, Skills, Summary } from "content/resume";
+import { Contacts, Languages, Skills, Summary } from "content/resume";
 
-const PrintButton = ({}) => (
+const PrintButton = () => (
   <>
     <Fab className={cn(css.print_hide, css.print_button)} onClick={() => window.print()}>
       <PrintIcon />
@@ -13,24 +13,18 @@ const PrintButton = ({}) => (
   </>
 );
 
-const Contact = ({ contact }: { contact: ContactType }) => (
-  <>
-    <div className={css.contact}>
-      <a href={contact.href} target={"_blank"} rel="noreferrer">
-        <contact.icon />
-        <span>{contact.contact}</span>
-      </a>
-    </div>
-  </>
-);
-
-const Header = ({}) => (
+const Header = () => (
   <>
     <div className={css.header}>
       <h1>{"Thomas Kwashnak"}</h1>
       <div className={css.contacts}>
         {Contacts.map((contact, key) => (
-          <Contact contact={contact} key={key} />
+          <div key={key} className={css.contact}>
+            <a href={contact.href} target={"_blank"} rel="noreferrer">
+              <contact.icon />
+              <span>{contact.contact}</span>
+            </a>
+          </div>
         ))}
       </div>
       <hr />
@@ -45,13 +39,13 @@ const Section = ({ children, name, className }: { children?: any; name: string; 
   </div>
 );
 
-const SummarySection = ({}) => (
+const SummarySection = () => (
   <Section name="Summary">
     <p>{Summary}</p>
   </Section>
 );
 
-const LanguagesSection = ({}) => (
+const LanguagesSection = () => (
   <Section name="Programming Languages" className={css.section_list}>
     <ul>
       {Languages.map((language, index) => (
@@ -64,7 +58,7 @@ const LanguagesSection = ({}) => (
   </Section>
 );
 
-const SkillsSection = ({}) => (
+const SkillsSection = () => (
   <Section name="Skills" className={css.section_list}>
     <ul>
       {Skills.map((skill, index) => (
