@@ -1,11 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
-import Spacer from "components/spacer";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
-import API from 'libs/github';
-import css from "styles/pages/index.module.scss";
 
 
 export const config = {
