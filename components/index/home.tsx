@@ -1,17 +1,7 @@
 import css from "styles/components/index/home.module.scss";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
+import { Links, Labels } from "content/index/home";
 import { Icon } from "@mui/material";
 import { BgImg } from "libs/utils";
-
-const labels: string[] = ["Computer Science", "Data Science", "Software Engineering"];
-
-const IconLink = ({ component, href }) => (
-  <a target="_blank" href={href} className={css.iconholder} rel="noreferrer">
-    <Icon component={component} />
-  </a>
-);
 
 const Component = ({}) => (
   <>
@@ -27,19 +17,19 @@ const Component = ({}) => (
         {"Thomas Kwashnak"}
         <hr />
         <div className={css.labels}>
-          {labels.map((label, index) => (
+          {Labels.map((label, index) => (
             <p key={index}>{label}</p>
           ))}
         </div>
 
         <p>{"Student at Quinnipiac University"}</p>
         <ul>
-          {[
-            <IconLink key={"github"} component={GitHubIcon} href={"https://www.github.com/LittleTealeaf"} />,
-            <IconLink key={"linkedin"} component={LinkedInIcon} href={"https://www.linkedin.com/in/thomas-kwashnak"} />,
-            <IconLink key={"mail"} component={EmailIcon} href={"mailto:thomaskwashnak@gmail.com"} />,
-          ].map((item) => (
-            <li key={item.key}>{item}</li>
+          {Links.map((item) => (
+            <li key={item.key}>
+              <a target="_blank" href={item.href} className={css.iconholder} rel="noreferrer">
+                <Icon component={item.icon} />
+              </a>
+            </li>
           ))}
         </ul>
       </div>
