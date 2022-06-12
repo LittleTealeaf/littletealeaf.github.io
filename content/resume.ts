@@ -99,7 +99,7 @@ export const Skills: Array<string> = [
   "Windows",
   "Linux",
   "Android",
-  "Github/Git",
+  "GitHub/Git",
   "Excel",
   "Google Drive",
   "Microsoft Office (365)",
@@ -111,3 +111,16 @@ export const Skills: Array<string> = [
   "Android Studio",
   "SQLite",
 ];
+
+export const Education: Array<EducationType> = [
+  {
+    school: "Quinnipiac University",
+    graduation: "2024",
+    majors: ["BA Computer Science","BS Data Science"],
+    minors: ["Economics"]
+  },
+  {
+    school: "Pomperaug Regional High School",
+    graduation: "2020",
+  }
+]

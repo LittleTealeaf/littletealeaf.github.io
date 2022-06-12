@@ -3,7 +3,8 @@ import Fab from "@mui/material/Fab";
 import PrintIcon from "@mui/icons-material/Print";
 import cn from "classnames";
 import Head from "next/head";
-import { Contacts, Languages, Skills, Summary } from "content/resume";
+import { Contacts, Education, Languages, Skills, Summary } from "content/resume";
+import { RenderIf, RenderPresent } from "components/conditional";
 
 const PrintButton = () => (
   <>
@@ -68,6 +69,32 @@ const SkillsSection = () => (
   </Section>
 );
 
+const EducationSection = () => (
+  <Section name="Education" className={css.section_block}>
+    {Education.map((education) => (
+      <>
+        <h4>{education.school}</h4>
+        <div className={css.block_content}>
+          <div id="graduation">{"Class of " + education.graduation}</div>
+          {RenderPresent(education.gpa, () => (
+            <div id="gpa">{education.gpa}</div>
+          ))}
+          {RenderIf(education.majors != null || education.minors != null, () => (
+            <>
+              {RenderPresent(education.majors, () => (
+                <div>{"Majors: " + education.majors.join(", ")}</div>
+              ))}
+              {RenderPresent(education.minors, () => (
+                <div>{"Minors: " + education.minors.join(", ")}</div>
+              ))}
+            </>
+          ))}
+        </div>
+      </>
+    ))}
+  </Section>
+);
+
 const Page = ({}) => (
   <>
     <Head>
@@ -78,6 +105,7 @@ const Page = ({}) => (
         <Header />
         <div className={css.content}>
           <SummarySection />
+          <EducationSection />
           <SkillsSection />
           <LanguagesSection />
         </div>

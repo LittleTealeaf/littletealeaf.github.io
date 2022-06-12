@@ -8,6 +8,7 @@ export type Project = {
 };
 
 export type Links = {
+
   github?: string;
   website?: string;
   report?: string;
@@ -18,7 +19,7 @@ export type GitHubRepo = {
   repo: string;
 };
 
-export const GitHubRepoToString = (repo: GitHubRepo): string => `${repo.owner}/${repo.repo}`
+export const GitHubRepoToString = (repo: GitHubRepo): string => `${repo.owner}/${repo.repo}`;
 
 const projects: Array<Project> = [
   {
@@ -34,11 +35,9 @@ const projects: Array<Project> = [
     },
     github: {
       owner: "LittleTealeaf",
-      repo: "GDD-140-Project-6.2"
+      repo: "GDD-140-Project-6.2",
     },
-    labels: [
-      "Jupyter","Python","Javascript","p5.js","Data Science"
-    ]
+    labels: ["Jupyter", "Python", "Javascript", "p5.js", "Data Science"],
   },
   {
     name: "Connect-4 Evaluator",
@@ -48,15 +47,13 @@ const projects: Array<Project> = [
     ],
     links: {
       report: "https://littletealeaf.github.io/DS-210-Final/report.pdf",
-      website: "https://littletealeaf.github.io/DS-210-Final"
+      website: "https://littletealeaf.github.io/DS-210-Final",
     },
     github: {
       owner: "LittleTealeaf",
-      repo: "DS-210-Final"
+      repo: "DS-210-Final",
     },
-    labels: [
-      "Python","Data Science","Neural Networks"
-    ]
+    labels: ["Python", "Data Science", "Neural Networks"],
   },
   {
     name: "Java Markdown",
@@ -65,8 +62,8 @@ const projects: Array<Project> = [
     ],
     github: {
       owner: "LittleTealeaf",
-      repo: "JavaMarkdown"
-    }
+      repo: "JavaMarkdown",
+    },
   },
   {
     image: require("assets/images/projects/ser225project.png"),
@@ -77,14 +74,22 @@ const projects: Array<Project> = [
     ],
     github: {
       owner: "LittleTealeaf",
-      repo: "SER-225-Team-A2"
+      repo: "SER-225-Team-A2",
     },
-    labels: [
-      "Java","AWT","Agile","Scrum"
-    ]
+    labels: ["Java", "AWT", "Agile", "Scrum"],
   },
-
-{
+  {
+    name: "Wordle Clone",
+    description: ["A simple clone from the popular game \"Wordle\" that I wanted to try recreating.","Currently it is a simple website run by javascript."],
+    github: {
+      owner: "LittleTealeaf",
+      repo: "WordleClone"
+    },
+    links: {
+      website: "https://littletealeaf.github.io/wordleclone"
+    }
+  },
+  {
     image: require("assets/images/projects/ser210final.png"),
     name: "GitHub Chat App",
     description: [
@@ -95,9 +100,7 @@ const projects: Array<Project> = [
       owner: "LittleTealeaf",
       repo: "SER-210-Final",
     },
-    labels: [
-      "Java","Android Studio","GitHub","REST API"
-    ]
+    labels: ["Java", "Android Studio", "GitHub", "REST API"],
   },
   {
     name: "littletealeaf.github.io",
@@ -107,8 +110,8 @@ const projects: Array<Project> = [
     },
     github: {
       owner: "LittleTealeaf",
-      repo: "littletealeaf.github.io"
-    }
+      repo: "littletealeaf.github.io",
+    },
   },
 ];
 

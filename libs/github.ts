@@ -24,7 +24,7 @@ function build<P, V>(type: Array<string>, method: (params: P) => Promise<{ data:
 
 function buildFunction<P, R, V>(type: Array<string>, method: (params: P) => Promise<R>, parser: (value: R) => V): (params: P) => Promise<V> {
   return async (params: P): Promise<V> => {
-    const key = ['github'].concat(type);
+    const key = ["github"].concat(type);
     const cache: V = getCacheValue(key, params);
     if (cache != null) {
       return cache;
