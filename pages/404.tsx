@@ -39,7 +39,7 @@ export default function Content() {
           <div className={css.content}>
             <h1>{"Oh No! Page not found!"}</h1>
             <h3>Check the url, it might be incorrect</h3>
-            <p id="url"></p>
+            <p id="url" className={css.url}></p>
             <p>In the meantime, feel free to hang around, or return to the main page!</p>
             <Button href="/" color="primary" variant="contained">
               Back to littletealeaf.github.io
