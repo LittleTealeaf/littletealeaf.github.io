@@ -4,18 +4,17 @@ import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
 
-
 export const config = {
   unstable_runtimeJS: false,
 };
 
-const Content = ({ }) => {
+const Content = ({}) => {
   return (
     <>
       <div
         style={{
           background: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${require("assets/images/index/projects.png")})`,
-          backgroundSize: "100%",
+          backgroundSize: "150%"
         }}
       >
         <Head>
@@ -23,21 +22,15 @@ const Content = ({ }) => {
         </Head>
         <Home />
         <AboutMe />
-        <Projects/>
+        <Projects />
       </div>
     </>
   );
 };
 
 export const getStaticProps = async ({}) => {
-
-
-
   return {
-
-
-    props: {
-    },
+    props: {},
   };
 };
 
