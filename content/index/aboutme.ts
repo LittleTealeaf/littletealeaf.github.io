@@ -1,4 +1,3 @@
-
 /**
  * List of paragraphs for the content of the AboutMe section
  */

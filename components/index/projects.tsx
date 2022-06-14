@@ -5,7 +5,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import LanguageIcon from "@mui/icons-material/Language";
 import projects, { Project } from "content/projects";
 import css from "styles/components/index/projects.module.scss";
-import { RenderPresent } from "components/conditional";
+import { RenderIf, RenderPresent } from "components/utils";
 
 const Component = ({}) => (
   <>
@@ -36,11 +36,17 @@ const Card = ({ project, key }: { project: Project; key: number }) => (
               ))}
             </div>
           ))}
-          {RenderPresent(project.links, () => (
+          {RenderIf(project.links != null, () => (
             <ul className={css.links}>
-              <IconIf component={GitHubIcon} href={project.links.github} />
-              <IconIf component={LanguageIcon} href={project.links.website} />
-              <IconIf component={ArticleIcon} href={project.links.report} />
+              {RenderPresent(project.links.github, () => (
+                <IconLink component={GitHubIcon} href={project.links.github} />
+              ))}
+              {RenderPresent(project.links.website, () => (
+                <IconLink component={LanguageIcon} href={project.links.website} />
+              ))}
+              {RenderPresent(project.links.report, () => (
+                <IconLink component={ArticleIcon} href={project.links.report} />
+              ))}
             </ul>
           ))}
         </div>
@@ -50,15 +56,12 @@ const Card = ({ project, key }: { project: Project; key: number }) => (
   </>
 );
 
-const IconIf = ({ component, href }) =>
-  href == null ? (
-    <></>
-  ) : (
-    <li>
-      <a target="_blank" href={href} rel="noreferrer">
-        <Icon component={component} />
-      </a>
-    </li>
-  );
+const IconLink = ({ component, href }) => (
+  <li>
+    <a target="_blank" href={href} rel="noreferrer">
+      <Icon component={component} />
+    </a>
+  </li>
+);
 
 export default Component;
