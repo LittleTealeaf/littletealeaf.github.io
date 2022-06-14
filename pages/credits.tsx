@@ -2,7 +2,7 @@ import { Avatar, Button } from "@mui/material";
 import Head from "next/head";
 import css from "styles/pages/credits.module.scss";
 import { ImageEntry, ImageCredits } from "content/credits";
-import { RenderNotNull } from "components/conditional";
+import { RenderNotNull } from "components/utils";
 
 const ImageCard = ({ entry }: { entry: ImageEntry }) => (
   <>

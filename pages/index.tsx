@@ -3,6 +3,7 @@ import Head from "next/head";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
+import Client from "libs/github";
 
 export const config = {
   unstable_runtimeJS: false,
@@ -14,7 +15,7 @@ const Content = ({}) => {
       <div
         style={{
           background: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(${require("assets/images/index/projects.png")})`,
-          backgroundSize: "150%"
+          backgroundSize: "150%",
         }}
       >
         <Head>
@@ -29,6 +30,10 @@ const Content = ({}) => {
 };
 
 export const getStaticProps = async ({}) => {
+  await Client.users.getByUsername({
+    username: "LittleTealeaf",
+  });
+
   return {
     props: {},
   };
