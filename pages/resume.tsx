@@ -4,7 +4,7 @@ import PrintIcon from "@mui/icons-material/Print";
 import cn from "classnames";
 import Head from "next/head";
 import { Contacts, Education, Languages, Skills, Summary } from "content/resume";
-import { RenderIf, RenderPresent } from "components/conditional";
+import { RenderIf, RenderNotNull } from "components/conditional";
 
 const PrintButton = () => (
   <>
@@ -76,15 +76,15 @@ const EducationSection = () => (
         <h4>{education.school}</h4>
         <div className={css.block_content}>
           <div id="graduation">{"Class of " + education.graduation}</div>
-          {RenderPresent(education.gpa, () => (
+          {RenderNotNull(education.gpa, () => (
             <div id="gpa">{education.gpa}</div>
           ))}
           {RenderIf(education.majors != null || education.minors != null, () => (
             <>
-              {RenderPresent(education.majors, () => (
+              {RenderNotNull(education.majors, () => (
                 <div>{"Majors: " + education.majors.join(", ")}</div>
               ))}
-              {RenderPresent(education.minors, () => (
+              {RenderNotNull(education.minors, () => (
                 <div>{"Minors: " + education.minors.join(", ")}</div>
               ))}
             </>

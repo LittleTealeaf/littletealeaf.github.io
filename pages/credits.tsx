@@ -2,7 +2,7 @@ import { Avatar, Button } from "@mui/material";
 import Head from "next/head";
 import css from "styles/pages/credits.module.scss";
 import { ImageEntry, ImageCredits } from "content/credits";
-import { RenderPresent } from "components/conditional";
+import { RenderNotNull } from "components/conditional";
 
 const ImageCard = ({ entry }: { entry: ImageEntry }) => (
   <>
@@ -11,7 +11,7 @@ const ImageCard = ({ entry }: { entry: ImageEntry }) => (
       <div className={css.content}>
         <h2 className={css.title}>{entry.title}</h2>
         <p className={css.credits}>{entry.credits}</p>
-        {RenderPresent(entry.url, () => (
+        {RenderNotNull(entry.url, () => (
           <>
             <div className={css.buttonHolder}>
               <Button href={entry.url}>View</Button>
