@@ -1,7 +1,7 @@
 import css from "styles/components/index/aboutme.module.scss";
 import classNames from "classnames";
 import { Avatar } from "@mui/material";
-import { Content } from 'content/index/aboutme';
+import { Content } from "content/index/aboutme";
 
 const Component = ({}) => (
   <>

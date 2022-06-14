@@ -36,3 +36,5 @@ next-env.d.ts
 next-env.d.js
 GITHUB_TOKEN
 cache/
+
+.cache/

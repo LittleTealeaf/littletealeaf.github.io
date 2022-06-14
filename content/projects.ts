@@ -8,7 +8,6 @@ export type Project = {
 };
 
 export type Links = {
-
   github?: string;
   website?: string;
   report?: string;
@@ -80,14 +79,14 @@ const projects: Array<Project> = [
   },
   {
     name: "Wordle Clone",
-    description: ["A simple clone from the popular game \"Wordle\" that I wanted to try recreating.","Currently it is a simple website run by javascript."],
+    description: ['A simple clone from the popular game "Wordle" that I wanted to try recreating.', "Currently it is a simple website run by javascript."],
     github: {
       owner: "LittleTealeaf",
-      repo: "WordleClone"
+      repo: "WordleClone",
     },
     links: {
-      website: "https://littletealeaf.github.io/wordleclone"
-    }
+      website: "https://littletealeaf.github.io/wordleclone",
+    },
   },
   {
     image: require("assets/images/projects/ser210final.png"),

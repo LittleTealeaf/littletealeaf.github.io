@@ -6,7 +6,6 @@ import EmailIcon from "@mui/icons-material/Email";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
-
 export type ContactType = {
   icon: OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
     muiName: string;
@@ -38,16 +37,15 @@ export type EmploymentType = {
 };
 
 export type ProjectGroupType = {
-    name: string;
-    projects: Array<ProjectType>;
-}
+  name: string;
+  projects: Array<ProjectType>;
+};
 
 export type ProjectType = {
-    name: string;
-    dates: string;
-    tasks?: Array<string>;
-
-}
+  name: string;
+  dates: string;
+  tasks?: Array<string>;
+};
 
 const Lang = (name: string, ...frameworks: string[]): LanguageType => ({
   name,
@@ -116,11 +114,11 @@ export const Education: Array<EducationType> = [
   {
     school: "Quinnipiac University",
     graduation: "2024",
-    majors: ["BA Computer Science","BS Data Science"],
-    minors: ["Economics"]
+    majors: ["BA Computer Science", "BS Data Science"],
+    minors: ["Economics"],
   },
   {
     school: "Pomperaug Regional High School",
     graduation: "2020",
-  }
-]
+  },
+];

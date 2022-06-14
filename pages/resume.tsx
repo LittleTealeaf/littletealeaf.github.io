@@ -4,7 +4,7 @@ import PrintIcon from "@mui/icons-material/Print";
 import cn from "classnames";
 import Head from "next/head";
 import { Contacts, Education, Languages, Skills, Summary } from "content/resume";
-import { RenderIf, RenderPresent } from "components/conditional";
+import { RenderIf, RenderPresent } from "components/utils";
 
 const PrintButton = () => (
   <>
