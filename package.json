@@ -41,7 +41,7 @@
     "zipson": "0.2.12"
   },
   "devDependencies": {
-    "@types/react": "18.0.12",
+    "@types/react": "18.0.13",
     "@types/react-dom": "18.0.5",
     "@types/react-router-dom": "5.3.3",
     "@types/sha1": "1.1.3",
