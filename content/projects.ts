@@ -80,12 +80,13 @@ const projects: Array<Project> = [
   {
     name: "Wordle Clone",
     description: ['A simple clone from the popular game "Wordle" that I wanted to try recreating.', "Currently it is a simple website run by javascript."],
+    image: require('assets/images/projects/wordle.png'),
     github: {
       owner: "LittleTealeaf",
       repo: "WordleClone",
     },
     links: {
-      website: "https://littletealeaf.github.io/wordleclone",
+      website: "https://littletealeaf.github.io/wordle",
     },
   },
   {
