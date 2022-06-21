@@ -3,7 +3,6 @@ import Head from "next/head";
 import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
-import Client from "libs/github";
 
 export const config = {
   unstable_runtimeJS: false,
