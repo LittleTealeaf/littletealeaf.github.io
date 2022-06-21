@@ -12,11 +12,9 @@ const ImageCard = ({ entry }: { entry: ImageEntry }) => (
         <h2 className={css.title}>{entry.title}</h2>
         <p className={css.credits}>{entry.credits}</p>
         {RenderNotNull(entry.url, () => (
-          <>
-            <div className={css.buttonHolder}>
-              <Button href={entry.url}>View</Button>
-            </div>
-          </>
+          <div className={css.buttonHolder}>
+            <Button href={entry.url}>View</Button>
+          </div>
         ))}
       </div>
     </div>

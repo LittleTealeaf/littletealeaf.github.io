@@ -30,10 +30,6 @@ const Content = ({}) => {
 };
 
 export const getStaticProps = async ({}) => {
-  await Client.users.getByUsername({
-    username: "LittleTealeaf",
-  });
-
   return {
     props: {},
   };

@@ -5,7 +5,7 @@ import ArticleIcon from "@mui/icons-material/Article";
 import LanguageIcon from "@mui/icons-material/Language";
 import projects, { Project } from "content/projects";
 import css from "styles/components/index/projects.module.scss";
-import { RenderIf, RenderNotNull } from "components/utils";
+import { RenderNotNull } from "components/utils";
 
 const Component = ({}) => (
   <>
@@ -36,7 +36,7 @@ const Card = ({ project, key }: { project: Project; key: number }) => (
               ))}
             </div>
           ))}
-          {RenderIf(project.links != null, () => (
+          {RenderNotNull(project.links, () => (
             <ul className={css.links}>
               {RenderNotNull(project.links.github, () => (
                 <IconLink component={GitHubIcon} href={project.links.github} />
@@ -50,7 +50,9 @@ const Card = ({ project, key }: { project: Project; key: number }) => (
             </ul>
           ))}
         </div>
-        {project.image != null ? <img src={project.image} alt={project.name} /> : <></>}
+        {RenderNotNull(project.image, () => (
+          <img src={project.image} alt={project.name} />
+        ))}
       </div>
     </div>
   </>

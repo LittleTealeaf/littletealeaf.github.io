@@ -36,7 +36,7 @@ const Header = () => (
 const Section = ({ children, name, className }: { children?: any; name: string; className?: string }) => (
   <div className={className == null ? css.section : cn(css.section, className)}>
     <h3>{name}</h3>
-    {children != null ? children : <></>}
+    {RenderNotNull(children, () => children)}
   </div>
 );
 
