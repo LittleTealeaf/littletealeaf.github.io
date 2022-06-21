@@ -63,7 +63,21 @@ const Projects = ({}) => (
   </div>
 );
 
-const ProjectCard = ({ project, key }: { project: ProjectType; key: number }) => <div className={css.card} key={key}></div>;
+const ProjectCard = ({ project, key }: { project: ProjectType; key: number }) => (
+  <>
+    <div className={css.card} key={key}>
+      <div className={css.card_container}>
+        {/* <div className={css.content}>
+          <h3>{project.name}</h3>
+          {project.description.map((item, index) => {
+            <p key={index}>{item}</p>;
+          })}
+        </div> */}
+        {/* idk whats' wrong */}
+      </div>
+    </div>
+  </>
+);
 
 export default function Content({}) {
   return (
