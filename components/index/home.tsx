@@ -1,7 +1,7 @@
 import css from "styles/components/index/home.module.scss";
 import { Links, Labels } from "content/index/home";
 import { Icon } from "@mui/material";
-import { BgImg } from "libs/utils";
+import { BackgroundImage } from "libs/utils";
 
 const Component = ({}) => (
   <>
@@ -9,7 +9,7 @@ const Component = ({}) => (
       id="home"
       className={css.component}
       style={{
-        background: BgImg(require("assets/images/index/home.jpg"), "no-repeat top center"),
+        background: BackgroundImage(require("assets/images/index/home.jpg"), "no-repeat top center"),
         WebkitBackgroundSize: "cover !important",
       }}
     >
