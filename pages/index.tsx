@@ -4,6 +4,7 @@ import Home from "components/index/home";
 import AboutMe from "components/index/aboutme";
 import Projects from "components/index/projects";
 
+
 export const config = {
   unstable_runtimeJS: false,
 };
