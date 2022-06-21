@@ -1,26 +1,36 @@
-export type Project = {
-  image?: string;
-  name: string;
-  description: Array<string>;
-  github?: GitHubRepo;
-  links?: Links;
-  labels?: Array<string>;
-};
+import { ProjectType, TitleLink } from "./index.types";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import EmailIcon from "@mui/icons-material/Email";
 
-export type Links = {
-  github?: string;
-  website?: string;
-  report?: string;
-};
+export const Links: Array<TitleLink> = [
+  {
+    key: "github",
+    icon: GitHubIcon,
+    href: "https://www.github.com/LittleTealeaf",
+  },
+  {
+    key: "linkedin",
+    icon: LinkedInIcon,
+    href: "https://www.linkedin.com/in/thomas-kwashnak",
+  },
+  {
+    key: "email",
+    icon: EmailIcon,
+    href: "mailto:thomaskwashnak@gmail.com",
+  },
+];
 
-export type GitHubRepo = {
-  owner: string;
-  repo: string;
-};
+export const Labels: Array<string> = ["Computer Science", "Data Science", "Software Engineering"];
 
-export const GitHubRepoToString = (repo: GitHubRepo): string => `${repo.owner}/${repo.repo}`;
+export const AboutMeContent: Array<string> = [
+  "I'm Thomas Kwashnak, a self-motivated nerd from Connecticut, where I am currently in college studying Computer Science and Data Science. Apart from programming, I love playing video games, practicing martial arts, and many other things!",
+  "In martial arts, I am currently a third degree black belt in my federation. I've been practicing since I was very young. I've furthered my learning by teaching martial arts to younger kids, as well as teaching weapons to all ages.",
+  "I love video games with a story. As you've probably noticed from the image above, I enjoy playing Warframe. Some other video games that I enjoy (but not limited to) are: Horizon: Zero Dawn/Forbidden West, Dungeons & Dragons Online, Minecraft, and World of Tanks.",
+];
 
-const projects: Array<Project> = [
+
+export const ProjectList: Array<ProjectType> = [
   {
     image: require("assets/images/projects/gdd140datavisualization.png"),
     name: "p5.js Data Visualization",
@@ -113,9 +123,9 @@ const projects: Array<Project> = [
       repo: "littletealeaf.github.io",
     },
   },
-];
+]
 
-projects.forEach((item) => {
+ProjectList.forEach((item) => {
   if (item.github != null) {
     if (item.links == null) {
       item.links = {};
@@ -123,5 +133,3 @@ projects.forEach((item) => {
     item.links.github = `https://github.com/${item.github.owner}/${item.github.repo}`;
   }
 });
-
-export default projects;
