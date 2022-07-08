@@ -1,0 +1,53 @@
+body {
+    margin: 0px;
+}
+
+#home {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)), url(./images/home.jpg) no-repeat top center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}
+
+
+#home .content {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
+
+#home .content .name {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+#home hr {
+    width: 400px;
+}
+
+#home .subtitle {
+    font-size: 25px;
+    font-family: monospace;
+}
+
+
+.cursor {
+    color: white;
+    animation: cursorblink 1s infinite;
+    margin: 0px;
+    font-family: monospace;
+}
+
+@keyframes cursorblink {
+    0% {
+        color: rgb(255,255,255,1);
+    }
+    45% {
+        color: rgb(255,255,255,0);
+    }
+    90% {
+        color: rgb(255,255,255,1);
+    }
+}
