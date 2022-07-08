@@ -4,21 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/console.css" />
     <script defer src="scripts/typecycle.js"></script>
+    <script defer src="scripts/console.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thomas Kwashnak</title>
   </head>
   <body>
-    <div id="home">
+    <div id="console" data-consolehide>
+      <div id="console_response"></div>
+      <div class="console_entry">
+        <span> ></span>
+        <input id="console_input" type="text" aria-label="Console Enter" spellcheck="false" />
+      </div>
+    </div>
+
+    <section id="home">
       <div class="content">
         <div class="name">Thomas Kwashnak</div>
         <div class="subsubtitle">Student at Quinnipaic University</div>
         <hr />
         <div class="subtitle typecycle" data-words='["Computer Scientist","Software Engineer","Data Scientist"]'></div>
       </div>
-    </div>
-    <div id="navbar">
-        This is the navbar
-    </div>
+    </section>
+    <div id="navbar">This is the navbar</div>
+    <input type="text" />
+    <div id="aboutme"></div>
+    <div id="aboutme"></div>
+    <div id="aboutme"></div>
   </body>
 </html>

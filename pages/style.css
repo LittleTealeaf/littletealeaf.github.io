@@ -3,6 +3,7 @@ html::-webkit-scrollbar {
 }
 
 html {
+    scroll-behavior: smooth;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -59,7 +60,6 @@ body {
 }
 
 
-
 .cursor {
     color: white;
     animation: cursorblink 1s infinite;
@@ -69,12 +69,14 @@ body {
 
 @keyframes cursorblink {
     0% {
-        color: rgb(255,255,255,1);
+        color: rgb(255, 255, 255, 1);
     }
+
     45% {
-        color: rgb(255,255,255,0);
+        color: rgb(255, 255, 255, 0);
     }
+
     90% {
-        color: rgb(255,255,255,1);
+        color: rgb(255, 255, 255, 1);
     }
 }
