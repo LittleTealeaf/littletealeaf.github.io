@@ -106,7 +106,7 @@
         if (COMMANDS[args[0]] != null) {
             COMMANDS[args[0]].execute(args);
         } else if (args[0] == "help" || args[0] == "?" || args[0] == "h") {
-            addLine("Valid Commands:");
+            addLine("Available Commands:");
             Object.entries(COMMANDS).forEach(([command, obj]) => {
                 addLine(` - ${command}: ${obj.description}`);
             })
