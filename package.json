@@ -17,7 +17,7 @@
     "@mui/icons-material": "5.8.4",
     "@mui/material": "5.8.7",
     "@octokit/plugin-rest-endpoint-methods": "6.0.0",
-    "@octokit/plugin-throttling": "4.0.0",
+    "@octokit/plugin-throttling": "4.0.1",
     "@octokit/rest": "19.0.3",
     "@types/node": "18.0.3",
     "autoprefixer": "10.4.7",
