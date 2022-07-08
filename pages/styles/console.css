@@ -2,9 +2,9 @@
     position: fixed;
     top: 0px;
     overflow: hidden;
-    height: 50vh;
+    height: 40vh;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.7);
     transition-duration: 0.5s;
     z-index: 100;
     color: #fff;
@@ -51,4 +51,8 @@
 
 #console_response div[data-response="error"] {
     color: rgb(218, 13, 13);
+}
+
+#console_response div {
+    word-wrap: break-word;
 }

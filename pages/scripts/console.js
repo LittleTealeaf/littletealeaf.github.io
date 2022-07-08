@@ -2,14 +2,49 @@
 
 (() => {
 
+
     const HEADERS = [
         "home", "aboutme"
     ]
+
+    const COMMANDS = {
+        "clear": {
+            description: "Clears the terminal",
+            execute: (args) => {
+                response.innerHTML = "";
+            }
+        },
+        "goto": {
+            description: "Navigates to a specified section of the page",
+            execute: (args) => {
+                if (args.length == 1) {
+                    addLine(`Error: A destination must be provided. Type "goto -l" to list valid destinations`, "error");
+                } else if (args[1] == "-l" || args[1] == "--list") {
+                    addLine("Goto Sections: ");
+                    addLine(HEADERS.join(", "));
+                } else {
+                    if (HEADERS.includes(args[1])) {
+                        document.getElementById(args[1]).scrollIntoView({
+                            behavior: "smooth"
+                        })
+                    } else {
+                        addLine(`Error: ${args[1]} is not a valid destination. Type "goto -l" to list valid destinations`, "error")
+                    }
+                }
+            }
+        }
+    }
+
 
     const console_element = document.getElementById("console");
 
     const response = document.getElementById("console_response");
     const input = document.getElementById("console_input");
+
+
+    console_element.addEventListener("click", (event) => {
+        input.focus();
+    })
 
     const history = [];
     var history_index = -1;
@@ -66,35 +101,17 @@
         addLine("> " + command, "");
 
         const args = command.split(" ");
+        console.log(HEADERS[args[0]]);
 
-        switch (args[0]) {
-            case "goto":
-                if (args[1] == "-l" || args[1] == "--list") {
-                    addLine("Goto Sections: ");
-                    addLine(HEADERS.join(", "));
-                } else {
-                    if (HEADERS.includes(args[1])) {
-                        document.getElementById(args[1]).scrollIntoView({
-                            behavior: "smooth"
-                        })
-                    } else {
-                        addLine(`Error: ${args[1]} is not a valid destination. Type "goto -l" to list valid destinations`, "error")
-                    }
-                }
-                break;
-            case "clear":
-                response.innerHTML = "";
-                break;
-            case "help":
-            case "?":
-            case "h":
-                addLine("Commands:", "response");
-                addLine("- clear: Clears the console.", "response");
-                addLine("- goto: Navigates to a section of the website");
-                addLine("- goto (--list, -l): Lists navigatable sections");
-                break;
-            default:
-                addLine(`Command not recognized: '${args[0]}'. Type "help", "h" or "?" for assistance`, "error")
+        if (COMMANDS[args[0]] != null) {
+            COMMANDS[args[0]].execute(args);
+        } else if (args[0] == "help" || args[0] == "?" || args[0] == "h") {
+            addLine("Valid Commands:");
+            Object.entries(COMMANDS).forEach(([command, obj]) => {
+                addLine(` - ${command}: ${obj.description}`);
+            })
+        } else {
+            addLine(`Command not recognized: '${args[0]}'. Type "help", "h" or "?" for assistance`, "error")
         }
 
         input.focus();
