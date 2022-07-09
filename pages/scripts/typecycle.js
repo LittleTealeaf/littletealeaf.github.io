@@ -26,7 +26,7 @@
           clearInterval(interval);
           setTimeout(() => {
             interval = setInterval(tickDelete, 600 / values[index].length);
-          }, 500);
+          }, 1000);
         }
       }
 
