@@ -1,118 +1,120 @@
 (() => {
-  const HEADERS = ["home", "aboutme"];
+    const element = document.getElementById("console");
 
-  const COMMANDS = [
-    {
-      keys: ["help", "?", "h"],
-      description: "Displays Available Commands",
-      execute: (args) => {
-        addLine("Available Commands:");
-        COMMANDS.forEach((command) => {
-          addLine(` - ${command.keys[0]}: ${command.description}`);
-        });
-      },
-    },
-    {
-      keys: ["clear"],
-      description: "Clears the terminal",
-      execute: (args) => {
-        response.innerHTML = "";
-      },
-    },
-    {
-      keys: ["goto"],
-      description: "Navigates to a specified section of the page",
-      execute: (args) => {
-        if (args.length == 1) {
-          addLine(`Error: A destination must be provided. Type "goto -l" to list valid destinations`, "error");
-        } else if (args[1] == "-l" || args[1] == "--list") {
-          addLine("Available Sections: ");
-          addLine(HEADERS.join(", "));
-        } else {
-          if (HEADERS.includes(args[1])) {
-            document.getElementById(args[1]).scrollIntoView({
-              behavior: "smooth",
-            });
-          } else {
-            addLine(`Error: ${args[1]} is not a valid destination. Type "goto -l" to list valid destinations`, "error");
-          }
+    const response = document.createElement("div");
+    response.classList.add("response");
+    element.append(response);
+
+    const input = (() => {
+        const div = document.createElement("div");
+        div.classList.add("prompt");
+
+        const span = document.createElement("span");
+        span.innerText = " >";
+        div.append(span);
+
+        const prompt = document.createElement("input");
+        prompt.type = "text";
+        prompt.ariaLabel="Console Input";
+        prompt.spellcheck = false;
+        div.append(prompt);
+
+        element.append(div);
+
+
+        return prompt;
+    })();
+
+    element.addEventListener("click",(event) => {
+        input.focus();
+    })
+
+    document.addEventListener("keydown",(event) => {
+        if(event.ctrlKey && event.key == "`") {
+            if(element.dataset.hide != null) {
+                delete element.dataset.hide;
+                input.focus();
+            } else {
+                element.dataset.hide = "";
+            }
         }
-      },
-    },
-    {
-      keys: ["exit", "quit"],
-      description: "Closes the terminal",
-      execute: (args) => {
-        console_element.dataset.consolehide = "";
-      },
-    },
-  ];
+    });
 
-  const console_element = document.getElementById("console");
+    let COMMANDS;
 
-  const response = document.getElementById("console_response");
-  const input = document.getElementById("console_input");
 
-  console_element.addEventListener("click", (event) => {
-    input.focus();
-  });
-
-  const history = [];
-  var history_index = -1;
-
-  document.onkeydown = (event) => {
-    if (event.key == "`" && event.ctrlKey) {
-      if (console_element.dataset.consolehide == null) {
-        console_element.dataset.consolehide = "";
-      } else {
-        delete console_element.dataset.consolehide;
-        document.getElementById("console_input").focus();
-      }
+    function output(content,type) {
+        const div = document.createElement("div");
+        div.append(content);
+        if(type != null) {
+            div.dataset.type = type;
+        }
+        response.append(div);
+        div.focus();
     }
-  };
 
-  input.addEventListener("keypress", (event) => {
-    if (event.key === "Enter" && input.value != "") {
-      event.preventDefault();
-      execute(input.value);
-      input.value = "";
+    function execute(args) {
+        for(const command of COMMANDS) {
+            if(command.keys.includes(args[0])) {
+                command.fun(args);
+                return;
+            }
+        }
+        output(`Error: Command "${args[0]}" not recognized. Type "help" or "?" to view a list of commands`,"error")
     }
-  });
 
-  input.addEventListener("keydown", (event) => {
-    if (event.key == "ArrowUp" && history_index < history.length - 1) {
-      history_index++;
-      input.value = history[history_index];
-    } else if (event.key == "ArrowDown" && history_index > -1) {
-      history_index--;
-      if (history_index != -1) {
-        input.value = history[history_index];
-      } else {
-        input.value = "";
-      }
-    }
-  });
 
-  function addLine(content, type) {
-    const div = document.createElement("div");
-    div.append(content);
-    div.dataset.response = type;
-    response.append(div);
-  }
+    input.addEventListener("keydown",(event) => {
+        if(event.key == "Enter" && input.value != "") {
+            event.preventDefault();
+            const value = input.value;
+            input.value = "";
+            output(" > " + value);
+            execute(value.split(" "));
+        }
+    });
 
-  function execute(command) {
-    // put command on stack
-    history.unshift(command);
-    addLine("> " + command, "");
 
-    const args = command.split(" ");
-    console.log(HEADERS[args[0]]);
+    COMMANDS = [
+        {
+            name: "help",
+            keys: ["help","h","?"],
+            description: "Displays available commands and their descriptions",
+            fun: (args) => {
+                output("Available Commands:");
+                COMMANDS.forEach(command => {
+                    output(` - ${command.name}: ${command.description}`)
+                });
+            }
+        },{
+            name: "clear",
+            keys: ["clear"],
+            description: "Clears the Terminal",
+            fun: (args) => {
+                response.innerHTML = "";
+            }
+        },{
+            name: "goto",
+            keys: ["goto","gt","g"],
+            description: "Navigates to a page section",
+            fun: (args) => {
+                const locations = ["home","aboutme"]
 
-    const cmdlist = COMMANDS.filter((cmd) => cmd.keys.includes(args[0]));
-    if (cmdlist.length > 0) {
-      cmdlist[0].execute(args);
-    } else {
-      addLine(`Command not recognized: '${args[0]}'. Type "help", "h" or "?" for assistance`, "error");
-    }
-  }
+                if(args.includes("-l") || args.includes("--list")) {
+                    output("Available Locations:");
+                    output(locations.join(", "));
+                } else if(args.length == 1) {
+                    output("Error: No Destination Specified. Type \"goto -l\" to view destinations and \"goto {location}\" to navigate to one.","error")
+                } else if(locations.includes(args[1])) {
+                    document.getElementById(args[1]).scrollIntoView({
+                        behavior: "smooth",
+                      });
+                } else {
+                    output(`Error: Destination "${args[1]}" not recognized. Type \"goto -l\" to see a list of destinations`,"error")
+                }
+            }
+        }
+    ]
+
+
 })();
