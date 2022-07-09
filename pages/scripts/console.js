@@ -99,11 +99,13 @@
         const profile = document.createElement("a");
         profile.href = "https://www.github.com/LittleTealeaf";
         profile.innerText = "My Github Profile";
+        profile.target = "_blank";
         output(profile);
 
         const repo = document.createElement("a");
         repo.href = "https://www.github.com/LittleTealeaf/littletealeaf.github.io";
         repo.innerText = "This Website's Github Repository";
+        repo.target = "_blank";
         output(repo);
       },
     },

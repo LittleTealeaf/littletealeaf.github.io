@@ -89,6 +89,7 @@ body {
 
 #console .prompt {
     display: flex;
+    width: 100%;
     flex-direction: row;
     position: absolute;
     bottom: 0px;
