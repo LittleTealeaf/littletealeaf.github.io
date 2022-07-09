@@ -1,13 +1,13 @@
 (() => {
   const HEADERS = ["home", "aboutme"];
 
-  const CMDS = [
+  const COMMANDS = [
     {
       keys: ["help", "?", "h"],
       description: "Displays Available Commands",
       execute: (args) => {
         addLine("Available Commands:");
-        CMDS.forEach((command) => {
+        COMMANDS.forEach((command) => {
           addLine(` - ${command.keys[0]}: ${command.description}`);
         });
       },
@@ -47,40 +47,6 @@
       },
     },
   ];
-
-  const COMMANDS = {
-    clear: {
-      description: "Clears the terminal",
-      execute: (args) => {
-        response.innerHTML = "";
-      },
-    },
-    goto: {
-      description: "Navigates to a specified section of the page",
-      execute: (args) => {
-        if (args.length == 1) {
-          addLine(`Error: A destination must be provided. Type "goto -l" to list valid destinations`, "error");
-        } else if (args[1] == "-l" || args[1] == "--list") {
-          addLine("Available Sections: ");
-          addLine(HEADERS.join(", "));
-        } else {
-          if (HEADERS.includes(args[1])) {
-            document.getElementById(args[1]).scrollIntoView({
-              behavior: "smooth",
-            });
-          } else {
-            addLine(`Error: ${args[1]} is not a valid destination. Type "goto -l" to list valid destinations`, "error");
-          }
-        }
-      },
-    },
-    exit: {
-      description: "Exits the terminal",
-      execute: (args) => {
-        console_element.dataset.consolehide = "";
-      },
-    },
-  };
 
   const console_element = document.getElementById("console");
 
@@ -142,7 +108,7 @@
     const args = command.split(" ");
     console.log(HEADERS[args[0]]);
 
-    const cmdlist = CMDS.filter((cmd) => cmd.keys.includes(args[0]));
+    const cmdlist = COMMANDS.filter((cmd) => cmd.keys.includes(args[0]));
     if (cmdlist.length > 0) {
       cmdlist[0].execute(args);
     } else {
