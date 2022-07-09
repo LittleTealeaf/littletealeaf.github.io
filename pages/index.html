@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style.css" />
     <script defer src="scripts/typecycle.js"></script>
     <script defer src="scripts/console.js"></script>
+    <script defer src="scripts/neofetch.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thomas Kwashnak</title>
   </head>
   <body>
-    <noscript>
-      Please enable javascript to view this website correctly.
-    </noscript>
+    <noscript> Please enable javascript to view this website correctly. </noscript>
+
     <div id="console" data-hide></div>
 
     <section id="home">
@@ -23,8 +23,31 @@
         <div class="subtitle typecycle" data-words='["Computer Scientist","Software Engineer","Data Scientist"]'></div>
       </div>
     </section>
-    <div id="navbar">This is the navbar</div>
-
-    <div id="aboutme"></div>
+    <div id="aboutme">
+      <div class="window">
+        <div class="titlebar">tealeaf@littletealeaf.github.io</div>
+        <div class="content">
+          <div>
+            <span class="prompt">neofetch</span>
+          </div>
+          <div class="neofetch">
+            <img src="images/profile.jpg" />
+            <div class="text">
+              <div><span class="color">tealeaf</span>@<span class="color">littletealeaf.github.io</span></div>
+              <div>-------------------------------</div>
+              <div>
+                <span class="label">Packages</span><span>ALL OF THEM</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span class="prompt"><span class="cursor"> █</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("aboutme").scrollIntoView();
+    </script>
   </body>
 </html>

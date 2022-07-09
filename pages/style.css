@@ -12,44 +12,6 @@ body {
     margin: 0px;
 }
 
-#home {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(10, 5, 0, 0.9)), url(./images/home.jpg) no-repeat top center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    min-height: 100vh;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-}
-
-
-#home .content {
-    position: absolute;
-    top: 40%;
-    width: 100%;
-    font-family: monospace;
-}
-
-#home .content .name {
-    font-size: 50px;
-    word-wrap: normal;
-}
-
-#home hr {
-    width: 400px;
-    max-width: 80%;
-}
-
-#home .content .subtitle {
-    font-size: 25px;
-}
-
-#home .content .subsubtitle {
-    font-size: 20px;
-    word-wrap: normal;
-    max-width: 75%;
-    margin: auto;
-}
-
 #console {
     position: fixed;
     top: 0px;
@@ -102,7 +64,7 @@ body {
 #console input {
     flex-grow: 1;
     border: 0px;
-    background: rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     color: #fff;
 }
 
@@ -110,25 +72,52 @@ body {
     outline: none;
 }
 
-
-#navbar {
-    position: sticky;
-    top: 0px;
+#home {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(10, 5, 0, 1)), url(./images/home.jpg) no-repeat top center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    min-height: 100vh;
+    width: 100%;
+    text-align: center;
+    color: #fff;
 }
 
-#aboutme {
-    height: 100vh;
+
+#home .content {
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    font-family: monospace;
 }
 
+#home .content .name {
+    font-size: 50px;
+    word-wrap: normal;
+}
 
-.cursor {
+#home hr {
+    width: 400px;
+    max-width: 80%;
+}
+
+#home .content .subtitle {
+    font-size: 25px;
+}
+
+#home .content .subsubtitle {
+    font-size: 20px;
+    word-wrap: normal;
+    max-width: 75%;
+    margin: auto;
+}
+
+#home .cursor {
     color: white;
-    animation: cursorblink 1s infinite;
+    animation: cursorsmoothblink 1s infinite;
     margin: 0px;
     font-family: monospace;
 }
 
-@keyframes cursorblink {
+@keyframes cursorsmoothblink {
     0% {
         color: rgb(255, 255, 255, 1);
     }
@@ -139,5 +128,124 @@ body {
 
     90% {
         color: rgb(255, 255, 255, 1);
+    }
+}
+
+
+#aboutme {
+    height: fit-content;
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(10, 5, 0, 0.3)), url(./images/aboutme.jpg) no-repeat top center;
+    display: flex;
+}
+
+#aboutme .window {
+
+    --border-radius: 10px;
+
+    width: 95%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    background-color: rgba(48, 10, 36, 0.7);
+    box-shadow: 0px 0px 100px rgba(85, 64, 82, 0.295);
+    border-radius: var(--border-radius);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Ubuntu', monospace;
+    color: rgb(196, 196, 196);
+    box-shadow: 0px 0px 50px rgba(0,0,0,0.7);
+}
+
+
+
+#aboutme .window .titlebar {
+    height: 30px;
+    background-color: #292727;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    text-align: center;
+    color: rgb(161, 161, 161);
+    font-size: large;
+    padding-top: 5px;
+}
+
+#aboutme .window .content {
+    flex-grow: 1;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    padding: 10px;
+    font-size: 18px;
+}
+
+#aboutme .window .prompt::before {
+    content: "tealeaf@littletealeaf.github.io ~: ";
+    color: rgb(0, 139, 0);
+}
+
+#aboutme .neofetch {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+#aboutme .neofetch img {
+    width: 30%;
+    max-width: 400px;
+    flex-grow: 1;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-inline: 20px;
+}
+
+#aboutme .neofetch .text {
+    margin-inline: auto;
+}
+
+#aboutme .neofetch .label {
+    color: #7e82cc;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+#aboutme .neofetch .label::after {
+    content: ":";
+    color: #c4c4c4;
+}
+
+#aboutme .neofetch .color {
+    color: #7e82cc;
+}
+
+
+#aboutme .window .cursor {
+    font-size: 15px;
+    font-family: monospace;
+    color: #fff;
+    animation: cursorblink 1s infinite;
+}
+
+@keyframes cursorblink {
+    0% {
+        color: rgb(230, 230, 230, 1);
+    }
+
+    49.9% {
+        color: rgb(230, 230, 230, 1);
+    }
+
+    50% {
+        color: rgb(230, 230, 230, 0);
+    }
+
+    99.9% {
+        color: rgb(230, 230, 230, 0);
+    }
+
+    100% {
+        color: rgb(230, 230, 230, 1);
     }
 }
