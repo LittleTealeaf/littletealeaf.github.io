@@ -114,7 +114,7 @@
       keys: ["goto", "gt", "g","go"],
       description: "Navigates to a page section",
       fun: (args) => {
-        const locations = ["home", "about"];
+        const locations = ["home", "about","projects"];
 
         if (args.includes("-l") || args.includes("--list")) {
           output("Available Locations:");
