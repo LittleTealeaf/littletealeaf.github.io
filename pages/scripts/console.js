@@ -92,6 +92,22 @@
       },
     },
     {
+      name: "git",
+      keys: ["git", "github"],
+      description: "Links to this website's github",
+      fun: (args) => {
+        const profile = document.createElement("a");
+        profile.href = "https://www.github.com/LittleTealeaf";
+        profile.innerText = "My Github Profile";
+        output(profile);
+
+        const repo = document.createElement("a");
+        repo.href = "https://www.github.com/LittleTealeaf/littletealeaf.github.io";
+        repo.innerText = "This Website's Github Repository";
+        output(repo);
+      },
+    },
+    {
       name: "goto",
       keys: ["goto", "gt", "g"],
       description: "Navigates to a page section",
