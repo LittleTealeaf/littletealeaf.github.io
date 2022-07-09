@@ -74,7 +74,7 @@ body {
 
 #home {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(10, 5, 0, 1)), url(./images/home.jpg) no-repeat top center;
-    background-size: auto 100%;
+    background-size: auto auto;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     min-height: 100vh;
     width: 100%;
@@ -133,14 +133,14 @@ body {
 }
 
 
-#aboutme {
+#about {
     height: fit-content;
-    background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(10, 5, 0, 0.4) 30%, rgba(10,5,0,0.4) 70%, rgba(0,0,0,1) 100%), url(./images/aboutme.jpg) no-repeat top center;
+    background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(10, 5, 0, 0.4) 60%, rgba(10,5,0,0.4) 70%, rgba(0,0,0,1) 100%), url(./images/aboutme.jpg) no-repeat top center;
     background-size: auto;
     display: flex;
 }
 
-#aboutme .window {
+#about .window {
 
     --border-radius: 10px;
 
@@ -161,7 +161,7 @@ body {
 
 
 
-#aboutme .window .titlebar {
+#about .window .titlebar {
     height: 30px;
     background-color: #292727;
     border-top-left-radius: var(--border-radius);
@@ -172,7 +172,7 @@ body {
     padding-top: 5px;
 }
 
-#aboutme .window .content {
+#about .window .content {
     flex-grow: 1;
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
@@ -180,12 +180,23 @@ body {
     font-size: 18px;
 }
 
-#aboutme .window .prompt::before {
-    content: "tealeaf@littletealeaf.github.io ~: ";
-    color: rgb(0, 139, 0);
+#about .window .commandcontainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-#aboutme .neofetch {
+#about .window .prompt {
+    color: rgb(0,139,0);
+    margin-right: 10px;
+}
+
+#about .window .command::before {
+    content: "~ >";
+    color: #7e82cc;
+}
+
+#about .neofetch {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -194,17 +205,19 @@ body {
 
 }
 
-#aboutme .neofetch img {
+#about .neofetch img {
     width: 30%;
     max-width: 400px;
     flex-grow: 1;
     border-radius: 50%;
     margin-bottom: 20px;
-    margin-inline: 20px;
     box-shadow: 0px 0px 40px rgba(0,0,0,0.5);
+    margin: auto;
+    filter: brightness(70%);
 }
 
 #neofetch_data {
+    margin-top: 20px;
     margin-inline: auto;
 }
 
@@ -213,6 +226,11 @@ body {
     height: 1px;
     background: #fff;
     background: repeating-linear-gradient(90deg,#fff,#fff 10px,transparent 10px,transparent 20px);
+}
+
+#neofetch_data div {
+    word-wrap: normal;
+    max-width: 550px;
 }
 
 
@@ -231,7 +249,7 @@ body {
 }
 
 
-#aboutme .window .cursor {
+#about .window .cursor {
     font-size: 15px;
     font-family: monospace;
     color: #fff;

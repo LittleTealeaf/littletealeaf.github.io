@@ -111,10 +111,10 @@
     },
     {
       name: "goto",
-      keys: ["goto", "gt", "g"],
+      keys: ["goto", "gt", "g","go"],
       description: "Navigates to a page section",
       fun: (args) => {
-        const locations = ["home", "aboutme"];
+        const locations = ["home", "about"];
 
         if (args.includes("-l") || args.includes("--list")) {
           output("Available Locations:");
