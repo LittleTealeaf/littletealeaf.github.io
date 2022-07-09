@@ -86,7 +86,7 @@
     {
       name: "clear",
       keys: ["clear"],
-      description: "Clears the Terminal",
+      description: "Clears the terminal",
       fun: (args) => {
         response.innerHTML = "";
       },
@@ -94,7 +94,7 @@
     {
       name: "git",
       keys: ["git", "github"],
-      description: "Links to this website's github",
+      description: "Links to my github and this website's repository",
       fun: (args) => {
         const profile = document.createElement("a");
         profile.href = "https://www.github.com/LittleTealeaf";
