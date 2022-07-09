@@ -41,7 +41,8 @@ fetch("generated/neofetch.json")
     }
 
     const uptime = (() => {
-        const birthdate = new Date(2002,4,28);
+        //Birthday's actually may 28th, but I set it to be the next month and just add 2 days
+        const birthdate = new Date(2002,5,0);
         const now = new Date(Date.now());
 
         var days = Math.floor((now.getTime() - birthdate.getTime()) / (24 * 3600 * 1000));
@@ -80,7 +81,7 @@ fetch("generated/neofetch.json")
 
         months = months % 12;
 
-        return `${years}y ${months}m ${days}d`;
+        return `${years}y ${months}m ${days + 2}d`;
     })();
 
 
