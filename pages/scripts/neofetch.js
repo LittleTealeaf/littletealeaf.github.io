@@ -3,23 +3,10 @@ fetch("generated/neofetch.json")
   .then((data) => {
     const element = document.getElementById("neofetch_data");
 
-    const title = (() => {
-      const div = document.createElement("div");
 
-      const user = document.createElement("span");
-      user.classList.add("colored");
-      user.innerText = "Thomas Kwashnak";
-
-      const symbol = document.createElement("span");
-      symbol.innerText = "@";
-
-      const location = document.createElement("span");
-      location.classList.add("colored");
-      location.innerText = "littletealeaf.github.io";
-
-      div.append(user, symbol, location);
-      return div;
-    })();
+    const title = document.createElement("div");
+    title.innerText = "Thomas Kwashnak";
+    title.classList.add("colored");
 
     element.append(title);
 
@@ -84,6 +71,7 @@ fetch("generated/neofetch.json")
     })();
 
     addField("Status", "Student at Quinnipiac University");
+    addField("Graduating Class","2024");
     addField("Majors", "Computer Science, Data Science");
     addField("Minors", "Economics");
     addField("Uptime", uptime);
