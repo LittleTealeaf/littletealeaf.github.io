@@ -44,17 +44,41 @@ fetch("generated/neofetch.json")
         const birthdate = new Date(2002,4,28);
         const now = new Date(Date.now());
 
+        var days = Math.floor((now.getTime() - birthdate.getTime()) / (24 * 3600 * 1000));
 
-        //TODO CUSTOM DATE STUFF YEA OK
-        const years = now.getFullYear() - birthdate.getFullYear();
-        var months = now.getMonth() - new Date(now.getFullYear(),4,28).getMonth() - 1;
+        var months = (() => {
+            var months = 0;
 
-        var days = Math.floor(((now.getTime() - birthdate.getTime()) / (24 * 60 * 60 * 1000)) -(365.25 * years + months * 31));
+            const DAYS_IN_MONTH = [31,28,31,30,31,30,31,31,30,31,30,31];
 
-        if(days < 0) {
-            days += 31;
-            months--;
-        }
+            var year = 2002;
+            var month = 4;
+
+            const getDays = (month,year) => {
+                if(year%4==0 && month == 1) {
+                    return DAYS_IN_MONTH[month] + 1;
+                } else {
+                    return DAYS_IN_MONTH[month]
+                }
+            }
+
+            while(days - getDays(month,year) > 0) {
+                days -= getDays(month,year);
+                months++;
+                month++;
+                if(month >= 12) {
+                    month = 0;
+                    year++;
+                }
+            }
+            return months;
+        })();
+
+        console.log(months);
+
+        const years = Math.floor(months / 12);
+
+        months = months % 12;
 
         return `${years}y ${months}m ${days}d`;
     })();
@@ -65,7 +89,7 @@ fetch("generated/neofetch.json")
     addField("Status", "Student at Quinnipiac University");
     addField("Majors", "Computer Science, Data Science");
     addField("Minors", "Economics");
+    addField("Uptime",uptime);
     addField("OS", "Windows 11, Linux (Ubuntu 22.04)");
     addField("Github Repos", data.repo_count);
-    addField("Uptime",uptime);
   });
