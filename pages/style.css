@@ -201,23 +201,30 @@ body {
     margin-inline: 20px;
 }
 
-#aboutme .neofetch .text {
+#neofetch_data {
     margin-inline: auto;
 }
 
-#aboutme .neofetch .label {
+#neofetch_data hr {
+    border: none;
+    height: 1px;
+    background: #fff;
+    background: repeating-linear-gradient(90deg,#fff,#fff 10px,transparent 10px,transparent 20px);
+}
+
+
+#neofetch_data .colored {
     color: #7e82cc;
+}
+
+#neofetch_data .label {
     font-weight: bold;
     margin-right: 5px;
 }
 
-#aboutme .neofetch .label::after {
-    content: ":";
+#neofetch_data .label::after {
+    content: ':';
     color: #c4c4c4;
-}
-
-#aboutme .neofetch .color {
-    color: #7e82cc;
 }
 
 
