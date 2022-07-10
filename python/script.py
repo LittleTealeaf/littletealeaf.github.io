@@ -9,4 +9,12 @@ save("neofetch.json", {
     "repo_count": user['public_repos']
 })
 
-project_data = getJson("projects")
+projects = getJson("projects.json")
+
+for project in projects:
+    if 'image' in project:
+        project['image'] = referenceImage(project['image'],project['name'].replace(' ','_') + ".png")
+
+
+
+save("projects.json",projects)

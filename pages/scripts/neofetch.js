@@ -69,17 +69,25 @@ fetch("generated/neofetch.json")
       return `${years}y ${months}m ${days + 2}d`;
     })();
 
-    addField("Status", "Student at Quinnipiac University");
-    addField("Graduating Class", "2024");
-    addField("Majors", "Computer Science, Data Science");
-    addField("Minors", "Economics");
-    addField("Uptime", uptime);
-    addField("Rubik's Cube Record", "15.86s");
-    addField("Rubik's Cube Average", "29.71s");
-    addField("D&D Status", "Dungeon Master");
-    addField("Tang Soo Do Rank", "3rd Degree Black Belt");
-    addField("Outdoor Activity", "Hiking");
-    addField("Operating Systems", "Windows 11, Ubuntu 22.04");
-    addField("Video Games", "Dungeons & Dragons: Online, Minecraft, World of Tanks, Warframe");
-    addField("Github Repos", data.repo_count);
+    // addField("Status", "Student at Quinnipiac University");
+    // addField("Graduating Class", "2024");
+    // addField("Majors", "Computer Science, Data Science");
+    // addField("Minors", "Economics");
+    // addField("Uptime", uptime);
+    // addField("Rubik's Cube Record", "15.86s");
+    // addField("Rubik's Cube Average", "29.71s");
+    // addField("D&D Status", "Dungeon Master");
+    // addField("Tang Soo Do Rank", "3rd Degree Black Belt");
+    // addField("Outdoor Activity", "Hiking");
+    // addField("Operating Systems", "Windows 11, Ubuntu 22.04");
+    // addField("Video Games", "Dungeons & Dragons: Online, Minecraft, World of Tanks, Warframe");
+    // addField("Github Repos", data.repo_count);
+
+    addField("Status","Student at Quinnipiac University");
+    addField("Class","2024");
+    addField("Majors","Computer Science, Data Science");
+    addField("Minors","Economics");
+    addField("Passions","Automation, Coding, Learning");
+    addField("Operating Systems","Windows 11, Ubuntu 22.04");
+    addField("Uptime",uptime);
   });
