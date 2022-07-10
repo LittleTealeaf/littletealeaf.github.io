@@ -291,7 +291,7 @@ body {
 
     width: 95%;
     max-width: 1600px;
-    min-height: 600px;
+    min-height: 500px;
     height: fit-content;
     margin: auto;
     margin-top: 120px;
@@ -422,7 +422,7 @@ body {
 }
 
 #project_preview .text p {
-    word-wrap: normal;
+    overflow: hidden;
     text-align: center;
     font-size: 20px;
 }

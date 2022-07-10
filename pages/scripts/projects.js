@@ -27,7 +27,6 @@ function preview(div,project) {
         delete selection_current.dataset.selected;
     }
     selection_current = div;
-    project_node.dataset.preview = "true";
 
     preview_node.innerHTML = "";
 
@@ -49,6 +48,10 @@ function preview(div,project) {
         const node = document.createElement("p");
         node.innerText = paragraph;
         node_text.append(node);
+        if(project_node.dataset.preview == "false") {
+          node.style.whiteSpace = "nowrap";
+          setTimeout(() => node.style.whiteSpace = "unset",150);
+        }
     });
 
     const node_links = document.createElement("div");
@@ -72,6 +75,9 @@ function preview(div,project) {
         img.alt = `Preview Image of ${project.name}`;
         preview_node.append(img);
     }
+
+
+    project_node.dataset.preview = "true";
 
 }
 
