@@ -312,9 +312,10 @@ body {
 }
 
 #projects .content {
-    display: flex;
+    display:flex;
     flex-direction: row;
     flex-grow: 2;
+    overflow: hidden;
 }
 
 #projects * {
@@ -324,11 +325,12 @@ body {
 #project_list {
     margin-left: 25px;
     margin-right: 25px;
-    flex-grow: 1;
+    width: 100%;
     display: grid;
     height: fit-content;
     grid-template-columns: repeat(auto-fill, 300px);
     overflow: hidden;
+    margin: 0px;
 }
 
 #project_list * {
@@ -385,12 +387,10 @@ body {
 
 
 #project_preview {
-    width: 0px;
-    flex-grow: 0;
+    width: 0%;
     overflow: hidden;
     display: flex;
     flex-direction: row;
-
     position: relative;
     padding: 10px;
     height: 100%;
@@ -460,7 +460,7 @@ body {
     border-color: rgba(93, 93, 86, 0);
 }
 
-#projects[data-preview="false"] #project_preview {
+/* #projects[data-preview="false"] #project_preview {
     height: 300px;
 }
 
@@ -468,7 +468,7 @@ body {
     background-color: transparent;
     color: transparent;
     font-size: 0px;
-}
+} */
 
 #projects[data-preview='true'] #project_list {
     flex-grow: 0;
@@ -476,8 +476,7 @@ body {
 }
 
 #projects[data-preview='true'] #project_preview {
-    flex-grow: 2;
-
+    width: calc(100% - 350px);
 }
 
 #projects[data-preview='true'] hr {
@@ -489,6 +488,10 @@ body {
     background-color: rgb(41, 39, 39);
 }
 
+#projects[data-preview='false'] #project_preview p {
+    display: none;
+}
+
 @media only screen and (max-width: 1250px) {
 
     #project_preview {
@@ -497,17 +500,24 @@ body {
 
     #project_list {
         width: 100%;
-        margin: 0px;
     }
 
-    #projects[data-preview='false'] #project_preview * {
+    #projects[data-preview='true'] #project_list {
+        width: 0px;
+    }
+
+    #projects[data-preview='true'] #project_preview {
+        width: 100%;
+    }
+
+    /* #projects[data-preview='false'] #project_preview * {
         background-color: transparent;
         color: transparent;
         font-size: 0px;
-    }
+    } */
 
     #projects * {
-        transition-duration: 0.75s;
+        transition-duration: 0.5s;
     }
 
     #projects[data-preview='true'] #project_list {
@@ -515,9 +525,9 @@ body {
         margin: 0px;
     }
 
-    #projects[data-preview='true'] hr {
+    /* #projects[data-preview='true'] hr {
         border-color: rgba(93, 93, 86, 0);
-    }
+    } */
 
 
 }
