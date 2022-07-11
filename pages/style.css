@@ -460,15 +460,6 @@ body {
     border-color: rgba(93, 93, 86, 0);
 }
 
-/* #projects[data-preview="false"] #project_preview {
-    height: 300px;
-}
-
-#projects[data-preview="false"] #project_preview * {
-    background-color: transparent;
-    color: transparent;
-    font-size: 0px;
-} */
 
 #projects[data-preview='true'] #project_list {
     flex-grow: 0;
@@ -510,12 +501,6 @@ body {
         width: 100%;
     }
 
-    /* #projects[data-preview='false'] #project_preview * {
-        background-color: transparent;
-        color: transparent;
-        font-size: 0px;
-    } */
-
     #projects * {
         transition-duration: 0.5s;
     }
@@ -524,11 +509,6 @@ body {
         width: 0px;
         margin: 0px;
     }
-
-    /* #projects[data-preview='true'] hr {
-        border-color: rgba(93, 93, 86, 0);
-    } */
-
 
 }
 
