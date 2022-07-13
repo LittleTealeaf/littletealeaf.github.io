@@ -1,0 +1,14 @@
+html::-webkit-scrollbar {
+    display: none
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body {
+    margin: 0px;
+    background-color: #000000;
+}
