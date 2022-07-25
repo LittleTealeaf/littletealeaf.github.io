@@ -55,16 +55,5 @@
 
     for (var i = 0; i < elements.length; i++) {
         new TypeWriter(elements.item(i));
-        // (() => {
-        //     const element = elements.item(i);
-
-        //     const text = document.createElement("span");
-
-        //     const cursor = document.createElement("span");
-        //     cursor.innerText = "|";
-        //     cursor.classList.add("cursor");
-
-        //     element.append(text, cursor);
-        // })();
     }
 })();
