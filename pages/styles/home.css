@@ -16,6 +16,10 @@
     color: #fff;
 }
 
+#home[data-orientation="horizontal"] {
+    background-size: 100vw auto;
+}
+
 #home .helper {
     position: absolute;
     top: 45%;
@@ -49,10 +53,6 @@
 }
 
 @media only screen and (min-width: 1920px) {
-    #home {
-        background-size: 100vw auto;
-    }
-
     #home .name {
         font-size: calc(100vw / 38.4)
     }
