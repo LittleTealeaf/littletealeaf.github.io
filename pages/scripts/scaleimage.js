@@ -1,5 +1,5 @@
 (() => {
-    const backgrounds = document.getElementsByClassName("responsivebackground");
+    const backgrounds = document.getElementsByClassName("scaleimage");
 
     for (var i = 0; i < backgrounds.length; i++) {
         const element = backgrounds.item(i);
@@ -8,9 +8,9 @@
 
             function handleResize() {
                 if (element.clientHeight / element.clientWidth < imageRatio) {
-                    element.dataset.orientation = "horizontal";
+                    element.dataset.ratio = "horizontal";
                 } else {
-                    element.dataset.orientation = "vertical";
+                    element.dataset.ratio = "vertical";
                 }
             }
 
