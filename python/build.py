@@ -7,6 +7,9 @@ clear_export()
 
 # export_image('./resources/images/backgrounds/home.jpg','images','backgrounds','home.webp')
 
+getGithubApi('/users/LittleTealeaf')
+
+
 for file in os.listdir(get_res('images','background')):
 
     name = Path(file).stem

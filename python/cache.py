@@ -1,48 +1,67 @@
 import json
 import os
+from pathlib import Path
 from random import Random
 from time import time
 
+VERSION = '5'
+DEFAULT_TIME = 6
+MIN_TIME = 1
+MAX_TIME = 72
+
 VALID_FILE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-"
 
+
 def store_cache(key,value):
-    key = sanitize_key(key)
+    cache = {
+        'value': value,
+        'expires': time() + 60 * 60 * DEFAULT_TIME,
+        'duration': DEFAULT_TIME
+    }
 
-    cache = load_cache(key)
-    if cache != None:
-        if cache['value'] == value:
-            cache['duration'] = min(60 * 60 * 24 * 7,cache['duration'] * 1.5)
-        else:
-            cache['duration'] = max(1,cache['duration'] / 2)
-        cache['expires'] = time() + 60 * 60 * cache['duration']
-    else:
-        cache = {
-            'value': value,
-            'expires': time() + 60 * 60 * 6,
-            'duration': 6
-        }
+    fileName = get_file(key)
+
+    if os.path.exists(fileName):
+        with open(fileName) as f:
+            old_cache = json.load(f)
+
+            if json.dumps(value) == json.dumps(old_cache['value']):
+                cache['duration'] = min(MAX_TIME,old_cache['duration'] * 1.5)
+            else:
+                cache['duration'] = max(MIN_TIME,old_cache['duration'] / 2)
+            cache['expires'] = time() + 60 * 60 * cache['duration']
+
     os.makedirs(os.path.join('.','cache'),exist_ok=True)
-    with open(os.path.join('.','cache',key),'w') as f:
-        f.write(json.dumps(cache,separators=(',',':')))
-
+    with open(fileName,'w') as f:
+        f.write(json.dumps(cache))
 
 def get_cache(key):
-    key = sanitize_key(key)
-    cache = load_cache(key)
-    if cache != None and cache['expires'] > time():
-        return cache['value']
-    else:
+    fileName = get_file(key)
+
+    if not os.path.exists(fileName):
         return None
 
+    with open(fileName) as f:
+        data = json.load(f)
 
-def load_cache(key):
-    if os.path.exists(os.path.join('.','cache',key)):
-        with open(os.path.join('.','cache',key)) as f:
-            return json.load(f)
-    else:
-        return None
+        if data['expires'] < time():
+            return None
 
+        return data['value']
 
-def sanitize_key(key):
-    rand = Random(key)
-    return "".join(rand.choices(VALID_FILE_CHARACTERS,k=10)) + '.json'
+def get_file(key):
+    seed = f'{VERSION}{key}'
+    random = Random(seed)
+    fileName = "".join(random.choices(VALID_FILE_CHARACTERS,k=10)) + ".json"
+    return os.path.join('.','cache',fileName)
+
+def clean_cache():
+    if os.path.exists(os.path.join('.','cache')):
+        for file in os.listdir(os.path.join('.','cache')):
+            mark_delete = False
+            with open(os.path.join('.','cache',file)) as f:
+                cache = json.load(f)
+                if cache['expires'] < time() - 60 * 60 * DEFAULT_TIME:
+                    mark_delete = True
+            if mark_delete:
+                os.remove(os.path.join('.','cache',file))
