@@ -1,8 +1,4 @@
 #home {
-    color: white;
-}
-
-#home {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%),

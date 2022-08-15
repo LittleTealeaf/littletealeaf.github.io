@@ -1,14 +1,27 @@
 from github import *
 from export import *
+from date_util import time_since_birthday
+from wakatime import *
 from res import *
 from pathlib import Path
 
 clear_export()
 
-# export_image('./resources/images/backgrounds/home.jpg','images','backgrounds','home.webp')
+waka_all = getWakaData("/api/v1/users/LittleTealeaf/stats/all_time")["data"]
+waka_monthly = getWakaData("/api/v1/users/LittleTealeaf/stats/last_30_days")["data"]
+waka_weekly =  getWakaData("/api/v1/users/LittleTealeaf/stats/last_7_days")["data"]
 
-getGithubApi('/users/LittleTealeaf')
 
+## ABOUT ME
+
+export_json({
+    'operating systems': [item['name'] for item in waka_monthly['operating_systems']],
+    'languages': [item['name'] for item in waka_monthly['languages']],
+    'uptime': time_since_birthday()
+},'data','aboutme.json')
+
+
+## BACKGROUNDS
 
 for file in os.listdir(get_res('images','background')):
 

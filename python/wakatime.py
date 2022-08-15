@@ -1,7 +1,7 @@
 import requests
 import os
 
-from .cache import store_cache
+from cache_util import store_cache, get_cache
 
 try:
     from dotenv import load_dotenv
@@ -12,7 +12,7 @@ except:
 def getWakaData(endpoint: str, params: dict = {}):
 
     key = f"WAKATIME - {endpoint}{params}"
-    che = store_cache()
+    che = get_cache(key)
     if che != None:
         return che
     params = params.copy()
