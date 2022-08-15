@@ -30,3 +30,5 @@ def getGithubApi(url: str, headers: dict = {}, params: dict = {}):
         return request.json()
     else:
         return None
+
+
