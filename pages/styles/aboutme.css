@@ -2,11 +2,140 @@
     background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.9) 100%),
         linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%), url(../resources/images/background/aboutme.webp) no-repeat;
     background-position: top right;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+/* Window Container */
+#aboutme .window {
+    width: 95%;
+    max-width: 1000px;
+
+    background-color: rgba(48, 10, 36, 0.7);
+    color: rgb(196, 196, 196);
+
+    --radius: 10px;
+    border-radius: var(--radius);
+
+    font-family: "Ubuntu", monospace;
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#aboutme .title {
+    text-align: center;
+    background-color: #292727;
+    color: rgb(161, 161, 161);
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+    padding: 7px;
+    font-size: 19px;
+}
+
+#aboutme .content {
+    padding: 5px;
+}
+
+#aboutme .content > div {
+    font-size: 18px;
+}
+
+#aboutme .neofetch {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+#aboutme .neofetch > * {
+    flex-grow: 1;
+    margin: auto;
+    margin-top: 15px;
+}
+
+
+#aboutme img {
+    width: 30%;
+    max-width: 400px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    filter: brightness(70%);
+}
+
+#aboutme hr {
+    border: none;
+    height: 1px;
+    background: #fff;
+    background: repeating-linear-gradient(90deg, #fff, #fff 10px, transparent 10px, transparent 20px);
+}
+
+
+#aboutme .details {
+    max-width: fit-content;
+    padding: 10px;
+}
+
+#aboutme .user_title {
+    color: rgb(115, 130, 204);
+}
+
+#aboutme .details > div > span:first-child {
+    color: rgb(115, 130, 204);
+    font-weight: bolder;
+}
+#aboutme .details > div > span:first-child::after {
+    color: rgb(196, 196, 196);
+    font-weight: bolder;
+    content: ": "
+}
+
+#aboutme .command > span:first-child {
+    color: rgb(16, 137, 0);
+}
+
+#aboutme .command > span:last-child::before {
+    color: rgb(124, 128, 201);
+    content: "~ >";
+    margin-inline: 10px;
+}
+
+#aboutme .cursor {
+    font-size: 15px;
+    font-family: monospace;
+    color: #fff;
+    animation: cursor_blink 1s infinite;
+}
+
+@keyframes cursor_blink {
+    0% {
+        color: rgb(230, 230, 230, 1);
+    }
+
+    49.9% {
+        color: rgb(230, 230, 230, 1);
+    }
+
+    50% {
+        color: rgb(230, 230, 230, 0);
+    }
+
+    99.9% {
+        color: rgb(230, 230, 230, 0);
+    }
+
+    100% {
+        color: rgb(230, 230, 230, 1);
+    }
 }

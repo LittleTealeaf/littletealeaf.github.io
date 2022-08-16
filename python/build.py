@@ -16,10 +16,15 @@ waka_weekly =  getWakaData("/api/v1/users/LittleTealeaf/stats/last_7_days")["dat
 
 export_json({
     'operating systems': [item['name'] for item in waka_monthly['operating_systems']],
-    'languages': [item['name'] for item in waka_monthly['languages']],
     'uptime': time_since_birthday()
 },'data','aboutme.json')
 
+
+## STATS
+
+export_json({
+    
+},'data','stats.json')
 
 ## BACKGROUNDS
 
@@ -27,6 +32,11 @@ for file in os.listdir(get_res('images','background')):
 
     name = Path(file).stem
     export_image(get_res('images','background',file),'images','background',f'{name}.webp')
+
+## IMPORTS
+for file in os.listdir(get_res('images','misc')):
+    name = Path(file).stem
+    export_image(get_res('images','misc',file),'images','misc',f'{name}.webp')
 
 
 # Projects
