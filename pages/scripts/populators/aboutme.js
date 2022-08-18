@@ -3,22 +3,6 @@ fetch("./resources/data/aboutme.json")
     .then((data) => {
         const e_root = document.getElementById("aboutme");
 
-        function addEntry(name, value) {
-            return createElement({
-                node: "div",
-                content: [
-                    createElement({
-                        node: "span",
-                        content: name,
-                    }),
-                    createElement({
-                        node: "span",
-                        content: value,
-                    }),
-                ],
-            });
-        }
-
         const values = {
             Status: "Student at Quinnipiac University",
             Class: "2024",

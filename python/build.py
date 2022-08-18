@@ -39,7 +39,9 @@ export_json(
 ## STATS
 
 export_json(
-    {"week": waka_weekly, "month": waka_monthly, "all": waka_all}, "data", "stats.json"
+    {"waka": {
+        "week": waka_weekly, "month": waka_monthly, "all_time": waka_all
+    }}, "data", "stats.json"
 )
 
 ## BACKGROUNDS

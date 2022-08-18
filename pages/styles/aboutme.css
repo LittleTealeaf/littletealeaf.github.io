@@ -1,14 +1,23 @@
 #aboutme {
     background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.9) 100%),
         linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%), url(../resources/images/background/aboutme.webp) no-repeat;
-    background-position: top right;
+    background-position: top center;
     min-height: 100vh;
     width: 100%;
+
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+#aboutme[data-orientation="vertical"] {
+    background-size: auto 100vh;
+}
+
+#aboutme[data-orientation="horizontal"] {
+    background-size: 100vw auto;
 }
 
 /* Window Container */
@@ -63,7 +72,6 @@
     margin-top: 15px;
 }
 
-
 #aboutme img {
     width: 30%;
     max-width: 400px;
@@ -81,7 +89,6 @@
     background: repeating-linear-gradient(90deg, #fff, #fff 10px, transparent 10px, transparent 20px);
 }
 
-
 #aboutme .details {
     max-width: fit-content;
     padding: 10px;
@@ -98,7 +105,7 @@
 #aboutme .details > div > span:first-child::after {
     color: rgb(196, 196, 196);
     font-weight: bolder;
-    content: ": "
+    content: ": ";
 }
 
 #aboutme .command > span:first-child {
