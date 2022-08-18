@@ -7,10 +7,18 @@ from pathlib import Path
 
 clear_export()
 
-waka_all = getWakaData("/api/v1/users/LittleTealeaf/stats/all_time")["data"]
-waka_monthly = getWakaData("/api/v1/users/LittleTealeaf/stats/last_30_days")["data"]
-waka_weekly =  getWakaData("/api/v1/users/LittleTealeaf/stats/last_7_days")["data"]
+waka_all = getWakaStats('all_time')
+waka_monthly = getWakaStats('last_30_days')
+waka_weekly = getWakaStats('last_7_days')
 
+del waka_all['dependencies']
+del waka_monthly['dependencies']
+del waka_weekly['dependencies']
+
+def filter_keys(map, keys: list[str]):
+    data = {}
+    for key in keys:
+        data[key] = map[key]
 
 ## ABOUT ME
 
@@ -23,7 +31,9 @@ export_json({
 ## STATS
 
 export_json({
-    
+    'week': waka_weekly,
+    'month': waka_monthly,
+    'all': waka_all
 },'data','stats.json')
 
 ## BACKGROUNDS
