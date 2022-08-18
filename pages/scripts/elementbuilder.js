@@ -9,10 +9,10 @@ function createElementOld(data = {
     return element;
 }
 
-function createElement({id, node="div", classNames, content, src} = values) {
+function createElement({id, node="div", classNames, content, src, onclick} = values) {
     const element = document.createElement(node);
     id && (element.id = id);
-    element.classList.add(classNames);
+    classNames && element.classList.add(classNames);
     if(content) {
         if(typeof(content) === "string") {
             element.innerText = content;
@@ -21,5 +21,9 @@ function createElement({id, node="div", classNames, content, src} = values) {
         }
     }
     src && (element.src = src);
+
+    onclick && (element.onclick = onclick);
+
+
     return element;
 }

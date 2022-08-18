@@ -1,7 +1,56 @@
-#aboutme[data-orientation="vertical"] {
-    background-size: auto 100vh;
+#stats {
+    width: 100vw;
+    background-color: black;
+    flex-direction: row;
+    color: white;
+    font-family: monospace;
 }
 
-#aboutme[data-orientation="horizontal"] {
+#stats[data-orientation="vertical"] {
+    background-size: auto 50vh;
+}
+
+#stats[data-orientation="horizontal"] {
     background-size: 100vw auto;
+}
+
+#stats .header {
+    position: sticky;
+    top: 10px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: fit-content;
+    cursor: pointer;
+    flex-wrap: wrap;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 20px rgba(0,0,0,0.5);
+
+}
+
+#stats .header > * {
+    margin: auto;
+    padding: 20px;
+
+    font-size: 15px;
+    transition-duration: 0.5s;
+    color: rgb(170,170,170);
+}
+
+#stats .header > *[data-selected="true"] {
+    font-size: 16px;
+    color: rgb(255,255,255);
+}
+
+#stats .content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#stats .content > * {
+    padding: 20px;
+    border: 2px dashed white;
+    margin: 0 auto;
+    flex-grow: 1;
 }
