@@ -114,24 +114,4 @@ fetch("./resources/data/aboutme.json")
                 ],
             })
         );
-
-        // const e_window = document.createElement("div");
-        // e_window.classList.add("window");
-        // e_root.append(e_window);
-
-        // const e_title = document.createElement("div");
-        // e_title.textContent = "tealeaf@littletealeaf.github.io";
-        // e_title.classList.add("title");
-        // e_window.append(e_title);
-
-        // const e_content = document.createElement("div");
-        // e_content.classList.add("content");
-        // e_window.append(e_content);
-
-        // const e_cmd_1 = document.createElement("div");
-        // e_cmd_1.classList.add("command");
-        // const e_cmd_1_prompt = document.createElement("span");
-        // e_cmd_1_prompt.innerText = "test";
-
-        // e_window.append(e_cmd_1);
     });

@@ -11,9 +11,9 @@ waka_all = wakatime.getStats("all_time")
 waka_monthly = wakatime.getStats("last_30_days")
 waka_weekly = wakatime.getStats("last_7_days")
 
-del waka_all["dependencies"]
-del waka_monthly["dependencies"]
-del waka_weekly["dependencies"]
+for waka_stats in [waka_all, waka_monthly, waka_weekly]:
+    for key in ['dependencies', 'is_up_to_date', 'is_stuck', 'is_up_to_date_pending_future', 'status', 'is_already_updating']:
+        del waka_stats[key]
 
 
 def filter_keys(map, keys: list[str]):
@@ -51,7 +51,7 @@ for file in os.listdir(get_res("images", "background")):
         get_res("images", "background", file), "images", "background", f"{name}.webp"
     )
 
-## IMPORTS
+## MISC
 for file in os.listdir(get_res("images", "misc")):
     name = Path(file).stem
     export_image(get_res("images", "misc", file), "images", "misc", f"{name}.webp")
