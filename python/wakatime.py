@@ -34,7 +34,7 @@ def getWakaApi(endpoint: str, params: dict = {}):
         return data
     print(response.text)
 
-def getWakaStats(timeFrame: str):
+def getStats(timeFrame: str):
     key = f"WAKATIME/STATS/{timeFrame}"
     che = get_cache(key)
     if che != None:
