@@ -28,11 +28,12 @@ jobs:
         with:
           python-version: '3.x'
       - name: Install Requirements
-        run: pip install -r python/requirements.txt
+        run: pip install -r requirements.txt
       - name: Run Python Script
-        run: python python/script.py
+        run: python python/build.py
         env:
           API_GITHUB: ${{secrets.API_GITHUB}}
+          WAKA_TOKEN: ${{secrets.WAKA_TOKEN}}
       - name: Publish to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: peaceiris/actions-gh-pages@v3

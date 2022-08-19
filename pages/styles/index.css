@@ -1,0 +1,34 @@
+html::-webkit-scrollbar {
+    display: none
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body {
+    margin: 0px;
+    background-color: #000000;
+}
+
+.typewriter .cursor {
+    animation: typewriter_cursor 1s infinite;
+    margin: 0px;
+    color: white;
+    font-family: monospace;
+}
+@keyframes typewriter_cursor {
+    0% {
+        color: rgb(255, 255, 255, 1);
+    }
+
+    45% {
+        color: rgb(255, 255, 255, 0);
+    }
+
+    90% {
+        color: rgb(255, 255, 255, 1);
+    }
+}

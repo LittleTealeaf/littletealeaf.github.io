@@ -1,75 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/projects.css" />
-    <link rel="stylesheet" href="styles/about.css" />
-    <link rel="stylesheet" href="styles/home.css" />
-    <link rel="stylesheet" href="styles/console.css" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <script defer src="scripts/typecycle.js"></script>
-    <script defer src="scripts/console.js"></script>
-
-    <meta property="og:title" content="Thomas Kwashnak" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://littletealeaf.github.io" />
-    <meta property="og:image" content="images/profile.jpg" />
-    <meta property="og:description" content="Computer Scientist, Data Scientist, Software Engineer" />
-    <meta property="og:site_name" content="Thomas Kwashnak" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thomas Kwashnak</title>
-  </head>
-  <body>
-    <noscript> Please enable javascript to view this website correctly. </noscript>
-
-    <div id="console" data-hide></div>
-
-    <section id="home">
-      <div class="content">
-        <div class="name">Thomas Kwashnak</div>
-        <div class="subsubtitle">Student at Quinnipaic University</div>
-        <hr />
-        <div class="subtitle typecycle" data-words='["Computer Scientist","Software Engineer","Data Scientist"]'></div>
-      </div>
-    </section>
-    <section id="about">
-      <div class="window">
-        <div class="titlebar">tealeaf@littletealeaf.github.io</div>
-        <div class="content">
-          <div class="commandcontainer">
-            <span class="prompt">littletealeaf.github.io</span>
-            <span class="command"> neofetch </span>
-          </div>
-          <div class="neofetch">
-            <img src="images/profile.jpg" alt="Profile Image of me hiking Sleeping Giant in Hamden CT" />
-            <div id="neofetch_data"></div>
-            <script src="scripts/neofetch.js"></script>
-          </div>
-          <div class="commandcontainer">
-            <span class="prompt">littletealeaf.github.io</span>
-            <span class="command">
-              <span class="cursor"> █</span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="projects">
-      <div class="window">
-        <div class="titlebar">Projects</div>
-        <div class="content">
-          <div id="project_list">
-            <script defer src="scripts/projects.js"></script>
-          </div>
-          <hr />
-          <div id="project_preview">
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="contact"></section>
-  </body>
+    <head>
+        <meta property="og:title" content="Thomas Kwashnak Personal Portfolio" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://littletealeaf.github.io" />
+        <meta property="og:image" content="images/profile.jpg" />
+        <meta property="og:description" content="Computer Scientist, Data Scientist, Software Engineer" />
+        <meta property="og:site_name" content="Thomas Kwashnak" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="scripts/elementbuilder.js"></script>
+        <script src="scripts/typewriter.js" defer></script>
+        <script src="scripts/scaleimage.js" defer></script>
+        <script src="scripts/populators/aboutme.js" defer></script>
+        <script src="scripts/populators/stats.js" defer></script>
+        <link rel="icon" type="image/x-icon" href="favicon.ico" >
+        <link rel="stylesheet" href="styles/home.css" />
+        <link rel="stylesheet" href="styles/aboutme.css" />
+        <link rel="stylesheet" href="styles/index.css" />
+        <link rel="stylesheet" href="styles/stats.css" />
+        <title>Thomas Kwashnak</title>
+    </head>
+    <body>
+        <section id="home" class="scaleimage" data-image-height="1080" data-image-width="1920">
+            <div class="helper">
+                <div class="content">
+                    <div class="name">Thomas Kwashnak</div>
+                    <div class="subtitle">Student at Quinnipiac University</div>
+                    <hr />
+                    <div class="subtitle typewriter" data-words='["Computer Scientist","Software Engineer","Data Scientist"]'></div>
+                </div>
+            </div>
+        </section>
+        <section id="aboutme" class="scaleimage" data-image-height="1080" data-image-width="1920">
+        </section>
+        <section id="stats">
+            
+        </section>
+    </body>
 </html>
