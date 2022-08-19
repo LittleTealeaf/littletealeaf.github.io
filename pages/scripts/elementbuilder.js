@@ -9,7 +9,7 @@ function createElementOld(data = {
     return element;
 }
 
-function createElement({id, node="div", classNames, content, src, onclick} = values) {
+function createElement({id, node="div", classNames, content, src, onclick, alt} = values) {
     const element = document.createElement(node);
     id && (element.id = id);
     classNames && element.classList.add(classNames);
@@ -21,6 +21,7 @@ function createElement({id, node="div", classNames, content, src, onclick} = val
         }
     }
     src && (element.src = src);
+    alt && (element.alt = alt);
 
     onclick && (element.onclick = onclick);
 

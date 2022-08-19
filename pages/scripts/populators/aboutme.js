@@ -47,6 +47,7 @@ fetch("./resources/data/aboutme.json")
                                     createElement({
                                         node: "img",
                                         src: "./resources/images/misc/profile.webp",
+                                        alt: "Profile image of me from a hike at Sleeping Giant State Park"
                                     }),
                                     createElement({
                                         node: "div",

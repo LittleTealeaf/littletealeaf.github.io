@@ -40,33 +40,90 @@ fetch("./resources/data/stats.json")
 
             const { projects, operating_systems, languages, editors } = option.data;
 
-            e_content.append(...[
-                {
-                    name: "Editors",
-                    data: editors,
-                },
-                {
-                    name: "Projects",
-                    data: projects,
-                },
-                {
-                    name: "Operating Systems",
-                    data: operating_systems,
-                },
-                {
-                    name: "Languages",
-                    data: languages,
-                },
-            ].map(({name, data}) => {
+            e_content.append(
+                ...[
+                    {
+                        name: "Editors",
+                        data: editors,
+                    },
+                    {
+                        name: "Projects",
+                        data: projects,
+                    },
+                    {
+                        name: "Operating Systems",
+                        data: operating_systems,
+                    },
+                    {
+                        name: "Languages",
+                        data: languages,
+                    },
+                ].map(({ name, data }) => {
+
+                    var max_percent = 0;
+
+                    data.forEach(entry => {
+                        if(max_percent < entry.percent) {
+                            max_percent = entry.percent;
+                        }
+                    });
+
+                    data.forEach(entry => {
+                        entry.percent_scaled = entry.percent / max_percent * 100;
+                    });
 
 
-                return createElement({
-                    content: [
-                        name,
-                        "#######"
-                    ]
+
+                    return createElement({
+                        content: [
+                            createElement({
+                                node: "table",
+                                content: [
+                                    createElement({
+                                        node: "tr",
+                                        classNames: ["table_header"],
+                                        content: [
+                                            createElement({
+                                                node: "td",
+                                                content: name
+                                            }),
+                                            createElement({
+                                                node: "td",
+                                                content: "Time"
+                                            }),
+                                            createElement({
+                                                node: "td",
+                                                content: "Percent"
+                                            })
+                                        ]
+                                    }),
+                                    ...data.map((entry) => createElement({
+                                        node: "tr",
+                                        content: [
+                                            createElement({
+                                                node: "td",
+                                                content: entry.name
+                                            }),
+                                            createElement({
+                                                node: "td",
+                                                content: String(entry.digital)
+                                            }),
+                                            createElement({
+                                                node: "td",
+                                                content: String(entry.percent).concat("%")
+                                            }),
+                                            createElement({
+                                                node: "td",
+                                                content: "#".repeat(Math.ceil(entry.percent_scaled / 10))
+                                            })
+                                        ]
+                                    }))
+                                ],
+                            }),
+                        ],
+                    });
                 })
-            }))
+            );
         }
 
         element.append(
