@@ -38,7 +38,7 @@ fetch("./resources/data/stats.json")
             });
             e_content.innerHTML = "";
 
-            const { projects, operating_systems, languages, editors, human_readable_daily_average: daily_average, human_readable_total: total } = option.data;
+            const { projects, operating_systems, languages, editors, daily_average, total_time } = option.data;
 
             e_content.append(
                 createElement({
@@ -55,7 +55,7 @@ fetch("./resources/data/stats.json")
                                         }),
                                         createElement({
                                             node: "td",
-                                            content: total,
+                                            content: total_time,
                                         }),
                                     ],
                                 }),

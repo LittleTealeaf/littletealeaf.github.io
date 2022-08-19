@@ -11,12 +11,6 @@ waka_all = wakatime.getStats("all_time")
 waka_monthly = wakatime.getStats("last_30_days")
 waka_weekly = wakatime.getStats("last_7_days")
 
-for waka_stats in [waka_all, waka_monthly, waka_weekly]:
-    for key in ['dependencies', 'is_up_to_date', 'is_stuck', 'is_up_to_date_pending_future', 'status', 'is_already_updating']:
-        del waka_stats[key]
-    for key in ['projects','languages','operating_systems']:
-        waka_stats[key] = waka_stats[key][0:10]
-
 
 def filter_keys(map, keys: list[str]):
     data = {}
@@ -40,10 +34,28 @@ export_json(
 
 ## STATS
 
+
+def stats_filter(data):
+    return {
+        "projects": data["projects"][0:10],
+        "operating_systems": data["operating_systems"][0:10],
+        "languages": data["languages"][0:10],
+        "editors": data['editors'][0:10],
+        "daily_average": data['human_readable_daily_average'],
+        "total_time": data['human_readable_total'],
+    }
+
+
 export_json(
-    {"waka": {
-        "week": waka_weekly, "month": waka_monthly, "all_time": waka_all
-    }}, "data", "stats.json"
+    {
+        "waka": {
+            "week": stats_filter(waka_weekly),
+            "month": stats_filter(waka_monthly),
+            "all_time": stats_filter(waka_all),
+        }
+    },
+    "data",
+    "stats.json",
 )
 
 ## BACKGROUNDS
