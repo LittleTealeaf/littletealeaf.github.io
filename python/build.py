@@ -34,10 +34,17 @@ export_json(
 
 ## STATS
 
+def stats_link_projects(projects):
+    for project in projects:
+        waka_api = wakatime.getWakaApi(f"/api/v1/users/LittleTealeaf/projects/{project['name']}")
+        if waka_api and 'data' in waka_api and 'repository' in waka_api['data'] and waka_api['data']['repository'] != None:
+            project['url'] = waka_api['data']['repository']['html_url']
+    return projects
+
 
 def stats_filter(data):
     return {
-        "projects": data["projects"][0:10],
+        "projects": stats_link_projects(data["projects"][0:10]),
         "operating_systems": data["operating_systems"][0:10],
         "languages": data["languages"][0:10],
         "editors": data['editors'][0:10],

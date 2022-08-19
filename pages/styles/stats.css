@@ -57,6 +57,16 @@
     flex-grow: 1;
 }
 
+#stats .content a {
+    text-decoration: none;
+    color: white;
+    transform: translateX(0px);
+}
+
+#stats .content a:hover {
+    color: rgb(200,200,200);
+}
+
 #stats .content tr td {
     padding-left: 10px;
     text-align: left;
