@@ -4,6 +4,8 @@
     flex-direction: row;
     color: white;
     font-family: monospace;
+    max-width: 1250px;
+    margin: auto;
 }
 
 #stats[data-orientation="vertical"] {
