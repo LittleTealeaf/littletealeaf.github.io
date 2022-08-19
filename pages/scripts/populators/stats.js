@@ -38,9 +38,44 @@ fetch("./resources/data/stats.json")
             });
             e_content.innerHTML = "";
 
-            const { projects, operating_systems, languages, editors } = option.data;
+            const { projects, operating_systems, languages, editors, human_readable_daily_average: daily_average, human_readable_total: total } = option.data;
 
             e_content.append(
+                createElement({
+                    content: [
+                        createElement({
+                            node: "table",
+                            content: [
+                                createElement({
+                                    node: "tr",
+                                    content: [
+                                        createElement({
+                                            node: "td",
+                                            content: "Total Time",
+                                        }),
+                                        createElement({
+                                            node: "td",
+                                            content: total,
+                                        }),
+                                    ],
+                                }),
+                                createElement({
+                                    node: "tr",
+                                    content: [
+                                        createElement({
+                                            node: "td",
+                                            content: "Daily Average",
+                                        }),
+                                        createElement({
+                                            node: "td",
+                                            content: daily_average,
+                                        }),
+                                    ],
+                                }),
+                            ],
+                        }),
+                    ],
+                }),
                 ...[
                     {
                         name: "Editors",
@@ -59,20 +94,17 @@ fetch("./resources/data/stats.json")
                         data: languages,
                     },
                 ].map(({ name, data }) => {
-
                     var max_percent = 0;
 
-                    data.forEach(entry => {
-                        if(max_percent < entry.percent) {
+                    data.forEach((entry) => {
+                        if (max_percent < entry.percent) {
                             max_percent = entry.percent;
                         }
                     });
 
-                    data.forEach(entry => {
-                        entry.percent_scaled = entry.percent / max_percent * 100;
+                    data.forEach((entry) => {
+                        entry.percent_scaled = (entry.percent / max_percent) * 100;
                     });
-
-
 
                     return createElement({
                         content: [
@@ -85,39 +117,41 @@ fetch("./resources/data/stats.json")
                                         content: [
                                             createElement({
                                                 node: "td",
-                                                content: name
+                                                content: name,
                                             }),
                                             createElement({
                                                 node: "td",
-                                                content: "Time"
+                                                content: "Time",
                                             }),
                                             createElement({
                                                 node: "td",
-                                                content: "Percent"
-                                            })
-                                        ]
+                                                content: "Percent",
+                                            }),
+                                        ],
                                     }),
-                                    ...data.map((entry) => createElement({
-                                        node: "tr",
-                                        content: [
-                                            createElement({
-                                                node: "td",
-                                                content: entry.name
-                                            }),
-                                            createElement({
-                                                node: "td",
-                                                content: String(entry.digital)
-                                            }),
-                                            createElement({
-                                                node: "td",
-                                                content: String(entry.percent).concat("%")
-                                            }),
-                                            createElement({
-                                                node: "td",
-                                                content: "#".repeat(Math.ceil(entry.percent_scaled / 10))
-                                            })
-                                        ]
-                                    }))
+                                    ...data.map((entry) =>
+                                        createElement({
+                                            node: "tr",
+                                            content: [
+                                                createElement({
+                                                    node: "td",
+                                                    content: entry.name,
+                                                }),
+                                                createElement({
+                                                    node: "td",
+                                                    content: String(entry.digital),
+                                                }),
+                                                createElement({
+                                                    node: "td",
+                                                    content: String(entry.percent).concat("%"),
+                                                }),
+                                                createElement({
+                                                    node: "td",
+                                                    content: "#".repeat(Math.ceil(entry.percent_scaled / 10)),
+                                                }),
+                                            ],
+                                        })
+                                    ),
                                 ],
                             }),
                         ],
