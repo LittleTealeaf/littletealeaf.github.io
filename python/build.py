@@ -14,6 +14,8 @@ waka_weekly = wakatime.getStats("last_7_days")
 for waka_stats in [waka_all, waka_monthly, waka_weekly]:
     for key in ['dependencies', 'is_up_to_date', 'is_stuck', 'is_up_to_date_pending_future', 'status', 'is_already_updating']:
         del waka_stats[key]
+    for key in ['projects','languages','operating_systems']:
+        waka_stats[key] = waka_stats[key][0:10]
 
 
 def filter_keys(map, keys: list[str]):
