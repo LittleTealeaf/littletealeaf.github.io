@@ -9,19 +9,24 @@ function createElementOld(data = {
     return element;
 }
 
-function createElement({id, node="div", classNames, content, src, onclick, alt} = values) {
+function createElement({id, node="div", classNames, content, src, href, onclick, alt} = values) {
     const element = document.createElement(node);
     id && (element.id = id);
     classNames && element.classList.add(classNames);
     if(content) {
-        if(typeof(content) === "string") {
-            element.innerText = content;
-        } else {
-            element.append(...content);
+        try {
+            if(typeof(content) === "string") {
+                element.innerText = content;
+            } else {
+                element.append(...content);
+            }
+        } catch(e) {
+            element.append(content);
         }
     }
     src && (element.src = src);
     alt && (element.alt = alt);
+    href && (element.href = href);
 
     onclick && (element.onclick = onclick);
 

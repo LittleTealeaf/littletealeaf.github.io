@@ -135,7 +135,11 @@ fetch("./resources/data/stats.json")
                                             content: [
                                                 createElement({
                                                     node: "td",
-                                                    content: entry.name,
+                                                    content: 'url' in entry ? createElement({
+                                                        node: "a",
+                                                        href: entry.url,
+                                                        content: entry.name
+                                                    }) : entry.name,
                                                 }),
                                                 createElement({
                                                     node: "td",
