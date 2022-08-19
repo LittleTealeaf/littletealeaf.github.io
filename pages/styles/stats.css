@@ -55,6 +55,8 @@
     border: 2px dashed white;
     margin: 0 auto;
     flex-grow: 1;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
 #stats .content a {
