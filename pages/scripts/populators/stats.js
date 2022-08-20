@@ -138,7 +138,8 @@ fetch("./resources/data/stats.json")
                                                     content: 'url' in entry ? createElement({
                                                         node: "a",
                                                         href: entry.url,
-                                                        content: entry.name
+                                                        content: entry.name,
+                                                        target: "_blank",
                                                     }) : entry.name,
                                                 }),
                                                 createElement({
