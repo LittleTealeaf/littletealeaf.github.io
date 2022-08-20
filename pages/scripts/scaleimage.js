@@ -1,7 +1,7 @@
 (() => {
     const backgrounds = document.getElementsByClassName("scaleimage");
 
-    for (var i = 0; i < backgrounds.length; i++) {
+    for (let i = 0; i < backgrounds.length; i++) {
         const element = backgrounds.item(i);
         if (element != null) {
             const imageRatio = element.dataset.imageHeight / element.dataset.imageWidth;

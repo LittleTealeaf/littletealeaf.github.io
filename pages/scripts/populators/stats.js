@@ -34,7 +34,7 @@ fetch("./resources/data/stats.json")
 
         function renderData(option) {
             selectors.forEach((selector) => {
-                selector.dataset.selected = selector.innerText == option.name;
+                selector.dataset.selected = String(selector.innerText === option.name);
             });
             e_content.innerHTML = "";
 
@@ -94,11 +94,11 @@ fetch("./resources/data/stats.json")
                         data: languages,
                     },
                 ].map(({ name, data }) => {
-                    var max_percent = 0;
+                    let max_percent = 0;
 
-                    data.forEach((entry) => {
-                        if (max_percent < entry.percent) {
-                            max_percent = entry.percent;
+                    data.forEach(({percent}) => {
+                        if (max_percent < percent) {
+                            max_percent = percent;
                         }
                     });
 
