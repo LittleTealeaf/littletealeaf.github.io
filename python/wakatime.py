@@ -14,9 +14,9 @@ except:
 def getWakaApi(endpoint: str, params: dict = {}):
 
     key = f"WAKATIME - {endpoint}{params}"
-#     che = get_cache(key)
-#     if che != None:
-#         return che
+    che = get_cache(key)
+    if che != None:
+        return che
     params = params.copy()
     params['api_key'] = os.getenv("WAKA_TOKEN")
 
@@ -36,9 +36,9 @@ def getWakaApi(endpoint: str, params: dict = {}):
 
 def getStats(timeFrame: str):
     key = f"WAKATIME/STATS/{timeFrame}"
-    che = get_cache(key)
-    if che != None:
-        return che
+#     che = get_cache(key)
+#     if che != None:
+#         return che
     params = {
         'api_key': os.getenv('WAKA_TOKEN')
     }
