@@ -11,14 +11,14 @@
     align-items: center;
     justify-content: center;
 }
-
+/* 
 #aboutme[data-orientation="vertical"] {
     background-size: auto 100vh;
 }
 
 #aboutme[data-orientation="horizontal"] {
     background-size: 100vw auto;
-}
+} */
 
 /* Window Container */
 #aboutme .window {

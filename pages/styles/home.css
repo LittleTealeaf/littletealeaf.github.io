@@ -4,17 +4,17 @@
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%),
         url(../resources/images/background/home.webp) no-repeat;
     background-position: top center;
-    background-size: auto 100vh;
+    /* background-size: auto 100vh; */
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     height: 100vh;
     width: 100%;
     text-align: center;
     color: #fff;
 }
-
+/*
 #home[data-ratio="horizontal"] {
     background-size: 100vw auto;
-}
+} */
 
 #home .helper {
     position: absolute;

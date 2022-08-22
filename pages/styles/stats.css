@@ -8,13 +8,13 @@
     margin: auto;
 }
 
-#stats[data-orientation="vertical"] {
+/* #stats[data-orientation="vertical"] {
     background-size: auto 50vh;
 }
 
 #stats[data-orientation="horizontal"] {
     background-size: 100vw auto;
-}
+} */
 
 #stats .header {
     position: sticky;
