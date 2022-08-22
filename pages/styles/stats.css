@@ -4,7 +4,7 @@
     flex-direction: row;
     color: white;
     font-family: monospace;
-    max-width: 1250px;
+    max-width: 1175px;
     margin: auto;
 }
 
@@ -53,7 +53,8 @@
 }
 
 #stats .content > * {
-    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     border: 2px dashed white;
     margin: 0 auto;
     flex-grow: 1;
