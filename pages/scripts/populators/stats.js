@@ -78,25 +78,25 @@ fetch("./resources/data/stats.json")
                 }),
                 ...[
                     {
-                        name: "Editors",
-                        data: editors,
-                    },
-                    {
                         name: "Projects",
                         data: projects,
-                    },
-                    {
-                        name: "Operating Systems",
-                        data: operating_systems,
                     },
                     {
                         name: "Languages",
                         data: languages,
                     },
+                    {
+                        name: "Editors",
+                        data: editors,
+                    },
+                    {
+                        name: "Operating Systems",
+                        data: operating_systems,
+                    },
                 ].map(({ name, data }) => {
                     let max_percent = 0;
 
-                    data.forEach(({percent}) => {
+                    data.forEach(({ percent }) => {
                         if (max_percent < percent) {
                             max_percent = percent;
                         }
@@ -135,12 +135,15 @@ fetch("./resources/data/stats.json")
                                             content: [
                                                 createElement({
                                                     node: "td",
-                                                    content: 'url' in entry ? createElement({
-                                                        node: "a",
-                                                        href: entry.url,
-                                                        content: entry.name,
-                                                        target: "_blank",
-                                                    }) : entry.name,
+                                                    content:
+                                                        "url" in entry
+                                                            ? createElement({
+                                                                  node: "a",
+                                                                  href: entry.url,
+                                                                  content: entry.name,
+                                                                  target: "_blank",
+                                                              })
+                                                            : entry.name,
                                                 }),
                                                 createElement({
                                                     node: "td",
