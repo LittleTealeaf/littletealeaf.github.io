@@ -2,7 +2,7 @@ import requests
 import os
 import time
 
-from cache import store_cache, get_cache
+from python.cache import store_cache, get_cache
 
 try:
     from dotenv import load_dotenv
@@ -34,7 +34,7 @@ def getWakaApi(endpoint: str, params: dict = {}):
         return data
     print(response.text)
 
-def getStats(timeFrame: str):
+def get_stats(timeFrame: str):
     key = f"WAKATIME/STATS/{timeFrame}"
     params = {
         'api_key': os.getenv('WAKA_TOKEN')
