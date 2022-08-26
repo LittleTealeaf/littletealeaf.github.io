@@ -2,7 +2,7 @@ import requests
 import os
 import time
 
-from cache import store_cache, get_cache
+from cache_util import store_cache, get_cache
 
 try:
     from dotenv import load_dotenv
@@ -13,7 +13,7 @@ except:
 
 def getWakaApi(endpoint: str, params: dict = {}):
 
-    key = f"{endpoint}{params}"
+    key = f"WAKATIME - {endpoint}{params}"
     che = get_cache(key)
     if che != None:
         return che
@@ -30,12 +30,15 @@ def getWakaApi(endpoint: str, params: dict = {}):
     if response:
         data = response.json()
 
-        store_cache('wakatime',key, data)
+        store_cache(key, data)
         return data
     print(response.text)
 
 def getStats(timeFrame: str):
     key = f"WAKATIME/STATS/{timeFrame}"
+#     che = get_cache(key)
+#     if che != None:
+#         return che
     params = {
         'api_key': os.getenv('WAKA_TOKEN')
     }
@@ -52,4 +55,6 @@ def getStats(timeFrame: str):
             break
         print(f"Waiting 3 minutes before attempting again")
         time.sleep(180)
+    if stats:
+        store_cache(key,stats)
     return stats
