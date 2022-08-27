@@ -10,11 +10,13 @@ try:
 except:
     ...
 
+CACHE_KEY = 'wakatime'
+
 
 def getWakaApi(endpoint: str, params: dict = {}):
 
     key = f"{endpoint}{params}"
-    che = get_cache(key)
+    che = get_cache(CACHE_KEY,key)
     if che != None:
         return che
     params = params.copy()
@@ -30,7 +32,7 @@ def getWakaApi(endpoint: str, params: dict = {}):
     if response:
         data = response.json()
 
-        store_cache('wakatime',key, data)
+        store_cache(CACHE_KEY,key, data)
         return data
     print(response.text)
 
