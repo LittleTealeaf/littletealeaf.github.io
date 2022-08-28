@@ -21,4 +21,27 @@ html, body {
     width: 100%;
     text-align: center;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#home > div {
+    margin: auto;
+}
+
+#home hr {
+    max-width: 60vw;
+}
+
+#home > div > div:first-child {
+    font-size: 50px;
+    font-family: 'Ubuntu', monospace;
+}
+
+#home .typewriter span {
+    color: white;
+    font-size: 20px;
+    font-family: monospace;
 }
