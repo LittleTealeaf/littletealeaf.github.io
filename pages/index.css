@@ -19,6 +19,7 @@ html, body {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     height: 100vh;
     width: 100%;
+    background-size: cover;
     text-align: center;
     color: #fff;
     display: flex;
@@ -44,4 +45,9 @@ html, body {
     color: white;
     font-size: 20px;
     font-family: monospace;
+}
+
+#stats {
+    min-height: 100vh;
+    background-color: black;
 }
