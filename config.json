@@ -1,6 +1,11 @@
 {
-    "backgrounds": [
-        "./resources/images/background/aboutme.jpg",
-        "./resources/images/background/home.jpg"
+    "images": [
+        {
+            "source": "./resources/images/background",
+            "destination": [
+                "images",
+                "background"
+            ]
+        }
     ]
 }

@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 import python.cache as cache
 import python.wakatime as wakatime
@@ -42,5 +43,10 @@ export_json(['data','stats'],{
 })
 
 
-for file in CONFIG['backgrounds']:
-    export_image(['images','background',f'{Path(file).stem}.webp'],file)
+for img_list in CONFIG['images']:
+    source: str = img_list['source']
+    destination: list[str] = img_list['destination']
+    for file in os.listdir(source):
+        path = Path(file)
+        fileName = "/".join([source,file])
+        export_image(destination + [path.stem + ".webp"],fileName)
