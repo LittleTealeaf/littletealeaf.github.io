@@ -19,3 +19,11 @@
         opacity: 1.0;
     }
 }
+
+.scalebackground[data-image-stretch="horizontal"] {
+    background-size: 100vw auto !important;
+}
+
+.scalebackground[data-image-stretch="vertical"] {
+    background-size: auto 100vh !important;
+}
