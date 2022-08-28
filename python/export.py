@@ -16,7 +16,7 @@ def export_json(object,*path):
     reference,absolute = export_path(*path)
     make_directory(absolute)
     with open(absolute,'w') as file:
-        file.write(json.dumps(object))
+        file.write(json.dumps(object, indent=4))
     return reference
 
 
