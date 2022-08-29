@@ -1,0 +1,155 @@
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#home {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)), linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%),
+    url(./resources/images/background/home.webp) no-repeat;
+  background-position: top center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > div {
+    margin: auto;
+
+    > div:first-child {
+      font-size: 50px;
+      font-family: "Ubuntu", monospace;
+    }
+  }
+
+  hr {
+    max-width: 60vw;
+  }
+
+  .typewriter {
+    span {
+      color: white;
+      font-size: 20px;
+      font-family: monospace;
+    }
+  }
+}
+
+#about {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.9) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%), url(./resources/images/background/aboutme.webp) no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Ubuntu", monospace;
+  font-size: 18px;
+
+  --round-window: 10px;
+
+  .window {
+    width: 95%;
+    max-width: 1000px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    background-color: rgba(48, 10, 36, 0.7);
+    color: rgb(196, 196, 196);
+
+    --radius: 10px;
+
+    border-radius: var(--radius);
+
+    .header {
+      border-top-left-radius: var(--radius);
+      border-top-right-radius: var(--radius);
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: #292727;
+    }
+    #about_content {
+      padding: 7px;
+    }
+  }
+
+  .prompt {
+    :first-child {
+      margin-right: 5px;
+      color: rgb(16, 137, 0);
+    }
+
+    :last-child::before {
+      content: "~ >";
+      color: rgb(124, 128, 201);
+    }
+  }
+
+  .cursor {
+    animation: about_cursor_blink 1s infinite;
+  }
+
+  .response {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    > * {
+      flex-grow: 1;
+      
+    }
+  }
+
+  img {
+    width: 30%;
+    max-width: 400px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    filter: brightness(70%);
+  }
+}
+
+#stats {
+  min-height: 100vh;
+  background-color: black;
+}
+
+
+@keyframes about_cursor_blink {
+  0% {
+      color: rgb(230, 230, 230, 1);
+  }
+
+  49.9% {
+      color: rgb(230, 230, 230, 1);
+  }
+
+  50% {
+      color: rgb(230, 230, 230, 0);
+  }
+
+  99.9% {
+      color: rgb(230, 230, 230, 0);
+  }
+
+  100% {
+      color: rgb(230, 230, 230, 1);
+  }
+}
