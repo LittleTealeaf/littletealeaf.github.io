@@ -4,20 +4,22 @@ import shutil
 from pathlib import Path
 from PIL import Image
 
-EXPORT_PATH = os.path.join(".","pages","resources")
+EXPORT_PATH = os.path.join(".", "pages", "resources")
+
 
 def export_json(path: list[str], contents: any):
-    return export_file(path,json.dumps(contents, indent=2), extension="json")
+    return export_file(path, json.dumps(contents, indent=2), extension="json")
 
-def export_file(path: list[str], contents: str, extension = "txt"):
+
+def export_file(path: list[str], contents: str, extension="txt"):
     reference, absolute = get_paths(path)
-
 
     make_parent_directory(absolute)
 
-    with open(absolute + f'.{extension}','w') as f:
+    with open(absolute + f".{extension}", "w") as f:
         f.write(contents)
     return reference
+
 
 def make_parent_directory(path: list[str]):
     parent_directory = Path(os.path.join(path)).parent.absolute()
@@ -28,18 +30,15 @@ def make_parent_directory(path: list[str]):
 def export_image(path: list[str], url):
     reference, absolute = get_paths(path)
 
-
     make_parent_directory(absolute)
-
 
     img = Image.open(url)
     img.save(absolute)
     return reference
 
 
-
 def get_paths(path: list[str]):
-    return "/".join(['resources',*path]), '/'.join([".","pages","resources",*path])
+    return "/".join(["resources", *path]), "/".join([".", "pages", "resources", *path])
 
 
 def reset_export():
