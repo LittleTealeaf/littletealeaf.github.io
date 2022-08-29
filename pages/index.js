@@ -2,7 +2,7 @@
 
 /// Stats
 fetch("./resources/data/stats.json")
-  .then((response) => response.json())
+  .then(promiseJson)
   .then((stats) => {
     const element = document.getElementById("stats");
 
@@ -21,5 +21,7 @@ fetch("./resources/data/stats.json")
       },
     ];
 
-    
+
+
+
   });

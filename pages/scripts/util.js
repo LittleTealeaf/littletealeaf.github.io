@@ -1,3 +1,7 @@
+async function promiseJson(response) {
+  return response.json();
+}
+
 function createElement(params) {
   let { node = "div", classNames = null, content = null, dataset = null, ...props } = params;
 
