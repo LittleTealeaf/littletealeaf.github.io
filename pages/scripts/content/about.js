@@ -22,7 +22,32 @@ fetch("./resources/data/about.json")
       content: [
         createElement({
           node: "img",
-          src: "./resources/images/avatar.webp"
+            src: "./resources/images/avatar.webp"
+        }),
+        createElement({
+          content: [
+            createElement({
+              classList: "user_title",
+              content: "Thomas Kwashnak"
+            }),
+            createElement({node: "hr"}),
+            createElement({
+              node: "table",
+              content: Object.entries(data).map(([key,value]) => createElement({
+                node: "tr",
+                content: [
+                  createElement({
+                    node: "td",
+                    content: key
+                  }),
+                  createElement({
+                    node: "td",
+                    content: value.constructor == Array ? value.join(", ") : value
+                  })
+                ]
+              }))
+            })
+          ]
         })
       ]
     }))

@@ -110,9 +110,40 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+
     > * {
       flex-grow: 1;
-      
+      margin: auto;
+      margin-top: 15px;
+    }
+
+    > div {
+      padding: 10px;
+      max-width: fit-content;
+
+      tr {
+        td:first-child {
+          color: rgb(115, 130, 204);
+          font-weight: bolder;
+          text-transform: capitalize;
+        }
+        td:first-child::after {
+          content: ": ";
+        }
+      }
+
+      // > div {
+      //   span:first-child {
+
+      //   }
+
+      //   span:first-child::after {
+      //     content: ": ";
+      //   }
+      // }
     }
   }
 
@@ -121,7 +152,6 @@ body {
     max-width: 400px;
     border-radius: 50%;
     box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
-    margin: auto;
     filter: brightness(70%);
   }
 }
@@ -131,25 +161,24 @@ body {
   background-color: black;
 }
 
-
 @keyframes about_cursor_blink {
   0% {
-      color: rgb(230, 230, 230, 1);
+    color: rgb(230, 230, 230, 1);
   }
 
   49.9% {
-      color: rgb(230, 230, 230, 1);
+    color: rgb(230, 230, 230, 1);
   }
 
   50% {
-      color: rgb(230, 230, 230, 0);
+    color: rgb(230, 230, 230, 0);
   }
 
   99.9% {
-      color: rgb(230, 230, 230, 0);
+    color: rgb(230, 230, 230, 0);
   }
 
   100% {
-      color: rgb(230, 230, 230, 1);
+    color: rgb(230, 230, 230, 1);
   }
 }
