@@ -49,6 +49,8 @@ body {
   }
 }
 
+$about_border_radius: 10px;
+
 #about {
   min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.9) 100%),
@@ -61,7 +63,6 @@ body {
   font-family: "Ubuntu", monospace;
   font-size: 18px;
 
-  --round-window: 10px;
 
   .window {
     width: 95%;
@@ -74,11 +75,11 @@ body {
 
     --radius: 10px;
 
-    border-radius: var(--radius);
+    border-radius: $about_border_radius;
 
     .header {
-      border-top-left-radius: var(--radius);
-      border-top-right-radius: var(--radius);
+      border-top-left-radius: $about_border_radius;
+      border-top-right-radius: $about_border_radius;
       text-align: center;
       padding-top: 10px;
       padding-bottom: 10px;
