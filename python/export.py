@@ -1,7 +1,11 @@
+from io import BytesIO
 import json
 import os
 import shutil
 from pathlib import Path
+from sysconfig import get_path
+import requests
+
 from PIL import Image
 
 EXPORT_PATH = os.path.join(".", "pages", "resources")
@@ -27,14 +31,26 @@ def make_parent_directory(path: list[str]):
         os.makedirs(parent_directory)
 
 
-def export_image(path: list[str], url):
+def export_image(path: list[str], source):
     reference, absolute = get_paths(path)
 
     make_parent_directory(absolute)
 
-    img = Image.open(url)
+    img = Image.open(source)
     img.save(absolute)
     return reference
+
+def export_online_image(path: list[str], url):
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+
+    reference, absolute = get_paths(path)
+
+    make_parent_directory(absolute)
+
+    img.save(absolute)
+    return reference
+
 
 
 def get_paths(path: list[str]):

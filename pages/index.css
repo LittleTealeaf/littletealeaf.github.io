@@ -51,26 +51,104 @@ body {
   min-height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.9) 100%),
     linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%), url(./resources/images/background/aboutme.webp) no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    --round-window: 20px;
+  font-family: "Ubuntu" monospace;
+  font-size: 18px;
+
+  --round-window: 10px;
 }
 
 #about > div {
   color: white;
 
   min-width: 90%;
-  padding: 10px;
-  background-color: rgba(97, 83, 95, 0.8);
+  max-width: 1000px;
+  background-color: rgba(48, 10, 36, 0.7);
 
   border-radius: var(--round-window);
 }
 
 #about .appbar {
-  /* background-color:  */
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(41, 39, 37);
+  border-top-left-radius: var(--round-window);
+  border-top-right-radius: var(--round-window);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#about .content {
+  padding: 20px;
+}
+
+#about .content > * {
+  margin-top: 10px;
+}
+
+#about .prompt > span:first-child {
+  color: green;
+  margin-right: 5px;
+}
+
+#about .prompt > span:last-child::before {
+  content: "~ > ";
+  color: rgb(124, 128, 201);
+  font-size: 15px;
+}
+
+#about .cursor {
+  animation: cursor_blink 1s infinite;
+  font-family: monospace;
+  font-size: 15px;
+}
+
+#about .neofetch {
+  display: flex;
+  flex-direction: row;
+}
+
+#about .neofetch > * {
+  flex-grow: 1;
+  margin: auto;
+}
+
+#about .neofetch img {
+  width: 30%;
+  max-width: 400px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.5);
+  margin: auto;
+  filter: brightness(70%);
+}
+
+@keyframes cursor_blink {
+  0% {
+    color: rgb(230, 230, 230, 1);
+  }
+
+  49.9% {
+    color: rgb(230, 230, 230, 1);
+  }
+
+  50% {
+    color: rgb(230, 230, 230, 0);
+  }
+
+  99.9% {
+    color: rgb(230, 230, 230, 0);
+  }
+
+  100% {
+    color: rgb(230, 230, 230, 1);
+  }
 }
 
 #stats {

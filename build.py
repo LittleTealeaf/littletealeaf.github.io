@@ -4,7 +4,7 @@ from pathlib import Path
 import python.cache as cache
 import python.wakatime as wakatime
 import python.github as github
-from python.export import export_image, export_json, reset_export
+from python.export import export_image, export_json, export_online_image, reset_export
 
 reset_export()
 
@@ -30,6 +30,11 @@ for file in os.listdir('./resources/data'):
 waka_all = wakatime.get_stats("all_time")
 waka_monthly = wakatime.get_stats("last_30_days")
 waka_weekly = wakatime.get_stats("last_7_days")
+
+
+github_api = github.getGithubApi("/users/LittleTealeaf")
+
+export_online_image(['images','avatar.webp'],github_api['avatar_url'])
 
 
 def add_project_links(projects):
