@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "sass ./pages/styles.scss ./pages/styles.css"
+    "build": "sass ./pages/styles.scss ./pages/styles.css --style compressed",
+    "watch": "sass --watch ./pages/styles.scss ./pages/styles.css --style compressed"
   },
   "dependencies": {
     "scss": "^0.2.4"
