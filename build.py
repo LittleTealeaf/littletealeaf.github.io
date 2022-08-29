@@ -38,6 +38,7 @@ def build_stats(data):
         "operating_systems": data["operating_systems"][0:10],
         "languages": data["languages"][0:10],
         "editors": data["editors"][0:10],
+        "categories": data["categories"][0:10],
         "daily_average": data["human_readable_daily_average"],
         "total_time": data["human_readable_total"],
     }
