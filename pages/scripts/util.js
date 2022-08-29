@@ -19,8 +19,8 @@ function createElement(params) {
     Object.entries(dataset).forEach(([key, value]) => (element.dataset[key] = value));
   }
 
-  if (content) {
-    if (typeof content === "string") {
+  if (content != null) {
+    if (typeof(content) == "string") {
       element.innerText = content;
     } else if (content.constructor === Array) {
       element.append(...content);

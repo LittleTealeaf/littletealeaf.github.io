@@ -12,6 +12,21 @@ file = open("./config.json")
 CONFIG = json.load(file)
 file.close()
 
+for img_list in CONFIG["images"]:
+    source: str = img_list["source"]
+    destination: list[str] = img_list["destination"]
+    for file in os.listdir(source):
+        path = Path(file)
+        fileName = "/".join([source, file])
+        export_image(destination + [path.stem + ".webp"], fileName)
+
+
+data = {}
+for file in os.listdir('./resources/data'):
+    path = Path(file)
+    with open(f'./resources/data/{file}') as file:
+        data[path.stem] = json.load(file)
+
 waka_all = wakatime.get_stats("all_time")
 waka_monthly = wakatime.get_stats("last_30_days")
 waka_weekly = wakatime.get_stats("last_7_days")
@@ -55,11 +70,7 @@ export_json(
     },
 )
 
-
-for img_list in CONFIG["images"]:
-    source: str = img_list["source"]
-    destination: list[str] = img_list["destination"]
-    for file in os.listdir(source):
-        path = Path(file)
-        fileName = "/".join([source, file])
-        export_image(destination + [path.stem + ".webp"], fileName)
+export_json(
+    ["data","about"],
+    data["aboutme"]
+)

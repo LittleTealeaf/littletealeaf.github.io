@@ -49,7 +49,28 @@ body {
 
 #about {
   min-height: 100vh;
-  background-color: black;
+  background: linear-gradient(rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.9) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.8) 100%), url(./resources/images/background/aboutme.webp) no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    --round-window: 20px;
+}
+
+#about > div {
+  color: white;
+
+  min-width: 90%;
+  padding: 10px;
+  background-color: rgba(97, 83, 95, 0.8);
+
+  border-radius: var(--round-window);
+}
+
+#about .appbar {
+  /* background-color:  */
 }
 
 #stats {
