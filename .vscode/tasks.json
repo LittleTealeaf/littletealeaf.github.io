@@ -9,6 +9,11 @@
       "type": "shell",
       "command": "sass ./pages/styles.scss ./pages/styles.css",
       "group": "build"
+    },{
+      "label": "Run Python",
+      "type": "shell",
+      "command": "python ./build.py",
+      "group": "build"
     }
   ]
 }
