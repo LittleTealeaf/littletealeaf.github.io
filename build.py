@@ -68,9 +68,9 @@ export_json(
     ["data", "stats"],
     {
         "waka": {
-            "week": build_stats(waka_weekly),
-            "month": build_stats(waka_monthly),
-            "all": build_stats(waka_all),
+            "Past 7 Days": build_stats(waka_weekly),
+            "Past 30 Days": build_stats(waka_monthly),
+            "All Time": build_stats(waka_all),
         }
     },
 )

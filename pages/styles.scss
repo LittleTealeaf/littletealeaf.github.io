@@ -148,10 +148,7 @@ $about_border_radius: 10px;
   }
 }
 
-#stats {
-  min-height: 100vh;
-  background-color: #000;
-}
+
 
 @keyframes about_cursor_blink {
   0% {
@@ -173,4 +170,26 @@ $about_border_radius: 10px;
   100% {
     color: rgb(230, 230, 230, 1);
   }
+}
+
+
+#stats {
+  min-height: 100vh;
+  background-color: #000;
+  color: #FFF;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+    min-width: fit-content;
+  }
+
+  .tab {
+    flex-grow: 1;
+    text-align: center;
+    cursor: pointer;
+  }
+
 }
