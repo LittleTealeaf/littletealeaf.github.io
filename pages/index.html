@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta property="og:title" content="Thomas Kwashnak Personal Portfolio" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://littletealeaf.github.io" />
-        <meta property="og:image" content="images/profile.jpg" />
-        <meta property="og:description" content="Computer Scientist, Data Scientist, Software Engineer" />
-        <meta property="og:site_name" content="Thomas Kwashnak" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="scripts/elementbuilder.js"></script>
-        <script src="scripts/typewriter.js" defer></script>
-        <script src="scripts/scaleimage.js" defer></script>
-        <script src="scripts/populators/aboutme.js" defer></script>
-        <script src="scripts/populators/stats.js" defer></script>
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <link rel="stylesheet" href="styles/home.css" />
-        <link rel="stylesheet" href="styles/aboutme.css" />
-        <link rel="stylesheet" href="styles/index.css" />
-        <link rel="stylesheet" href="styles/stats.css" />
-        <title>Thomas Kwashnak</title>
-    </head>
-    <body>
-        <section id="home" class="scaleimage" data-image-height="1080" data-image-width="1920">
-            <div class="helper">
-                <div class="content">
-                    <div class="name">Thomas Kwashnak</div>
-                    <div class="subtitle">Student at Quinnipiac University</div>
-                    <hr />
-                    <div class="subtitle typewriter" data-words='["Computer Scientist","Software Engineer","Data Scientist"]'></div>
-                </div>
-            </div>
-        </section>
-        <section id="aboutme" class="scaleimage" data-image-height="1080" data-image-width="1920"></section>
-        <section id="stats"></section>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="index.js" defer></script>
+
+    <script src="scripts/typewriter.js" defer></script>
+    <script src="scripts/content/about.js" defer></script>
+    <script src="scripts/content/stats.js" defer></script>
+    <script src="scripts/util.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/components.css" />
+    <title>Thomas Kwashnak's Personal Website</title>
+  </head>
+  <body>
+    <section id="home">
+      <div>
+        <div>Thomas Kwashnak</div>
+        <hr />
+        <div class="typewriter" data-words="Computer Scientist|Software Engineer|Data Scientist"></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="window">
+        <div class="header">
+          littletealeaf@github.io
+        </div>
+        <div id="about_content">
+
+        </div>
+      </div>
+    </section>
+    <section id="stats"></section>
+  </body>
 </html>

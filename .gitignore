@@ -3,3 +3,6 @@
 pages/resources/
 cache/
 .idea/
+pages/styles.css
+pages/styles.css.map
+node_modules/

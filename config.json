@@ -1,0 +1,11 @@
+{
+    "images": [
+        {
+            "source": "./resources/images/background",
+            "destination": [
+                "images",
+                "background"
+            ]
+        }
+    ]
+}
