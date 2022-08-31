@@ -173,6 +173,11 @@ $about_border_radius: 10px;
   color: #ddd;
   font-family: monospace;
 
+  .window  {
+    width: 95%;
+    max-width: 1250px;
+  }
+
   .header {
     display: flex;
     flex-direction: row;

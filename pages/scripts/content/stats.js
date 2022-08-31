@@ -41,17 +41,16 @@ fetch("./resources/data/stats.json")
 
         content.innerHTML = "";
 
-        data.projects.forEach(project => {
-          if(project.url) {
+        data.projects.forEach((project) => {
+          if (project.url) {
             project.name = createElement({
               node: "a",
               href: project.url,
               content: project.name,
-              target: "_blank"
-            })
+              target: "_blank",
+            });
           }
-        })
-
+        });
 
         //Edit projects to have their name be elements if they have a link
         const data_categories = [
@@ -77,35 +76,23 @@ fetch("./resources/data/stats.json")
           },
         ];
 
-
-
-
-
-
         content.append(
           createElement({
             content: [createTable([createRow(["Total Time", data.total_time]), createRow(["Average Time", data.daily_average])])],
           })
         );
 
-        data_categories.forEach(category => {
+        data_categories.forEach((category) => {
           let max_percent = 0;
-          category.data.forEach(({percent}) => {
-            if(max_percent < percent) {
+          category.data.forEach(({ percent }) => {
+            if (max_percent < percent) {
               max_percent = percent;
             }
           });
 
-
-
-          category.data.forEach(entry => {
-            entry.relative_percent = entry.percent / max_percent
+          category.data.forEach((entry) => {
+            entry.relative_percent = entry.percent / max_percent;
           });
-
-
-
-
-
 
           category.element = createElement({
             content: createTable([
@@ -115,37 +102,40 @@ fetch("./resources/data/stats.json")
                 content: [
                   createElement({
                     node: "td",
-                    content: category.name
+                    content: category.name,
                   }),
                   createElement({
                     node: "td",
-                    content: "Time"
+                    content: "Time",
                   }),
                   createElement({
                     node: "td",
-                    content: "Percent"
-                  })
-                ]
+                    content: "Percent",
+                  }),
+                ],
               }),
-              ...category.data.map(value => createRow([
-                value.name,value.digital,`${value.percent}%`,"#".repeat(Math.ceil(value.relative_percent * 10))
-              ]))
+              ...category.data.map((value) => createRow([value.name, value.digital, `${value.percent}%`, "#".repeat(Math.ceil(value.relative_percent * 10))])),
+            ]),
+          });
+        });
 
-            ])
-          })
-        })
-
-        data_categories.forEach(category => content.append(category.element))
+        data_categories.forEach((category) => content.append(category.element));
       };
     });
 
     categories[0].element.onclick();
 
-    element.append(createElement({
-      classList: "header",
-      content: categories.map((category) => category.element),
-    }),
-    content,
+    element.append(
+      createElement({
+        classList: "window",
+        content: [
+          createElement({
+            classList: "header",
+            content: categories.map((category) => category.element),
+          }),
+          content,
+        ],
+      })
     );
 
     // element.append(createElement({
