@@ -37,7 +37,7 @@ jobs:
       - name: Install Node Dependencies
         run: npm i
       - name: Run Python Script
-        run: python python/build.py
+        run: python build.py
         env:
           API_GITHUB: ${{secrets.API_GITHUB}}
           WAKA_TOKEN: ${{secrets.WAKA_TOKEN}}
