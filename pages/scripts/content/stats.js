@@ -41,6 +41,17 @@ fetch("./resources/data/stats.json")
 
         content.innerHTML = "";
 
+        data.projects.forEach(project => {
+          if(project.url) {
+            project.name = createElement({
+              node: "a",
+              href: project.url,
+              content: project.name,
+              target: "_blank"
+            })
+          }
+        })
+
 
         //Edit projects to have their name be elements if they have a link
         const data_categories = [
@@ -65,6 +76,8 @@ fetch("./resources/data/stats.json")
             data: data.operating_systems,
           },
         ];
+
+
 
 
 
@@ -128,17 +141,11 @@ fetch("./resources/data/stats.json")
 
     categories[0].element.onclick();
 
-    element.append(
-      createElement({
-        classList: "window",
-        content: [
-          createElement({
-            classList: "header",
-            content: categories.map((category) => category.element),
-          }),
-          content,
-        ],
-      })
+    element.append(createElement({
+      classList: "header",
+      content: categories.map((category) => category.element),
+    }),
+    content,
     );
 
     // element.append(createElement({

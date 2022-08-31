@@ -169,22 +169,16 @@ $about_border_radius: 10px;
 }
 
 #stats {
-  min-height: 100vh;
   background-color: #000;
-  color: #fff;
+  color: #ddd;
   font-family: monospace;
-  overflow: hidden;
-
-  .window {
-    margin: auto;
-    width: fit-content;
-  }
 
   .header {
     display: flex;
     flex-direction: row;
-    margin: auto;
-    min-width: fit-content;
+    position: sticky;
+    top: 0px;
+    background-color: #000;
 
   }
 
@@ -193,10 +187,14 @@ $about_border_radius: 10px;
     text-align: center;
     cursor: pointer;
     padding: 10px;
+    border: 2px dashed rgba(0,0,0,0);
+    border-bottom: 2px dashed white;
+    transition-duration: 0.2s;
   }
 
   .tab[data-selected] {
     border: 2px dashed white;
+    font-weight: bolder;
   }
 
   .content {
@@ -209,12 +207,22 @@ $about_border_radius: 10px;
       border: 2px dashed white;
       flex-grow: 1;
       overflow: hidden;
+      padding: 10px;
 
       > table {
         margin: auto;
         margin-top: 20px;
         margin-bottom: 20px;
       }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a:hover {
+      color: #fff
     }
   }
 
