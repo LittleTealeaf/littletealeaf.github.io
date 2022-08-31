@@ -41,6 +41,8 @@ fetch("./resources/data/stats.json")
 
         content.innerHTML = "";
 
+
+        //Edit projects to have their name be elements if they have a link
         const data_categories = [
           {
             name: "Activity",
@@ -86,6 +88,8 @@ fetch("./resources/data/stats.json")
           category.data.forEach(entry => {
             entry.relative_percent = entry.percent / max_percent
           });
+
+
 
 
 
