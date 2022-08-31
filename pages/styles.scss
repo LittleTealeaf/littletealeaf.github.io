@@ -63,7 +63,6 @@ $about_border_radius: 10px;
   font-family: "Ubuntu", monospace;
   font-size: 18px;
 
-
   .window {
     width: 95%;
     max-width: 1000px;
@@ -135,7 +134,6 @@ $about_border_radius: 10px;
           content: ": ";
         }
       }
-
     }
   }
 
@@ -147,8 +145,6 @@ $about_border_radius: 10px;
     filter: brightness(70%);
   }
 }
-
-
 
 @keyframes about_cursor_blink {
   0% {
@@ -172,24 +168,61 @@ $about_border_radius: 10px;
   }
 }
 
-
 #stats {
   min-height: 100vh;
   background-color: #000;
-  color: #FFF;
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden;
+
+  .window {
+    margin: auto;
+    width: fit-content;
+  }
 
   .header {
     display: flex;
     flex-direction: row;
-    width: 80%;
     margin: auto;
     min-width: fit-content;
+
   }
 
   .tab {
     flex-grow: 1;
     text-align: center;
     cursor: pointer;
+    padding: 10px;
   }
 
+  .tab[data-selected] {
+    border: 2px dashed white;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    > div {
+      width: fit-content;
+      border: 2px dashed white;
+      flex-grow: 1;
+      overflow: hidden;
+
+      > table {
+        margin: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  td {
+    padding: 3px;
+  }
+
+  .bold * {
+    font-weight: bold;
+  }
 }
