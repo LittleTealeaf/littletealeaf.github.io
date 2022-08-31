@@ -40,6 +40,7 @@ def export_image(path: list[str], source):
     img.save(absolute)
     return reference
 
+# <<<<<<< HEAD
 def export_online_image(path: list[str], url):
     response = requests.get(url)
     img = Image.open(BytesIO(response.content))
@@ -49,6 +50,13 @@ def export_online_image(path: list[str], url):
     make_parent_directory(absolute)
 
     img.save(absolute)
+# =======
+# def export_json(object,*path):
+#     reference,absolute = export_path(*path)
+#     make_directory(absolute)
+#     with open(absolute,'w') as file:
+#         file.write(json.dumps(object, indent=4))
+# >>>>>>> cb160ee5f190ee81f22fa7e20b1a89eed3a06d03
     return reference
 
 
