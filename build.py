@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 import os
 from pathlib import Path
@@ -5,6 +6,7 @@ import python.cache as cache
 import python.wakatime as wakatime
 import python.github as github
 from python.export import export_image, export_json, export_online_image, reset_export
+from dateutil.relativedelta import relativedelta
 
 reset_export()
 
@@ -74,6 +76,12 @@ export_json(
         }
     },
 )
+
+data['aboutme']['level'] = relativedelta(datetime(2002,5,28),datetime.today()).years * -1
+classes = data['aboutme']['classes']
+data['aboutme']['classes'] = []
+for name in classes:
+    data['aboutme']['classes'].append(f'{name} {round(data["aboutme"]["level"] * classes[name])}')
 
 export_json(
     ["data","about"],

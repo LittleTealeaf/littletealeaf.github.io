@@ -2,5 +2,10 @@
   "status": "Student at Quinnipiac University",
   "class": "2024",
   "majors": ["Computer Science", "Data Science"],
-  "minors": ["Economics"]
+  "minors": ["Economics"],
+  "level": 20,
+  "classes": {
+    "Artificer": 0.6,
+    "Monk": 0.4
+  }
 }
