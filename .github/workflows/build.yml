@@ -43,6 +43,8 @@ jobs:
           WAKA_TOKEN: ${{secrets.WAKA_TOKEN}}
       - name: Run Node Script
         run: npm run build
+      - name: Add scss to gitignore
+        run: echo "*.scss" >> pages/.gitignore
       - name: Publish to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: peaceiris/actions-gh-pages@v3
