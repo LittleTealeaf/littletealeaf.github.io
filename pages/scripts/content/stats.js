@@ -137,9 +137,4 @@ fetch("./resources/data/stats.json")
         ],
       })
     );
-
-    // element.append(createElement({
-    //   classList: "header",
-    //   content: categories.map(category => category.element)
-    // }))
   });
