@@ -13,7 +13,7 @@ VALID_FILE_CHARACTERS = (
 )
 
 
-def store_cache(category, key, value):
+def store_cache(category, key, value, no_delete=False):
     cache = {
         "value": value,
         "expires": time() + 60 * 60 * DEFAULT_TIME,
@@ -31,6 +31,9 @@ def store_cache(category, key, value):
                 cache["duration"] = max(MIN_TIME, old_cache["duration"] / 2)
             cache["expires"] = time() + 60 * 60 * cache["duration"]
 
+    if no_delete:
+        cache["no_delete"] = True
+
     os.makedirs(os.path.join(".", "cache"), exist_ok=True)
     with open(fileName, "w") as file:
         file.write(json.dumps(cache))
@@ -46,7 +49,7 @@ def encode_key(key):
     return "".join(Random(seed).choices(VALID_FILE_CHARACTERS, k=10))
 
 
-def get_cache(category, key):
+def get_cache(category, key, no_delete=False):
     fileName = get_file(category, key)
 
     if not os.path.exists(fileName):
@@ -55,7 +58,7 @@ def get_cache(category, key):
     with open(fileName) as f:
         data = json.load(f)
 
-        if data["expires"] < time():
+        if data["expires"] < time() and not no_delete:
             return None
 
         return data["value"]
@@ -67,7 +70,7 @@ def clean_cache():
             mark_delete = False
             with open(os.path.join(".", "cache", file)) as f:
                 cache = json.load(f)
-                if cache["expires"] < time() - 60 * 60 * DEFAULT_TIME:
+                if not cache["no_delete"] and cache["expires"] < time() - 60 * 60 * DEFAULT_TIME:
                     mark_delete = True
             if mark_delete:
                 os.remove(os.path.join(".", "cache", file))

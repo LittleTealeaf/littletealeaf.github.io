@@ -36,7 +36,7 @@ def getWakaApi(endpoint: str, params: dict = {}):
 
 
 def get_stats(timeFrame: str):
-    key = f"WAKATIME/STATS/{timeFrame}"
+    key = f"STATS/{timeFrame}"
     params = {"api_key": os.getenv("WAKA_TOKEN")}
 
     stats = None
@@ -54,4 +54,10 @@ def get_stats(timeFrame: str):
             break
         print(f"Waiting 3 minutes before attempting again")
         time.sleep(180)
+
+    if stats:
+        store_cache('wakatime',key,stats,no_delete=True)
+    else:
+        stats = get_cache('wakatime',key,no_delete=True)
+
     return stats
