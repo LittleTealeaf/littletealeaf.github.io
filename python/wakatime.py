@@ -41,7 +41,7 @@ def get_stats(timeFrame: str):
 
     stats = None
     attempts = 0
-    while not stats and attempts < 10:
+    while not stats and attempts < 5:
         attempts = attempts + 1
         print(f"Fetching stats for {timeFrame}")
         response = requests.get(
