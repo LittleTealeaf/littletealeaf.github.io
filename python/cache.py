@@ -18,6 +18,7 @@ def store_cache(category, key, value, no_delete=False):
         "value": value,
         "expires": time() + 60 * 60 * DEFAULT_TIME,
         "duration": DEFAULT_TIME,
+        "version": VERSION
     }
 
     fileName = get_file(category, key)
@@ -55,22 +56,28 @@ def get_cache(category, key, no_delete=False):
     if not os.path.exists(fileName):
         return None
 
-    with open(fileName) as f:
-        data = json.load(f)
+    try:
+        with open(fileName) as f:
+            data = json.load(f)
 
-        if data["expires"] < time() and not no_delete:
-            return None
+            if data['version'] != VERSION or (data["expires"] < time() and not no_delete):
+                return None
 
-        return data["value"]
+            return data["value"]
+    except:
+        ...
 
 
 def clean_cache():
     if os.path.exists(os.path.join(".", "cache")):
         for file in os.listdir(os.path.join(".", "cache")):
             mark_delete = False
-            with open(os.path.join(".", "cache", file)) as f:
-                cache = json.load(f)
-                if not cache["no_delete"] and cache["expires"] < time() - 60 * 60 * DEFAULT_TIME:
-                    mark_delete = True
+            try:
+                with open(os.path.join(".", "cache", file)) as f:
+                    cache = json.load(f)
+                    if cache['version'] != VERSION or (not cache["no_delete"] and cache["expires"] < time() - 60 * 60 * DEFAULT_TIME):
+                        mark_delete = True
+            except:
+                mark_delete = True
             if mark_delete:
                 os.remove(os.path.join(".", "cache", file))

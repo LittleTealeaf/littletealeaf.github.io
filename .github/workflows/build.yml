@@ -27,7 +27,10 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ./cache
-          key: ${{hashFiles('**/*.py')}}-${{github.run_id}}-${{github.run_attempt}}
+          key: CACHE-${{github.run_id}}-${{github.run_attempt}}
+          restore-keys: |
+            CACHE-${{github.run_id}}
+            CACHE-
       - name: Set Up Python
         uses: actions/setup-python@v4
         with:
