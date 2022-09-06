@@ -35,7 +35,7 @@ fetch("./resources/data/stats.json")
     }
 
     categories.forEach(({ element, data }) => {
-      element.onclick = (action) => {
+      element.onclick = (_) => {
         categories.forEach((e) => delete e.element.dataset.selected);
         element.dataset.selected = "";
 
