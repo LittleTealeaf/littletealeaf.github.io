@@ -3,7 +3,6 @@ import json
 import os
 import shutil
 from pathlib import Path
-from sysconfig import get_path
 import requests
 
 from PIL import Image

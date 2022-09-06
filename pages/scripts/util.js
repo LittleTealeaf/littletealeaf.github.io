@@ -20,7 +20,7 @@ function createElement(params) {
   }
 
   if (content != null) {
-    if (typeof(content) == "string") {
+    if (typeof content == "string") {
       element.innerText = content;
     } else if (content.constructor === Array) {
       element.append(...content);

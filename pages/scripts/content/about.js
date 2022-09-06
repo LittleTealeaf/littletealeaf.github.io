@@ -3,7 +3,7 @@ fetch("./resources/data/about.json")
   .then((data) => {
     const content = document.getElementById("about_content");
 
-    if(!content) {
+    if (!content) {
       return console.error("about_content element not found");
     }
 

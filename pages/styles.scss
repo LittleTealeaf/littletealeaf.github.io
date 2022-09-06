@@ -173,7 +173,7 @@ $about_border_radius: 10px;
   color: #ddd;
   font-family: monospace;
 
-  .window  {
+  .window {
     width: 95%;
     max-width: 1250px;
     margin: auto;
@@ -185,7 +185,6 @@ $about_border_radius: 10px;
     position: sticky;
     top: 0px;
     background-color: #000;
-
   }
 
   .tab {
@@ -193,7 +192,7 @@ $about_border_radius: 10px;
     text-align: center;
     cursor: pointer;
     padding: 10px;
-    border: 2px dashed rgba(0,0,0,0);
+    border: 2px dashed rgba(0, 0, 0, 0);
     border-bottom: 2px dashed white;
     transition-duration: 0.2s;
   }
@@ -228,7 +227,7 @@ $about_border_radius: 10px;
     }
 
     a:hover {
-      color: #fff
+      color: #fff;
     }
   }
 
