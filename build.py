@@ -8,7 +8,7 @@ import python.github as github
 from python.export import export_image, export_json, export_online_image, reset_export
 from dateutil.relativedelta import relativedelta
 
-HIDDEN_PROJECTS = ["No Project","Unknown Project"]
+HIDDEN_PROJECTS = ["No Project", "Unknown Project"]
 
 reset_export()
 
@@ -26,9 +26,9 @@ for img_list in CONFIG["images"]:
 
 
 data = {}
-for file in os.listdir('./resources/data'):
+for file in os.listdir("./resources/data"):
     path = Path(file)
-    with open(f'./resources/data/{file}') as file:
+    with open(f"./resources/data/{file}") as file:
         data[path.stem] = json.load(file)
 
 waka_all = wakatime.get_stats("all_time")
@@ -38,14 +38,15 @@ waka_weekly = wakatime.get_stats("last_7_days")
 
 github_api = github.getGithubApi("/users/LittleTealeaf")
 
-export_online_image(['images','avatar.webp'],github_api['avatar_url'])
+export_online_image(["images", "avatar.webp"], github_api["avatar_url"])
 
 
 def format_projects(projects):
 
     # filter out hidden projects
-    projects = [project for project in projects if project['name'] not in HIDDEN_PROJECTS]
-
+    projects = [
+        project for project in projects if project["name"] not in HIDDEN_PROJECTS
+    ]
 
     for project in projects:
         waka_api = wakatime.getWakaApi(
@@ -85,13 +86,14 @@ export_json(
     },
 )
 
-data['aboutme']['level'] = relativedelta(datetime(2002,5,28),datetime.today()).years * -1
-classes = data['aboutme']['classes']
-data['aboutme']['classes'] = []
-for name in classes:
-    data['aboutme']['classes'].append(f'{name} {round(data["aboutme"]["level"] * classes[name])}')
-
-export_json(
-    ["data","about"],
-    data["aboutme"]
+data["aboutme"]["level"] = (
+    relativedelta(datetime(2002, 5, 28), datetime.today()).years * -1
 )
+classes = data["aboutme"]["classes"]
+data["aboutme"]["classes"] = []
+for name in classes:
+    data["aboutme"]["classes"].append(
+        f'{name} {round(data["aboutme"]["level"] * classes[name])}'
+    )
+
+export_json(["data", "about"], data["aboutme"])
