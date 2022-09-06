@@ -8,6 +8,8 @@ import python.github as github
 from python.export import export_image, export_json, export_online_image, reset_export
 from dateutil.relativedelta import relativedelta
 
+HIDDEN_PROJECTS = ["No Project","Unknown Project"]
+
 reset_export()
 
 file = open("./config.json")
@@ -39,7 +41,12 @@ github_api = github.getGithubApi("/users/LittleTealeaf")
 export_online_image(['images','avatar.webp'],github_api['avatar_url'])
 
 
-def add_project_links(projects):
+def format_projects(projects):
+
+    # filter out hidden projects
+    projects = [project for project in projects if project['name'] not in HIDDEN_PROJECTS]
+
+
     for project in projects:
         waka_api = wakatime.getWakaApi(
             f"/api/v1/users/LittleTealeaf/projects/{project['name']}"
@@ -51,12 +58,13 @@ def add_project_links(projects):
             and waka_api["data"]["repository"] != None
         ):
             project["url"] = waka_api["data"]["repository"]["html_url"]
+
     return projects
 
 
 def build_stats(data):
     return {
-        "projects": add_project_links(data["projects"][0:10]),
+        "projects": format_projects(data["projects"][0:10]),
         "operating_systems": data["operating_systems"][0:10],
         "languages": data["languages"][0:10],
         "editors": data["editors"][0:10],
