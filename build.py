@@ -9,6 +9,7 @@ from python.export import export_image, export_json, export_online_image, reset_
 from dateutil.relativedelta import relativedelta
 
 HIDDEN_PROJECTS = ["No Project", "Unknown Project"]
+HIDDEN_LANGUAGES = ["Other"]
 
 reset_export()
 
@@ -62,12 +63,15 @@ def format_projects(projects):
 
     return projects
 
+def format_languages(languages):
+    return [language for language in languages if language['name'] not in HIDDEN_LANGUAGES]
+
 
 def build_stats(data):
     return {
-        "projects": format_projects(data["projects"][0:10]),
+        "projects": format_projects(data["projects"])[0:10],
         "operating_systems": data["operating_systems"][0:10],
-        "languages": data["languages"][0:10],
+        "languages": format_languages(data["languages"])[0:10],
         "editors": data["editors"][0:10],
         "categories": data["categories"][0:10],
         "daily_average": data["human_readable_daily_average"],
