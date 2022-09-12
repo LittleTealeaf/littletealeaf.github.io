@@ -4,7 +4,7 @@
     "watch": "sass --watch ./pages/styles.scss ./pages/styles.css --style compressed"
   },
   "dependencies": {
-    "sass": "^1.54.8",
+    "sass": "^1.54.9",
     "scss": "^0.2.4"
   }
 }
