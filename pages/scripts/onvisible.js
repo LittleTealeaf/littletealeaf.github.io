@@ -1,16 +1,12 @@
-(() => {
-  const elements = document.querySelectorAll(".onvisible");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        entry.target.classList.add("rendered");
-      } else {
-        entry.target.classList.remove("visible");
-      }
-    });
+const onVisibleObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    } else {
+      entry.target.classList.remove("visible");
+    }
   });
+});
 
-  elements.forEach((element) => observer.observe(element));
-})();
+
+document.querySelectorAll(".onvisible").forEach(onVisibleObserver.observe);

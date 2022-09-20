@@ -1,57 +1,48 @@
-(() => {
-  class Typewriter {
-    constructor(element) {
-      this.element = element;
+class Typewriter {
+  constructor(element) {
+    this.element = element;
 
-      this.text = document.createElement("span");
+    this.text = document.createElement("span");
 
-      const cursor = document.createElement("span");
-      cursor.innerText = "|";
+    const cursor = document.createElement("span");
+    cursor.innerText = "|";
 
-      this.element.append(this.text, cursor);
+    element.append(this.text, cursor);
 
-      this.words = this.element.dataset.words.split("|");
-      this.index = 0;
-      this.position = 0;
+    this.words = element.dataset.words.split("|") || [""];
 
-      this.typeTime = element.dataset.typeTime || 600;
-      this.deleteTime = element.dataset.deleteTime || 1000;
-      this.waitTime = element.dataset.waitTime || 1000;
+    this.index = 0;
+    this.position = 0;
 
-      this.interval = setInterval(() => this.tickType(), this.typeTime / this.words[this.index].length);
-    }
+    this.typeTime = element.dataset.typeTime || 600;
+    this.deleteTime = element.dataset.deleteTime || 1000;
+    this.waitTime = element.dataset.waitTime || 1000;
 
-    tickType() {
-      this.position++;
-      this.render();
+    this.interval = setInterval(this.tickType, this.typeTime / this.words[this.index]);
+  }
 
-      if (this.position === this.words[this.index].length) {
-        clearInterval(this.interval);
-        setTimeout(() => {
-          this.interval = setInterval(() => this.tickDelete(), this.deleteTime / this.words[this.index].length);
-        }, this.waitTime);
-      }
-    }
+  tickType() {
+    this.position++;
+    this.render();
 
-    tickDelete() {
-      this.position--;
-      this.render();
-
-      if (this.position == -1) {
-        clearInterval(this.interval);
-        this.index = (this.index + 1) % this.words.length;
-        this.interval = setInterval(() => this.tickType(), this.typeTime / this.words[this.index].length);
-      }
-    }
-
-    render() {
-      this.text.innerText = this.words[this.index].substring(0, this.position);
+    if (this.position === this.words[this.index].length) {
+      clearInterval(this.interval);
+      setTimeout(() => {
+        this.interval = setInterval(this.tickDelete, this.deleteTime / this.words[this.index].length);
+      }, this.waitTime);
     }
   }
 
-  const elements = document.getElementsByClassName("typewriter");
+  tickDelete() {
+    this.position--;
+    this.render();
 
-  for (const element of elements) {
-    new Typewriter(element);
+    if (this.position === -1) {
+      clearInterval(this.interval);
+      this.index = (this.index + 1) % this.words.length;
+      setInterval(this.tickType, this.typeTime / this.words[this.index]);
+    }
   }
-})();
+}
+
+document.querySelectorAll(".typewriter").forEach((element) => new Typewriter(element));
