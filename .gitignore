@@ -1,6 +1,7 @@
 .env
 **/*/__pycache__/
 pages/resources/
+.cache/
 cache/
 .idea/
 pages/styles.css

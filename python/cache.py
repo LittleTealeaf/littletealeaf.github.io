@@ -7,6 +7,7 @@ VERSION = "5"
 DEFAULT_TIME = 6
 MIN_TIME = 1
 MAX_TIME = 72
+FOLDER_NAME = ".cache"
 
 VALID_FILE_CHARACTERS = (
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890_-"
@@ -35,14 +36,14 @@ def store_cache(category, key, value, no_delete=False):
     if no_delete:
         cache["no_delete"] = True
 
-    os.makedirs(os.path.join(".", "cache"), exist_ok=True)
+    os.makedirs(os.path.join(".", FOLDER_NAME), exist_ok=True)
     with open(fileName, "w") as file:
         file.write(json.dumps(cache))
 
 
 def get_file(category, key):
     fileName = f"{encode_key(category)}{encode_key(key)}.json"
-    return os.path.join(".", "cache", fileName)
+    return os.path.join(".", FOLDER_NAME, fileName)
 
 
 def encode_key(key):
@@ -69,15 +70,15 @@ def get_cache(category, key, no_delete=False):
 
 
 def clean_cache():
-    if os.path.exists(os.path.join(".", "cache")):
-        for file in os.listdir(os.path.join(".", "cache")):
+    if os.path.exists(os.path.join(".", FOLDER_NAME)):
+        for file in os.listdir(os.path.join(".", FOLDER_NAME)):
             mark_delete = False
             try:
-                with open(os.path.join(".", "cache", file)) as f:
+                with open(os.path.join(".", FOLDER_NAME, file)) as f:
                     cache = json.load(f)
                     if cache['version'] != VERSION or (not cache["no_delete"] and cache["expires"] < time() - 60 * 60 * DEFAULT_TIME):
                         mark_delete = True
             except:
                 mark_delete = True
             if mark_delete:
-                os.remove(os.path.join(".", "cache", file))
+                os.remove(os.path.join(".", FOLDER_NAME, file))
