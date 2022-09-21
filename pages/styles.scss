@@ -2,6 +2,13 @@ html::-webkit-scrollbar {
   display: none;
 }
 
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+
 html,
 body {
   padding: 0;
@@ -20,15 +27,62 @@ body {
   flex-direction: row;
 }
 
-#explorer {
+#drawer {
+  left: 0px;
+  background-color: #21252b;
+  width: 250px;
+  height: 100vh;
+  transition-duration: 0.5s;
+}
 
+#panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#header {
+  height: 50px;
+  background: #21252b;
+  display: flex;
+  flex-direction: row;
+}
+
+#drawer_button {
+  overflow: hidden;
+  width: 0px;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+}
+
+#drawer_close {
+  display: none;
+  cursor: pointer;
 }
 
 
 
 @media only screen and (max-width: 750px) {
-  #explorer {
+
+  #drawer {
     position: absolute;
-    left: 0px;
+    left: -250px;
+  }
+
+  body[data-drawer="visible"] {
+
+    #drawer {
+      left: 0px;
+    }
+  }
+
+  #drawer_button {
+    width: 50px;
+  }
+
+  #drawer_close {
+    display: block;
   }
 }
