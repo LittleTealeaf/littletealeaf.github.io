@@ -3,6 +3,7 @@ import json
 import os
 from pathlib import Path
 import python.cache as cache
+from python.pages import *
 import python.wakatime as wakatime
 import python.github as github
 from python.export import export_image, export_json, export_online_image, reset_export
@@ -26,11 +27,11 @@ for img_list in CONFIG["images"]:
         export_image(destination + [path.stem + ".webp"], fileName)
 
 
-data = {}
-for file in os.listdir("./resources/data"):
-    path = Path(file)
-    with open(f"./resources/data/{file}") as file:
-        data[path.stem] = json.load(file)
+# data = {}
+# for file in os.listdir("./resources/data"):
+#     path = Path(file)
+#     with open(f"./resources/data/{file}") as file:
+#         data[path.stem] = json.load(file)
 
 waka_all = wakatime.get_stats("all_time")
 waka_monthly = wakatime.get_stats("last_30_days")
@@ -78,17 +79,43 @@ def build_stats(data):
         "total_time": data["human_readable_total"],
     }
 
-
-export_json(
-    ["data", "stats"],
-    {
-        "waka": {
-            "Past 7 Days": build_stats(waka_weekly),
-            "Past 30 Days": build_stats(waka_monthly),
-            "All Time": build_stats(waka_all),
+export_tree([
+    page('About Me',[
+        {
+            'type': 'text',
+            'content': 'HI, THIS IS ABOUT ME'
         }
-    },
-)
+    ]),
+    # page('Stats',{
+    #     "waka": {
+    #         "Past 7 Days": build_stats(waka_weekly),
+    #         "Past 30 Days": build_stats(waka_monthly),
+    #         "All time": build_stats(waka_all)
+    #     }
+    # },renderer='stats')
+    folder('Stats',[
+        page('Past 7 days',build_stats(waka_weekly),'stats'),
+        page('Past 30 days',build_stats(waka_weekly),'stats'),
+        page('All time',build_stats(waka_all),'stats')
+    ])
+])
+
+# pages.export_tree({
+#     # 'stats': pages.page({
+
+#     # })
+# })
+
+# export_json(
+#     ["data", "stats"],
+#     {
+#         "waka": {
+#             "Past 7 Days": build_stats(waka_weekly),
+#             "Past 30 Days": build_stats(waka_monthly),
+#             "All Time": build_stats(waka_all),
+#         }
+#     },
+# )
 
 # data["aboutme"]["level"] = (
 #     relativedelta(datetime(2002, 5, 28), datetime.today()).years * -1

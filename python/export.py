@@ -11,7 +11,7 @@ EXPORT_PATH = os.path.join(".", "pages", "resources")
 
 
 def export_json(path: list[str], contents: any):
-    return export_file(path, json.dumps(contents), extension="json")
+    return f'{export_file(path, json.dumps(contents), extension="json")}.json'
 
 
 def export_file(path: list[str], contents: str, extension="txt"):
