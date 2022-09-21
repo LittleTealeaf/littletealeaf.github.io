@@ -78,18 +78,20 @@ nav {
     align-items: center;
     border-bottom: 1px solid rgba(255,255,255,0);
     text-decoration: none;
-    color: white;
+    color: rgb(172, 172, 172);
   }
 
   a.current {
     border-bottom: 1px solid rgba(255,255,255,1);
     background-color: #282b34;
+    color: white;
   }
 }
 
 
 section {
   margin-top: 50px;
+  padding-top: 50px;
 }
 
 #projects,
