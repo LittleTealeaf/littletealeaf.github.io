@@ -90,14 +90,14 @@ export_json(
     },
 )
 
-data["aboutme"]["level"] = (
-    relativedelta(datetime(2002, 5, 28), datetime.today()).years * -1
-)
-classes = data["aboutme"]["classes"]
-data["aboutme"]["classes"] = []
-for name in classes:
-    data["aboutme"]["classes"].append(
-        f'{name} {round(data["aboutme"]["level"] * classes[name])}'
-    )
+# data["aboutme"]["level"] = (
+#     relativedelta(datetime(2002, 5, 28), datetime.today()).years * -1
+# )
+# classes = data["aboutme"]["classes"]
+# data["aboutme"]["classes"] = []
+# for name in classes:
+#     data["aboutme"]["classes"].append(
+#         f'{name} {round(data["aboutme"]["level"] * classes[name])}'
+#     )
 
-export_json(["data", "about"], data["aboutme"])
+# export_json(["data", "about"], data["aboutme"])
