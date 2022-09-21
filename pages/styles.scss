@@ -1,12 +1,18 @@
+$c_background: #282c34;
+$c_darker: #21252b;
+$c_light: #6e7074;
+$c_text: #84868a;
+
 html::-webkit-scrollbar {
   display: none;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+// .material-icons.md-18 { font-size: 18px; }
+// .material-icons.md-24 { font-size: 24px; }
+// .material-icons.md-36 { font-size: 36px; }
+// .material-icons.md-48 { font-size: 48px; }
 
 html,
 body {
@@ -15,6 +21,27 @@ body {
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  background-color: #282b34;
-  color: white;
+}
+
+body {
+  background-color: $c_background;
+  color: $c_text;
+
+  width: 100vw;
+  height: 100vh;
+
+  font-family: "Ubuntu", sans-serif;
+
+
+  display: flex;
+  flex-direction: row;
+}
+
+#drawer {
+  background-color: var(--color-secondary);
+  width: 250px;
+}
+
+@media only screen and (max-width: 750px) {
+  
 }
