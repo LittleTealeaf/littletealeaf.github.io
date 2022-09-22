@@ -64,8 +64,11 @@ def format_projects(projects):
 
     return projects
 
+
 def format_languages(languages):
-    return [language for language in languages if language['name'] not in HIDDEN_LANGUAGES]
+    return [
+        language for language in languages if language["name"] not in HIDDEN_LANGUAGES
+    ]
 
 
 def build_stats(data):
@@ -80,22 +83,22 @@ def build_stats(data):
     }
 
 
-ABOUT_ME = [
-    {
-        "node": "div",
-        "text": "hello world"
-    }
-]
+ABOUT_ME = {"node": "div", "text": "hello world"}
 
 
-export_tree([
-    page('About Me',ABOUT_ME,'dom'),
-    folder('Stats',[
-        page('Past 7 days',build_stats(waka_weekly),'stats'),
-        page('Past 30 days',build_stats(waka_weekly),'stats'),
-        page('All time',build_stats(waka_all),'stats')
-    ])
-])
+export_tree(
+    [
+        page("About Me", ABOUT_ME, "dom"),
+        folder(
+            "Stats",
+            [
+                page("Past 7 days", build_stats(waka_weekly), "stats"),
+                page("Past 30 days", build_stats(waka_weekly), "stats"),
+                page("All time", build_stats(waka_all), "stats"),
+            ],
+        ),
+    ]
+)
 
 # pages.export_tree({
 #     # 'stats': pages.page({

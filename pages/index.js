@@ -136,7 +136,10 @@ fetch("./resources/pages/index.json")
         });
       }
 
-      entry.addEventListener("click",(_) => {
+      entry.addEventListener("click",(e) => {
+
+
+
         if(selected != null) {
           selected.classList.remove("selected");
         }
