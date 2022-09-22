@@ -177,7 +177,7 @@ header {
     padding-inline: 10px;
 
     display: flex;
-    height: 100%;
+    height: calc(100% - 1px);
     flex-direction: row;
     align-items: center;
     cursor: pointer;
@@ -187,6 +187,7 @@ header {
 
   .tab.selected {
     background-color: #282c34;
+    border-bottom: 1px solid #6e7074;
   }
 
   .tab:hover {
