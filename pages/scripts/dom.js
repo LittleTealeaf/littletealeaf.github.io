@@ -13,6 +13,24 @@ function render_dom(node) {
     element.innerText = node.text
   }
 
+  if(node.html) {
+    element.innerHTML = node.html
+  }
+
+  if(node.attributes) {
+    for(const [key, value] of Object.entries(node.attributes)) {
+      element.setAttribute(key, value);
+    }
+  }
+
+  if(node.style) {
+    for(const [key, value] of Object.entries(node.style)) {
+      element.style[key] = value;
+    }
+  }
+
+
+
   return element;
 
 

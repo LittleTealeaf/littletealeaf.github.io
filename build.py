@@ -86,6 +86,7 @@ def build_stats(data):
 ABOUT_ME = {"node": "div", "text": "hello world"}
 
 
+
 export_tree(
     [
         page("About Me", ABOUT_ME, "dom"),
@@ -99,32 +100,3 @@ export_tree(
         ),
     ]
 )
-
-# pages.export_tree({
-#     # 'stats': pages.page({
-
-#     # })
-# })
-
-# export_json(
-#     ["data", "stats"],
-#     {
-#         "waka": {
-#             "Past 7 Days": build_stats(waka_weekly),
-#             "Past 30 Days": build_stats(waka_monthly),
-#             "All Time": build_stats(waka_all),
-#         }
-#     },
-# )
-
-# data["aboutme"]["level"] = (
-#     relativedelta(datetime(2002, 5, 28), datetime.today()).years * -1
-# )
-# classes = data["aboutme"]["classes"]
-# data["aboutme"]["classes"] = []
-# for name in classes:
-#     data["aboutme"]["classes"].append(
-#         f'{name} {round(data["aboutme"]["level"] * classes[name])}'
-#     )
-
-# export_json(["data", "about"], data["aboutme"])

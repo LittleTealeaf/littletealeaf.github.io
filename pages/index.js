@@ -19,7 +19,6 @@ function renderNothing() {
 
 function renderPage(tab_element) {
 
-  // document.querySelector("#tabs .tab.selected").classList.remove("selected");
   const previous = document.querySelector("#tabs .tab.selected");
   if(previous) {
     previous.classList.remove("selected");
