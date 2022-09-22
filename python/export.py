@@ -9,6 +9,9 @@ from PIL import Image
 
 EXPORT_PATH = os.path.join(".", "pages", "resources")
 
+IMAGE_COUNT = 0
+IMAGE_CACHE = {}
+
 
 def export_json(path: list[str], contents: any):
     return f'{export_file(path, json.dumps(contents), extension="json")}.json'
@@ -30,7 +33,8 @@ def make_parent_directory(path: list[str]):
         os.makedirs(parent_directory)
 
 
-def export_image(path: list[str], source):
+# Deprecated
+def export_imexport_some_imageage(path: list[str], source):
     reference, absolute = get_paths(path)
 
     make_parent_directory(absolute)
@@ -39,14 +43,28 @@ def export_image(path: list[str], source):
     img.save(absolute)
     return reference
 
-def export_online_image(path: list[str], url):
+def export_online_image(url):
+    if url in IMAGE_CACHE:
+        return IMAGE_CACHE[url]
     response = requests.get(url)
     img = Image.open(BytesIO(response.content))
+    ref = export_image(img)
+    IMAGE_CACHE[url] = ref
+    return ref
 
-    reference, absolute = get_paths(path)
+def export_local_image(path: str):
+    if path in IMAGE_CACHE:
+        return IMAGE_CACHE[path]
+    img = Image.open(path)
+    ref = export_image(img)
+    IMAGE_CACHE[path] = ref
+    return ref
 
+def export_image(img):
+    global IMAGE_COUNT
+    reference, absolute = get_paths(['images',f'{IMAGE_COUNT}.webp'])
+    IMAGE_COUNT += 1
     make_parent_directory(absolute)
-
     img.save(absolute)
     return reference
 

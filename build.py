@@ -18,20 +18,6 @@ file = open("./config.json")
 CONFIG = json.load(file)
 file.close()
 
-for img_list in CONFIG["images"]:
-    source: str = img_list["source"]
-    destination: list[str] = img_list["destination"]
-    for file in os.listdir(source):
-        path = Path(file)
-        fileName = "/".join([source, file])
-        export_image(destination + [path.stem + ".webp"], fileName)
-
-
-# data = {}
-# for file in os.listdir("./resources/data"):
-#     path = Path(file)
-#     with open(f"./resources/data/{file}") as file:
-#         data[path.stem] = json.load(file)
 
 waka_all = wakatime.get_stats("all_time")
 waka_monthly = wakatime.get_stats("last_30_days")
@@ -40,7 +26,7 @@ waka_weekly = wakatime.get_stats("last_7_days")
 
 github_api = github.getGithubApi("/users/LittleTealeaf")
 
-export_online_image(["images", "avatar.webp"], github_api["avatar_url"])
+github_avatar = export_online_image(github_api["avatar_url"])
 
 
 def format_projects(projects):
@@ -83,8 +69,71 @@ def build_stats(data):
     }
 
 
-ABOUT_ME = {"node": "div", "text": "hello world"}
+# reads a json file and returns the data
+def read_json(file):
+    with open(file, "r") as f:
+        return json.load(f)
 
+
+# Import projects from ./resources/projects/*.json and compile them to a projects list
+projects = []
+for file in os.listdir("./resources/projects"):
+    data = read_json(f"./resources/projects/{file}")
+    if "links" not in data:
+        data["links"] = {}
+    if "github" in data:
+        # data["github_api"] = github.getGithubApi(f"/repos/{data['github']}")
+        github_api = github.getGithubApi(f"/repos/{data['github']}")
+        if github_api:
+            data["links"]["github"] = github_api["html_url"]
+        # populate the 'last updated' field with a formatted timestamp
+        if "updated_at" in github_api:
+            data["updated_at"] = datetime.strptime(
+                github_api["updated_at"], "%Y-%m-%dT%H:%M:%SZ"
+            ).strftime("%d %B %Y")
+
+        if "wakatime" in data:
+            waka_api = wakatime.getWakaApi(
+                f"/api/v1/users/LittleTealeaf/projects/{data['wakatime']}"
+            )
+
+            past_30_days = wakatime.getWakaApi(
+                "/api/v1/users/LittleTealeaf/summaries?range=last_30_days&project="
+                + data["wakatime"]
+            )["data"]
+            past_30_days = [
+                day for day in past_30_days if day["grand_total"]["total_seconds"] > 0
+            ]
+
+    if "images" in data:
+        data["images"] = [
+            export_online_image(image)
+            if image.startswith("http")
+            else export_local_image(image)
+            for image in data["images"]
+        ]
+
+    projects.append(data)
+
+
+ABOUT_ME = {
+    "tag": "div",
+    "classList": ["__about-me"],
+    "children": [
+        {
+            "tag": "div",
+            "classList": ["__header"],
+            "children": [
+                {"tag": "img", "src": github_avatar, "alt": "avatar",},
+                {"tag": "h1", "text": "Hi! I'm Thomas Kwashnak"},
+                {
+                    "tag": "h2",
+                    "text": "I'm a Computer Science and Data Science double major at Quinnipiac University.",
+                },
+            ],
+        }
+    ],
+}
 
 
 export_tree(
@@ -97,6 +146,10 @@ export_tree(
                 page("Past 30 days", build_stats(waka_weekly), "stats"),
                 page("All time", build_stats(waka_all), "stats"),
             ],
+        ),
+        folder(
+            "Projects",
+            [page(project["name"], project, "project") for project in projects],
         ),
     ]
 )

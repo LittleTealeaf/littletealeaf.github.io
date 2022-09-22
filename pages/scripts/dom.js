@@ -1,6 +1,6 @@
 function render_dom(node) {
 
-  const element= document.createElement(node.node || "div");
+  const element= document.createElement(node.tag || "div");
   if(node.classList) {
     element.classList.add(...node.classList);
   }
@@ -29,7 +29,16 @@ function render_dom(node) {
     }
   }
 
+  if(node.data) {
+    for(const [key, value] of Object.entries(node.data)) {
+      element.dataset[key] = value;
+    }
+  }
 
+  // include img src
+  if(node.src) {
+    element.src = node.src;
+  }
 
   return element;
 
