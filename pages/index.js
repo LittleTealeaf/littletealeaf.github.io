@@ -130,10 +130,10 @@ fetch("./resources/pages/index.json")
 
         entry.addEventListener("click",(_) => element.classList.toggle("collapse"));
       } else {
-        entry.addEventListener("dblclick",(_) => {
+        entry.addEventListener("click",(_) => {
           setDrawer(false);
           openPage(node);
-        })
+        });
       }
 
       entry.addEventListener("click",(_) => {
