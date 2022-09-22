@@ -86,13 +86,6 @@ export_tree([
             'content': 'HI, THIS IS ABOUT ME'
         }
     ]),
-    # page('Stats',{
-    #     "waka": {
-    #         "Past 7 Days": build_stats(waka_weekly),
-    #         "Past 30 Days": build_stats(waka_monthly),
-    #         "All time": build_stats(waka_all)
-    #     }
-    # },renderer='stats')
     folder('Stats',[
         page('Past 7 days',build_stats(waka_weekly),'stats'),
         page('Past 30 days',build_stats(waka_weekly),'stats'),

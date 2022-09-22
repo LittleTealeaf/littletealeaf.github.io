@@ -3,11 +3,21 @@ $color_darker: #21252b;
 $color_light: #6e7074;
 $color_text: #c5c7cc;
 $width_drawer: 250px;
-$drawer_icon_size: 15px;
-
+$size_drawer_entry: 20px;
+$size_drawer_entry_icon: 20px;
 
 html::-webkit-scrollbar {
   display: none;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
@@ -36,16 +46,14 @@ body {
 
   font-family: "Ubuntu", sans-serif;
 
-
   display: flex;
   flex-direction: row;
 }
 
 #drawer {
-
   height: 100vh;
 
-  .content {
+  .pane {
     background: $color_darker;
     width: 250px;
     height: 100%;
@@ -61,54 +69,50 @@ body {
     height: 50px;
   }
 
+  .node {
+    height: 20px;
+    cursor: pointer;
 
-  .explorer {
-
-    * {
-      font-size: 17px;
-      cursor: pointer;
-      transition: all 0.2s;
+    > :first-child:hover {
+      background-color: #2c313a;
     }
 
-    .folder {
+    > :first-child {
 
-      div:first-child {
-        span:first-child {
+
+      height: 20px;
+      display: flex;
+      flex-direction: row;
+      > :first-child {
+        width: $size_drawer_entry;
+        transform: rotate(90deg);
+
+        * {
           font-size: 20px;
-          transform: rotate(90deg);
         }
       }
 
 
-      > :last-child {
-        margin-left: 10px;
-        height: fit-content;
-        overflow-y: hidden;
-        opacity: 1;
-      }
     }
 
-    .folder.collapse {
+  }
 
-      div:first-child {
-        span:first-child {
-          transform: rotate(0deg);
-        }
-      }
-
-      > :last-child {
-        height: 0;
-        opacity: 0;
-      }
+  .node.collapse {
+    .node {
+      display: none;
     }
 
-    .page {
-      margin-left: 15px;
+    :first-child {
+      transform: rotate(0deg);
     }
+  }
+
+  .selected {
+    background-color: #323842 !important;
   }
 }
 
-#page {
+#window {
   height: 100vh;
   width: calc(100vw - $width_drawer);
 }
@@ -120,7 +124,6 @@ header {
 }
 
 #drawer_toggle {
-
   cursor: pointer;
   height: 100%;
   width: fit-content;
@@ -134,14 +137,12 @@ header {
   }
 }
 
-
-
 @media only screen and (max-width: 750px) {
   #drawer_toggle {
     display: flex;
   }
 
-  #page {
+  #window {
     width: 100vw;
   }
 
@@ -161,7 +162,6 @@ header {
   }
 
   body[data-drawer="true"] {
-
     #drawer {
       left: 0px;
 
@@ -169,7 +169,6 @@ header {
         left: $width_drawer;
         width: 100vw;
       }
-
     }
   }
 
@@ -179,13 +178,10 @@ header {
   // //   box-shadow: 0px 0px 0px rgba(0,0,0,0);
   // // }
 
-
-
   // body[data-drawer="true"] {
   //   #drawer {
   //     left: 0px;
   //     box-shadow: 0px 0px 100px rgba(0,0,0,1);
   //   }
   // }
-
 }
