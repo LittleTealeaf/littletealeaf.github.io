@@ -97,7 +97,10 @@ fetch("./resources/pages/index.json")
   .then((json) => {
     const explorer = document.querySelector("#drawer .explorer");
 
+    // TODO - Use document queries instead of storing a selected element.
+
     let selected = null;
+
 
     function render_node(node, depth) {
       const element = document.createElement("div");
