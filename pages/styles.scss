@@ -121,6 +121,8 @@ header {
   height: 50px;
   width: 100%;
   background-color: $color_darker;
+  display: flex;
+  flex-direction: row;
 }
 
 #drawer_toggle {
@@ -131,6 +133,7 @@ header {
   text-align: center;
   justify-content: center;
   display: none;
+  padding-inline: 10px;
 
   span {
     font-size: 36px;
@@ -140,8 +143,9 @@ header {
 #tabs {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  overflow: scroll;
+  width: fit-content;
+  overflow-x: scroll;
+  overflow-y: hidden;
   height: 100%;
 
   .text_container {
@@ -177,6 +181,7 @@ header {
     flex-direction: row;
     align-items: center;
     cursor: pointer;
+    min-width: fit-content;
 
   }
 
@@ -193,6 +198,10 @@ header {
   }
 
 
+}
+
+#page {
+  padding: 10px;
 }
 
 @media only screen and (max-width: 750px) {
@@ -229,17 +238,4 @@ header {
       }
     }
   }
-
-  // // #drawer {
-  // //   position: absolute;
-  // //   left: -1 * $width_drawer;
-  // //   box-shadow: 0px 0px 0px rgba(0,0,0,0);
-  // // }
-
-  // body[data-drawer="true"] {
-  //   #drawer {
-  //     left: 0px;
-  //     box-shadow: 0px 0px 100px rgba(0,0,0,1);
-  //   }
-  // }
 }
