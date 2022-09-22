@@ -53,7 +53,7 @@ def export_online_image(path: list[str], url):
 
 
 def get_paths(path: list[str]):
-    return "/".join(["resources", *path]), "/".join([".", "pages", "resources", *path])
+    return "/".join([".","resources", *path]), "/".join([".", "pages", "resources", *path])
 
 
 def reset_export():

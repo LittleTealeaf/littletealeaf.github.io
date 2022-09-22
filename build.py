@@ -79,13 +79,17 @@ def build_stats(data):
         "total_time": data["human_readable_total"],
     }
 
+
+ABOUT_ME = [
+    {
+        "node": "div",
+        "text": "hello world"
+    }
+]
+
+
 export_tree([
-    page('About Me',[
-        {
-            'type': 'text',
-            'content': 'HI, THIS IS ABOUT ME'
-        }
-    ]),
+    page('About Me',ABOUT_ME,'dom'),
     folder('Stats',[
         page('Past 7 days',build_stats(waka_weekly),'stats'),
         page('Past 30 days',build_stats(waka_weekly),'stats'),
