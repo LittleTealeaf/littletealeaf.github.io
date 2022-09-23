@@ -5,7 +5,7 @@ def build():
     return page(
         "Home",
         {
-            "classList": ["__about-me"],
+            "classList": ["__home"],
             "children": [
                 {
                     "classList": ["__header"],
