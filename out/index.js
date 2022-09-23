@@ -1,154 +1,159 @@
-const Body = document.querySelector("body");
-const Header = document.querySelector("header");
-const Drawer = document.querySelector("#drawer");
-const Page = document.querySelector("#page");
-const Tabs = document.querySelector("#tabs");
+const BODY = document.querySelector("body");
+const PAGE = document.querySelector("#page");
+const TABS = document.querySelector("#tabs");
 
+/**
+ * Sets whether the drawer should be open or closed
+ * @param {*} open
+ */
 function setDrawer(open) {
-  Body.dataset.drawer = open;
+  BODY.dataset.drawer = open;
 }
 
+// Updates the drawer_toggle to open the drawer
 document.querySelector("#drawer_toggle").addEventListener("click", (_) => setDrawer(true));
 
+// Updates the .action_close_drawer to close the drawer
 document.querySelectorAll("#drawer .action_close_drawer").forEach((element) => element.addEventListener("click", (_) => setDrawer(false)));
 
+function renderPage(tab) {
 
-function renderNothing() {
-  Page.innerHTML = "";
-}
-
-function renderPage(tab_element) {
+  if(!tab) {
+    tab = document.querySelector("#tabs .tab");
+  }
 
   const previous = document.querySelector("#tabs .tab.selected");
-  if(previous) {
+  if (previous) {
+
+    if(tab === previous) {
+      return;
+    }
+
     previous.classList.remove("selected");
   }
 
-  const {source, method} = tab_element.dataset;
-  tab_element.classList.add("selected");
+  PAGE.innerHTML = "";
 
-  Page.innerHTML = "";
+  if(!tab) return;
 
-  const data = fetch(source).then(response => response.json());
+  tab.classList.add("selected");
 
-  if(method === "dom") {
-    data.then((data) => Page.append(render_dom(data)));
+  const { source, renderer } = tab.dataset;
+  const data = fetch(source).then((response) => response.json());
+
+  if (renderer === "dom") {
+    data.then((data) => PAGE.append(render_dom(data)));
   }
-
 }
 
-function openPage(page) {
-  const tabs = document.querySelectorAll("#tabs > div");
+// Loads a page as a tab when the node in the explorer is clicked
+function openNode(node) {
+  renderPage(document.querySelector(`#tabs .tab[data-name='${node.name}']`) || (() => {
+    const tab = document.createElement("div");
 
-  var found = null;
-  tabs.forEach(tab => {
-    if(page.name == tab.dataset.name) {
-      found = tab;
-    }
-  });
-
-  if(found) {
-    renderPage(found);
-  } else{
-    const element = document.createElement("div");
-    element.dataset.name = page.name;
-    element.classList.add("tab");
+    tab.dataset.name = node.name;
+    tab.dataset.source = node.source;
+    tab.dataset.renderer = node.renderer;
+    tab.classList.add("tab");
 
     const label_container = document.createElement("div");
     label_container.classList.add("text_container");
 
     const label = document.createElement("span");
-    label.innerText = page.name;
+    label.innerText = node.name;
     label_container.append(label);
 
     const close_container = document.createElement("div");
-    close_container.classList.add("text_container","close_tab")
+    close_container.classList.add("text_container", "close_tab");
 
     const close = document.createElement("span");
     close.classList.add("material-icons");
     close.innerText = "close";
-    close.addEventListener("click",(_) => {
-      element.classList.add("removing");
+    close.addEventListener("click",(e) => {
+      e.stopPropagation();
       if(element.classList.contains("selected")) {
-        renderNothing();
+        renderPage(null);
       }
       element.remove();
     });
     close_container.append(close);
 
-    element.dataset.source = page.contents;
-    element.dataset.method = page.renderer;
-
-    element.append(label_container,close_container);
-    Tabs.append(element);
-
-    element.addEventListener("click",(_) => {
-      if(!element.classList.contains("removing") && !element.classList.contains("selected")) {
-        renderPage(element);
+    tab.append(label_container,close_container);
+    // Close the tab if the tab is middle clicked
+    tab.addEventListener("auxclick", (e) => {
+      if (e.button === 1) {
+        if(tab.classList.contains("selected")) {
+          renderPage(null);
+        }
+        tab.remove();
       }
     });
-    renderPage(element);
-  }
+
+    //Render page if clicked
+    tab.addEventListener("click",(e) => {
+      renderPage(tab);
+    })
+
+
+    TABS.append(tab);
+    return tab;
+  })());
+
+
 }
 
-
-fetch("./resources/pages/index.json")
+fetch("./resources/pages.json")
   .then((response) => response.json())
-  .then((json) => {
+  .then((nodes) => {
+
     const explorer = document.querySelector("#drawer .explorer");
 
-    // TODO - Use document queries instead of storing a selected element.
-
-    let selected = null;
-
+    // Renders each node in the explorer
     function render_node(node, depth) {
       const element = document.createElement("div");
       element.classList.add("node");
 
-      if (depth > 0) {
+      // Add the depth
+      if(depth > 0) {
         element.style.paddingLeft = `${depth * 7}px`;
       }
 
+      // Create the label
       const entry = document.createElement("div");
       const icon = document.createElement("div");
       const name = document.createElement("div");
       name.innerText = node.name;
-      entry.append(icon, name);
+      entry.append(icon,name);
       element.append(entry);
 
-
-
-      if (node.type == "folder") {
-
+      if(node.type === "folder") {
+        // Set to collapse by default
         element.classList.add("collapse");
 
+        // Add the icon
         const icon_chevron = document.createElement("span");
         icon_chevron.classList.add("material-icons");
         icon_chevron.innerText = "chevron_right";
         icon.append(icon_chevron);
 
-        element.append(...node.contents.map((content) => render_node(content, depth + 1)));
+        // Add children
+        element.append(...node.contents.map((content) => render_node(content,depth + 1)));
 
+        // Add the click event to collapse the folder
         entry.addEventListener("click",(_) => element.classList.toggle("collapse"));
       } else {
-        //Element is a page, so clicking should close the drawer and open the page.
+
+        // Element is a page, so clicking should close the drawer and open the page.
         entry.addEventListener("click",(_) => {
           setDrawer(false);
-          openPage(node);
+          openNode(node);
         });
       }
 
-      entry.addEventListener("click",(_) => {
-        if(selected != null) {
-          selected.classList.remove("selected");
-        }
-        entry.classList.add("selected");
-        selected = entry;
-      });
 
       return element;
     }
 
-    explorer.append(...json.map((node) => render_node(node, 0)));
-    openPage(json[0])
+    explorer.append(...nodes.map((node) => render_node(node, 0)));
+    openNode(nodes[0]);
   });

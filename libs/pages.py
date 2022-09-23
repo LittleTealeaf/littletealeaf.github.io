@@ -9,7 +9,7 @@ def page(name: str, data, renderer = 'default'):
 
   COUNT = COUNT + 1
 
-  return {'name': name, 'contents': path, 'type': 'page', 'renderer': renderer}
+  return {'name': name, 'source': path, 'type': 'page', 'renderer': renderer}
 
 def folder(name: str, contents: dict):
   return {
@@ -20,4 +20,4 @@ def folder(name: str, contents: dict):
 
 
 def export_tree(tree: dict):
-  export_json(['pages','index'],tree)
+  export_json(['pages'],tree)
