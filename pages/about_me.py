@@ -17,10 +17,18 @@ def build():
                         },
                         {"tag": "h1", "text": "Hi! I'm Thomas Kwashnak"},
                         {
-                            "tag": "h2",
+                            "tag": "h4",
                             "text": "I'm a Computer Science and Data Science double major at Quinnipiac University.",
                         },
                     ],
+                },{
+                    'classList': ['__content'],
+                    "children": [
+                        {
+                            "classList": ["__site-info"],
+                            "text": "Welcome to my portfolio! You can view a list of the available sites on the left pane."
+                        }
+                    ]
                 }
             ],
         },
