@@ -92,18 +92,21 @@ for file in os.listdir("./resources/projects"):
                 github_api["updated_at"], "%Y-%m-%dT%H:%M:%SZ"
             ).strftime("%d %B %Y")
 
-        if "wakatime" in data:
-            waka_api = wakatime.getWakaApi(
-                f"/api/v1/users/LittleTealeaf/projects/{data['wakatime']}"
-            )
+        try:
+            if "wakatime" in data:
+                waka_api = wakatime.getWakaApi(
+                    f"/api/v1/users/LittleTealeaf/projects/{data['wakatime']}"
+                )
 
-            past_30_days = wakatime.getWakaApi(
-                "/api/v1/users/LittleTealeaf/summaries?range=last_30_days&project="
-                + data["wakatime"]
-            )["data"]
-            past_30_days = [
-                day for day in past_30_days if day["grand_total"]["total_seconds"] > 0
-            ]
+                past_30_days = wakatime.getWakaApi(
+                    "/api/v1/users/LittleTealeaf/summaries?range=last_30_days&project="
+                    + data["wakatime"]
+                )["data"]
+                past_30_days = [
+                    day for day in past_30_days if day["grand_total"]["total_seconds"] > 0
+                ]
+        except:
+            ...
 
     if "images" in data:
         data["images"] = [
@@ -114,6 +117,9 @@ for file in os.listdir("./resources/projects"):
         ]
 
     projects.append(data)
+
+
+RESUME = read_json("./resources/resume.json")
 
 
 ABOUT_ME = {
@@ -151,5 +157,7 @@ export_tree(
             "Projects",
             [page(project["name"], project, "project") for project in projects],
         ),
+        page("Resume", RESUME, "resume"),
+        page("Contacts",{},"dom")
     ]
 )
