@@ -101,7 +101,6 @@ fetch("./resources/pages/index.json")
 
     let selected = null;
 
-
     function render_node(node, depth) {
       const element = document.createElement("div");
       element.classList.add("node");
@@ -138,10 +137,7 @@ fetch("./resources/pages/index.json")
         });
       }
 
-      entry.addEventListener("click",(e) => {
-
-
-
+      entry.addEventListener("click",(_) => {
         if(selected != null) {
           selected.classList.remove("selected");
         }
@@ -153,5 +149,5 @@ fetch("./resources/pages/index.json")
     }
 
     explorer.append(...json.map((node) => render_node(node, 0)));
-
+    openPage(json[0])
   });
