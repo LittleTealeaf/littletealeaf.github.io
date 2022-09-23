@@ -1,8 +1,7 @@
 {
   "name": "littletealeaf.github.io",
-  "github": "littletealeaf/littletealeaf.github.io",
-  "wakatime": "littletealeaf.github.io",
-  "links": {
-    "website": "http://littletealeaf.github.io"
-  }
+  "github": "LittleTealeaf/littletealeaf.github.io",
+  "tags": [
+    "website","javascript","python","html","css","github-pages"
+  ]
 }

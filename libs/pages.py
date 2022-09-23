@@ -2,7 +2,7 @@ from libs.export import *
 
 COUNT = 0
 
-def page(name: str, data, renderer = 'default'):
+def page(name: str, data, renderer = 'dom'):
   global COUNT
 
   path = export_json(['pages',str(COUNT)],data)
