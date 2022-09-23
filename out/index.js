@@ -83,10 +83,10 @@ function openPage(page) {
     Tabs.append(element);
 
     element.addEventListener("click",(_) => {
-      if(!element.classList.contains("removing")) {
+      if(!element.classList.contains("removing") && !element.classList.contains("selected")) {
         renderPage(element);
       }
-    })
+    });
     renderPage(element);
   }
 }
@@ -131,6 +131,7 @@ fetch("./resources/pages/index.json")
 
         entry.addEventListener("click",(_) => element.classList.toggle("collapse"));
       } else {
+        //Element is a page, so clicking should close the drawer and open the page.
         entry.addEventListener("click",(_) => {
           setDrawer(false);
           openPage(node);
