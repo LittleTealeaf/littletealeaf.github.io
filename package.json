@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build": "sass ./pages/styles.scss ./pages/styles.css --style compressed",
-    "watch": "sass --watch ./pages/styles.scss ./pages/styles.css --style compressed"
+    "build": "sass ./out/styles.scss ./out/styles.css --style compressed",
+    "watch": "sass --watch ./out/styles.scss ./out/styles.css --style compressed"
   },
   "dependencies": {
     "sass": "^1.54.9",

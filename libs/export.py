@@ -7,7 +7,7 @@ import requests
 
 from PIL import Image
 
-EXPORT_PATH = os.path.join(".", "pages", "resources")
+EXPORT_PATH = os.path.join(".", "out", "resources")
 
 IMAGE_COUNT = 0
 IMAGE_CACHE = {}
