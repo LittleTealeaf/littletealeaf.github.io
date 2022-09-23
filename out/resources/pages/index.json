@@ -1,1 +1,1 @@
-[{ "name": "About Me", "contents": "./resources/pages/0.json", "type": "page", "renderer": "dom" }]
+[{"name": "About Me", "contents": "./resources/pages/0.json", "type": "page", "renderer": "dom"}]

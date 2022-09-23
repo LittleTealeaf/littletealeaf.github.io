@@ -71,7 +71,7 @@ def export_image(img):
 
 
 def get_paths(path: list[str]):
-    return "/".join([".","resources", *path]), "/".join([".", "pages", "resources", *path])
+    return "/".join([".","resources", *path]), "/".join([".", "out", "resources", *path])
 
 
 def reset_export():
