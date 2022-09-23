@@ -112,7 +112,9 @@ body {
 }
 
 #window {
+  max-height: 100vh;
   height: 100vh;
+  overflow-y: scroll;
   width: calc(100vw - $width_drawer);
 }
 
@@ -216,12 +218,17 @@ header {
       img {
         width: 400px;
         height: 400px;
+        max-width: 80vw;
+        max-height: 80vw;
         border-radius: 50%;
-        margin: 0 auto;
+        margin: 10px auto;
       }
 
       * {
         text-align: center;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        width: 80%;
       }
     }
 
