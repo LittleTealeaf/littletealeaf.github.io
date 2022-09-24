@@ -20,6 +20,8 @@ function renderPage(tab) {
 
   if(!tab) {
     tab = document.querySelector("#tabs .tab");
+
+    console.log(tab);
   }
 
   const previous = document.querySelector("#tabs .tab.selected");
@@ -71,10 +73,11 @@ function openNode(node) {
     close.innerText = "close";
     close.addEventListener("click",(e) => {
       e.stopPropagation();
-      if(element.classList.contains("selected")) {
+      const hasSelected = tab.classList.contains("selected");
+      tab.remove();
+      if(hasSelected) {
         renderPage(null);
       }
-      element.remove();
     });
     close_container.append(close);
 
