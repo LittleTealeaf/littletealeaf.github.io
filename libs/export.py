@@ -14,7 +14,7 @@ IMAGE_CACHE = {}
 
 
 def export_json(path: list[str], contents: any):
-    return f'{export_file(path, json.dumps(contents), extension="json")}.json'
+    return f'{export_file(path, json.dumps(contents, separators=(",",":")), extension="json")}.json'
 
 
 def export_file(path: list[str], contents: str, extension="txt"):
