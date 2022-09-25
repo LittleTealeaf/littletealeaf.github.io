@@ -193,9 +193,14 @@ header {
 }
 
 #page {
-  padding: 10px;
   height: calc(100vh - $height_header);
   overflow-y: scroll;
+  width: 100%;
+  overflow-x: scroll;
+
+  > * {
+    margin: 10px;
+  }
 
   ._home {
     .__header {
@@ -327,6 +332,8 @@ header {
   }
 
   ._project {
+    margin: 10px;
+
     .__title {
       font-size: 35px;
       margin-bottom: 10px;
