@@ -154,6 +154,15 @@ fetch("./resources/pages.json")
 
         // Element is a page, so clicking should close the drawer and open the page.
         entry.addEventListener("click",(_) => {
+
+          const current = document.querySelector("#drawer .node > .selected");
+          if(current) {
+            current.classList.remove("selected");
+          }
+
+          entry.classList.add("selected");
+
+
           setDrawer(false);
           openNode(node);
         });
