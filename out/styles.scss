@@ -322,6 +322,24 @@ header {
       padding-top: 3px;
       text-align: center;
     }
+
+    .__tags {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .__tag {
+      background-color: $color_darker;
+      border-radius: 10px;
+      padding: 3px;
+      margin-inline: 3px;
+      font-size: 12px;
+    }
   }
 }
 

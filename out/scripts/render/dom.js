@@ -1,12 +1,16 @@
 function render_dom(node) {
 
+  if(!node) {
+    return undefined;
+  }
+
   const element= document.createElement(node.tag || "div");
   if(node.classList) {
     element.classList.add(...node.classList);
   }
 
   if(node.children) {
-    element.append(...node.children.map(render_dom));
+    element.append(...node.children.map(render_dom).filter((child) => child));
   }
 
   if(node.text) {

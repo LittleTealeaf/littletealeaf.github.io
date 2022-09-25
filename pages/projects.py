@@ -28,7 +28,8 @@ def build_project(data):
     'name': project['name'],
     'source': project_page['source'],
     'description': data['description'],
-    'image': project['image']
+    'image': project['image'],
+    'tags': data['tags']
   }
 
   # if 'images' in project:

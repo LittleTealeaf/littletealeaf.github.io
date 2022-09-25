@@ -45,6 +45,13 @@ function render_project_list(projects) {
                       classList: ["__description"],
                       text: project.description,
                     },
+                    (project.tags && {
+                      classList: ["__tags"],
+                      children: project.tags.map((tag) => ({
+                        classList: ["__tag"],
+                        text: tag,
+                      })),
+                    })
                   ]
                 }
               ]
