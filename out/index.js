@@ -19,9 +19,11 @@ document.querySelectorAll("#drawer .action_close_drawer").forEach((element) => e
 function renderPage(tab) {
 
   if(!tab) {
-    tab = document.querySelector("#tabs .tab");
 
-    console.log(tab);
+    const tabs = document.querySelectorAll("#tabs .tab");
+    if(tabs.length > 0) {
+      tab = tabs[tabs.length - 1];
+    }
   }
 
   const previous = document.querySelector("#tabs .tab.selected");
