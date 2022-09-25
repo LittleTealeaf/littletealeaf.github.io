@@ -6,6 +6,7 @@ $color_hover: #323842;
 $width_drawer: 250px;
 $size_drawer_entry: 20px;
 $size_drawer_entry_icon: 20px;
+$height_header: 50px;
 
 html::-webkit-scrollbar {
   display: none;
@@ -110,12 +111,12 @@ body {
 #window {
   max-height: 100vh;
   height: 100vh;
-  overflow-y: scroll;
   width: calc(100vw - $width_drawer);
+  overflow: hidden;
 }
 
 header {
-  height: 50px;
+  height: $height_header;
   width: 100%;
   background-color: $color_darker;
   display: flex;
@@ -193,6 +194,8 @@ header {
 
 #page {
   padding: 10px;
+  height: calc(100vh - $height_header);
+  overflow-y: scroll;
 
   ._home {
     .__header {
