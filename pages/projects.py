@@ -1,10 +1,43 @@
 from libs import *
 
-def build_project_page(project):
+def format_description_segment(segment):
+  if segment['type'] == 'image':
+    if 'http' in segment['src']:
+      segment['src'] = export_online_image(segment['src'])
+    else:
+      segment['src'] = export_local_image(segment['src'])
 
-  return page(project['name'],{
+  return segment
 
-  },'project')
+def build_project(data):
+  project = {
+    'name': data['name'],
+    'content': [format_description_segment(segment) for segment in data['content']],
+  }
+
+  if 'image' in data:
+    project['image'] = export_any_image(data['image'])
+
+
+
+
+
+  project_page = page(project['name'],project,'project')
+
+  return project_page, {
+    'name': project['name'],
+    'source': project_page['source'],
+    'description': data['description'],
+    'image': project['image']
+  }
+
+  # if 'images' in project:
+
+
+  # return page(project['name'],{
+  #   "name": project['name'],
+  #   "description": project['description'],
+  # },'project')
 
 def build():
 
@@ -17,9 +50,13 @@ def build():
         projects.append(json.load(f))
 
 
+  projects = [build_project(project) for project in projects]
+
+  project_pages = [project[0] for project in projects]
+  project_snippets = [project[1] for project in projects]
 
 
   return folder("Projects",[
-    page("All Projects",{},),
-    *[build_project_page(project) for project in projects]
+    page("All Projects",project_snippets,'project-list'),
+    *project_pages
   ])

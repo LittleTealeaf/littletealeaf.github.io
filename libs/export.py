@@ -68,6 +68,11 @@ def export_image(img):
     img.save(absolute)
     return reference
 
+def export_any_image(source):
+    if 'http' in source:
+        return export_online_image(source)
+    else:
+        return export_local_image(source)
 
 
 def get_paths(path: list[str]):

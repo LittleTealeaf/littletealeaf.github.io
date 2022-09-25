@@ -3,5 +3,18 @@
   "github": "LittleTealeaf/littletealeaf.github.io",
   "tags": [
     "website","javascript","python","html","css","github-pages"
-  ]
+  ],
+  "description": "My personal website that you're currently viewing.",
+  "content": [
+    {
+      "type": "text",
+      "text": "testing"
+    },
+    {
+      "type": "image",
+      "src": "./resources/images/projects/littletealeaf.github.io/1.png",
+      "label": "testing"
+    }
+  ],
+  "image": "./resources/images/projects/littletealeaf.github.io/3.png"
 }

@@ -45,6 +45,10 @@ function renderPage(tab) {
 
   if (renderer === "dom") {
     data.then((data) => PAGE.append(render_dom(data)));
+  } else if(renderer === "project") {
+    data.then((data) => PAGE.append(render_project(data)));
+  } else if(renderer === 'project-list') {
+    data.then((data) => PAGE.append(render_project_list(data)));
   }
 }
 

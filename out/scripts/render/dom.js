@@ -35,6 +35,10 @@ function render_dom(node) {
     }
   }
 
+  if(node.onclick) {
+    element.onclick = node.onclick;
+  }
+
   // include img src
   if(node.src) {
     element.src = node.src;
