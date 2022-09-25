@@ -348,6 +348,11 @@ header {
         color: $color_text;
       }
     }
+    .labeled_image:hover {
+      .-overlay {
+        background: rgba(0,0,0,0.1);
+      }
+    }
   }
 }
 
@@ -384,6 +389,8 @@ header {
     padding-left: 10px;
     padding-right: 10px;
   }
+
+
 }
 
 .labeled_image:hover {
