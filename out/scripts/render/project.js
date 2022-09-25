@@ -87,6 +87,7 @@ function render_project_list(projects) {
             openNode({
               name: project.name,
               source: project.source,
+              renderer: "project",
             });
           },
           children: [
