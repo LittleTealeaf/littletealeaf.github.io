@@ -85,10 +85,10 @@ function openNode(node) {
     // Close the tab if the tab is middle clicked
     tab.addEventListener("auxclick", (e) => {
       if (e.button === 1) {
+        tab.remove();
         if(tab.classList.contains("selected")) {
           renderPage(null);
         }
-        tab.remove();
       }
     });
 
