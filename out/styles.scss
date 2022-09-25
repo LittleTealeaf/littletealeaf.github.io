@@ -266,12 +266,6 @@ header {
 
       box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
 
-      h3 {
-        text-align: center;
-        width: 100%;
-
-      }
-
     }
 
     .__project:hover {
@@ -293,16 +287,38 @@ header {
     }
 
     .__overlay {
-      width: calc(100% - 30px);
-      height: calc(100% - 30px);
-      padding: 15px;
+      width: 100%;
+      height: 100%;
       background: rgba(0,0,0,0.0);
       transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
 
       > * {
         transition: all 0.2s;
         transform: translate(0px,250px);
       }
+    }
+    .__spacer {
+      flex-grow: 1;
+    }
+
+    .__info {
+      background-color: $color_background;
+      border-radius: 20px;
+      padding-top: 5px;
+    }
+
+    .__name {
+      font-size: 20px;
+      margin: 0px;
+      text-align: center;
+    }
+
+    .__description {
+      padding: 15px;
+      padding-top: 3px;
+      text-align: center;
     }
   }
 }

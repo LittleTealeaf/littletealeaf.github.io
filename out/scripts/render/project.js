@@ -32,9 +32,21 @@ function render_project_list(projects) {
               classList: ["__overlay"],
               children: [
                 {
-                  tag: "h3",
-                  text: project.name,
+                  classList: ["__spacer"],
                 },
+                {
+                  classList: ["__info"],
+                  children: [
+                    {
+                      classList: ["__name"],
+                      text: project.name,
+                    },
+                    {
+                      classList: ["__description"],
+                      text: project.description,
+                    },
+                  ]
+                }
               ]
             }
           ]
