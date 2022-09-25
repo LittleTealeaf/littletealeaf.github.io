@@ -48,6 +48,14 @@ function render_dom(node) {
     element.src = node.src;
   }
 
+  if(node.href) {
+    element.href = node.href;
+  }
+
+  if(node.target) {
+    element.target = node.target;
+  }
+
   return element;
 
 

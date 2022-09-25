@@ -7,6 +7,11 @@ def format_description_segment(segment):
     else:
       segment['src'] = export_local_image(segment['src'])
 
+    img = Image.open(f'./out/{segment["src"]}')
+    segment['width'] = img.width
+    segment['height'] = img.height
+
+
   return segment
 
 def build_project(data):
