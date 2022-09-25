@@ -57,7 +57,6 @@ def build():
   project_snippets = [project[1] for project in projects]
 
 
-  return folder("Projects",[
-    page("All Projects",project_snippets,'project-list'),
+  return page("All Projects",project_snippets,'project-list'), folder("Projects",[
     *project_pages
   ])
