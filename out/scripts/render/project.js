@@ -5,6 +5,9 @@ function render_project(project) {
 }
 
 function render_project_list(projects) {
+
+  // TODO: add filter
+
   return render_dom({
     classList: ["__all_projects"],
     children: [
