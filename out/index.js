@@ -169,15 +169,6 @@ fetch("./resources/pages.json")
         });
       }
 
-      // entry.addEventListener("click",(_) => {
-      //   const current = document.querySelector("#drawer .node > .selected");
-      //     if(current) {
-      //       current.classList.remove("selected");
-      //     }
-      //     entry.classList.add("selected");
-      // })
-
-
       return element;
     }
 
