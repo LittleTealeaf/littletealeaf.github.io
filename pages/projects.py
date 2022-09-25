@@ -8,8 +8,8 @@ def format_description_segment(segment):
       segment['src'] = export_local_image(segment['src'])
 
     img = Image.open(f'./out/{segment["src"]}')
-    segment['width'] = img.width
-    segment['height'] = img.height
+    segment['width'] = img.width if 'width' not in segment else segment['width']
+    segment['height'] = img.height if 'height' not in segment else segment['height']
 
 
   return segment
