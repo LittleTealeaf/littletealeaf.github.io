@@ -40,6 +40,15 @@ function renderPage(tab) {
 
   if(!tab) return;
 
+  const drawer_previous_node = document.querySelector("#drawer .selected");
+  if(drawer_previous_node) {
+    drawer_previous_node.classList.remove("selected");
+  }
+  const drawer_node = document.querySelector(`#drawer [data-name='${tab.dataset.name}']`);
+  if(drawer_node) {
+    drawer_node.classList.add("selected");
+  }
+
   tab.classList.add("selected");
 
   const { source, renderer } = tab.dataset;
@@ -133,6 +142,7 @@ fetch("./resources/pages.json")
       const name = document.createElement("div");
       name.innerText = node.name;
       entry.append(icon,name);
+      entry.dataset.name = node.name;
       element.append(entry);
 
       if(node.type === "folder") {
@@ -159,13 +169,13 @@ fetch("./resources/pages.json")
         });
       }
 
-      entry.addEventListener("click",(_) => {
-        const current = document.querySelector("#drawer .node > .selected");
-          if(current) {
-            current.classList.remove("selected");
-          }
-          entry.classList.add("selected");
-      })
+      // entry.addEventListener("click",(_) => {
+      //   const current = document.querySelector("#drawer .node > .selected");
+      //     if(current) {
+      //       current.classList.remove("selected");
+      //     }
+      //     entry.classList.add("selected");
+      // })
 
 
       return element;
