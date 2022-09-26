@@ -107,7 +107,9 @@ body {
     width: $size_drawer_entry;
     height: $size_drawer_entry;
 
-    border-radius: 50%;
+    > .material-icons {
+      border-radius: 50%;
+    }
   }
 
   .name {
@@ -124,7 +126,13 @@ body {
     background-color: $color_hover;
   }
 
-  .icon:hover {
+  .file.--selected {
+    > .label {
+      background-color: $color_hover;
+    }
+  }
+
+  .icon:hover > .material-icons {
     background-color: $color_hover_lighter;
   }
 }

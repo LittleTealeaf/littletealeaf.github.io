@@ -15,9 +15,22 @@ function renderAndAppend(renderer) {
   return (file) => CONTENT.append(renderer(file));
 }
 
+function expandFileParents(id) {
+  const _file = document.querySelector(`#drawer .file[data-id="${id}"]`);
+  if(!_file) return;
+
+  var parent_element = _file.parentElement.parentElement;
+  while(parent_element.classList.contains("file")) {
+    parent_element.classList.add("--expanded");
+    parent_element = parent_element.parentElement.parentElement;
+  }
+}
+
 function openFile(id) {
 
   setDrawer(false);
+
+  expandFileParents(id);
 
   if(TABS.querySelector(`.tab.--selected[data-id="${id}"]`)) return;
 
@@ -87,6 +100,17 @@ function openFile(id) {
   }
 
   tab.classList.add("--selected");
+
+  // Set file selection
+  const _file_previous = document.querySelector("#drawer .file.--selected");
+  if(_file_previous) {
+    _file_previous.classList.remove("--selected");
+  }
+  const _file = document.querySelector(`#drawer .file[data-id="${id}"]`);
+  if(_file) {
+    _file.classList.add("--selected");
+  }
+
 
   // RENDER FILE
 
@@ -170,12 +194,12 @@ function renderFile(file, depth = 0) {
     name: file.name,
   });
 
-  if (depth > 0) {
-    _file.style.paddingLeft = `${depth * 5}px`;
-  }
 
   const _label = document.createElement("div");
   _label.classList.add("label");
+  if (depth > 0) {
+    _label.style.paddingLeft = `${depth * 5}px`;
+  }
 
   const _icon = document.createElement("div");
   _icon.classList.add("icon");
