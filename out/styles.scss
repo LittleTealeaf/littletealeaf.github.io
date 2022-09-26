@@ -54,14 +54,12 @@ body {
 
 #drawer {
   height: 100vh;
-  overflow-y: auto;
-  z-index: 1;
-
 
   .pane {
     background: $color_darker;
     width: 250px;
     height: 100%;
+    overflow-y: auto;
   }
 
   .closer {
@@ -480,6 +478,7 @@ header {
       .closer {
         left: $width_drawer;
         width: 100vw;
+        z-index: 100;
       }
     }
   }
