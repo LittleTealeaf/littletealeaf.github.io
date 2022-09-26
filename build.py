@@ -4,5 +4,6 @@ from pages import *
 reset_export()
 
 export_tree([
-    home.build()
+    home.build(),
+    projects.build()
 ])

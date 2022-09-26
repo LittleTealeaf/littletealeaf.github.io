@@ -24,7 +24,7 @@ def page(name: str, content, render="dom", children=None):
     path = export_json(["pages", str(COUNT)], content)
     COUNT = COUNT + 1
 
-    node = {"name": name, "source": path, "render": render}
+    node = {"name": name, "src": path, "render": render}
 
     if children:
       node['children'] = children
