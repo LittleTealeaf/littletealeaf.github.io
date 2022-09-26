@@ -7,10 +7,18 @@ function setDrawer(value) {
 document.querySelector("#drawer-toggle").addEventListener("click", () => setDrawer(true));
 document.querySelector("#drawer .closer").addEventListener("click", () => setDrawer(false));
 
-function renderFile(file) {}
+function renderFile(file) {
+
+}
 
 function openFile(file) {
-  console.log(file);
+  // Check if there is a tab currently open
+  const previous_tab = document.querySelector("#tab --selected");
+  if(previous_tab) {
+    previous_tab.classList.remove("--selected");
+  }
+
+  var tab = document.querySelector(`#tab [data-src="${file.src}"]`);s
 }
 
 function renderFile(file, depth = 0) {
