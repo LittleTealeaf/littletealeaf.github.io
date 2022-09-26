@@ -14,17 +14,14 @@ def format_description_segment(segment):
 
   return segment
 
-def build_project(data):
-  project = {
-    'name': data['name'],
-    'content': [format_description_segment(segment) for segment in data['content']],
-  }
+def build_project(project):
+  project['content'] = [format_description_segment(segment) for segment in project['content']]
 
-  if 'image' in data:
-    project['image'] = export_any_image(data['image'])
+  description = project['description']
+  del project['description']
 
-
-
+  if 'image' in project:
+    project['image'] = export_any_image(project['image'])
 
 
   project_page = page(project['name'],project,'project')
@@ -32,10 +29,36 @@ def build_project(data):
   return project_page, {
     'name': project['name'],
     'source': project_page['source'],
-    'description': data['description'],
+    'description': description,
     'image': project['image'],
-    'tags': data['tags']
+    'tags': project['tags']
   }
+
+  # project = {
+  #   'name': data['name'],
+  #   'content': [format_description_segment(segment) for segment in data['content']],
+  # }
+
+  # if 'image' in data:
+  #   project['image'] = export_any_image(data['image'])
+
+  # if 'links' in data:
+  #   project['links'] = data['links']
+
+  # if 'tags' in data:
+  #   project['tags'] = data['tags']
+
+
+
+  # project_page = page(project['name'],project,'project')
+
+  # return project_page, {
+  #   'name': project['name'],
+  #   'source': project_page['source'],
+  #   'description': data['description'],
+  #   'image': project['image'],
+  #   'tags': data['tags']
+  # }
 
   # if 'images' in project:
 

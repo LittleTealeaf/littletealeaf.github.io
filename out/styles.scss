@@ -336,9 +336,46 @@ header {
       margin-bottom: 10px;
     }
 
+    .__tags {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+
+      * {
+        font-size: 14px;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: $color_darker;
+      }
+    }
+
+    .__links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      background-color: $color_darker;
+      width: fit-content;
+      border-radius: 10px;
+
+      a {
+        text-decoration: none;
+        color: $color_text;
+        margin: 4px;
+        padding: 6px;
+        border-radius: 10px;
+        background-color: $color_darker;
+        transition: all 0.25s;
+      }
+      a:hover {
+        background-color: $color_light;
+      }
+    }
+
     .labeled_image {
       width: 100%;
       border-radius: 30px;
+
 
       .-label {
         display: flex;

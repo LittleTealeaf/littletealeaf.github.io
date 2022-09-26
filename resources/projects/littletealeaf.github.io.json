@@ -1,9 +1,7 @@
 {
   "name": "littletealeaf.github.io",
   "github": "LittleTealeaf/littletealeaf.github.io",
-  "tags": [
-    "website","javascript","python","html","css","github-pages"
-  ],
+  "tags": ["website", "javascript", "python", "html", "css", "github-pages"],
   "description": "My personal website that you're currently viewing.",
   "content": [
     {
@@ -16,5 +14,15 @@
       "label": "testing"
     }
   ],
-  "image": "./resources/images/projects/littletealeaf.github.io/3.png"
+  "image": "./resources/images/projects/littletealeaf.github.io/3.png",
+  "links": [
+    {
+      "name": "Github",
+      "url": "https://www.github.com/LittleTealeaf/littletealeaf.github.io"
+    },
+    {
+      "name": "Website",
+      "url": "https://littletealeaf.github.io"
+    }
+  ]
 }
