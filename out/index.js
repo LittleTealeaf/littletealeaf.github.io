@@ -17,6 +17,8 @@ function renderAndAppend(renderer) {
 
 function openFile(id) {
 
+  setDrawer(false);
+
   if(TABS.querySelector(`.tab.--selected[data-id="${id}"]`)) return;
 
 
