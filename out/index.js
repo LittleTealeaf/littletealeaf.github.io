@@ -24,6 +24,8 @@ document.addEventListener("keypress",(e) => {
 
 function renderPage(tab) {
 
+  setDrawer(false);
+
   if(!tab) {
 
     const tabs = document.querySelectorAll("#tabs .tab");
@@ -170,7 +172,6 @@ fetch("./resources/pages.json")
 
         // Element is a page, so clicking should close the drawer and open the page.
         entry.addEventListener("click",(_) => {
-          setDrawer(false);
           openNode(node);
         });
       }
