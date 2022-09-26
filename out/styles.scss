@@ -55,6 +55,7 @@ body {
 #drawer {
   height: 100vh;
   overflow-y: auto;
+  z-index: 999;
 
   .pane {
     background: $color_darker;
