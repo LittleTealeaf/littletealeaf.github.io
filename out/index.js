@@ -7,9 +7,19 @@ function setDrawer(value) {
 document.querySelector("#drawer-toggle").addEventListener("click", () => setDrawer(true));
 document.querySelector("#drawer .closer").addEventListener("click", () => setDrawer(false));
 
-function renderFile(data, depth = 0) {
+function renderFile(file) {}
+
+function openFile(file) {
+  console.log(file);
+}
+
+function renderFile(file, depth = 0) {
   const _file = document.createElement("div");
   _file.classList.add("file");
+
+  _file.dataset.src = file.src;
+  // _file.dataset.src = data.src;
+  // _file.dataset.render = data.render;
 
   if (depth > 0) {
     _file.style.paddingLeft = `${depth * 5}px`;
@@ -25,13 +35,13 @@ function renderFile(data, depth = 0) {
   _name.classList.add("name");
 
   const _name_span = document.createElement("span");
-  _name_span.innerText = data.name;
+  _name_span.innerText = file.name;
 
   _name.append(_name_span);
   _label.append(_icon, _name);
   _file.append(_label);
 
-  if (data.children) {
+  if (file.children) {
     const _icon_span = document.createElement("span");
     _icon_span.classList.add("material-icons");
     _icon_span.innerText = "chevron_right";
@@ -44,9 +54,13 @@ function renderFile(data, depth = 0) {
 
     const _children = document.createElement("div");
     _children.classList.add("children");
-    _children.append(...data.children.map((data) => renderFile(data, depth + 1)));
+    _children.append(...file.children.map((data) => renderFile(data, depth + 1)));
     _file.append(_children);
   }
+
+  _label.addEventListener("click", (_) => {
+    openFile(file);
+  });
 
   return _file;
 }
