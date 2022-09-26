@@ -11,3 +11,11 @@ My personal portfolio made as a website!
  - The currently viewed page is always highlighted, regardless of clicks.
 
 > This calls for yet another complete rewrite
+## Terminology
+
+ - Drawer: The side panel
+ - File: The entry in the side panel referring to each page
+ - Page: Everything that is not the drawer
+ - Tabs: The list of tabs at the top of the page
+ - Header: The section where the tabs are
+ - Content: The section where the page is rendered in

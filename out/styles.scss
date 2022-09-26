@@ -3,10 +3,17 @@ $color_darker: #21252b;
 $color_light: #6e7074;
 $color_text: #c5c7cc;
 $color_hover: #323842;
+
+// Dimensions
 $width_drawer: 250px;
-$size_drawer_entry: 20px;
-$size_drawer_entry_icon: 20px;
 $height_header: 50px;
+
+$min_width_page: 500px;
+
+
+// Z-indexes
+$z_drawer: 999;
+$z_drawer_closer: $z_drawer - 1;
 
 html::-webkit-scrollbar {
   display: none;
@@ -52,6 +59,80 @@ body {
   flex-direction: row;
 }
 
-@media only screen and (max-width: 750px) {
-  
+#drawer {
+  height: 100vh;
+
+  .panel {
+    width: 250px;
+    background-color: $color_darker;
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  .closer {
+    display: none;
+    width: 100vw;
+    background-color: transparent;
+  }
+}
+
+#page {
+  height: 100vh;
+  width: calc(100vw - $width_drawer);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  width: 100%;
+  background-color: $color_darker;
+  height: $height_header;
+  display: flex;
+  flex-direction: row;
+}
+
+#tabs {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+#drawer-toggle {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $height_header;
+
+  span {
+    font-size: 30px;
+  }
+}
+
+
+@media only screen and (max-width: ($min_width_page + $width_drawer)) {
+  #page {
+    width: 100vw;
+  }
+
+  #drawer {
+    position: absolute;
+    display: flex;
+    left: -250px;
+    transition: all 0.5s;
+    z-index: $z_drawer;
+  }
+
+  body[data-drawer="true"] {
+    #drawer {
+      left: 0px;
+
+      .closer {
+        display: block;
+        z-index: $z_drawer_closer;
+      }
+    }
+  }
 }
