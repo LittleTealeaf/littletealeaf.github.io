@@ -3,7 +3,7 @@ $color_darker: #21252b;
 $color_light: #6e7074;
 $color_text: #c5c7cc;
 $color_hover: #323842;
-$color_hover_lighter: #383d46;
+$color_hover_lighter: #4d515a;
 
 
 // Dimensions
@@ -148,6 +148,49 @@ body {
   flex-direction: row;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+.tab {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  padding-inline: 5px;
+  justify-content: center;
+  align-items: center;
+
+   > * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-inline: 5px;
+    height: fit-content;
+   }
+
+   span {
+    font-size: 15px;
+   }
+
+   .close {
+    padding: 2px;
+    border-radius: 50%;
+
+    span {
+      font-size: 20px;
+    }
+   }
+
+   .close:hover {
+    background-color: $color_hover_lighter;
+   }
+}
+
+.tab.--selected {
+  background-color: $color_background !important;
+}
+
+.tab:hover {
+  background-color: $color_hover;
 }
 
 #drawer-toggle {
