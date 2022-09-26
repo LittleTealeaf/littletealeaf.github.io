@@ -101,7 +101,7 @@ body {
 
 #drawer-toggle {
   cursor: pointer;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: $height_header;
@@ -115,6 +115,10 @@ body {
 @media only screen and (max-width: ($min_width_page + $width_drawer)) {
   #page {
     width: 100vw;
+  }
+
+  #drawer-toggle {
+    display: flex;
   }
 
   #drawer {

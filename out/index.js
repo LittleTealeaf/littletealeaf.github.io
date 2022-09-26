@@ -14,5 +14,9 @@ document.querySelector("#drawer .closer").addEventListener("click", () => setDra
 // Fetch the index.json as a json object
 fetch('./resources/index.json').then(response => response.json()).then(data => {
   const panel = document.querySelector("#drawer .panel");
+
+
   
+
+
 });
