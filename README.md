@@ -9,3 +9,5 @@ My personal portfolio made as a website!
  - Pages in the side panel will either be expanded (if either the base page or any sub-pages are open), or collapsed
  - The user should be able to expand the page without opening the page itself.
  - The currently viewed page is always highlighted, regardless of clicks.
+
+> This calls for yet another complete rewrite
