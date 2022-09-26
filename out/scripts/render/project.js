@@ -7,7 +7,7 @@ function render_project_content(project) {
           tag: "p",
           text: content.text,
         };
-      }
+      } 
       case "image": {
         return {
           classList: ["labeled_image"],
