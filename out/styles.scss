@@ -3,10 +3,14 @@ $color_darker: #21252b;
 $color_light: #6e7074;
 $color_text: #c5c7cc;
 $color_hover: #323842;
+$color_hover_lighter: #383d46;
+
 
 // Dimensions
 $width_drawer: 250px;
 $height_header: 50px;
+
+$size_drawer_entry: 20px;
 
 $min_width_page: 500px;
 
@@ -63,15 +67,21 @@ body {
   height: 100vh;
 
   .panel {
+    padding-top: $height_header;
     width: 250px;
     background-color: $color_darker;
     overflow-y: auto;
     height: 100%;
   }
 
-  .file.--expanded {
+  .file.--expanded,
+  .file.--selected {
     .icon {
       transform: rotateZ(90deg);
+    }
+
+    .children {
+      display: block;
     }
   }
 
@@ -85,18 +95,35 @@ body {
     display: flex;
     flex-direction: row;
     cursor: pointer;
+    height: $size_drawer_entry;
   }
 
   .icon {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: $size_drawer_entry;
+    height: $size_drawer_entry;
+
+    border-radius: 50%;
   }
 
   .name {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .children {
+    display: none;
+  }
+
+  .label:hover {
+    background-color: $color_hover;
+  }
+
+  .icon:hover {
+    background-color: $color_hover_lighter;
   }
 }
 
