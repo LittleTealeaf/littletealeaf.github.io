@@ -19,3 +19,9 @@ My personal portfolio made as a website!
  - Tabs: The list of tabs at the top of the page
  - Header: The section where the tabs are
  - Content: The section where the page is rendered in
+
+
+## CSS Rules
+
+`--name` -> States
+

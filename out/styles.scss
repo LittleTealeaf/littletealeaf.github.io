@@ -69,10 +69,34 @@ body {
     height: 100%;
   }
 
+  .file.--expanded {
+    .icon {
+      transform: rotateZ(90deg);
+    }
+  }
+
   .closer {
     display: none;
     width: 100vw;
     background-color: transparent;
+  }
+
+  .label {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+  }
+
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
