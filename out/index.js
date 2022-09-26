@@ -1,4 +1,8 @@
-BODY = document.querySelector("body");
+const BODY = document.querySelector("body");
+const TABS = document.querySelector("#tabs");
+const CONTENT = document.querySelector("#content");
+
+const files = [];
 
 function setDrawer(value) {
   BODY.dataset.drawer = value;
@@ -7,27 +11,162 @@ function setDrawer(value) {
 document.querySelector("#drawer-toggle").addEventListener("click", () => setDrawer(true));
 document.querySelector("#drawer .closer").addEventListener("click", () => setDrawer(false));
 
-function renderFile(file) {
-
+function renderAndAppend(renderer) {
+  return (file) => CONTENT.append(renderer(file));
 }
 
-function openFile(file) {
-  // Check if there is a tab currently open
-  const previous_tab = document.querySelector("#tab --selected");
-  if(previous_tab) {
-    previous_tab.classList.remove("--selected");
+function openFile(id) {
+
+  if(TABS.querySelector(`.tab.--selected[data-id="${id}"]`)) return;
+
+
+  const previous = TABS.querySelector(".tab.--selected");
+  if(previous) {
+    previous.classList.remove("--selected");
   }
 
-  var tab = document.querySelector(`#tab [data-src="${file.src}"]`);s
+  const file = id >= 0 ? files[id] : (() => {
+    const open_tabs = TABS.querySelectorAll(".tab");
+    if(open_tabs.length > 0) {
+      id = open_tabs[open_tabs.length - 1].dataset.id;
+      return files[id];
+    }
+    return null;
+  })();
+
+  CONTENT.innerHTML = "";
+
+  if(!file) return;
+
+  let tab = TABS.querySelector(`.tab[data-id="${id}"]`);
+
+  if(!tab) {
+    tab = document.createElement("div");
+    tab.classList.add("tab");
+    tab.dataset.id = id;
+
+    const _label = document.createElement("div");
+    _label.classList.add("label");
+
+    const _label_content = document.createElement("span");
+    _label_content.innerText = file.name;
+    _label.append(_label_content);
+
+    const _close = document.createElement("div");
+    _close.classList.add("close");
+    const _close_content = document.createElement("span");
+    _close_content.classList.add("material-icons");
+    _close_content.innerText = "close";
+    _close.append(_close_content);
+
+    _close.addEventListener("click",(e) => {
+      e.stopPropagation();
+      tab.remove();
+      if(tab.classList.contains("--selected")) {
+        openFile(-1);
+      }
+    })
+
+    tab.append(_label, _close);
+
+    tab.addEventListener("auxclick",(e) => {
+      if(e.button === 1) {
+        _close.click();
+        e.stopPropagation();
+      }
+    })
+
+    tab.addEventListener("click", () => {
+      openFile(id);
+    });
+
+
+    TABS.append(tab);
+  }
+
+  tab.classList.add("--selected");
+
+  // RENDER FILE
+
+  const data = fetch(file.src).then(res => res.json());
+
+  if(file.render == 'dom') {
+    data.then(renderAndAppend(render_dom));
+  }
+
+  /*
+  // select and remove the --selected class from tabs
+  const previous = TABS.querySelector(".tab.--selected");
+  if (previous) {
+    previous.classList.remove("--selected");
+  }
+
+  const { src, render, name } = file.dataset;
+
+  // // Check if there is a tab currently open
+  // const previous_tab = document.querySelector("#tabs .--selected");
+  // if(previous_tab) {
+  //   previous_tab.classList.remove("--selected");
+  // }
+
+  // var tab = document.querySelector(`#tabs [data-src="${file.src}"]`);
+
+  // if(!file) {
+  //   const list = document.querySelectorAll("#tabs .tab");
+  //   tab = list[list.length - 1];
+  // }
+
+  // if(!tab) {
+  //   tab = document.createElement("div");
+  //   tab.classList.add("tab");
+  //   tab.dataset.src = file.src;
+  //   tab.dataset.name = file.name;
+  //   tab.dataset.render = file.render;
+
+  //   const _label = document.createElement("div");
+  //   _label.classList.add("label");
+  //   const _label_span = document.createElement("span");
+  //   _label_span.innerText = file.name;
+  //   _label.append(_label_span);
+
+  //   const _close = document.createElement("div");
+  //   _close.classList.add("close");
+  //   const _close_span = document.createElement("span");
+  //   _close_span.classList.add("material-icons");
+  //   _close_span.innerText = "close";
+  //   _close.append(_close_span);
+
+  //   _close.addEventListener("click",(e) => {
+  //     e.stopPropagation();
+  //     if(tab.classList.contains("--selected")) {
+  //       openFile(null);
+  //     }
+  //     tab.remove();
+  //   })
+
+  //   tab.append(_label, _close);
+
+  //   tab.addEventListener("click",(_) => {
+  //     tab.classList.contains("--selected");
+  //   })
+
+  //   TABS.append(tab);
+  // }
+
+  // tab.classList.add("--selected");
+  */
 }
 
 function renderFile(file, depth = 0) {
   const _file = document.createElement("div");
   _file.classList.add("file");
 
-  _file.dataset.src = file.src;
-  // _file.dataset.src = data.src;
-  // _file.dataset.render = data.render;
+  _file.dataset.id = files.length;
+  files.push({
+    src: file.src,
+    render: file.render,
+    name: file.name,
+  });
 
   if (depth > 0) {
     _file.style.paddingLeft = `${depth * 5}px`;
@@ -67,7 +206,7 @@ function renderFile(file, depth = 0) {
   }
 
   _label.addEventListener("click", (_) => {
-    openFile(file);
+    openFile(_file.dataset.id);
   });
 
   return _file;
