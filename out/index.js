@@ -17,45 +17,51 @@ function renderAndAppend(renderer) {
 
 function expandFileParents(id) {
   const _file = document.querySelector(`#drawer .file[data-id="${id}"]`);
-  if(!_file) return;
+  if (!_file) return;
 
   var parent_element = _file.parentElement.parentElement;
-  while(parent_element.classList.contains("file")) {
+  while (parent_element.classList.contains("file")) {
     parent_element.classList.add("--expanded");
     parent_element = parent_element.parentElement.parentElement;
   }
 }
 
 function openFile(id) {
-
   setDrawer(false);
 
   expandFileParents(id);
 
-  if(TABS.querySelector(`.tab.--selected[data-id="${id}"]`)) return;
-
+  if (TABS.querySelector(`.tab.--selected[data-id="${id}"]`)) return;
 
   const previous = TABS.querySelector(".tab.--selected");
-  if(previous) {
+  if (previous) {
     previous.classList.remove("--selected");
   }
 
-  const file = id >= 0 ? files[id] : (() => {
-    const open_tabs = TABS.querySelectorAll(".tab");
-    if(open_tabs.length > 0) {
-      id = open_tabs[open_tabs.length - 1].dataset.id;
-      return files[id];
-    }
-    return null;
-  })();
+  const file =
+    id >= 0
+      ? files[id]
+      : (() => {
+          const open_tabs = TABS.querySelectorAll(".tab");
+          if (open_tabs.length > 0) {
+            id = open_tabs[open_tabs.length - 1].dataset.id;
+            return files[id];
+          }
+          return null;
+        })();
 
   CONTENT.innerHTML = "";
 
-  if(!file) return;
+  const _file_previous = document.querySelector("#drawer .file.--selected");
+  if (_file_previous) {
+    _file_previous.classList.remove("--selected");
+  }
+
+  if (!file) return;
 
   let tab = TABS.querySelector(`.tab[data-id="${id}"]`);
 
-  if(!tab) {
+  if (!tab) {
     tab = document.createElement("div");
     tab.classList.add("tab");
     tab.dataset.id = id;
@@ -74,27 +80,26 @@ function openFile(id) {
     _close_content.innerText = "close";
     _close.append(_close_content);
 
-    _close.addEventListener("click",(e) => {
+    _close.addEventListener("click", (e) => {
       e.stopPropagation();
       tab.remove();
-      if(tab.classList.contains("--selected")) {
+      if (tab.classList.contains("--selected")) {
         openFile(-1);
       }
-    })
+    });
 
     tab.append(_label, _close);
 
-    tab.addEventListener("auxclick",(e) => {
-      if(e.button === 1) {
+    tab.addEventListener("auxclick", (e) => {
+      if (e.button === 1) {
         _close.click();
         e.stopPropagation();
       }
-    })
+    });
 
     tab.addEventListener("click", () => {
       openFile(id);
     });
-
 
     TABS.append(tab);
   }
@@ -102,21 +107,17 @@ function openFile(id) {
   tab.classList.add("--selected");
 
   // Set file selection
-  const _file_previous = document.querySelector("#drawer .file.--selected");
-  if(_file_previous) {
-    _file_previous.classList.remove("--selected");
-  }
+
   const _file = document.querySelector(`#drawer .file[data-id="${id}"]`);
-  if(_file) {
+  if (_file) {
     _file.classList.add("--selected");
   }
 
-
   // RENDER FILE
 
-  const data = fetch(file.src).then(res => res.json());
+  const data = fetch(file.src).then((res) => res.json());
 
-  if(file.render == 'dom') {
+  if (file.render == "dom") {
     data.then(renderAndAppend(render_dom));
   }
 
@@ -193,7 +194,6 @@ function renderFile(file, depth = 0) {
     render: file.render,
     name: file.name,
   });
-
 
   const _label = document.createElement("div");
   _label.classList.add("label");
