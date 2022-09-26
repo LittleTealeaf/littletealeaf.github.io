@@ -16,6 +16,12 @@ document.querySelector("#drawer_toggle").addEventListener("click", (_) => setDra
 // Updates the .action_close_drawer to close the drawer
 document.querySelectorAll("#drawer .action_close_drawer").forEach((element) => element.addEventListener("click", (_) => setDrawer(false)));
 
+document.addEventListener("keypress",(e) => {
+  if(e.key == "Escape") {
+    setDrawer(false);
+  }
+})
+
 function renderPage(tab) {
 
   if(!tab) {
