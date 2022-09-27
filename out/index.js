@@ -90,14 +90,14 @@ function openFile(id) {
 
     tab.append(_label, _close);
 
-    tab.addEventListener("click",(e) => {
-      if(e.which == 1) {
+    tab.addEventListener("click", (e) => {
+      if (e.which == 1) {
         openFile(id);
-      } else if(e.which == 2) {
+      } else if (e.which == 2) {
         _close.click();
         e.stopPropagation();
       }
-    })
+    });
 
     TABS.append(tab);
   }
@@ -117,6 +117,8 @@ function openFile(id) {
 
   if (file.render == "dom") {
     data.then(renderAndAppend(render_dom));
+  } else if (file.render == "project_list") {
+    data.then(renderAndAppend(render_project_list));
   }
 }
 
