@@ -195,6 +195,7 @@ body {
 
 .tab.--selected {
   background-color: $color_background !important;
+  border-bottom: 2px solid $color_light;
 }
 
 .tab:hover {
