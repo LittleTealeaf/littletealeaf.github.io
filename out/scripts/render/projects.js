@@ -1,9 +1,7 @@
 function render_project_list(projects) {
-  console.log(projects);
-
-
 
   return render_dom({
-    
+    classList: ["_project_list"],
+
   })
 }
