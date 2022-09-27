@@ -183,4 +183,7 @@ fetch("./resources/index.json")
     const panel = document.querySelector("#drawer .panel");
 
     panel.append(...data.map((data) => renderFile(data, 0)));
+
+    // Open the first one
+    openFile(0);
   });
