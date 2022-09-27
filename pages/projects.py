@@ -26,7 +26,8 @@ def build_project(project):
     'name': project['name'],
     'src': project_page['src'],
     'description': project['description'],
-    'thumbnail': project['thumbnail']
+    'thumbnail': project['thumbnail'],
+    'tags': project['tags']
   }
 
 def build():

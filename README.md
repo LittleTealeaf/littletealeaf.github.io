@@ -26,3 +26,4 @@ My personal portfolio made as a website!
 `--name` -> States
 `_name` -> Specific Content Pages
 `__name` --> specific content items
+`?name

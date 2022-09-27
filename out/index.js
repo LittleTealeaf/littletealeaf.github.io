@@ -26,6 +26,11 @@ function expandFileParents(id) {
   }
 }
 
+function findFile(src) {
+  //get the index of the file with the given src
+  return files.findIndex((file) => file.src == src);
+}
+
 function openFile(id) {
   setDrawer(false);
 
