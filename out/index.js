@@ -90,16 +90,14 @@ function openFile(id) {
 
     tab.append(_label, _close);
 
-    tab.addEventListener("auxclick", (e) => {
-      if (e.button === 1) {
+    tab.addEventListener("click",(e) => {
+      if(e.which == 1) {
+        openFile(id);
+      } else if(e.which == 2) {
         _close.click();
         e.stopPropagation();
       }
-    });
-
-    tab.addEventListener("click", () => {
-      openFile(id);
-    });
+    })
 
     TABS.append(tab);
   }
