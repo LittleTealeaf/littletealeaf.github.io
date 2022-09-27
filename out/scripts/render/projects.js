@@ -7,7 +7,7 @@ function render_project_list(projects) {
         children: [
           {
             tag: "h1",
-            text: "My Projects",
+            text: "Projects",
           },
         ],
       },
