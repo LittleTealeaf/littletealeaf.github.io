@@ -186,4 +186,6 @@ fetch("./resources/index.json")
 
     // Open the first one
     openFile(0);
+    // TODO remove
+    openFile(3)
   });
