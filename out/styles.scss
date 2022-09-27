@@ -5,7 +5,6 @@ $color_text: #c5c7cc;
 $color_hover: #323842;
 $color_hover_lighter: #4d515a;
 
-
 // Dimensions
 $width_drawer: 250px;
 $height_header: 50px;
@@ -13,7 +12,6 @@ $height_header: 50px;
 $size_drawer_entry: 20px;
 
 $min_width_page: 500px;
-
 
 // Z-indexes
 $z_drawer: 999;
@@ -168,31 +166,31 @@ body {
   justify-content: center;
   align-items: center;
 
-   > * {
+  > * {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-inline: 5px;
     height: fit-content;
-   }
+  }
 
-   span {
+  span {
     font-size: 15px;
-   }
+  }
 
-   .close {
+  .close {
     padding: 2px;
     border-radius: 50%;
 
     span {
       font-size: 20px;
     }
-   }
+  }
 
-   .close:hover {
+  .close:hover {
     background-color: $color_hover_lighter;
-   }
+  }
 }
 
 .tab.--selected {
@@ -227,7 +225,6 @@ body {
 }
 
 ._project_list {
-
   .__list {
     display: flex;
     flex-wrap: wrap;
@@ -241,7 +238,7 @@ body {
     background-position: center;
     margin-inline: 10px;
     cursor: pointer;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
   }
 
   .image_content {
@@ -277,7 +274,7 @@ body {
 .image_overlay {
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   transition: all 0.2s;
   display: flex;
   align-items: flex-end;
@@ -297,7 +294,7 @@ body {
 
 .image:hover {
   .image_overlay {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 
   .image_content {
@@ -305,7 +302,6 @@ body {
   }
 }
 //End image section
-
 
 @media only screen and (max-width: ($min_width_page + $width_drawer)) {
   #page {
