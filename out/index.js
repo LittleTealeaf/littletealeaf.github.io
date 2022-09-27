@@ -120,68 +120,6 @@ function openFile(id) {
   if (file.render == "dom") {
     data.then(renderAndAppend(render_dom));
   }
-
-  /*
-  // select and remove the --selected class from tabs
-  const previous = TABS.querySelector(".tab.--selected");
-  if (previous) {
-    previous.classList.remove("--selected");
-  }
-
-  const { src, render, name } = file.dataset;
-
-  // // Check if there is a tab currently open
-  // const previous_tab = document.querySelector("#tabs .--selected");
-  // if(previous_tab) {
-  //   previous_tab.classList.remove("--selected");
-  // }
-
-  // var tab = document.querySelector(`#tabs [data-src="${file.src}"]`);
-
-  // if(!file) {
-  //   const list = document.querySelectorAll("#tabs .tab");
-  //   tab = list[list.length - 1];
-  // }
-
-  // if(!tab) {
-  //   tab = document.createElement("div");
-  //   tab.classList.add("tab");
-  //   tab.dataset.src = file.src;
-  //   tab.dataset.name = file.name;
-  //   tab.dataset.render = file.render;
-
-  //   const _label = document.createElement("div");
-  //   _label.classList.add("label");
-  //   const _label_span = document.createElement("span");
-  //   _label_span.innerText = file.name;
-  //   _label.append(_label_span);
-
-  //   const _close = document.createElement("div");
-  //   _close.classList.add("close");
-  //   const _close_span = document.createElement("span");
-  //   _close_span.classList.add("material-icons");
-  //   _close_span.innerText = "close";
-  //   _close.append(_close_span);
-
-  //   _close.addEventListener("click",(e) => {
-  //     e.stopPropagation();
-  //     if(tab.classList.contains("--selected")) {
-  //       openFile(null);
-  //     }
-  //     tab.remove();
-  //   })
-
-  //   tab.append(_label, _close);
-
-  //   tab.addEventListener("click",(_) => {
-  //     tab.classList.contains("--selected");
-  //   })
-
-  //   TABS.append(tab);
-  // }
-
-  // tab.classList.add("--selected");
-  */
 }
 
 function renderFile(file, depth = 0) {
