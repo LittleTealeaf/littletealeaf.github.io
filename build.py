@@ -6,5 +6,7 @@ reset_export()
 export_tree([
     home.build(),
     about_me.build(),
-    projects.build()
+    projects.build(),
+    contact.build(),
+    resume.build()
 ])
