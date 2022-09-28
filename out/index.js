@@ -31,6 +31,10 @@ function findFile(src) {
   return files.findIndex((file) => file.src == src);
 }
 
+function findFile(name) {
+  return files.findIndex((file) => file.name == name);
+}
+
 function openFile(id) {
   setDrawer(false);
 
@@ -198,5 +202,9 @@ fetch("./resources/index.json")
     panel.append(...data.map((data) => renderFile(data, 0)));
 
     // Open the first one
-    openFile(0);
+    // openFile(0);
+    openFile(5);
+
+    // DEVELOPER
+    // openFile(5);
   });

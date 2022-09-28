@@ -6,7 +6,7 @@ $color_hover: #323842;
 $color_hover_lighter: #4d515a;
 
 // Dimensions
-$width_drawer: 250px;
+$width_drawer: 300px;
 $height_header: 50px;
 
 $size_drawer_entry: 20px;
@@ -33,7 +33,7 @@ html::-webkit-scrollbar {
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 // .material-icons.md-18 { font-size: 18px; }
 // .material-icons.md-24 { font-size: 24px; }
 // .material-icons.md-36 { font-size: 36px; }
@@ -96,6 +96,7 @@ body {
     flex-direction: row;
     cursor: pointer;
     height: $size_drawer_entry;
+
   }
 
   .icon {
@@ -288,7 +289,38 @@ body {
 }
 
 ._resume {
-  
+  font-family: 'Jetbrains Mono';
+
+  .__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .__header_name {
+
+    * {
+      font-size: 30px;
+      // Space out letters
+      letter-spacing: 0.1em;
+      text-align: center;
+      transition: all 0.5s
+    }
+  }
+
+  .__header_name:hover {
+    * {
+      letter-spacing: 0.2em;
+    }
+  }
+
+  .__footer {
+    
+  }
+
 }
 
 // Images with additional content when hovered over
