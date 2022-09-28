@@ -26,13 +26,12 @@ function expandFileParents(id) {
   }
 }
 
-function findFile(src) {
-  //get the index of the file with the given src
-  return files.findIndex((file) => file.src == src);
-}
-
 function findFile(name) {
   return files.findIndex((file) => file.name == name);
+}
+
+function getFileById(id) {
+  return files.findIndex((file) => file.id == id);
 }
 
 function openFile(id) {
@@ -148,6 +147,7 @@ function renderFile(file, depth = 0) {
     src: file.src,
     render: file.render,
     name: file.name,
+    id: file.id
   });
 
   const _label = document.createElement("div");

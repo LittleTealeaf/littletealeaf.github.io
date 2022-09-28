@@ -1,6 +1,5 @@
 function render_resume(resume) {
-
-  const __contact_me_index = findFile("Contact Me");
+  const __contact_id = getFileById("contact");
 
   return render_dom({
     classList: ["_resume"],
@@ -19,21 +18,20 @@ function render_resume(resume) {
 
       {
         classList: ["__footer"],
-
         children: [
           {
             classList: ["__footer_contact"],
             children: [
               {
-                classList: ["__button"],
+                classList: ["button"],
                 text: "Contact Me!",
                 onclick: () => {
-
-                }
+                  openFile(__contact_id);
+                },
               },
-            ]
-          }
-        ]
+            ],
+          },
+        ],
       },
     ],
   });

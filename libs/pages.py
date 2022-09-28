@@ -19,7 +19,7 @@ COUNT = 0
 #   }
 
 
-def page(name: str, content, render="dom", children=None):
+def page(name: str, content, render="dom", children=None, id=None):
     global COUNT
     path = export_json(["pages", str(COUNT)], content)
     COUNT = COUNT + 1
@@ -28,6 +28,9 @@ def page(name: str, content, render="dom", children=None):
 
     if children:
       node['children'] = children
+
+    if id:
+      node['id'] = id
 
     return node
 

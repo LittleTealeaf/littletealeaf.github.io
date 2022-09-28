@@ -7,4 +7,4 @@ def build():
     "classList": ["_contact"],
     "children": [
     ],
-  })
+  },id="contact")

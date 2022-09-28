@@ -33,7 +33,7 @@ html::-webkit-scrollbar {
 
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap");
 // .material-icons.md-18 { font-size: 18px; }
 // .material-icons.md-24 { font-size: 24px; }
 // .material-icons.md-36 { font-size: 36px; }
@@ -96,7 +96,6 @@ body {
     flex-direction: row;
     cursor: pointer;
     height: $size_drawer_entry;
-
   }
 
   .icon {
@@ -289,7 +288,7 @@ body {
 }
 
 ._resume {
-  font-family: 'Jetbrains Mono';
+  font-family: "Jetbrains Mono";
 
   .__header {
     display: flex;
@@ -301,13 +300,12 @@ body {
   }
 
   .__header_name {
-
     * {
       font-size: 30px;
       // Space out letters
       letter-spacing: 0.1em;
       text-align: center;
-      transition: all 0.5s
+      transition: all 0.5s;
     }
   }
 
@@ -318,9 +316,29 @@ body {
   }
 
   .__footer {
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
   }
+}
 
+.button {
+  cursor: pointer;
+  background-color: $color_background;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
+  transform: translateY(0px);
+  transition: all 0.3s;
+}
+
+.button:hover {
+  box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
 }
 
 // Images with additional content when hovered over
@@ -339,7 +357,7 @@ body {
 }
 
 .image_content {
-  background: $color_background;
+  background: $color_hover;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   transform: translateY(100%);
