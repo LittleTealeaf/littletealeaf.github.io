@@ -244,6 +244,13 @@ body {
     margin-inline: 10px;
     cursor: pointer;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transform: translateY(0px);
+
+    transition: all 0.2s;
+  }
+
+  .image:hover {
+    transform: translateY(-10px);
   }
 
   .image_content {
@@ -262,8 +269,8 @@ body {
 
     > * {
       margin-inline: 5px;
-      background-color: $color_darker;
-      padding: 3px;
+      background-color: $color_background;
+      padding: 4px;
       border-radius: 5px;
       margin-bottom: 3px;
     }
