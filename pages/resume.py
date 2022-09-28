@@ -4,4 +4,5 @@ from libs import *
 # TODO build resume page
 
 def build():
-  return page("Resume",{},"resume")
+  with open('./resources/resume.json') as file:
+    return page("Resume",json.load(file),"resume")

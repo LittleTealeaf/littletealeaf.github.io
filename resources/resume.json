@@ -1,0 +1,23 @@
+{
+  "education": [
+    {
+      "school": "Quinnipiac University",
+      "degrees": [
+        "Bachelor of Arts in Computer Science",
+        "Bachelor of Science in Data Science",
+        "Minor in Economics"
+      ]
+    }
+  ],
+  "experience": [],
+
+  "skills": {
+    "languages": [
+      "Python","Java","Javascript","Typescript","html","css"
+    ],
+    "programs": [
+      "vscode","pycharm","intellij","git","linux"
+    ]
+  }
+
+}
