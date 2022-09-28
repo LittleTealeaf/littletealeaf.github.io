@@ -1,10 +1,10 @@
 from libs import *
 
-# TODO build home page
+# TODO build about me page
 
 def build():
-  return page("Home",{
-    "classList": ["_home"],
+  return page("About Me",{
+    "classList": ["_about"],
     "children": [
       {
         "tag": "h1",
