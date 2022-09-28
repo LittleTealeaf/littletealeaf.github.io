@@ -95,6 +95,12 @@ function openFile(id) {
 
     tab.append(_label, _close);
 
+    tab.addEventListener("auxclick",(e) => {
+      if (e.button == 1) {
+        _close.click();
+      }
+    })
+
     tab.addEventListener("click", (e) => {
       if (e.which == 1) {
         openFile(id);
