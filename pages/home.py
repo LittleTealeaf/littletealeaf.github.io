@@ -4,8 +4,7 @@ from libs import *
 
 def build():
 
-  github = getGithubApi("https://www.api.github.com/users/LittleTealeaf")
-  print(github['avatar_url'])
+  github = getGithubApi("/users/LittleTealeaf")
 
   return page("Home",{
     "classList": ["_home"],
@@ -13,6 +12,14 @@ def build():
       {
         "tag": "img",
         "src": export_any_image(github['avatar_url']),
+      },
+      {
+        "tag": "h1",
+        "text": "Hello! I'm Thomas Kwashnak, and welcome to my Portfolio"
+      },
+      {
+        "tag": "h3",
+        "text": "Feel free to explore with the drawer on the left!"
       }
     ]
   })

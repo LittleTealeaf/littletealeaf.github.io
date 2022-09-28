@@ -271,7 +271,20 @@ body {
 }
 
 ._home {
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    border-radius: 50%;
+    max-height: 80vw;
+    max-width: 80vw;
+  }
+
+  * {
+    text-align: center;
+    max-width: 80%;
+  }
 }
 
 // Images with additional content when hovered over
