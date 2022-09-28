@@ -130,6 +130,8 @@ function openFile(id) {
     data.then(renderAndAppend(render_dom));
   } else if (file.render == "project_list") {
     data.then(renderAndAppend(render_project_list));
+  } else if(file.render == "resume") {
+    data.then(renderAndAppend(render_resume));
   }
 }
 
