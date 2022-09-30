@@ -7,11 +7,18 @@
         "Bachelor of Arts in Computer Science",
         "Bachelor of Science in Data Science",
         "Minor in Economics"
-      ]
+      ],
+      "graduation": "May 2024"
     }
   ],
-  "experience": [],
-
+  "experience": [
+    {
+      "company": "Quinnipiac University",
+      "position": "Technology Support Assistant Supervisor",
+      "years": "September 2021 - Present",
+      "description": "Provides technology support to Students, Faculty, and Staff. Taking on additional responsibility as a supervisor."
+    }
+  ],
   "skills": {
     "languages": [
       "Python","Java","Javascript","Typescript","html","css"
@@ -20,5 +27,4 @@
       "vscode","pycharm","intellij","git","linux"
     ]
   }
-
 }
