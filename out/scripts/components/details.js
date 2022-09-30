@@ -2,7 +2,7 @@ function component_details(title, content) {
 
   // TODO rewrite this so that it allow for width changes as well as height changes (so we can make the header any size we want)
 
-  const dom = render_dom({
+  const root = render_dom({
     classList: ["details"],
     children: [
       {
@@ -16,22 +16,16 @@ function component_details(title, content) {
     ]
   });
 
-  const dom_header = dom.querySelector(".details_header");
-  const dom_content_container = dom.querySelector(".details_content");
-  const dom_content = dom.querySelector(".details_content > *");
-  dom_header.onclick = () => {
-    dom.classList.toggle("--open");
-
-    if(dom.classList.contains("--open")) {
-      dom_content_container.style.height = dom_content.offsetHeight + "px";
+  const element_header = root.querySelector(".details_header");
+  const element_content_container = root.querySelector(".details_content");
+  const element_content = root.querySelector(".details_content > *");
+  element_header.onclick = () => {
+    root.classList.toggle("--open");
+    if(root.classList.contains("--open")) {
+      element_content_container.style.height = element_content.offsetHeight + "px";
     } else {
-      dom_content_container.style.height = 0;
+      element_content_container.style.height = 0;
     }
-
   }
-
-
-
-
-  return dom;
+  return root;
 }
