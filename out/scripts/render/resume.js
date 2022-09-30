@@ -15,7 +15,9 @@ function render_resume(resume) {
           },
         ],
       },
-
+      component_details("Education",{
+        text: "awejfoaiw efoijaweofjaowiejf oiawefiowjae oifjaw eofijaweoifjwoaiefoiaweofijawoeijfaowiefiaowe iwe io ieo fie waofjwojfoawie o oiweaf"
+      }),
       {
         classList: ["__footer"],
         children: [
@@ -35,6 +37,28 @@ function render_resume(resume) {
       },
     ],
   });
-  
+
   return dom;
+}
+
+
+function render_section({header, content}) {
+  const ROOT = "BASE_CLASS"
+
+  const dom = render_dom({
+    classList: [ROOT],
+    children: [
+      {
+        classList: ["__section_header"],
+        children: [render_dom(header)]
+      }
+    ]
+  });
+
+  dom.classList.add("__section");
+
+
+  return dom;
+
+
 }

@@ -385,6 +385,56 @@ body {
 }
 //End image section
 
+//Details
+
+.details {
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
+  width: fit-content;
+  border-radius: 20px;
+  transition: all 0.3s;
+  transform: translateY(0px);
+}
+
+.details:hover {
+  box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5);
+  transform: translateY(-5px);
+}
+
+.details.--open {
+  box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.3);
+
+  .details_content {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .details_header {
+    box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.details_header {
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 5px;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
+
+  transition: all 0.2s;
+
+}
+
+.details_content {
+  overflow: hidden;
+  transition: all 0.2s;
+  height: 0px;
+  padding-left: 7px;
+  padding-right: 7px;
+}
+
+
+//end of details
+
 @media only screen and (max-width: ($min_width_page + $width_drawer)) {
   #page {
     width: 100vw;
