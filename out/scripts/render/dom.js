@@ -1,5 +1,9 @@
 function render_dom(node) {
 
+  if(node instanceof Element) {
+    return node;
+  }
+
   if(!node) {
     return undefined;
   }
