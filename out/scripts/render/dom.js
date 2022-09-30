@@ -10,7 +10,7 @@ function render_dom(node) {
   }
 
   if(node.children) {
-    element.append(...node.children.map(render_dom).filter((child) => child));
+    element.append(...node.children.filter((child) => child).map(render_dom));
   }
 
   if(node.text) {
