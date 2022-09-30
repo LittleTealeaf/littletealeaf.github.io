@@ -1,4 +1,7 @@
 function component_details(title, content) {
+
+  // TODO rewrite this so that it allow for width changes as well as height changes (so we can make the header any size we want)
+
   const dom = render_dom({
     classList: ["details"],
     children: [
