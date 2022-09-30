@@ -1,7 +1,7 @@
 function render_resume(resume) {
   const __contact_id = getFileById("contact");
 
-  return render_dom({
+  const dom = render_dom({
     classList: ["_resume"],
     children: [
       {
@@ -35,4 +35,6 @@ function render_resume(resume) {
       },
     ],
   });
+  
+  return dom;
 }

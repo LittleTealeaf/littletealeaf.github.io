@@ -203,7 +203,7 @@ fetch("./resources/index.json")
 
     // Open the first one
     // openFile(0);
-    openFile(5);
+    openFile(getFileById("resume"));
 
     // DEVELOPER
     // openFile(5);
