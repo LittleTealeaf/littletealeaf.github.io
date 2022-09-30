@@ -11,9 +11,9 @@ function setDrawer(value) {
 document.querySelector("#drawer-toggle").addEventListener("click", () => setDrawer(true));
 document.querySelector("#drawer .closer").addEventListener("click", () => setDrawer(false));
 
-function renderAndAppend(renderer) {
-  return (file) => CONTENT.append(renderer(file));
-}
+// async function renderAndAppend(renderer) {
+//   return (file) => CONTENT.append(renderer(file));
+// }
 
 function expandFileParents(id) {
   const _file = document.querySelector(`#drawer .file[data-id="${id}"]`);
@@ -34,7 +34,9 @@ function getFileById(id) {
   return files.findIndex((file) => file.id == id);
 }
 
-function openFile(id) {
+var current_rendering = (async () => {})();
+
+async function openFile(id) {
   setDrawer(false);
 
   expandFileParents(id);
@@ -98,11 +100,11 @@ function openFile(id) {
 
     tab.append(_label, _close);
 
-    tab.addEventListener("auxclick",(e) => {
+    tab.addEventListener("auxclick", (e) => {
       if (e.button == 1) {
         _close.click();
       }
-    })
+    });
 
     tab.addEventListener("click", (e) => {
       if (e.which == 1) {
@@ -126,16 +128,20 @@ function openFile(id) {
   }
 
   // RENDER FILE
-
-  const data = fetch(file.src).then((res) => res.json());
-
-  if (file.render == "dom") {
-    data.then(renderAndAppend(render_dom));
-  } else if (file.render == "project_list") {
-    data.then(renderAndAppend(render_project_list));
-  } else if(file.render == "resume") {
-    data.then(renderAndAppend(render_resume));
-  }
+  current_rendering = current_rendering.then(
+    fetch(file.src)
+      .then((res) => res.json())
+      .then((json) => {
+        CONTENT.innerHTML = "";
+        if (file.render == "dom") {
+          CONTENT.append(render_dom(json));
+        } else if (file.render == "project_list") {
+          CONTENT.append(render_project_list(json));
+        } else if (file.render == "resume") {
+          CONTENT.append(render_resume(json));
+        }
+      })
+  );
 }
 
 function renderFile(file, depth = 0) {
@@ -147,7 +153,7 @@ function renderFile(file, depth = 0) {
     src: file.src,
     render: file.render,
     name: file.name,
-    id: file.id
+    id: file.id,
   });
 
   const _label = document.createElement("div");
@@ -202,9 +208,16 @@ fetch("./resources/index.json")
     panel.append(...data.map((data) => renderFile(data, 0)));
 
     // Open the first one
-    // openFile(0);
-    openFile(getFileById("resume"));
+    openFile(0);
+    // openFile(getFileById("resume"));
 
     // DEVELOPER
     // openFile(5);
+
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.substring(1);
+      // setTimeout(() => openFile(getFileById(id)), 50);
+      openFile(getFileById(id));
+    }
   });
