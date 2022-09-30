@@ -404,7 +404,7 @@ body {
   box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.3);
 
   .details_content {
-    padding-top: 5px;
+    margin-top: 10px;
     padding-bottom: 5px;
   }
 
@@ -425,6 +425,7 @@ body {
 }
 
 .details_content {
+  margin-top: 0px;
   overflow: hidden;
   transition: all 0.2s;
   height: 0px;
