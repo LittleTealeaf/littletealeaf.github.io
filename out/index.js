@@ -40,6 +40,12 @@ function getFileById(id) {
 
 var current_rendering = (async () => {})();
 
+const PAGE_CLEANUP_SCRIPTS = [];
+
+function registerCleanupScript(script) {
+  PAGE_CLEANUP_SCRIPTS.push(script);
+}
+
 async function openFile(id) {
   setDrawer(false);
 
@@ -64,6 +70,9 @@ async function openFile(id) {
           return null;
         })();
 
+  while(PAGE_CLEANUP_SCRIPTS.length > 0) {
+    PAGE_CLEANUP_SCRIPTS.pop()()
+  }
   CONTENT.innerHTML = "";
 
   const _file_previous = document.querySelector("#drawer .file.--selected");

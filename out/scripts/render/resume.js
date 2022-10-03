@@ -64,6 +64,13 @@ function render_resume(resume) {
         }
       },
       {
+        component: "details",
+        title: "hi",
+        content: {
+
+        }
+      },
+      {
         classList: ["__footer"],
         children: [
           {
