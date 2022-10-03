@@ -1,3 +1,9 @@
+
+/**
+ *
+ * @param {JsonDom} node
+ * @returns
+ */
 function render_dom(node) {
 
   if(node instanceof Element) {

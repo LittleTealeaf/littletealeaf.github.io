@@ -16,7 +16,8 @@ function render_resume(resume) {
         ],
       },
       component_details("Education",{
-        text: "awejfoaiw efoijaweofjaowiejf oiawefiowjae oifjaw eofijaweoifjwoaiefoiaweofijawoeijfaowiefiaowe iwe io ieo fie waofjwojfoawie o oiweaf"
+        classList: ["__education"],
+        
       }),
       {
         classList: ["__footer"],
