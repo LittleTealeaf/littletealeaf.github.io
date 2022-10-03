@@ -1,7 +1,7 @@
-function component_details(title, content) {
+function details({title, content}) {
   // TODO rewrite this so that it allow for width changes as well as height changes (so we can make the header any size we want)
 
-  const root = render_dom({
+  const root = render({
     classList: ["details"],
     children: [
       {
@@ -10,7 +10,7 @@ function component_details(title, content) {
       },
       {
         classList: ["details_content"],
-        children: [render_dom(content)],
+        children: [render(content)],
       },
     ],
   });
@@ -29,16 +29,16 @@ function component_details(title, content) {
   return root;
 }
 
-function component_button(text, onclick) {
-  return render_dom({
+function button({text, onclick}) {
+  return render({
     classList: ["button"],
     text,
     onclick,
   });
 }
 
-function component_image({ src, onclick, content }) {
-  return render_dom({
+function image({ src, onclick, content }) {
+  return render({
     classList: ["image"],
     onclick,
     style: {

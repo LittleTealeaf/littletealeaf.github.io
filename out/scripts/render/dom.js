@@ -3,6 +3,13 @@ function render(node) {
     return node;
   }
 
+  if (node.component) {
+    return {
+      details: details,
+      button: button,
+    }[node.component](node);
+  }
+
   if (!node) {
     return undefined;
   }

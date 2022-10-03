@@ -15,15 +15,23 @@ function render_resume(resume) {
           },
         ],
       },
-      component_details("Education", {
-        classList: ["__education"],
-      }),
+      {
+        component: "details",
+        title: "Education",
+        content: {
+          classList: ["_education"]
+        }
+      },
       {
         classList: ["__footer"],
         children: [
           {
             classList: ["__footer_contact"],
-            children: [component_button("Contact Me!", () => openFile(__contact_id))],
+            children: [{
+              component: "button",
+              text: "Contact Me!",
+              onclick: (_) => openFile(__contact_id)
+            }],
           },
         ],
       },
