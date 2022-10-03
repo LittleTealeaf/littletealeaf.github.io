@@ -22,4 +22,4 @@ def build():
         "text": "Feel free to explore with the drawer on the left!"
       }
     ]
-  })
+  },id="home")
