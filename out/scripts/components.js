@@ -37,7 +37,7 @@ function details({title, content}) {
 
   registerCleanupScript(() => {
     resize_observer.disconnect();
-  })
+  });
 
   return root;
 }

@@ -4,6 +4,10 @@ const CONTENT = document.querySelector("#content");
 
 const files = [];
 
+var current_rendering = (async () => {})();
+
+const cleanup_scripts = [];
+
 function setDrawer(value) {
   BODY.dataset.drawer = value;
 }
@@ -38,12 +42,8 @@ function getFileById(id) {
   return files.findIndex((file) => file.id == id);
 }
 
-var current_rendering = (async () => {})();
-
-const PAGE_CLEANUP_SCRIPTS = [];
-
 function registerCleanupScript(script) {
-  PAGE_CLEANUP_SCRIPTS.push(script);
+  cleanup_scripts.push(script);
 }
 
 async function openFile(id) {
@@ -70,8 +70,8 @@ async function openFile(id) {
           return null;
         })();
 
-  while(PAGE_CLEANUP_SCRIPTS.length > 0) {
-    PAGE_CLEANUP_SCRIPTS.pop()()
+  while(cleanup_scripts.length > 0) {
+    cleanup_scripts.pop()()
   }
   CONTENT.innerHTML = "";
 

@@ -20,23 +20,23 @@ function render_resume(resume) {
         title: "Education",
         content: {
           classList: ["__education"],
-          children: resume.education.map(school => ({
+          children: resume.education.map((school) => ({
             children: [
               {
                 classList: ["__keyvalue"],
                 children: [
                   {
                     style: {
-                      fontSize: "20px"
+                      fontSize: "20px",
                     },
                     tag: "span",
-                    text: school.school
+                    text: school.school,
                   },
                   {
                     tag: "span",
-                    text: school.location
-                  }
-                ]
+                    text: school.location,
+                  },
+                ],
               },
               {
                 classList: ["__edu_details"],
@@ -46,40 +46,49 @@ function render_resume(resume) {
                     children: [
                       {
                         tag: "span",
-                        text: "Expected"
+                        text: "Expected",
                       },
                       {
                         tag: "span",
-                        text: school.graduation
-                      }
-                    ]
+                        text: school.graduation,
+                      },
+                    ],
                   },
                   {
-                    text: school.degrees.join(", ")
-                  }
-                ]
-              }
-            ]
-          }))
-        }
+                    classList: ["__keyvalue"],
+                    children: [
+                      {
+                        tag: "span",
+                        text: "Degree",
+                      },
+                      {
+                        text: school.degrees.join(", "),
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          })),
+        },
       },
       {
         component: "details",
         title: "hi",
-        content: {
-
-        }
+        content: {},
       },
       {
         classList: ["__footer"],
         children: [
           {
             classList: ["__footer_contact"],
-            children: [{
-              component: "button",
-              text: "Contact Me!",
-              onclick: (_) => openFile(__contact_id)
-            }],
+            children: [
+              {
+                component: "button",
+                text: "Contact Me!",
+                onclick: (_) => openFile(__contact_id),
+              },
+            ],
           },
         ],
       },
