@@ -87,7 +87,7 @@ function render_resume(resume) {
                 component: "button",
                 text: "Contact Me!",
                 onclick: (_) => openFile(__contact_id),
-              },
+              }
             ],
           },
         ],

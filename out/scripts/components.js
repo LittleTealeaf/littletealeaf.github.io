@@ -42,11 +42,16 @@ function details({title, content}) {
   return root;
 }
 
-function button({text, onclick}) {
+function button({text, onclick, href, target}) {
+  const __link = render_dom({
+    tag: "a",
+    href,
+    target,
+  })
   return render_dom({
     classList: ["button"],
     text,
-    onclick,
+    onclick: href && (() => __link.click()) || onclick,
   });
 }
 
