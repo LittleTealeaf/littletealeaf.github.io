@@ -15,24 +15,15 @@ function render_resume(resume) {
           },
         ],
       },
-      component_details("Education",{
+      component_details("Education", {
         classList: ["__education"],
-        
       }),
       {
         classList: ["__footer"],
         children: [
           {
             classList: ["__footer_contact"],
-            children: [
-              {
-                classList: ["button"],
-                text: "Contact Me!",
-                onclick: () => {
-                  openFile(__contact_id);
-                },
-              },
-            ],
+            children: [component_button("Contact Me!", () => openFile(__contact_id))],
           },
         ],
       },
@@ -42,24 +33,20 @@ function render_resume(resume) {
   return dom;
 }
 
-
-function render_section({header, content}) {
-  const ROOT = "BASE_CLASS"
+function render_section({ header, content }) {
+  const ROOT = "BASE_CLASS";
 
   const dom = render_dom({
     classList: [ROOT],
     children: [
       {
         classList: ["__section_header"],
-        children: [render_dom(header)]
-      }
-    ]
+        children: [render_dom(header)],
+      },
+    ],
   });
 
   dom.classList.add("__section");
 
-
   return dom;
-
-
 }
