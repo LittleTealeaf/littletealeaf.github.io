@@ -1,4 +1,4 @@
-function render(node) {
+function render_dom(node) {
   if (node instanceof Element) {
     return node;
   }
@@ -21,7 +21,7 @@ function render(node) {
   }
 
   if (node.children) {
-    element.append(...node.children.filter((child) => child).map(render));
+    element.append(...node.children.filter((child) => child).map(render_dom));
   }
 
   if (node.text) {

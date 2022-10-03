@@ -1,3 +1,4 @@
+
 const BODY = document.querySelector("body");
 const TABS = document.querySelector("#tabs");
 const CONTENT = document.querySelector("#content");
@@ -146,13 +147,12 @@ async function openFile(id) {
       .then((res) => res.json())
       .then((json) => {
         CONTENT.innerHTML = "";
-        if (file.render == "dom") {
-          CONTENT.append(render(json));
-        } else if (file.render == "project_list") {
-          CONTENT.append(render_project_list(json));
-        } else if (file.render == "resume") {
-          CONTENT.append(render_resume(json));
-        }
+        CONTENT.append(({
+          dom: render_dom,
+          project_list: render_project_list,
+          resume: render_resume,
+          project: render_dom
+        })[file.render](json))
         if(file.id) {
           window.location.hash = file.id;
         } else {
