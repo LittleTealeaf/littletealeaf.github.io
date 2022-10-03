@@ -3,11 +3,7 @@
   "education": [
     {
       "school": "Quinnipiac University",
-      "degrees": [
-        "Bachelor of Arts in Computer Science",
-        "Bachelor of Science in Data Science",
-        "Minor in Economics"
-      ],
+      "degrees": ["BA Computer Science", "BS Data Science", "Economics Minor"],
       "graduation": "May 2024",
       "location": "Hamden CT"
     }
