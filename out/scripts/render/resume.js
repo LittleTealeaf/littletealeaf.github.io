@@ -32,4 +32,3 @@ function render_resume(resume) {
 
   return dom;
 }
-

@@ -140,6 +140,11 @@ async function openFile(id) {
         } else if (file.render == "resume") {
           CONTENT.append(render_resume(json));
         }
+        if(file.id) {
+          window.location.hash = file.id;
+        } else {
+          window.location.hash = "";
+        }
       })
   );
 }
