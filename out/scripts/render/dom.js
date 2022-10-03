@@ -15,6 +15,7 @@ function render_dom(node) {
     return undefined;
   }
 
+  /** @type {Element} */
   const element = document.createElement(node.tag || "div");
   if (node.classList) {
     element.classList.add(...node.classList);
