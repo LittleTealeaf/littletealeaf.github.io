@@ -217,16 +217,22 @@ fetch("./resources/index.json")
     panel.append(...data.map((data) => renderFile(data, 0)));
 
     // Open the first one
-    openFile(0);
+
     // openFile(getFileById("resume"));
 
     // DEVELOPER
     // openFile(5);
 
+    return openFile(getFileById("resume"));
+
+
     const hash = window.location.hash;
     if (hash) {
       const id = hash.substring(1);
-      // setTimeout(() => openFile(getFileById(id)), 50);
       openFile(getFileById(id));
+    } else {
+      openFile(0);
     }
+
+
   });

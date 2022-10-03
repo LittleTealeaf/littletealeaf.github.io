@@ -19,7 +19,48 @@ function render_resume(resume) {
         component: "details",
         title: "Education",
         content: {
-          classList: ["_education"]
+          classList: ["__education"],
+          children: resume.education.map(school => ({
+            children: [
+              {
+                classList: ["__keyvalue"],
+                children: [
+                  {
+                    style: {
+                      fontSize: "20px"
+                    },
+                    tag: "span",
+                    text: school.school
+                  },
+                  {
+                    tag: "span",
+                    text: school.location
+                  }
+                ]
+              },
+              {
+                classList: ["__edu_details"],
+                children: [
+                  {
+                    classList: ["__keyvalue"],
+                    children: [
+                      {
+                        tag: "span",
+                        text: "Expected"
+                      },
+                      {
+                        tag: "span",
+                        text: school.graduation
+                      }
+                    ]
+                  },
+                  {
+                    text: school.degrees.join(", ")
+                  }
+                ]
+              }
+            ]
+          }))
         }
       },
       {

@@ -329,6 +329,23 @@ body {
     margin-top: 20px;
     flex-wrap: wrap;
   }
+
+  .details {
+    width: 80%;
+    margin: auto;
+  }
+
+  .__keyvalue {
+    :first-child {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+
+  .__edu_details {
+    margin-left: 10px;
+  }
+
 }
 
 .button {
