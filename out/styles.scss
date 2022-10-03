@@ -68,7 +68,7 @@ body {
 
   .panel {
     padding-top: $height_header;
-    width: 250px;
+    width: $width_drawer;
     background-color: $color_darker;
     overflow-y: auto;
     height: 100%;
@@ -457,7 +457,7 @@ body {
   #drawer {
     position: absolute;
     display: flex;
-    left: -250px;
+    left: -$width_drawer;
     transition: all 0.5s;
     z-index: $z_drawer;
   }
