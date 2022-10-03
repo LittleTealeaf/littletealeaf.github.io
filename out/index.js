@@ -138,7 +138,7 @@ async function openFile(id) {
       .then((json) => {
         CONTENT.innerHTML = "";
         if (file.render == "dom") {
-          CONTENT.append(render_dom(json));
+          CONTENT.append(render(json));
         } else if (file.render == "project_list") {
           CONTENT.append(render_project_list(json));
         } else if (file.render == "resume") {

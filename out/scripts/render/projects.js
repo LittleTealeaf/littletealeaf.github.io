@@ -2,7 +2,7 @@ function render_project_list(projects) {
 
   // TODO add tags to the project?
 
-  return render_dom({
+  return render({
     classList: ["_projects"],
     children: [
       {
