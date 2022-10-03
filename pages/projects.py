@@ -42,4 +42,4 @@ def build():
   project_pages = list(project_pages)
   project_info = list(project_info)
 
-  return page("Projects",project_info,render="project_list",children=project_pages)
+  return page("Projects",project_info,render="project_list",children=project_pages,id="projects")
