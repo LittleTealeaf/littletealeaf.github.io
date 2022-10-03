@@ -18,8 +18,8 @@ function render_project_list(projects) {
         classList: ["__list"],
         children: projects.map((project) => ({
           classList: ["image"],
-          onclick: () => {
-            openFile(findFile(project.src));
+          onclick: (_) => {
+            openFile(getFileBySource(project.src));
           },
           style: {
             backgroundImage: `url(${project.thumbnail})`,

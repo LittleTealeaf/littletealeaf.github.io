@@ -30,6 +30,10 @@ function findFile(name) {
   return files.findIndex((file) => file.name == name);
 }
 
+function getFileBySource(source) {
+  return files.findIndex((file) => file.src == source);
+}
+
 function getFileById(id) {
   return files.findIndex((file) => file.id == id);
 }
