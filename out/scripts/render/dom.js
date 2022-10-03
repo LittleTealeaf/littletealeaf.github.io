@@ -5,8 +5,9 @@ function render(node) {
 
   if (node.component) {
     return {
-      details: details,
-      button: button,
+      details,
+      button,
+      image,
     }[node.component](node);
   }
 
