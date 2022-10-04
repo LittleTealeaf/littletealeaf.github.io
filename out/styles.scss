@@ -149,6 +149,7 @@ body {
   width: 100%;
   background-color: $color_darker;
   height: $height_header;
+  min-height: $height_header;
   display: flex;
   flex-direction: row;
 }
