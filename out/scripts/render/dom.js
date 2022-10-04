@@ -1,28 +1,32 @@
-function render_dom(node) {
+function render_dom(node, amp_replace = "&") {
   if (node instanceof Element) {
     return node;
-  }
-
-  if (node.component) {
-    return {
-      details,
-      button,
-      image,
-    }[node.component](node);
   }
 
   if (!node) {
     return undefined;
   }
 
+  const amp = node.amp ? node.amp.replace("&",amp_replace) : amp_replace;
+
+  if (node.component) {
+    return {
+      details,
+      button,
+      image,
+    }[node.component](node,amp);
+  }
+
+
+
   /** @type {Element} */
   const element = document.createElement(node.tag || "div");
   if (node.classList) {
-    element.classList.add(...node.classList);
+    element.classList.add(...node.classList.map((c) => c.replace("&",amp)));
   }
 
   if (node.children) {
-    element.append(...node.children.filter((child) => child).map(render_dom));
+    element.append(...node.children.filter((child) => child).map(child => render_dom(child,amp)));
   }
 
   if (node.text) {

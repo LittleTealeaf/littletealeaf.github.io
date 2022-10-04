@@ -2,13 +2,15 @@ function render_resume(resume) {
   const __contact_id = getFileById("contact");
 
   const dom = render_dom({
-    classList: ["_resume"],
+    classList: ["&"],
+    amp: "_resume",
     children: [
       {
-        classList: ["_resume_header"],
+        classList: ["&"],
+        amp: "&_header",
         children: [
           {
-            classList: ["_resume_header_name"],
+            classList: ["&_name"],
             children: resume.name.split(" ").map((word) => ({
               text: word,
             })),
@@ -19,7 +21,8 @@ function render_resume(resume) {
         component: "details",
         title: "Education",
         content: {
-          classList: ["_resume_edu"],
+          classList: ["&"],
+          amp: "&_edu",
           children: resume.education.map((school) => ({
             children: [
               {
@@ -39,7 +42,7 @@ function render_resume(resume) {
                 ],
               },
               {
-                classList: ["_resume_edu_details"],
+                classList: ["&_details"],
                 children: [
                   {
                     classList: ["_resume_keyvalue"],
@@ -76,9 +79,10 @@ function render_resume(resume) {
         component: "details",
         title: "Skills",
         content: {
-          classList: ["_resume_skills"],
+          classList: ["&"],
+          amp: "&_skills",
           children: Object.entries(resume.skills).map(([key,values]) => ({
-            classList: ["_resume_keyvalue", "_resume_skills_entry"],
+            classList: ["_resume_keyvalue", "&_entry"],
             children: [
               {
                 tag: "span",
@@ -93,10 +97,11 @@ function render_resume(resume) {
         },
       },
       {
-        classList: ["_resume_footer"],
+        classList: ["&"],
+        amp: "&_footer",
         children: [
           {
-            classList: ["_resume_footer_content"],
+            classList: ["&_content"],
             children: [
               {
                 component: "button",

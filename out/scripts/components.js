@@ -1,4 +1,4 @@
-function details({title, content}) {
+function details({ title, content }, amp) {
   // TODO rewrite this so that it allow for width changes as well as height changes (so we can make the header any size we want)
 
   /** @type {Element} */
@@ -11,7 +11,8 @@ function details({title, content}) {
       },
       {
         classList: ["details_content"],
-        children: [render_dom(content)],
+        children: [content],
+        amp
       },
     ],
   });
@@ -42,20 +43,23 @@ function details({title, content}) {
   return root;
 }
 
-function button({text, onclick, href, target}) {
+function button({ text, onclick, href, target }, amp) {
   const __link = render_dom({
     tag: "a",
     href,
     target,
-  })
-  return render_dom({
-    classList: ["button"],
-    text,
-    onclick: href && (() => __link.click()) || onclick,
   });
+  return render_dom(
+    {
+      classList: ["button"],
+      text,
+      onclick: (href && (() => __link.click())) || onclick,
+    },
+    amp
+  );
 }
 
-function image({ src, onclick, content }) {
+function image({ src, onclick, content }, amp) {
   return render_dom({
     classList: ["image"],
     onclick,
@@ -68,5 +72,5 @@ function image({ src, onclick, content }) {
         children: content,
       },
     ],
-  });
+  },amp);
 }

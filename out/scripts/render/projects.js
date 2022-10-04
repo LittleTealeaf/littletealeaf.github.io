@@ -3,10 +3,11 @@ function render_project_list(projects) {
   // TODO add tags to the project?
 
   return render_dom({
-    classList: ["_projects"],
+    classList: ["&"],
+    amp: "_projects",
     children: [
       {
-        classList: ["_projects_title"],
+        classList: ["&_title"],
         children: [
           {
             tag: "h1",
@@ -15,7 +16,7 @@ function render_project_list(projects) {
         ],
       },
       {
-        classList: ["_projects_list"],
+        classList: ["&_list"],
         children: projects.map((project) => ({
           classList: ["image"],
           onclick: (_) => {
@@ -32,10 +33,10 @@ function render_project_list(projects) {
                   classList: ["image_content"],
                   children: [
                     {
-                      classList: ["_projects_caption"],
+                      classList: ["&_caption"],
                       text: project.description
                     },{
-                      classList: ["_projects_tags"],
+                      classList: ["&_tags"],
                       children: project.tags.map((tag) => ({
                         text: tag
                       }))
