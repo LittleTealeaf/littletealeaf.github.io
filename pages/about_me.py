@@ -8,7 +8,10 @@ def build():
     "children": [
       {
         "tag": "h1",
-        "text": "hello world"
+        "text": "About Me"
+      },
+      {
+        "text": "More to come soon!"
       }
     ]
   },id="about")
