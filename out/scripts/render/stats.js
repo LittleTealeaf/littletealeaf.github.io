@@ -1,4 +1,6 @@
-function render_stats(stats) {
+function render_stats(data) {
+  const {references, stats} = data;
+  
 
   return render_dom({});
 }
