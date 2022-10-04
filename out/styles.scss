@@ -167,6 +167,7 @@ body {
   padding-inline: 5px;
   justify-content: center;
   align-items: center;
+  transition: all 0.2s;
 
   > * {
     display: flex;
@@ -175,6 +176,7 @@ body {
     justify-content: center;
     margin-inline: 5px;
     height: fit-content;
+    transition: all 0.2s;
   }
 
   span {
