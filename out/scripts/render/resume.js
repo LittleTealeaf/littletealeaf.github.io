@@ -74,8 +74,23 @@ function render_resume(resume) {
       },
       {
         component: "details",
-        title: "hi",
-        content: {},
+        title: "Skills",
+        content: {
+          classList: ["__skills"],
+          children: Object.entries(resume.skills).map(([key,values]) => ({
+            classList: ["__keyvalue", "__skills_entry"],
+            children: [
+              {
+                tag: "span",
+                text: key
+              },
+              {
+                tag: "span",
+                text: values.join(", ")
+              }
+            ]
+          }))
+        },
       },
       {
         classList: ["__footer"],

@@ -354,8 +354,21 @@ body {
     }
   }
 
-  .__edu_details {
-    margin-left: 10px;
+  .__edu {
+    &_details {
+      margin-left: 10px;
+    }
+  }
+
+  .__skills {
+    &_entry {
+      :first-child::after {
+        content: ":"
+      }
+    }
+    * {
+      text-transform: capitalize;
+    }
   }
 }
 
