@@ -387,6 +387,22 @@ body {
   }
 }
 
+._stats {
+
+  > h2 {
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+
+  .details {
+    width: 95%;
+    margin: auto;
+  }
+
+
+}
+
 .button {
   cursor: pointer;
   background-color: $color_background;
