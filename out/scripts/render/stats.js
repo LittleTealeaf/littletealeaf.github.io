@@ -2,8 +2,11 @@ function render_stats(data) {
   const {references, stats} = data;
 
 
-  return render_dom({
+  const dom = render_dom({
     amp: "_stats",
     classList: ["&"],
   });
+
+
+  return dom;
 }
