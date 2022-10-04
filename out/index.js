@@ -232,7 +232,7 @@ fetch("./resources/index.json")
     // DEVELOPER
     // openFile(5);
 
-    return openFile(getFileById("resume"));
+    // return openFile(getFileById("resume"));
 
 
     const hash = window.location.hash;
