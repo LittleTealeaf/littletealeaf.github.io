@@ -6,7 +6,7 @@ function render_project_list(projects) {
     classList: ["_projects"],
     children: [
       {
-        classList: ["__title"],
+        classList: ["_projects_title"],
         children: [
           {
             tag: "h1",
@@ -15,7 +15,7 @@ function render_project_list(projects) {
         ],
       },
       {
-        classList: ["__list"],
+        classList: ["_projects_list"],
         children: projects.map((project) => ({
           classList: ["image"],
           onclick: (_) => {
@@ -32,10 +32,10 @@ function render_project_list(projects) {
                   classList: ["image_content"],
                   children: [
                     {
-                      classList: ["__caption"],
+                      classList: ["_projects_caption"],
                       text: project.description
                     },{
-                      classList: ["__tags"],
+                      classList: ["_projects_tags"],
                       children: project.tags.map((tag) => ({
                         text: tag
                       }))

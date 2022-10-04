@@ -234,7 +234,7 @@ body {
 }
 
 ._projects {
-  .__list {
+  &_list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -263,11 +263,11 @@ body {
     flex-direction: column;
   }
 
-  .__caption {
+  &_caption {
     text-align: center;
   }
 
-  .__tags {
+  &_tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -301,31 +301,31 @@ body {
 ._resume {
   font-family: "Jetbrains Mono";
 
-  .__header {
+  &_header {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
     flex-wrap: wrap;
-  }
 
-  .__header_name {
-    * {
-      font-size: 30px;
-      // Space out letters
-      letter-spacing: 0.1em;
-      text-align: center;
-      transition: all 0.5s;
-    }
-
-    &:hover {
+    &_name {
       * {
-        letter-spacing: 0.2em;
+        font-size: 30px;
+        // Space out letters
+        letter-spacing: 0.1em;
+        text-align: center;
+        transition: all 0.5s;
+      }
+
+      &:hover {
+        * {
+          letter-spacing: 0.2em;
+        }
       }
     }
   }
 
-  .__footer {
+  &_footer {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -341,7 +341,7 @@ body {
     margin-right: auto;
   }
 
-  .__keyvalue {
+  &_keyvalue {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -355,13 +355,13 @@ body {
     }
   }
 
-  .__edu {
+  &_edu {
     &_details {
       margin-left: 10px;
     }
   }
 
-  .__skills {
+  &_skills {
     &_entry {
       :first-child::after {
         content: ":"

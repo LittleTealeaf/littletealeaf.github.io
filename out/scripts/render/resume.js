@@ -5,10 +5,10 @@ function render_resume(resume) {
     classList: ["_resume"],
     children: [
       {
-        classList: ["__header"],
+        classList: ["_resume_header"],
         children: [
           {
-            classList: ["__header_name"],
+            classList: ["_resume_header_name"],
             children: resume.name.split(" ").map((word) => ({
               text: word,
             })),
@@ -19,11 +19,11 @@ function render_resume(resume) {
         component: "details",
         title: "Education",
         content: {
-          classList: ["__education"],
+          classList: ["_resume_edu"],
           children: resume.education.map((school) => ({
             children: [
               {
-                classList: ["__keyvalue"],
+                classList: ["_resume_keyvalue"],
                 children: [
                   {
                     style: {
@@ -39,10 +39,10 @@ function render_resume(resume) {
                 ],
               },
               {
-                classList: ["__edu_details"],
+                classList: ["_resume_edu_details"],
                 children: [
                   {
-                    classList: ["__keyvalue"],
+                    classList: ["_resume_keyvalue"],
                     children: [
                       {
                         tag: "span",
@@ -55,7 +55,7 @@ function render_resume(resume) {
                     ],
                   },
                   {
-                    classList: ["__keyvalue"],
+                    classList: ["_resume_keyvalue"],
                     children: [
                       {
                         tag: "span",
@@ -76,9 +76,9 @@ function render_resume(resume) {
         component: "details",
         title: "Skills",
         content: {
-          classList: ["__skills"],
+          classList: ["_resume_skills"],
           children: Object.entries(resume.skills).map(([key,values]) => ({
-            classList: ["__keyvalue", "__skills_entry"],
+            classList: ["_resume_keyvalue", "_resume_skills_entry"],
             children: [
               {
                 tag: "span",
@@ -93,10 +93,10 @@ function render_resume(resume) {
         },
       },
       {
-        classList: ["__footer"],
+        classList: ["_resume_footer"],
         children: [
           {
-            classList: ["__footer_contact"],
+            classList: ["_resume_footer_content"],
             children: [
               {
                 component: "button",
