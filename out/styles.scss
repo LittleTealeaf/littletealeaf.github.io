@@ -373,6 +373,19 @@ body {
   }
 }
 
+._contact {
+  &_options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+    > *{
+      margin-inline: 10px;
+    }
+  }
+}
+
 .button {
   cursor: pointer;
   background-color: $color_background;
