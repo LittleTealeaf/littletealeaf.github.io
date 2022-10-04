@@ -151,7 +151,8 @@ async function openFile(id) {
           dom: render_dom,
           project_list: render_project_list,
           resume: render_resume,
-          project: render_dom
+          project: render_dom,
+          stats: render_stats
         })[file.render](json))
         if(file.id) {
           window.location.hash = file.id;
