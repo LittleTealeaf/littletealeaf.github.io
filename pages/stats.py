@@ -4,7 +4,7 @@ def build():
 
 
   return page(
-    "stats",
+    "Stats",
     {},
     render="stats",
     id="stats"
