@@ -86,7 +86,14 @@ function render_resume(resume) {
             children: [
               {
                 classList: "&_title",
-                text: experience.title
+                children: [
+                  {
+                    text: experience.title
+                  },
+                  experience.time && {
+                    text: experience.time
+                  }
+                ]
               },
               {
                 classList: "&_subtitle",

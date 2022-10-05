@@ -376,8 +376,21 @@ body {
   &_experience {
 
     &_title {
-      font-size: 19px;
+
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+
+      :first-child {
+        font-size: 19px;
       font-weight: bolder;
+      }
+
+      :last-child {
+        margin-left: 10px;
+        font-size: 15px;
+      }
     }
 
     &_skills,
@@ -393,6 +406,7 @@ body {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      font-size: 14px;
 
       * {
         margin-inline: 2px;
@@ -400,6 +414,7 @@ body {
 
       :first-child {
         font-weight: bolder;
+        font-size: 15px;
       }
     }
 

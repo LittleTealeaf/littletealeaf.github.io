@@ -10,7 +10,18 @@
   ],
   "experience": [
     {
+      "title": "Tech Specialist Assistant Supervisor",
+      "time": "Fall 2021 - Present",
+      "location": "Quinnipiac University Technology Center",
+      "details": [
+        "Assist students and faculty with various technology issues, ranging from hardware to software malfunctions",
+        "Help with technology related projects within the tech center as needed"
+      ],
+      "skills": ["Active Directory", "Customer Service"]
+    },
+    {
       "title": "Legacy Java Project",
+      "time": "Fall Semester 2021",
       "location": "Quinnipiac University SER-225",
       "details": [
         "Levereged scrum workflow to improve legacy code with peers",
