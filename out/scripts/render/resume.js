@@ -10,7 +10,7 @@ function render_resume(resume) {
         amp: "&_header",
         children: [
           {
-            classList: ["&_name"],
+            classList: "&_name",
             children: resume.name.split(" ").map((word) => ({
               text: word,
             })),
@@ -26,7 +26,7 @@ function render_resume(resume) {
           children: resume.education.map((school) => ({
             children: [
               {
-                classList: ["_resume_keyvalue"],
+                classList: "_resume_keyvalue",
                 children: [
                   {
                     style: {
@@ -42,10 +42,10 @@ function render_resume(resume) {
                 ],
               },
               {
-                classList: ["&_details"],
+                classList: "&_details",
                 children: [
                   {
-                    classList: ["_resume_keyvalue"],
+                    classList: "_resume_keyvalue",
                     children: [
                       {
                         tag: "span",
@@ -58,7 +58,7 @@ function render_resume(resume) {
                     ],
                   },
                   {
-                    classList: ["_resume_keyvalue"],
+                    classList: "_resume_keyvalue",
                     children: [
                       {
                         tag: "span",

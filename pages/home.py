@@ -7,7 +7,7 @@ def build():
   github = getGithubApi("/users/LittleTealeaf")
 
   return page("Home",{
-    "classList": ["_home"],
+    "classList": "_home",
     "children": [
       {
         "tag": "img",

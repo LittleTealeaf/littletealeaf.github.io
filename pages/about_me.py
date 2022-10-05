@@ -4,7 +4,7 @@ from libs import *
 
 def build():
   return page("About Me",{
-    "classList": ["_about"],
+    "classList": "_about",
     "children": [
       {
         "tag": "h1",

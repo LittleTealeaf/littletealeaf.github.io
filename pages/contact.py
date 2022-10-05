@@ -7,12 +7,12 @@ def build():
     return page(
         "Contact Me",
         {
-            "classList": ["&"],
+            "classList": "&",
             "amp": "_contact",
             "children": [
                 {"tag": "h1", "text": "Contact Me!"},
                 {
-                    "classList": ["&_options"],
+                    "classList": "&_options",
                     "children": [
                         {
                             "component": "button",

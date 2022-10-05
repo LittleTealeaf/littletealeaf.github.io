@@ -21,13 +21,16 @@ function render_dom(node, amp_replace = "&") {
 
   /** @type {Element} */
   const element = document.createElement(node.tag || "div");
+
+  
   if (node.classList) {
-    if(node.classList === "&") {
-      element.classList.add(amp);
+    if (typeof node.classList === "string") {
+      element.classList.add(node.classList.replace("&", amp));
     } else {
-      element.classList.add(...node.classList.map((c) => c.replace("&",amp)));
+      element.classList.add(...node.classList.map((c) => c.replace("&", amp)));
     }
   }
+
 
   if (node.children) {
     element.append(...node.children.filter((child) => child).map(child => render_dom(child,amp)));

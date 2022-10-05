@@ -3,14 +3,14 @@ function details({ title, content }, amp) {
 
   /** @type {Element} */
   const root = render_dom({
-    classList: ["details"],
+    classList: "details",
     children: [
       {
-        classList: ["details_header"],
+        classList: "details_header",
         text: title,
       },
       {
-        classList: ["details_content"],
+        classList: "details_content",
         children: [content],
         amp
       },
@@ -51,7 +51,7 @@ function button({ text, onclick, href, target }, amp) {
   });
   return render_dom(
     {
-      classList: ["button"],
+      classList: "button",
       text,
       onclick: (href && (() => __link.click())) || onclick,
     },
@@ -61,14 +61,14 @@ function button({ text, onclick, href, target }, amp) {
 
 function image({ src, onclick, content }, amp) {
   return render_dom({
-    classList: ["image"],
+    classList: "image",
     onclick,
     style: {
       backgroundImage: `url(${src})`,
     },
     children: [
       content && {
-        classList: ["image__overlay"],
+        classList: "image__overlay",
         children: content,
       },
     ],
