@@ -10,10 +10,14 @@
   ],
   "experience": [
     {
-      "company": "Quinnipiac University",
-      "position": "Technology Support Assistant Supervisor",
-      "years": "September 2021 - Present",
-      "description": "Provides technology support to Students, Faculty, and Staff. Taking on additional responsibility as a supervisor."
+      "title": "Legacy Java Project",
+      "location": "Quinnipiac University SER-225",
+      "details": [
+        "Levereged scrum workflow to improve legacy code with peers",
+        "Acted as scrum master, organizing the group and managing GitHub repository",
+        "Focused on improving core system features to simplify further development"
+      ],
+      "skills": ["Java", "AWT", "Agile", "Scrum"]
     }
   ],
   "skills": {

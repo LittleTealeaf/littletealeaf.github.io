@@ -300,7 +300,7 @@ body {
 }
 
 ._resume {
-  font-family: "Jetbrains Mono";
+  // font-family: "Jetbrains Mono";
 
   &_header {
     display: flex;
@@ -338,7 +338,6 @@ body {
   .details {
     margin-top: 20px;
     width: 95%;
-    max-width: 1400px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -366,11 +365,46 @@ body {
   &_skills {
     &_entry {
       :first-child::after {
-        content: ":";
+        content: ":"
       }
     }
     * {
       text-transform: capitalize;
+    }
+  }
+
+  &_experience {
+
+    &_title {
+      font-size: 19px;
+      font-weight: bolder;
+    }
+
+    &_skills,
+    &_subtitle {
+      margin-left: 10px;
+    }
+
+    &_entry {
+      margin-bottom: 20px;
+    }
+
+    &_skills {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      * {
+        margin-inline: 2px;
+      }
+
+      :first-child {
+        font-weight: bolder;
+      }
+    }
+
+    ul {
+      margin: 0px;
     }
   }
 }
@@ -382,22 +416,9 @@ body {
     flex-wrap: wrap;
     align-items: center;
 
-    > * {
+    > *{
       margin-inline: 10px;
     }
-  }
-}
-
-._stats {
-  > h2 {
-    width: fit-content;
-    margin: auto;
-    margin-bottom: 40px;
-  }
-
-  .details {
-    width: 95%;
-    margin: auto;
   }
 }
 

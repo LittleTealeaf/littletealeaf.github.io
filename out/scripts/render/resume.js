@@ -77,6 +77,44 @@ function render_resume(resume) {
       },
       {
         component: "details",
+        title: "Experience",
+        content: {
+          classList: "&",
+          amp: "&_experience",
+          children: resume.experience.map((experience) => ({
+            classList: "&_entry",
+            children: [
+              {
+                classList: "&_title",
+                text: experience.title
+              },
+              {
+                classList: "&_subtitle",
+                text: experience.subtitle || experience.location || ""
+              },{
+                classList: "&_details",
+                tag: "ul",
+                children: experience.details.map(detail => ({
+                  tag: "li",
+                  text: detail
+                }))
+              },{
+                classList: "&_skills",
+                children: [
+                  {
+                    text: "Skills:"
+                  },
+                  ...experience.skills.join(",, ").split(", ").map(skill => ({
+                    text: skill
+                  }))
+                ]
+              }
+            ]
+          })),
+        },
+      },
+      {
+        component: "details",
         title: "Skills",
         content: {
           classList: "&",
