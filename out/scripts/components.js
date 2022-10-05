@@ -6,7 +6,7 @@ function details({ title, content }, amp) {
     classList: "details",
     children: [
       {
-        classList: "details_header",
+        classList: ["details_header", "noselect"],
         text: title,
       },
       {
