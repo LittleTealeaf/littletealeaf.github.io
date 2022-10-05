@@ -81,19 +81,19 @@ function render_resume(resume) {
         content: {
           classList: "&",
           amp: "&_skills",
-          children: Object.entries(resume.skills).map(([key,values]) => ({
+          children: Object.entries(resume.skills).map(([key, values]) => ({
             classList: ["_resume_keyvalue", "&_entry"],
             children: [
               {
                 tag: "span",
-                text: key
+                text: key,
               },
               {
                 tag: "span",
-                text: values.join(", ")
-              }
-            ]
-          }))
+                text: values.join(", "),
+              },
+            ],
+          })),
         },
       },
       {
@@ -107,7 +107,7 @@ function render_resume(resume) {
                 component: "button",
                 text: "Contact Me!",
                 onclick: (_) => openFile(__contact_id),
-              }
+              },
             ],
           },
         ],

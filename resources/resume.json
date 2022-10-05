@@ -17,11 +17,7 @@
     }
   ],
   "skills": {
-    "languages": [
-      "Python","Java","Javascript","Typescript","html","css"
-    ],
-    "programs": [
-      "vscode","pycharm","intellij","git","linux"
-    ]
+    "languages": ["Python", "Java", "Javascript", "Typescript", "html", "css"],
+    "programs": ["vscode", "pycharm", "intellij", "git", "linux"]
   }
 }

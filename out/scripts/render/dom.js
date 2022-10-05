@@ -7,22 +7,19 @@ function render_dom(node, amp_replace = "&") {
     return undefined;
   }
 
-  const amp = node.amp ? node.amp.replace("&",amp_replace) : amp_replace;
+  const amp = node.amp ? node.amp.replace("&", amp_replace) : amp_replace;
 
   if (node.component) {
     return {
       details,
       button,
       image,
-    }[node.component](node,amp);
+    }[node.component](node, amp);
   }
-
-
 
   /** @type {Element} */
   const element = document.createElement(node.tag || "div");
 
-  
   if (node.classList) {
     if (typeof node.classList === "string") {
       element.classList.add(node.classList.replace("&", amp));
@@ -31,9 +28,8 @@ function render_dom(node, amp_replace = "&") {
     }
   }
 
-
   if (node.children) {
-    element.append(...node.children.filter((child) => child).map(child => render_dom(child,amp)));
+    element.append(...node.children.filter((child) => child).map((child) => render_dom(child, amp)));
   }
 
   if (node.text) {

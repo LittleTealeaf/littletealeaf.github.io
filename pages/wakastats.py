@@ -1,4 +1,5 @@
 from libs import *
 
+
 def build():
-  return page("Stats",{},"stats",id="stats")
+    return page("Stats", {}, "stats", id="stats")

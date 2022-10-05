@@ -1,4 +1,3 @@
-
 const BODY = document.querySelector("body");
 const TABS = document.querySelector("#tabs");
 const CONTENT = document.querySelector("#content");
@@ -71,8 +70,8 @@ async function openFile(id) {
           return null;
         })();
 
-  while(cleanup_scripts.length > 0) {
-    cleanup_scripts.pop()()
+  while (cleanup_scripts.length > 0) {
+    cleanup_scripts.pop()();
   }
   CONTENT.innerHTML = "";
 
@@ -147,14 +146,16 @@ async function openFile(id) {
       .then((res) => res.json())
       .then((json) => {
         CONTENT.innerHTML = "";
-        CONTENT.append(({
-          dom: render_dom,
-          project_list: render_project_list,
-          resume: render_resume,
-          project: render_dom,
-          stats: render_stats
-        })[file.render](json))
-        if(file.id) {
+        CONTENT.append(
+          {
+            dom: render_dom,
+            project_list: render_project_list,
+            resume: render_resume,
+            project: render_dom,
+            stats: render_stats,
+          }[file.render](json)
+        );
+        if (file.id) {
           window.location.hash = file.id;
         } else {
           window.location.hash = "";
@@ -235,7 +236,6 @@ fetch("./resources/index.json")
 
     // return openFile(getFileById("resume"));
 
-
     const hash = window.location.hash;
     if (hash) {
       const id = hash.substring(1);
@@ -243,6 +243,4 @@ fetch("./resources/index.json")
     } else {
       openFile(0);
     }
-
-
   });

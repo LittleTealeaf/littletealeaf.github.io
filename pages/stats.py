@@ -4,13 +4,16 @@ from libs import wakatime
 
 def format_stats(stats):
 
-    return {
-      "categories": stats["categories"][:10],
-      "editors": stats["editors"][:10],
-      "languages": stats["languages"][:10],
-      "operating_systems": stats["operating_systems"][:10],
-      "projects": stats["projects"][:10],
-    }, {}
+    return (
+        {
+            "categories": stats["categories"][:10],
+            "editors": stats["editors"][:10],
+            "languages": stats["languages"][:10],
+            "operating_systems": stats["operating_systems"][:10],
+            "projects": stats["projects"][:10],
+        },
+        {},
+    )
 
 
 def build():

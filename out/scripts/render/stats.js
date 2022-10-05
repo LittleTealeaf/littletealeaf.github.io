@@ -8,7 +8,7 @@ function render_stats(data) {
       {
         text: "My Programming Stats",
         tag: "h2",
-      }
+      },
     ],
   });
 

@@ -365,7 +365,7 @@ body {
   &_skills {
     &_entry {
       :first-child::after {
-        content: ":"
+        content: ":";
       }
     }
     * {
@@ -381,14 +381,13 @@ body {
     flex-wrap: wrap;
     align-items: center;
 
-    > *{
+    > * {
       margin-inline: 10px;
     }
   }
 }
 
 ._stats {
-
   > h2 {
     width: fit-content;
     margin: auto;
@@ -399,8 +398,6 @@ body {
     width: 95%;
     margin: auto;
   }
-
-
 }
 
 .button {

@@ -12,7 +12,7 @@ function details({ title, content }, amp) {
       {
         classList: "details_content",
         children: [content],
-        amp
+        amp,
       },
     ],
   });
@@ -60,17 +60,20 @@ function button({ text, onclick, href, target }, amp) {
 }
 
 function image({ src, onclick, content }, amp) {
-  return render_dom({
-    classList: "image",
-    onclick,
-    style: {
-      backgroundImage: `url(${src})`,
-    },
-    children: [
-      content && {
-        classList: "image__overlay",
-        children: content,
+  return render_dom(
+    {
+      classList: "image",
+      onclick,
+      style: {
+        backgroundImage: `url(${src})`,
       },
-    ],
-  },amp);
+      children: [
+        content && {
+          classList: "image__overlay",
+          children: content,
+        },
+      ],
+    },
+    amp
+  );
 }
