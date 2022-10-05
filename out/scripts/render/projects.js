@@ -1,13 +1,12 @@
 function render_project_list(projects) {
-
   // TODO add tags to the project?
 
   return render_dom({
-    classList: ["&"],
+    classList: "&",
     amp: "_projects",
     children: [
       {
-        classList: ["&_title"],
+        classList: "&_title",
         children: [
           {
             tag: "h1",
@@ -16,9 +15,9 @@ function render_project_list(projects) {
         ],
       },
       {
-        classList: ["&_list"],
+        classList: "&_list",
         children: projects.map((project) => ({
-          classList: ["image"],
+          classList: "image",
           onclick: (_) => {
             openFile(getFileBySource(project.src));
           },
@@ -33,15 +32,16 @@ function render_project_list(projects) {
                   classList: ["image_content"],
                   children: [
                     {
-                      classList: ["&_caption"],
-                      text: project.description
-                    },{
-                      classList: ["&_tags"],
+                      classList: "&_caption",
+                      text: project.description,
+                    },
+                    {
+                      classList: "&_tags",
                       children: project.tags.map((tag) => ({
-                        text: tag
-                      }))
-                    }
-                  ]
+                        text: tag,
+                      })),
+                    },
+                  ],
                 },
               ],
             },
