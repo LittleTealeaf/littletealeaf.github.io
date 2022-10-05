@@ -2,11 +2,11 @@ function render_resume(resume) {
   const __contact_id = getFileById("contact");
 
   const dom = render_dom({
-    classList: ["&"],
+    classList: "&",
     amp: "_resume",
     children: [
       {
-        classList: ["&"],
+        classList: "&",
         amp: "&_header",
         children: [
           {
@@ -21,7 +21,7 @@ function render_resume(resume) {
         component: "details",
         title: "Education",
         content: {
-          classList: ["&"],
+          classList: "&",
           amp: "&_edu",
           children: resume.education.map((school) => ({
             children: [
@@ -79,7 +79,7 @@ function render_resume(resume) {
         component: "details",
         title: "Skills",
         content: {
-          classList: ["&"],
+          classList: "&",
           amp: "&_skills",
           children: Object.entries(resume.skills).map(([key,values]) => ({
             classList: ["_resume_keyvalue", "&_entry"],
@@ -97,7 +97,7 @@ function render_resume(resume) {
         },
       },
       {
-        classList: ["&"],
+        classList: "&",
         amp: "&_footer",
         children: [
           {

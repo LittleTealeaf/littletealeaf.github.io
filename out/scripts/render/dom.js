@@ -22,7 +22,11 @@ function render_dom(node, amp_replace = "&") {
   /** @type {Element} */
   const element = document.createElement(node.tag || "div");
   if (node.classList) {
-    element.classList.add(...node.classList.map((c) => c.replace("&",amp)));
+    if(node.classList === "&") {
+      element.classList.add(amp);
+    } else {
+      element.classList.add(...node.classList.map((c) => c.replace("&",amp)));
+    }
   }
 
   if (node.children) {
