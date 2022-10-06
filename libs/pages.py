@@ -51,6 +51,12 @@ def format_dom(dom):
   if type(dom) == dict:
     for key in dom:
       dom[key] = format_dom(dom[key])
+    if 'component' in dom and dom['component'] == 'image':
+      img = Image.open(f'./out/{dom["src"]}')
+      if "height" not in dom:
+        dom["height"] = img.height
+      if "width" not in dom:
+        dom["width"] = img.width
 
   if type(dom) == list:
     for i in range(len(dom)):

@@ -1,24 +1,6 @@
 from libs import *
 
-
-def format_content_segment(segment):
-    if segment["type"] == "image":
-        segment["src"] = export_any_image(segment["src"])
-
-        img = Image.open(f'./out/{segment["src"]}')
-        if "width" not in segment:
-            segment["width"] = img.width
-        if "height" not in segment:
-            segment["height"] = img.height
-
-    return segment
-
-
 def build_project(project):
-
-    # project["content"] = [
-    #     format_content_segment(segment) for segment in project["content"]
-    # ]
     project['content'] = format_dom(project['content'])
 
     if "thumbnail" in project:
