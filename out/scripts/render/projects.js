@@ -51,3 +51,12 @@ function render_project_list(projects) {
     ],
   });
 }
+
+function render_project(project) {
+
+  return render_dom({
+    classList: "&",
+    amp: "_project",
+    children: project.content.map(render_dom)
+  })
+}

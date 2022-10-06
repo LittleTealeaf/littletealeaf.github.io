@@ -153,6 +153,7 @@ async function openFile(id) {
             resume: render_resume,
             project: render_dom,
             stats: render_stats,
+            project: render_project
           }[file.render](json)
         );
         if (file.id) {

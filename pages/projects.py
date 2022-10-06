@@ -16,9 +16,10 @@ def format_content_segment(segment):
 
 def build_project(project):
 
-    project["content"] = [
-        format_content_segment(segment) for segment in project["content"]
-    ]
+    # project["content"] = [
+    #     format_content_segment(segment) for segment in project["content"]
+    # ]
+    project['content'] = format_dom(project['content'])
 
     if "thumbnail" in project:
         project["thumbnail"] = export_any_image(project["thumbnail"])

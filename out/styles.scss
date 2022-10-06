@@ -437,6 +437,14 @@ body {
   }
 }
 
+._project {
+  img {
+    width:  100%;
+  }
+}
+
+// COMPONENTS
+
 .button {
   cursor: pointer;
   background-color: $color_background;
