@@ -2,7 +2,7 @@ import os
 
 import requests
 
-from python.cache import get_cache,store_cache
+from libs.cache import get_cache,store_cache
 
 try:
     from dotenv import load_dotenv

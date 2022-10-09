@@ -1,0 +1,38 @@
+{
+  "name": "Thomas Kwashnak",
+  "education": [
+    {
+      "school": "Quinnipiac University",
+      "degrees": ["BA Computer Science", "BS Data Science", "Economics Minor"],
+      "graduation": "May 2024",
+      "location": "Hamden CT"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Tech Specialist Assistant Supervisor",
+      "time": "Fall 2021 - Present",
+      "location": "Quinnipiac University Technology Center",
+      "details": [
+        "Assist students and faculty with various technology issues, ranging from hardware to software malfunctions",
+        "Help with technology related projects within the tech center as needed"
+      ],
+      "skills": ["Active Directory", "Customer Service"]
+    },
+    {
+      "title": "Legacy Java Project",
+      "time": "Fall Semester 2021",
+      "location": "Quinnipiac University SER-225",
+      "details": [
+        "Levereged scrum workflow to improve legacy code with peers",
+        "Acted as scrum master, organizing the group and managing GitHub repository",
+        "Focused on improving core system features to simplify further development"
+      ],
+      "skills": ["Java", "AWT", "Agile", "Scrum", "Jira"]
+    }
+  ],
+  "skills": {
+    "languages": ["Python", "Java", "Javascript", "Typescript", "html", "css"],
+    "programs": ["vscode", "pycharm", "intellij", "git", "linux"]
+  }
+}

@@ -2,7 +2,7 @@ import requests
 import os
 import time
 
-from python.cache import store_cache, get_cache
+from libs.cache import store_cache, get_cache
 
 try:
     from dotenv import load_dotenv
@@ -61,3 +61,39 @@ def get_stats(timeFrame: str):
         stats = get_cache('wakatime',key,no_delete=True)
 
     return stats
+
+
+# def format_projects(projects):
+
+#     # filter out hidden projects
+#     projects = [
+#         project for project in projects if project["name"] not in HIDDEN_PROJECTS
+#     ]
+
+#     for project in projects:
+#         waka_api = wakatime.getWakaApi(
+#             f"/api/v1/users/LittleTealeaf/projects/{project['name']}"
+#         )
+#         if (
+#             waka_api
+#             and "data" in waka_api
+#             and "repository" in waka_api["data"]
+#             and waka_api["data"]["repository"] != None
+#         ):
+#             project["url"] = waka_api["data"]["repository"]["html_url"]
+
+#     return projects
+
+def get_project_api(project):
+    waka_api = getWakaApi(
+        f"/api/v1/users/LittleTealeaf/projects/{project['name']}"
+    )
+    if (
+        waka_api
+        and "data" in waka_api
+        and "repository" in waka_api["data"]
+        and waka_api["data"]["repository"] != None
+    ):
+        project["url"] = waka_api["data"]["repository"]["html_url"]
+
+    return project
