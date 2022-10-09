@@ -65,6 +65,7 @@ body {
 
 #drawer {
   height: 100vh;
+  max-width: 100vw;
 
   .panel {
     padding-top: $height_header;
@@ -95,7 +96,7 @@ body {
 
   .closer {
     display: none;
-    width: 100vw;
+    flex-grow: 1;
     background-color: transparent;
   }
 
@@ -365,7 +366,7 @@ body {
   &_skills {
     &_entry {
       :first-child::after {
-        content: ":"
+        content: ":";
       }
     }
     * {
@@ -374,9 +375,7 @@ body {
   }
 
   &_experience {
-
     &_title {
-
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
@@ -384,7 +383,7 @@ body {
 
       :first-child {
         font-size: 19px;
-      font-weight: bolder;
+        font-weight: bolder;
       }
 
       :last-child {
@@ -431,7 +430,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
 
-    > *{
+    > * {
       margin-inline: 10px;
     }
   }
@@ -439,7 +438,7 @@ body {
 
 ._project {
   img {
-    width:  100%;
+    width: 100%;
   }
 }
 
@@ -580,6 +579,7 @@ body {
   body[data-drawer="true"] {
     #drawer {
       left: 0px;
+      width: 100vw;
 
       .closer {
         display: block;
