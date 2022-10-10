@@ -2,59 +2,34 @@
 
 
 def node(
-    tag: str = "div",
-    amp: str = None,
-    classList: list[str] = None,
-    children: list[dict] = None,
-    href: str = None,
-    text: str = None,
-    src: str = None,
-    alt: str = None,
-    target: str = None,
-    style: dict = None,
-    data: dict = None,
-    attributes: dict = None,
-    html: str = None,
+  tag: str = "div",
+  amp: str = None,
+  classList: list[str] = None,
+  children: list[dict] = None,
+  href: str = None,
+  text: str = None,
+  src: str = None,
+  alt: str = None,
+  target: str = None,
+  style: dict = None,
+  attributes: dict = None,
+  html: str = None
 ):
-    element = {
-      'tag': tag,
-    }
+  element = {
+    'tag': tag,
+    'amp': amp,
+    'classList': classList,
+    'children': children,
+    'href': href,
+    'text': text,
+    'src': src,
+    'alt': alt,
+    'target': target,
+    'style': style,
+    'attributes': attributes,
+    'html': html
+  }
 
-    if amp:
-      element['amp'] = amp
-
-    if classList:
-      element['classList'] = classList
-
-    if children:
-      element['children'] = children
-
-    if href:
-      element['href'] = href
-
-    if src:
-      element['src'] = src
-
-    if alt:
-      element['alt'] = alt
-
-    if target:
-      element['target'] = target
-
-    if style:
-      element['style'] = style
-
-    if data:
-      element['data'] = data
-
-    if attributes:
-      element['attributes'] = attributes
-
-    if html:
-      element['html'] = html
-
-    if text:
-      element['text'] = text
-
-
-    return element
+  return {
+    key: value for key, value in element.items() if value is not None
+  }
