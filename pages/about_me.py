@@ -6,12 +6,17 @@ from libs import *
 def build():
     return page(
         "About Me",
-        {
-            "classList": "_about",
-            "children": [
-                {"tag": "h1", "text": "About Me"},
-                {"text": "More to come soon!"},
-            ],
-        },
+        node(
+            classList="_about",
+            children=[
+                node(
+                    tag="h1",
+                    text="About Me",
+                ),
+                node(
+                    text="More to come soon!"
+                )
+            ]
+        ),
         id="about",
     )
