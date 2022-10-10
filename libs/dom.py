@@ -44,3 +44,10 @@ def details(title: str = None, content: str = None):
 
 def button(text: str = None, href: str = None, target: str = None):
     return node(text=text, href=href, target=target, other={"component": "button"})
+
+def image(src: str = None, content: dict = None):
+  return {
+    'component': 'image',
+    'content': content,
+    'src': src
+  }
