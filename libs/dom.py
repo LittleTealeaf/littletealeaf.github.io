@@ -11,7 +11,7 @@ def node(
     alt: str = None,
     target: str = None,
     style: dict = None,
-    dataset: dict = None,
+    data: dict = None,
 ):
     element = {
       'tag': tag,
@@ -41,7 +41,7 @@ def node(
     if style:
       element['style'] = style
 
-    if dataset:
-      element['dataset'] = dataset
+    if data:
+      element['data'] = data
 
     return element
