@@ -10,7 +10,8 @@ def node(
     src: str = None,
     alt: str = None,
     target: str = None,
-    style: dict = None
+    style: dict = None,
+    dataset: dict = None,
 ):
     element = {
       'tag': tag,
@@ -39,5 +40,8 @@ def node(
 
     if style:
       element['style'] = style
+
+    if dataset:
+      element['dataset'] = dataset
 
     return element
