@@ -12,6 +12,8 @@ def node(
     target: str = None,
     style: dict = None,
     data: dict = None,
+    attributes: dict = None,
+    html: str = None,
 ):
     element = {
       'tag': tag,
@@ -43,5 +45,12 @@ def node(
 
     if data:
       element['data'] = data
+
+    if attributes:
+      element['attributes'] = attributes
+
+    if html:
+      element['html'] = html
+
 
     return element
