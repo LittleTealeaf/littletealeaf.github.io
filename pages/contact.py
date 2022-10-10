@@ -14,18 +14,16 @@ def build():
                 node(
                     classList="&_options",
                     children=[
-                        {
-                            "component": "button",
-                            "href": "mailto:thomaskwashnak@gmail.com",
-                            "target": "_blank",
-                            "text": "Email Me",
-                        },
-                        {
-                            "component": "button",
-                            "href": "https://www.linkedin.com/in/thomas-kwashnak",
-                            "target": "_blank",
-                            "text": "LinkedIn",
-                        },
+                        button(
+                            href="mailto:thomaskwashnak@gmail.com",
+                            target=TARGET_BLANK,
+                            text="Email Me",
+                        ),
+                        button(
+                            href="https://www.linkedin.com/in/thomas-kwashnak",
+                            target=TARGET_BLANK,
+                            text="Connect on LinkedIn",
+                        ),
                     ],
                 ),
             ],
