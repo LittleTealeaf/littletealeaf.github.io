@@ -7,6 +7,7 @@ def node(
     classList: list[str] = None,
     children: list[dict] = None,
     href: str = None,
+    text: str = None,
     src: str = None,
     alt: str = None,
     target: str = None,
@@ -51,6 +52,9 @@ def node(
 
     if html:
       element['html'] = html
+
+    if text:
+      element['text'] = text
 
 
     return element

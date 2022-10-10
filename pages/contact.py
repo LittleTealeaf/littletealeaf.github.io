@@ -6,14 +6,14 @@ from libs import *
 def build():
     return page(
         "Contact Me",
-        {
-            "classList": "&",
-            "amp": "_contact",
-            "children": [
-                {"tag": "h1", "text": "Contact Me!"},
-                {
-                    "classList": "&_options",
-                    "children": [
+        node(
+            classList="&",
+            amp="_contact",
+            children=[
+                node(tag="h1", text="Contact Me!"),
+                node(
+                    classList="&_options",
+                    children=[
                         {
                             "component": "button",
                             "href": "mailto:thomaskwashnak@gmail.com",
@@ -27,8 +27,8 @@ def build():
                             "text": "LinkedIn",
                         },
                     ],
-                },
+                ),
             ],
-        },
+        ),
         id="contact",
     )
