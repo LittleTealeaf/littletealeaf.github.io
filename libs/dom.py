@@ -32,7 +32,7 @@ def node(
     }
 
     if other:
-        for key, value in other:
+        for key, value in other.items():
             element[key] = value
 
     return {key: value for key, value in element.items() if value is not None}
