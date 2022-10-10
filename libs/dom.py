@@ -33,3 +33,10 @@ def node(
   return {
     key: value for key, value in element.items() if value is not None
   }
+
+def details(title: str = None, content: str = None):
+  return {
+    'component': 'details',
+    'title': title,
+    'content': content
+  }
