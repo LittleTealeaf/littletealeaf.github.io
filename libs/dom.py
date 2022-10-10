@@ -13,7 +13,8 @@ def node(
   target: str = None,
   style: dict = None,
   attributes: dict = None,
-  html: str = None
+  html: str = None,
+  other: dict = None
 ):
   element = {
     'tag': tag,
@@ -29,6 +30,10 @@ def node(
     'attributes': attributes,
     'html': html
   }
+
+  if other:
+    for key,value in other:
+      element[key] = value
 
   return {
     key: value for key, value in element.items() if value is not None
