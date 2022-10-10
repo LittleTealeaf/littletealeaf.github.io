@@ -10,6 +10,7 @@ def node(
     src: str = None,
     alt: str = None,
     target: str = None,
+    style: dict = None
 ):
     element = {
       'tag': tag,
@@ -35,5 +36,8 @@ def node(
 
     if target:
       element['target'] = target
+
+    if style:
+      element['style'] = style
 
     return element
