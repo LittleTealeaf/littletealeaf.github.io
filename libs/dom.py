@@ -1,5 +1,5 @@
 # Various helper functions for page creation
-
+TARGET_BLANK = "_blank"
 
 def node(
     tag: str = "div",
