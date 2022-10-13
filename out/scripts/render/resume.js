@@ -1,7 +1,7 @@
-function render_resume(resume) {
+function render_resume({ name, education, experience, skills }) {
   const __contact_id = getFileById("contact");
 
-  const dom = render_dom({
+  return render_dom({
     classList: "&",
     amp: "_resume",
     children: [
@@ -11,7 +11,7 @@ function render_resume(resume) {
         children: [
           {
             classList: "&_name",
-            children: resume.name.split(" ").map((word) => ({
+            children: name.split(" ").map((word) => ({
               text: word,
             })),
           },
@@ -23,7 +23,7 @@ function render_resume(resume) {
         content: {
           classList: "&",
           amp: "&_edu",
-          children: resume.education.map((school) => ({
+          children: education.map(({ school, location, graduation, degrees }) => ({
             children: [
               {
                 classList: "_resume_keyvalue",
@@ -33,11 +33,11 @@ function render_resume(resume) {
                       fontSize: "20px",
                     },
                     tag: "span",
-                    text: school.school,
+                    text: school,
                   },
                   {
                     tag: "span",
-                    text: school.location,
+                    text: location,
                   },
                 ],
               },
@@ -53,7 +53,7 @@ function render_resume(resume) {
                       },
                       {
                         tag: "span",
-                        text: school.graduation,
+                        text: graduation,
                       },
                     ],
                   },
@@ -65,7 +65,7 @@ function render_resume(resume) {
                         text: "Degree",
                       },
                       {
-                        text: school.degrees.join(", "),
+                        text: degrees.join(", "),
                       },
                     ],
                   },
@@ -81,42 +81,47 @@ function render_resume(resume) {
         content: {
           classList: "&",
           amp: "&_experience",
-          children: resume.experience.map((experience) => ({
+          children: experience.map(({ title, time, subtitle, details, skills, location }) => ({
             classList: "&_entry",
             children: [
               {
                 classList: "&_title",
                 children: [
                   {
-                    text: experience.title
+                    text: title,
                   },
                   experience.time && {
-                    text: experience.time
-                  }
-                ]
+                    text: time,
+                  },
+                ], 
               },
               {
                 classList: "&_subtitle",
-                text: experience.subtitle || experience.location || ""
-              },{
+                text: subtitle || location || "",
+              },
+              {
                 classList: "&_details",
                 tag: "ul",
-                children: experience.details.map(detail => ({
+                children: details.map((detail) => ({
                   tag: "li",
-                  text: detail
-                }))
-              },{
+                  text: detail,
+                })),
+              },
+              {
                 classList: "&_skills",
                 children: [
                   {
-                    text: "Skills:"
+                    text: "Skills:",
                   },
-                  ...experience.skills.join(",, ").split(", ").map(skill => ({
-                    text: skill
-                  }))
-                ]
-              }
-            ]
+                  ...skills
+                    .join(",, ")
+                    .split(", ")
+                    .map((skill) => ({
+                      text: skill,
+                    })),
+                ],
+              },
+            ],
           })),
         },
       },
@@ -126,7 +131,7 @@ function render_resume(resume) {
         content: {
           classList: "&",
           amp: "&_skills",
-          children: Object.entries(resume.skills).map(([key, values]) => ({
+          children: Object.entries(skills).map(([key, values]) => ({
             classList: ["_resume_keyvalue", "&_entry"],
             children: [
               {
@@ -159,6 +164,4 @@ function render_resume(resume) {
       },
     ],
   });
-
-  return dom;
 }

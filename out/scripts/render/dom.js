@@ -41,21 +41,15 @@ function render_dom(node, amp_replace = "&") {
   }
 
   if (node.attributes) {
-    for (const [key, value] of Object.entries(node.attributes)) {
-      element.setAttribute(key, value);
-    }
+    Object.entries(node.attributes).forEach(([key, value]) => element.setAttribute(key, value));
   }
 
   if (node.style) {
-    for (const [key, value] of Object.entries(node.style)) {
-      element.style[key] = value;
-    }
+    Object.entries(node.style).forEach(([key, value]) => (element.style[key] = value));
   }
 
   if (node.data) {
-    for (const [key, value] of Object.entries(node.data)) {
-      element.dataset[key] = value;
-    }
+    Object.entries(node.data).forEach(([key, value]) => (element.dataset[key] = value));
   }
 
   if (node.onclick) {
