@@ -1,8 +1,0 @@
-.env
-**/*/__pycache__/
-.cache/
-cache/
-.idea/
-out/styles.css
-node_modules/
-out/resources/
