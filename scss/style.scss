@@ -1,0 +1,121 @@
+@import "theme.scss";
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Fira+Sans+Extra+Condensed&display=swap");
+@import "util.scss";
+
+
+body {
+  background-color: $base;
+  font-family: "Fira Code";
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+header {
+  background-color: $mantle;
+  width: 100vw;
+  height: 7.5vh;
+  display: flex;
+
+  .title {
+    height: 7.5vh;
+    margin: 0.5vw;
+    font-family: "Fira Sans Extra Condensed";
+    color: $surface1;
+    font-size: 5vh;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    margin-right: 0.5vw;
+
+    > div {
+
+			@include noselect;
+
+
+      cursor: pointer;
+      background-color: transparent;
+      height: 60%;
+      margin-inline: 0.25vw;
+      display: flex;
+      justify-content: center;
+      border-radius: 1vw;
+      align-items: center;
+      padding: 0.5vw;
+      color: $text;
+      font-size: 2vh;
+
+      transition-duration: 0.2s;
+
+
+      &:hover {
+				background-color: $surface0;
+      }
+    }
+  }
+
+  .sep {
+    flex-grow: 1;
+  }
+}
+
+@media only screen and (max-device-width: 768px) {
+  header {
+    display: block;
+
+    .nav {
+      width: 100%;
+      background-color: $surface0;
+      margin-right: unset;
+
+      > div {
+        margin-inline: unset;
+        background-color: unset;
+        font-size: 2vh;
+        margin: auto;
+
+				transform: unset;
+
+				&:hover {
+					transform: unset;
+				}
+      }
+    }
+  }
+}
+
+// .container {
+// 	width: fit-content;
+// 	display: flex;
+// 	flex-wrap: wrap;
+// }
+//
+//  .title {
+// 	color: $surface2;
+// 	font-size: 2.5em;
+// 	font-family: "Fira Sans Extra Condensed";
+// 	display: flex;
+// 	margin-inline: 0.5em;
+//  }
+//
+//  .nav {
+//    display: flex;
+//    flex-wrap: wrap;
+// 	margin-left: 0.3em;
+//
+//    > * {
+//      margin: auto;
+//
+//      > * {
+//        margin: 0.5em;
+//        padding: 0.4em;
+//        border-radius: 0.5em;
+//        color: $text;
+//        background-color: $surface0;
+//        cursor: pointer;
+//      }
+//    }
+//  }
