@@ -5,3 +5,12 @@
 	-ms-user-select: none;
 	user-select: none;
 }
+
+@mixin noscrollbar {
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	-ms-overflow-style: none;
+	scrollbar-width: None;
+}

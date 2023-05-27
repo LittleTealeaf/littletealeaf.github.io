@@ -2,25 +2,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Fira+Sans+Extra+Condensed&display=swap");
 @import "util.scss";
 
-
 body {
   background-color: $base;
   font-family: "Fira Code";
   margin: 0;
   padding: 0;
-  height: 100vh;
-  width: 100vw;
+
+  @include noscrollbar;
 }
 
 header {
+  position: sticky;
+  top: 0px;
   background-color: $mantle;
   width: 100vw;
-  height: 7.5vh;
   display: flex;
 
   .title {
     height: 7.5vh;
     margin: 0.5vw;
+    line-height: 7.5vh;
+    text-align: center;
     font-family: "Fira Sans Extra Condensed";
     color: $subtext0;
     font-size: 5vh;
@@ -31,10 +33,13 @@ header {
     align-items: center;
     margin-right: 0.5vw;
 
+    a {
+      text-decoration: none;
+      color: $text;
+    }
+
     > div {
-
-			@include noselect;
-
+      @include noselect;
 
       cursor: pointer;
       background-color: transparent;
@@ -50,9 +55,8 @@ header {
 
       transition-duration: 0.2s;
 
-
       &:hover {
-				background-color: $surface0;
+        background-color: $surface0;
       }
     }
   }
@@ -62,7 +66,29 @@ header {
   }
 }
 
-@media only screen and (max-device-width: 768px) {
+#about {
+  > div {
+    display: flex;
+  }
+
+  .img-left {
+    flex-wrap: wrap;
+  }
+
+  .img-right {
+    flex-wrap: wrap-reverse;
+  }
+
+  .profile-image {
+    width: 25vw;
+    height: 25vw;
+    border-radius: 35%;
+    object-fit: cover;
+  }
+}
+
+@media only screen and (max-device-width: 768px),
+  only screen and (max-width: 768px) {
   header {
     display: block;
 
@@ -77,45 +103,15 @@ header {
         font-size: 2vh;
         margin: auto;
 
-				transform: unset;
+        transform: unset;
 
-				&:hover {
-					transform: unset;
-				}
+        &:hover {
+          transform: unset;
+        }
       }
     }
   }
-}
 
-// .container {
-// 	width: fit-content;
-// 	display: flex;
-// 	flex-wrap: wrap;
-// }
-//
-//  .title {
-// 	color: $surface2;
-// 	font-size: 2.5em;
-// 	font-family: "Fira Sans Extra Condensed";
-// 	display: flex;
-// 	margin-inline: 0.5em;
-//  }
-//
-//  .nav {
-//    display: flex;
-//    flex-wrap: wrap;
-// 	margin-left: 0.3em;
-//
-//    > * {
-//      margin: auto;
-//
-//      > * {
-//        margin: 0.5em;
-//        padding: 0.4em;
-//        border-radius: 0.5em;
-//        color: $text;
-//        background-color: $surface0;
-//        cursor: pointer;
-//      }
-//    }
-//  }
+  #about {
+  }
+}
