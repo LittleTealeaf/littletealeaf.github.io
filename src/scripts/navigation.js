@@ -11,11 +11,12 @@
 
 
 	document.addEventListener("scroll", () => {
-		const landing = document.getElementById("landing-bottom");
+		const landing_end = document.getElementById("landing-bottom");
+		const landing = document.getElementById("landing");
 
 		const header = document.querySelector("header");
 
-		if(landing == null) {
+		if(landing_end == null) {
 			console.log("Could not find landing");
 			return;
 		}
@@ -25,7 +26,7 @@
 			return;
 		}
 
-		header.dataset.landing = isInViewport(landing);
+		header.dataset.show = isInViewport(header) && !isInViewport(landing_end);
 
 
 	})
