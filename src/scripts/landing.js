@@ -35,4 +35,30 @@
 		}
 	}
 
+
+	document.addEventListener("scroll", () => {
+
+		const taskbar = document.querySelector("#landing .taskbar");
+
+		if(taskbar == null) {
+			console.error("Could not find taskbar");
+			return;
+		}
+
+		const dock = document.querySelector("#landing .dock");
+
+		if (dock == null) {
+			console.error("Could not find dock");
+			return;
+		}
+
+		dock.dataset.hide = !isInViewport(taskbar);
+		
+
+
+		// header.dataset.show = isInViewport(header) && !isInViewport(landing_end);
+
+
+	})
+
 }

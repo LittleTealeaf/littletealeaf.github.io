@@ -23,8 +23,83 @@
     display: flex;
   }
 
+  .appname {
+    height: 4vh;
+    line-height: 4vh;
+    font-size: 1.6vh;
+    font-weight: bold;
+  }
+
   .sep {
     flex-grow: 1;
+  }
+
+  .content {
+    flex-grow: 1;
+  }
+
+  .dock {
+    position: sticky;
+    bottom: 3vh;
+    margin: 2vh auto;
+    background-color: $crust;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 2vh;
+    display: flex;
+    padding: 0.5vh 0.25vh;
+    transition-duration: 0.2s;
+
+    * {
+      text-decoration: none;
+      transition-duration: 0.2s;
+      color: $text;
+      font-size: 3vh;
+    }
+
+    .hint {
+      display: none;
+      position: absolute;
+      width: 200%;
+      left: -50%;
+      text-align: center;
+      top: -60%;
+
+      span {
+        padding: 0.25vh 0.5vh;
+        background-color: $crust;
+        border-radius: 0.5vh;
+      }
+    }
+
+    > div {
+      position: relative;
+      padding: 1vh;
+      border-radius: 1.75vh;
+
+      span {
+        font-size: 1.5vh;
+        margin: auto;
+      }
+
+      &:hover {
+        background-color: $surface1;
+
+        .hint {
+          display: block;
+        }
+      }
+    }
+
+    &[data-hide="true"] {
+      transform: translateY(10vh);
+      background-color: transparent;
+      color: transparent;
+			box-shadow: none;
+      * {
+        background-color: transparent;
+        color: transparent;
+      }
+    }
   }
 }
 
