@@ -12,7 +12,7 @@ header {
   }
 
   .title {
-		margin-inline: 1vw;
+    margin-inline: 1vw;
     height: 7.5vh;
     line-height: 7.5vh;
     text-align: center;
@@ -46,15 +46,12 @@ header {
   }
 
   &[data-show="true"] {
+    .nav a,
     .title {
       color: $text;
     }
 
     .nav {
-      a {
-        color: $text;
-      }
-
       > div {
         cursor: pointer;
         &:hover {

@@ -1,0 +1,16 @@
+#landing {
+  height: 100vh;
+  background-color: $mantle;
+  margin: 0;
+}
+
+#landing-bottom {
+  height: 0;
+  padding: 0;
+  margin: 0;
+  background-color: $mantle;
+}
+
+@mixin landing-mobile {
+
+}

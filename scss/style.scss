@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Fira+Sans+Extra+Condensed&display=swap");
 @import "util.scss";
 @import "header.scss";
+@import "landing.scss";
 
 body {
   background-color: $base;
@@ -10,19 +11,6 @@ body {
   padding: 0;
 
   @include noscrollbar;
-}
-
-#landing {
-  height: 100vh;
-  background-color: $mantle;
-  margin: 0;
-}
-
-#landing-bottom {
-  height: 0;
-  padding: 0;
-  margin: 0;
-  background-color: $mantle;
 }
 
 
