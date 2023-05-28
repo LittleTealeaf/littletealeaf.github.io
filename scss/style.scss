@@ -11,6 +11,16 @@ body {
   @include noscrollbar;
 }
 
+#landing {
+  height: 92.5vh;
+  background-color: $mantle;
+}
+
+#landing-bottom {
+  height: 0px;
+  background-color: $mantle;
+}
+
 header {
   position: sticky;
   top: 0px;
@@ -18,13 +28,17 @@ header {
   width: 100vw;
   display: flex;
 
+  * {
+    transition-duration: 0.2s;
+  }
+
   .title {
     height: 7.5vh;
     margin: 0.5vw;
     line-height: 7.5vh;
     text-align: center;
     font-family: "Fira Sans Extra Condensed";
-    color: $subtext0;
+    color: transparent;
     font-size: 5vh;
   }
 
@@ -35,13 +49,11 @@ header {
 
     a {
       text-decoration: none;
-      color: $text;
+      color: transparent;
     }
 
     > div {
       @include noselect;
-
-      cursor: pointer;
       background-color: transparent;
       height: 60%;
       margin-inline: 0.25vw;
@@ -50,16 +62,23 @@ header {
       border-radius: 1vw;
       align-items: center;
       padding: 0.5vw;
-      color: $text;
+      color: transparent;
       font-size: 2vh;
+    }
+  }
 
-      transition-duration: 0.2s;
+  &[data-landing="false"] {
+    .title {
+      color: $text;
+    }
 
-      &:hover {
-        background-color: $surface0;
+    .nav {
+      a {
+        color: $text;
       }
     }
   }
+
 
   .sep {
     flex-grow: 1;
@@ -67,24 +86,7 @@ header {
 }
 
 #about {
-  > div {
-    display: flex;
-  }
-
-  .img-left {
-    flex-wrap: wrap;
-  }
-
-  .img-right {
-    flex-wrap: wrap-reverse;
-  }
-
-  .profile-image {
-    width: 25vw;
-    height: 25vw;
-    border-radius: 35%;
-    object-fit: cover;
-  }
+  height: 200vh;
 }
 
 @media only screen and (max-device-width: 768px),
@@ -94,7 +96,6 @@ header {
 
     .nav {
       width: 100%;
-      background-color: $surface0;
       margin-right: unset;
 
       > div {
@@ -110,8 +111,13 @@ header {
         }
       }
     }
-  }
 
-  #about {
+		&[data-landing="false"] {
+
+			.nav {
+
+      background-color: $surface0;
+			}
+		}
   }
 }
