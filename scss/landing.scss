@@ -55,9 +55,9 @@
         padding: 0px 6px;
         border-radius: 12px;
         cursor: pointer;
-				margin: 3px;
+        margin: 3px;
 
-				&[data-selected="true"],
+        &[data-selected="true"],
         &:hover {
           background-color: $surface1;
         }
