@@ -1,11 +1,14 @@
 header {
+  width: 100%;
+  margin: 0;
+  padding: 0;
   position: sticky;
   top: 0px;
   background-color: $mantle;
-  width: 100vw;
-  display: flex;
-  margin: 0;
-  padding: 0;
+
+  .content {
+    display: flex;
+  }
 
   * {
     transition-duration: 0.2s;
@@ -52,6 +55,7 @@ header {
     }
 
     .nav {
+			margin-inline: 0;
       > div {
         cursor: pointer;
         &:hover {
@@ -68,7 +72,9 @@ header {
 
 @mixin header-mobile {
   header {
-    display: block;
+    .content {
+      display: block;
+    }
 
     .nav {
       width: 100%;

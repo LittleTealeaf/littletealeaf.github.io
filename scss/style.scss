@@ -13,6 +13,13 @@ body {
   @include noscrollbar;
 }
 
+.content {
+	max-width: max(200vh, 2000px);
+	margin: auto;
+	margin: 0;
+	padding: 0;
+}
+
 
 #about {
   height: 200vh;
