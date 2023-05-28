@@ -6,11 +6,29 @@
 		<script defer src="scripts/navigation.js"></script>
 		<script src="scripts/utility.js"></script>
 		<script defer src="scripts/theme.js"></script>
+		<script defer src="scripts/landing.js"></script>
 	</head>
 
-	<body data-theme="macchiato">
+	<body>
 		<section id="landing">
-			<div>Hi world</div>
+			<div class="taskbar">
+				<div class="sep"></div>
+				<div class="date">
+					<div id="landing-date" class="noselect">May 28 12:00PM</div>
+				</div>
+				<div id="theme-dropdown" class="noselect">
+					<span class="material-symbols-outlined">palette</span>
+					<div class="dropdown-content">
+						<div class="panel"></div>
+					</div>
+				</div>
+			</div>
+			<div class="content"></div>
+			<div class="dock">
+				<a href="#about"></a>
+				<a href="#projects"></a>
+				<a href="#content"></a>
+			</div>
 		</section>
 		<div id="landing-bottom"></div>
 		<header data-landing="true">
