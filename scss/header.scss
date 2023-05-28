@@ -6,12 +6,10 @@ header {
   top: 0px;
   background-color: $mantle;
 
-  .content {
-    display: flex;
-  }
+  display: flex;
 
   .title {
-		cursor: pointer;
+    cursor: pointer;
     margin-inline: 1vw;
     height: 7.5vh;
     line-height: 7.5vh;
@@ -52,7 +50,7 @@ header {
     }
 
     .nav {
-			margin-inline: 0;
+      margin-inline: 0;
       > div {
         cursor: pointer;
         &:hover {
@@ -69,9 +67,7 @@ header {
 
 @mixin header-mobile {
   header {
-    .content {
-      display: block;
-    }
+    display: block;
 
     .nav {
       width: 100%;
@@ -81,7 +77,7 @@ header {
         margin-inline: unset;
         background-color: unset;
         font-size: 2vh;
-        margin: auto;
+				flex-grow: 1;
 
         transform: unset;
 
@@ -93,7 +89,7 @@ header {
 
     &[data-show="true"] {
       .nav {
-        background-color: $surface0;
+        // background-color: $surface0;
       }
     }
   }

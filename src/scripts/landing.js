@@ -53,12 +53,6 @@
 		}
 
 		dock.dataset.hide = !isInViewport(taskbar);
-		
-
-
-		// header.dataset.show = isInViewport(header) && !isInViewport(landing_end);
-
-
 	})
 
 }
