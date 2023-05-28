@@ -30,4 +30,12 @@
 
 
 	})
+
+	document.querySelector("header .title")?.addEventListener("click", (e) => {
+		e.preventDefault();
+
+		document.getElementById("landing")?.scrollIntoView({
+			behavior: "smooth"
+		})
+	})
 }

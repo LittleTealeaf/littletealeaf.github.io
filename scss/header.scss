@@ -10,11 +10,8 @@ header {
     display: flex;
   }
 
-  * {
-    transition-duration: 0.2s;
-  }
-
   .title {
+		cursor: pointer;
     margin-inline: 1vw;
     height: 7.5vh;
     line-height: 7.5vh;
