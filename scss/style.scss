@@ -38,6 +38,7 @@ header {
   }
 
   .title {
+		margin-inline: 1vw;
     height: 7.5vh;
     line-height: 7.5vh;
     text-align: center;
@@ -50,7 +51,7 @@ header {
   .nav {
     display: flex;
     align-items: center;
-    margin-right: 0.5vw;
+    margin-inline: 1vw;
 
     a {
       text-decoration: none;
