@@ -1,7 +1,7 @@
 @use "../node_modules/@catppuccin/palette/scss/catppuccin";
 
 @each $flavor, $colors in catppuccin.$palette {
-	.#{$flavor} {
+	body[data-theme=#{$flavor}] {
 		@each $key, $color in $colors {
 			--#{$key}: #{$color};
 		}
