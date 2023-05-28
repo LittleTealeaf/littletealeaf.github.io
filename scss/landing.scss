@@ -57,17 +57,17 @@
     }
 
     .hint {
-      display: none;
       position: absolute;
       width: 200%;
       left: -50%;
       text-align: center;
-      top: -60%;
+      top: -30%;
 
       span {
+				color: transparent;
         padding: 0.25vh 0.5vh;
-        background-color: $crust;
         border-radius: 0.5vh;
+        background-color: transparent;
       }
     }
 
@@ -85,7 +85,12 @@
         background-color: $surface1;
 
         .hint {
-          display: block;
+          top: -60%;
+
+          span {
+						color: $text;
+            background-color: $crust;
+          }
         }
       }
     }
@@ -94,7 +99,7 @@
       transform: translateY(10vh);
       background-color: transparent;
       color: transparent;
-			box-shadow: none;
+      box-shadow: none;
       * {
         background-color: transparent;
         color: transparent;
