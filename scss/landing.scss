@@ -157,18 +157,18 @@
     > div {
       position: relative;
       padding: 1vh;
+			padding-bottom: 0;
       border-radius: 1.75vh;
 
       span {
         font-size: 1.5vh;
-        margin: auto;
       }
 
       &:hover {
         background-color: $surface1;
 
         .hint {
-          top: -70%;
+          top: -100%;
 
           span {
             color: $text;

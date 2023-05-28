@@ -53,6 +53,7 @@ header {
       margin-inline: 0;
       > div {
         cursor: pointer;
+				&[data-selected="true"],
         &:hover {
           background-color: $surface0;
         }
@@ -81,6 +82,7 @@ header {
 
         transform: unset;
 
+				&[data-selected="true"],
         &:hover {
           transform: unset;
         }

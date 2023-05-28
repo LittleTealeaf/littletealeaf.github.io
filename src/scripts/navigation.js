@@ -9,10 +9,41 @@
 		});
 	});
 
+	function update_nav_selection() {
+
+		const sections = ["about", "projects", "resume", "contact"];
+
+		let selected = null;
+
+
+		for(const section of sections) {
+			const top_element = document.getElementById(section);
+			if(top_element == null) {
+				return;
+			}
+
+			const rect = top_element.getBoundingClientRect();
+
+			if (rect.y < (window.innerHeight || document.documentElement.clientHeight) / 2) {
+				selected = section;
+			}
+		}
+
+		sections.forEach((section) => {
+			let node = document.querySelector(`header a[href="#${section}"]`)?.parentNode;
+			
+
+			if(node == null) {
+				return;
+			}
+
+			node.dataset.selected = section == selected;
+		});
+	}
+
 
 	document.addEventListener("scroll", () => {
 		const landing_end = document.getElementById("landing-bottom");
-		const landing = document.getElementById("landing");
 
 		const header = document.querySelector("header");
 
@@ -28,6 +59,9 @@
 
 		header.dataset.show = isInViewport(header) && !isInViewport(landing_end);
 
+		update_nav_selection();
+
+
 
 	})
 
@@ -37,5 +71,5 @@
 		document.getElementById("landing")?.scrollIntoView({
 			behavior: "smooth"
 		})
-	})
+	});
 }
