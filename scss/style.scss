@@ -12,15 +12,15 @@ body {
 }
 
 #landing {
-	height: 100vh;
+  height: 100vh;
   background-color: $mantle;
-	margin: 0;
+  margin: 0;
 }
 
 #landing-bottom {
-	height: 0;
-	padding: 0;
-	margin: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
   background-color: $mantle;
 }
 
@@ -30,8 +30,8 @@ header {
   background-color: $mantle;
   width: 100vw;
   display: flex;
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 
   * {
     transition-duration: 0.2s;
@@ -44,7 +44,7 @@ header {
     font-family: "Fira Sans Extra Condensed";
     color: transparent;
     font-size: 5vh;
-		@include noselect;
+    @include noselect;
   }
 
   .nav {
@@ -82,12 +82,12 @@ header {
         color: $text;
       }
 
-			> div {
-				cursor: pointer;
-				&:hover {
-					background-color: $surface0;
-				}
-			}
+      > div {
+        cursor: pointer;
+        &:hover {
+          background-color: $surface0;
+        }
+      }
     }
   }
 
