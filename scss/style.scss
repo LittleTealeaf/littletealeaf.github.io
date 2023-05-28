@@ -39,7 +39,6 @@ header {
 
   .title {
     height: 7.5vh;
-    margin: 0.5vw;
     line-height: 7.5vh;
     text-align: center;
     font-family: "Fira Sans Extra Condensed";
@@ -82,6 +81,13 @@ header {
       a {
         color: $text;
       }
+
+			> div {
+				cursor: pointer;
+				&:hover {
+					background-color: $surface0;
+				}
+			}
     }
   }
 
