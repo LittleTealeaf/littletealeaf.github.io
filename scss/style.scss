@@ -1,6 +1,7 @@
 @import "theme.scss";
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Fira+Sans+Extra+Condensed&display=swap");
 @import "util.scss";
+@import "header.scss";
 
 body {
   background-color: $base;
@@ -24,78 +25,6 @@ body {
   background-color: $mantle;
 }
 
-header {
-  position: sticky;
-  top: 0px;
-  background-color: $mantle;
-  width: 100vw;
-  display: flex;
-  margin: 0;
-  padding: 0;
-
-  * {
-    transition-duration: 0.2s;
-  }
-
-  .title {
-		margin-inline: 1vw;
-    height: 7.5vh;
-    line-height: 7.5vh;
-    text-align: center;
-    font-family: "Fira Sans Extra Condensed";
-    color: transparent;
-    font-size: 5vh;
-    @include noselect;
-  }
-
-  .nav {
-    display: flex;
-    align-items: center;
-    margin-inline: 1vw;
-
-    a {
-      text-decoration: none;
-      color: transparent;
-    }
-
-    > div {
-      @include noselect;
-      background-color: transparent;
-      height: 60%;
-      margin-inline: 0.25vw;
-      display: flex;
-      justify-content: center;
-      border-radius: 1vw;
-      align-items: center;
-      padding: 0.5vw;
-      color: transparent;
-      font-size: 2vh;
-    }
-  }
-
-  &[data-show="true"] {
-    .title {
-      color: $text;
-    }
-
-    .nav {
-      a {
-        color: $text;
-      }
-
-      > div {
-        cursor: pointer;
-        &:hover {
-          background-color: $surface0;
-        }
-      }
-    }
-  }
-
-  .sep {
-    flex-grow: 1;
-  }
-}
 
 #about {
   height: 200vh;
@@ -103,31 +32,5 @@ header {
 
 @media only screen and (max-device-width: 768px),
   only screen and (max-width: 768px) {
-  header {
-    display: block;
-
-    .nav {
-      width: 100%;
-      margin-right: unset;
-
-      > div {
-        margin-inline: unset;
-        background-color: unset;
-        font-size: 2vh;
-        margin: auto;
-
-        transform: unset;
-
-        &:hover {
-          transform: unset;
-        }
-      }
-    }
-
-    &[data-show="true"] {
-      .nav {
-        background-color: $surface0;
-      }
-    }
-  }
+		@include header-mobile;
 }

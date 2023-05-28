@@ -1,0 +1,100 @@
+header {
+  position: sticky;
+  top: 0px;
+  background-color: $mantle;
+  width: 100vw;
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+  * {
+    transition-duration: 0.2s;
+  }
+
+  .title {
+		margin-inline: 1vw;
+    height: 7.5vh;
+    line-height: 7.5vh;
+    text-align: center;
+    font-family: "Fira Sans Extra Condensed";
+    color: transparent;
+    font-size: 5vh;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    margin-inline: 1vw;
+
+    a {
+      text-decoration: none;
+      color: transparent;
+    }
+
+    > div {
+      background-color: transparent;
+      height: 60%;
+      margin-inline: 0.25vw;
+      display: flex;
+      justify-content: center;
+      border-radius: 1vw;
+      align-items: center;
+      padding: 0.5vw;
+      color: transparent;
+      font-size: 2vh;
+    }
+  }
+
+  &[data-show="true"] {
+    .title {
+      color: $text;
+    }
+
+    .nav {
+      a {
+        color: $text;
+      }
+
+      > div {
+        cursor: pointer;
+        &:hover {
+          background-color: $surface0;
+        }
+      }
+    }
+  }
+
+  .sep {
+    flex-grow: 1;
+  }
+}
+
+@mixin header-mobile {
+  header {
+    display: block;
+
+    .nav {
+      width: 100%;
+      margin-right: unset;
+
+      > div {
+        margin-inline: unset;
+        background-color: unset;
+        font-size: 2vh;
+        margin: auto;
+
+        transform: unset;
+
+        &:hover {
+          transform: unset;
+        }
+      }
+    }
+
+    &[data-show="true"] {
+      .nav {
+        background-color: $surface0;
+      }
+    }
+  }
+}
