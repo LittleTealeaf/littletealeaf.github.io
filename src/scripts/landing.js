@@ -55,4 +55,16 @@
 		dock.dataset.hide = !isInViewport(taskbar);
 	})
 
+
+	document.querySelectorAll("#landing .cursor").forEach((cursor) => {
+		setInterval(() => {
+			let display = cursor.style.display;
+			if (display == 'none') {
+				cursor.style.display = '';
+			} else {
+				cursor.style.display = 'none';
+			}
+		}, 1000)
+	})
+
 }

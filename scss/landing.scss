@@ -6,6 +6,7 @@
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .taskbar {
     width: 100%;
@@ -13,6 +14,7 @@
     line-height: 4vh;
     font-size: 1.6vh;
     font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 
     > div {
       margin-inline: 1vh;
@@ -34,8 +36,90 @@
     flex-grow: 1;
   }
 
-  .content {
+  .desktop {
     flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .window {
+    max-width: 100vh;
+    background-color: $surface0;
+    color: $text;
+    font-size: 2vh;
+    width: 75%;
+    border-radius: 1vw;
+    box-shadow: 0px 0px 5vw rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu-bar {
+    width: 100%;
+    height: 5%;
+    font-weight: bold;
+    font-size: 1.5vh;
+    border-top-left-radius: 0.9vw;
+    border-top-right-radius: 0.9vw;
+    background-color: $base;
+    display: flex;
+    align-items: center;
+
+    > * {
+      margin-left: 1vw;
+      margin-right: 1vw;
+      width: fit-content;
+    }
+
+    .options {
+      display: flex;
+      align-items: center;
+      > * {
+        font-size: 100%;
+        margin-right: 10%;
+      }
+    }
+  }
+
+  .window-content {
+    flex-grow: 1;
+    margin: 1%;
+    font-size: 80%;
+    font-weight: bold;
+  }
+
+  .response {
+		margin-top: 1%;
+		margin-bottom: 1%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+		hr {
+			color: $text;
+		}
+
+    img {
+      width: 25vw;
+      height: 25vw;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    > div {
+      margin-left: 1vw;
+      height: 100%;
+
+      > div {
+        color: $green;
+        > span:not(:first-child) {
+					font-weight: normal;
+          color: $text;
+        }
+      }
+    }
   }
 
   .dock {
@@ -43,7 +127,7 @@
     bottom: 3vh;
     margin: 2vh auto;
     background-color: $crust;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
     border-radius: 2vh;
     display: flex;
     padding: 0.5vh 0.25vh;
@@ -65,7 +149,7 @@
         color: transparent;
         padding: 0.25vh 0.5vh;
         border-radius: 1vh;
-				font-weight: bold;
+        font-weight: bold;
         background-color: transparent;
       }
     }
@@ -100,8 +184,9 @@
       color: transparent;
       box-shadow: none;
       * {
-        background-color: transparent;
-        color: transparent;
+        background-color: transparent !important;
+        color: transparent !important;
+        box-shadow: none !important;
       }
     }
   }
@@ -163,12 +248,21 @@
   }
 }
 
-#landing-bottom {
-  height: 0;
-  padding: 0;
-  margin: 0;
-  background-color: $mantle;
-}
-
 @mixin landing-mobile {
+  #landing {
+    .window {
+      max-width: unset;
+      width: 100%;
+      border-radius: none;
+    }
+
+    .response {
+      flex-direction: column;
+
+      img {
+        width: 50vw;
+        height: 50vw;
+      }
+    }
+  }
 }

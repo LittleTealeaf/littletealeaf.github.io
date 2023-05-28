@@ -77,19 +77,13 @@ header {
         margin-inline: unset;
         background-color: unset;
         font-size: 2vh;
-				flex-grow: 1;
+        flex-grow: 1;
 
         transform: unset;
 
         &:hover {
           transform: unset;
         }
-      }
-    }
-
-    &[data-show="true"] {
-      .nav {
-        // background-color: $surface0;
       }
     }
   }

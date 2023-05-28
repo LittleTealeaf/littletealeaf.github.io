@@ -32,4 +32,5 @@ body {
 @media only screen and (max-device-width: 768px),
   only screen and (max-width: 768px) {
   @include header-mobile;
+	@include landing-mobile;
 }
