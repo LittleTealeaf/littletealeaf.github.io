@@ -7,7 +7,8 @@ export_path = os.path.join("src", "assets", "images")
 if os.path.exists(export_path):
     shutil.rmtree(export_path)
 
-target_width = 800
+target_width = 1000
+
 
 for dir_path, _, files in os.walk("images"):
     
@@ -26,6 +27,6 @@ for dir_path, _, files in os.walk("images"):
 
         export_file = os.path.join(save_dir, name + ".webp")
 
-        image.save(export_file, "webp", optimize=True, quality = 90)
+        image.save(export_file, "webp", optimize=True)
 
 
