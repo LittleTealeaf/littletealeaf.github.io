@@ -10,22 +10,19 @@ function setTheme(theme) {
   document.querySelectorAll(`[data-theme-option]`).forEach((element) => {
     element.dataset.selected = element.dataset.themeOption == theme;
   });
+
+  document.cookie = `theme=${theme}`;
 }
 
 {
-  const load_function = window.onload || function () {};
+  function prefersLightTheme() {
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+  }
 
-  window.onload = function () {
-    load_function();
 
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-      setTheme("latte");
-    } else {
-      setTheme("macchiato");
-    }
 
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (event) => {
-      setTheme(event.matches ? "macchiato" : "latte");
-    });
-  };
+  window.addEventListener("load", () => {
+    const cookie = getCookie("theme");
+    setTheme(cookie || prefersLightTheme() && "latte" || "macchiato");
+  });
 }
