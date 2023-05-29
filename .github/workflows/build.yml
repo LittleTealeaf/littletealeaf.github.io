@@ -38,6 +38,8 @@ jobs:
         run: npm run images
       - name: Compile CSS
         run: npm run css
+      - name: Fetch Wakatime
+        run: npm run wakatime
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}

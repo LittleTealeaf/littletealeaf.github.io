@@ -1,0 +1,15 @@
+{
+    "rust": "nf-dev-rust",
+    "python": "nf-dev-python",
+    "sass": "nf-dev-sass",
+    "javascript": "nf-dev-javascript",
+    "html": "nf-dev-html5",
+    "npm": "nf-dev-npm",
+    "git": "nf-dev-git",
+    "github": "nf-dev-github_badge",
+    "nvim": "nf-dev-vim",
+    "vim": "nf-dev-vim",
+    "vscode": "nf-md-microsoft_visual_studio_code",
+    "intellij": "nf-dev-intellij",
+    "lua": "nf-md-language_lua"
+}

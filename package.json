@@ -3,6 +3,7 @@
 		"csswatch": "sass --watch ./scss/style.scss ./src/style.css",
 		"css": "sass ./scss/style.scss ./src/style.css",
 		"images": "python python/images.py",
+		"wakatime": "python python/wakatime.py",
 		"pip": "pip install -r requirements.txt"
 	},
 	"dependencies": {

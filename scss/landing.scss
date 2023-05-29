@@ -77,8 +77,7 @@
       display: flex;
       align-items: center;
       > * {
-        font-size: 100%;
-        margin-right: 10%;
+        font-size: 80%;
       }
     }
   }
@@ -170,7 +169,6 @@
       padding: 1vh;
       cursor: pointer;
       margin-inline: 0.5vw;
-      padding-bottom: 0;
       border-radius: 1.75vh;
 
       span {
@@ -255,10 +253,9 @@
   }
 
   > span {
-    padding-inline: calc(1.75vh / 2);
+    padding: calc(1.5vh / 2);
     border-radius: 1.75vh;
-    line-height: 3.5vh;
-    margin-top: 0.25vh;
+    // line-height: 3.5vh;
     font-size: 2vh;
     font-weight: bold;
   }

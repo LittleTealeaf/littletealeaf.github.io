@@ -1,5 +1,5 @@
 node_modules/
 src/style.css
 src/images
-src/data
+src/data/wakatime
 .env
