@@ -13,6 +13,8 @@ body {
   margin: 0;
   padding: 0;
 	color: $text;
+	width: 100vw;
+	overflow-x:hidden;
 
   @include noscrollbar;
 }
@@ -21,22 +23,20 @@ body {
 	transition: color 0.2s, background-color 0.2s;
 }
 
-.content {
-  max-width: 1200px;
-  margin: auto;
-  margin: 0;
-  padding: 0;
-}
 section {
-	height: 100vh;
+	min-height: 100vh;
 }
 
 .section-header {
 	height: 7.5vh;
 }
 
-@media only screen and (max-device-width: 768px),
-  only screen and (max-width: 768px) {
+
+$mobile-screen-width: 1020px;
+
+@media only screen and (max-device-width: $mobile-screen-width),
+  only screen and (max-width: $mobile-screen-width) {
   @include header-mobile;
 	@include landing-mobile;
+	@include about-mobile;
 }

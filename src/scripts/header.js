@@ -42,7 +42,7 @@
 
 			if (
 				rect.y <
-				(window.innerHeight || document.documentElement.clientHeight) / 2
+				(window.innerHeight || document.documentElement.clientHeight) * 1 / 4
 			) {
 				selected = section;
 			}

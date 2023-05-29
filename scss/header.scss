@@ -5,6 +5,7 @@ header {
   position: sticky;
   top: 0px;
   background-color: $mantle;
+	z-index: 100;
 
 	* {
 			transition: color 0.2s, background-color 0.2s;
