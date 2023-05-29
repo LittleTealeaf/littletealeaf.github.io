@@ -25,23 +25,17 @@ body {
   margin: 0;
   padding: 0;
 }
-
-.section-header {
-	height: 7vh;
-	margin: 0;
-	padding: 0;
-}
-
 section {
 	height: 100vh;
+	outline: 1px solid red;
+}
+
+.section-header {
+	height: 7.5vh;
 }
 
 @media only screen and (max-device-width: 768px),
   only screen and (max-width: 768px) {
   @include header-mobile;
 	@include landing-mobile;
-
-	.section-header {
-		height: 9.5vh;
-	}
 }
