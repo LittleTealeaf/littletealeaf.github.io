@@ -11,10 +11,6 @@
 			let section = document.querySelector(anchor.getAttribute("href"));
 			let section_rect = section?.getBoundingClientRect();
 
-			console.log(section_rect?.top, section_rect?.y);
-
-			console.log(window?.scrollY)
-
 			window.scrollTo({
 				top: (window?.scrollY) + (section_rect?.y || 0) - (header_height || 0),
 				behavior: 'smooth'
@@ -31,7 +27,8 @@
 	});
 
 	function update_nav_selection() {
-		const sections = ["about", "projects", "resume", "contact"];
+
+		const sections = ["about", "projects", "stats", "resume", "contact"];
 
 		let selected = null;
 
