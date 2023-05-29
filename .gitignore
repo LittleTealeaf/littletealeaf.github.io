@@ -1,4 +1,5 @@
 node_modules/
 src/style.css
-src/assets/images/
+src/images
+src/data
 .env
