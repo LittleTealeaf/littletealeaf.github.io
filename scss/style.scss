@@ -5,18 +5,20 @@
 @import "util.scss";
 @import "header.scss";
 @import "landing.scss";
+@import "about.scss";
 
 body {
   background-color: $base;
   font-family: "Fira Code";
   margin: 0;
   padding: 0;
+	color: $text;
 
   @include noscrollbar;
 }
 
 * {
-  transition-duration: 0.2s;
+	transition: color 0.2s, background-color 0.2s;
 }
 
 .content {
