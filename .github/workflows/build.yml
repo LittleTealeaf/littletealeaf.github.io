@@ -23,39 +23,26 @@ jobs:
         id: checkout
         with:
           ref: ${{github.event.pull_request.head.sha}}
-      - name: Build Cache
-        uses: actions/cache@v3
+      - uses: actions/setup-node@v3
+        name: Setup Node
         with:
-          path: ./cache
-          key: CACHE-${{github.run_id}}-${{github.run_attempt}}
-          restore-keys: |
-            CACHE-${{github.run_id}}
-            CACHE-
-      - name: Set Up Python
+          cache: 'npm'
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: Set up NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-      - name: Install Requirements
-        run: pip install -r requirements.txt
-      - name: Install Node Dependencies
-        run: npm i
-      - name: Run Python Script
-        run: python build.py
-        env:
-          API_GITHUB: ${{secrets.API_GITHUB}}
-          WAKA_TOKEN: ${{secrets.WAKA_TOKEN}}
-      - name: Run Node Script
-        run: npm run build
-      - name: Add scss to gitignore
-        run: echo "*.scss" >> out/.gitignore
-      - name: Publish to Github Pages
+          cache: 'pip'
+      - name: Install Python Dependencies
+        run: npm run pip
+      - name: Compile Images
+        run: npm run images
+      - name: Compile CSS
+        run: npm run css
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v1
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
-        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out/
+          path: 'src/'
+      - name: Deploy to Github Pages
+        if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
+        uses: actions/deploy-pages@v2
