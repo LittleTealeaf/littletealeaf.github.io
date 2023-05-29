@@ -1,11 +1,12 @@
 {
 	"scripts": {
 		"csswatch": "sass --watch ./scss/style.scss ./src/style.css",
-		"cssbuild": "sass ./scss/style.scss ./src/style.css"
+		"cssbuild": "sass ./scss/style.scss ./src/style.css",
+		"images": "python python/images.py"
 	},
-  "dependencies": {
-    "@catppuccin/palette": "^0.1.8",
-    "sass": "^1.62.1",
-    "scss": "^0.2.4"
-  }
+	"dependencies": {
+		"@catppuccin/palette": "^0.1.8",
+		"sass": "^1.62.1",
+		"scss": "^0.2.4"
+	}
 }

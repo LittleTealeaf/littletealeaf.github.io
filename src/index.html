@@ -7,12 +7,12 @@
 		<script defer src="scripts/header.js"></script>
 		<script src="scripts/utility.js"></script>
 		<script defer src="scripts/about.js"></script>
-		<script defer src="scripts/theme.js"></script>
+		<script src="scripts/theme.js"></script>
 		<script defer src="scripts/landing.js"></script>
 	</head>
 
-	<body>
-		<div id="landing">
+	<body data-theme="macchiato">
+		<div id="landing" >
 			<div class="taskbar">
 				<div class="appname noselect">Thomas Kwashnak</div>
 				<div class="sep"></div>
@@ -42,7 +42,7 @@
 								style="color: var(--blue)">~</span><span>$</span><span style="font-weight: normal"> neofetch</span>
 						</div>
 						<div class="response">
-							<img src="assets/profile.jpg" />
+							<img src="assets/images/profile.webp" />
 							<div>
 								<div>Thomas Kwashnak</div>
 								<hr />
@@ -148,17 +148,22 @@
 		</header>
 		<section id="about">
 			<div class="content">
-				<div class="entry slide-left">
-					<div>
-						<img src="assets/profile.jpg" />
-					</div>
-					<div class="text">Hello! I'm Thomas Kwashnak, a student studying Computer Science and Data Science at Quinnipiac University. I love the programming industry for the ability to make anything you want. I'm a big supporter of open source development and consumption, and an avid linux user. And yes, I use <a href="https://neovim.io" target="_blank">Neovim</a>, I do be crazy that way.</div>
+				<div class="entry">
+					<img src="assets/images/about/professional.webp" height="500" />
 				</div>
-				<div class="entry slide-right">
-					<div class="text">Hello! I'm Thomas Kwashnak, a student studying Computer Science and Data Science at Quinnipiac University. I love the programming industry for the ability to make anything you want. I'm a big supporter of open source development and consumption, and an avid linux user. And yes, I use <a href="https://neovim.io" target="_blank">Neovim</a>, I do be crazy that way.</div>
-					<div>
-						<img src="assets/profile.jpg" />
-					</div>
+				<div class="entry">
+					<p>
+						Hello! I'm Thomas Kwashnak! I've created this website from the
+						ground up to put on display my many achievements and work! I hope
+						you stick around to learn more about me, what I like to do, and the
+						things I've learned!
+					</p>
+				</div>
+				<div class="entry">
+					<img src="assets/images/about/quinnipiac.webp" />
+				</div>
+				<div class="entry">
+					<p></p>
 				</div>
 			</div>
 		</section>

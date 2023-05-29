@@ -1,4 +1,5 @@
 node_modules/
 src/style.css
 src/style.css.map
+src/assets/images/
 .env

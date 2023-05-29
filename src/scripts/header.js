@@ -12,7 +12,7 @@
 			let section_rect = section?.getBoundingClientRect();
 
 			window.scrollTo({
-				top: (window?.scrollY) + (section_rect?.y || 0) - (header_height || 0),
+				top: (window?.scrollY) + (section_rect?.y || 0) - (header_height || 0) + 5,
 				behavior: 'smooth'
 			})
 		});
@@ -42,7 +42,7 @@
 
 			if (
 				rect.y <
-				(window.innerHeight || document.documentElement.clientHeight) * 1 / 4
+				(window.innerHeight || document.documentElement.clientHeight) / 2
 			) {
 				selected = section;
 			}

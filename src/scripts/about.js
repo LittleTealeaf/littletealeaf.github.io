@@ -5,7 +5,7 @@
 
 			entry.dataset.show =
 				rect.y <
-				(window.innerHeight || document.documentElement.clientHeight) / 2;
+				(window.innerHeight || document.documentElement.clientHeight) * 3 / 4;
 		});
 	});
 }
