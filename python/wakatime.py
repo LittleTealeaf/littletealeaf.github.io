@@ -6,7 +6,7 @@ import shutil
 export_path = os.path.join("src", "data", "wakatime")
 if os.path.exists(export_path):
     shutil.rmtree(export_path)
-
+os.makedirs(os.path.join("src", "data"), exist_ok=True)
 
 
 # EMBEDDABLE JSONS
