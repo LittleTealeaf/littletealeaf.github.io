@@ -2,42 +2,21 @@
 @import url("https://www.nerdfonts.com/assets/css/webfont.css");
 @import "theme.scss";
 @import "util.scss";
+@import "sections/landing.scss";
 @import "header.scss";
-@import "landing.scss";
-@import "about.scss";
-@import "projects.scss";
+
 
 body {
-  background-color: $base;
-  font-family: "Fira Code";
-  margin: 0;
-  padding: 0;
+	background-color: $mantle;
 	color: $text;
+	font-family: "Fira Code";
+	margin: 0;
+	padding: 0;
 	width: 100vw;
-	overflow-x:hidden;
-
-  @include noscrollbar;
+	overflow-x: hidden;
+	@include noscrollbar;
 }
 
-* {
-	transition: color 0.2s, background-color 0.2s;
-}
-
-section {
-	min-height: 100vh;
-}
-
-.section-header {
-	height: 7.5vh;
-}
-
-
-$mobile-screen-width: 1020px;
-
-@media only screen and (max-device-width: $mobile-screen-width),
-  only screen and (max-width: $mobile-screen-width) {
-  @include header-mobile;
-	@include landing-mobile;
-	@include about-mobile;
-	@include projects-mobile;
+a {
+	text-decoration: none;
 }

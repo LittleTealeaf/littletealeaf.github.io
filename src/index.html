@@ -1,237 +1,87 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Thomas Kwashnak</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+	<script src="scripts/script.js" async></script>
+	<script src="scripts/sections/landing.js" defer></script>
+  </head>
 
-	<head>
-		<title>Thomas Kwashnak</title>
-		<link rel="stylesheet" href="style.css" />
-		<script defer src="scripts/header.js"></script>
-		<script src="scripts/utility.js"></script>
-		<script defer src="scripts/about.js"></script>
-		<script src="scripts/theme.js"></script>
-		<script defer src="scripts/landing.js"></script>
-		<script defer src="scripts/projects.js"></script>
-	</head>
-
-	<body data-theme="macchiato">
-		<div id="landing">
-			<div class="taskbar">
-				<div class="appname noselect">Thomas Kwashnak</div>
-				<div class="sep"></div>
-				<div class="date">
-					<div id="landing-date" class="noselect">May 28 12:00PM</div>
-				</div>
-				<div id="theme-dropdown" class="noselect">
-					<span class="nf nf-fae-palette_color"></span>
+  <body data-theme="macchiato">
+	<section id="landing">
+		<div class="taskbar">
+			<div class="space"></div>
+			<div class="theme-dropdown noselect" data-open="false">
+				<a class="nf nf-fae-palette_color icon"></a>
+				<div class="dropdown">
 					<div class="dropdown-content">
-						<div class="panel"></div>
+
 					</div>
-				</div>
-			</div>
-			<div class="desktop">
-				<div class="window">
-					<div class="menu-bar noselect">
-						<div>Terminal</div>
-						<div class="sep"></div>
-						<div class="options">
-							<div class="nf nf-md-window_minimize"></div>
-							<div style="width: 20px"></div>
-							<div class="nf nf-cod-close"></div>
-						</div>
-					</div>
-					<div class="window-content">
-						<div class="prompt">
-							<span style="color: var(--green)">tealeaf</span><span>:</span><span
-								style="color: var(--blue)">~</span><span>$</span><span style="font-weight: normal"> neofetch</span>
-						</div>
-						<div class="response">
-							<img src="images/profile.webp" alt="Profile picture, taken at the 2023 Hudson River Undergraduate Mathematics Conference" />
-							<div>
-								<div>Thomas Kwashnak</div>
-								<hr />
-								<div>
-									<span>School</span><span>: Quinnipiac University</span>
-								</div>
-								<div><span>Graduation</span><span>: May 2024</span></div>
-								<div>
-									<span>Degree</span><span>: BA Computer Science, BS Data Science</span>
-								</div>
-								<div><span>Operating System</span><span>: <span class="nf nf-linux-pop_os"> </span>Pop!_OS</span></div>
-								<div><span>Editor</span><span>: Neovim</span></div>
-								<div>
-									<span>Hardware</span><span>: System76 Darter Pro</span>
-								</div>
-								<div>
-									<span>Favorite Languages</span><span>: <span class="nf nf-dev-rust"> </span>Rust, <span class="nf nf-dev-python"> </span>Python, <span class="nf nf-md-language_typescript"> </span>Typescript</span>
-								</div>
-								<div><span>Connections</span><span>: <a href="https://www.github.com/LittleTealeaf" target="_blank"><span class="nf nf-dev-github_badge"></span> Github</a>, <a href="https://www.linkedin.com/in/thomas-kwashnak/" target="_blank"><span class="nf nf-md-linkedin"></span> LinkedIn</a></div>
-							</div>
-						</div>
-						<div class="prompt">
-							<span style="color: var(--green)">tealeaf</span><span>:</span><span
-								style="color: var(--blue)">~</span><span>$</span><span class="cursor"
-								style="margin-left: 0.3em">|</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="dock noselect">
-				<div>
-					<div class="hint">
-						<div>
-							<span>About</span>
-						</div>
-					</div>
-					<a href="#about">
-						<div class="nf nf-fa-question_circle"></div>
-					</a>
-				</div>
-				<div>
-					<div class="hint">
-						<div>
-							<span>Projects</span>
-						</div>
-					</div>
-					<a href="#projects">
-						<div class="nf nf-fa-folder"></div>
-					</a>
-				</div>
-				<div>
-					<div class="hint">
-						<div>
-							<span>Stats</span>
-						</div>
-					</div>
-					<a href="#stats">
-						<div class="nf nf-md-equalizer"></div>
-					</a>
-				</div>
-				<div>
-					<div class="hint">
-						<div>
-							<span>Resume</span>
-						</div>
-					</div>
-					<a href="#resume">
-						<div class="nf nf-md-briefcase_clock"></div>
-					</a>
-				</div>
-				<div>
-					<div class="hint">
-						<div>
-							<span>Contact</span>
-						</div>
-					</div>
-					<a href="#contact">
-						<div class="nf nf-md-send"></div>
-					</a>
 				</div>
 			</div>
 		</div>
-		<div id="landing-bottom"></div>
-		<header data-landing="true">
-			<div class="title noselect">Thomas Kwashnak</div>
-			<div class="sep"></div>
-			<div class="nav">
-				<div class="noselect">
-					<a href="#about">About</a>
-				</div>
-				<div class="noselect">
-					<a href="#projects">Projects</a>
-				</div>
-				<div class="noselect">
-					<a href="#stats">Stats</a>
-				</div>
-				<div class="noselect">
-					<a href="#resume">Resume</a>
-				</div>
-				<div class="noselect">
-					<a href="#contact">Contact</a>
-				</div>
-			</div>
-		</header>
-		<section id="about">
-			<div class="content">
-				<div class="entry">
-					<img src="images/about/professional.webp" height="400"
-						alt="A picture of me at York Hill at Quinnipiac University before a Formal Event" />
-				</div>
-				<div class="entry">
-					<p>
-						Hello! I'm Thomas Kwashnak! I've created this website from the
-						ground up to put on display my many achievements and work! I hope
-						you stick around to learn more about me, what I like to do, and the
-						things I've learned!
-					</p>
-				</div>
-				<div class="entry">
-					<img src="images/about/quinnipiac.webp" alt="A rainy day at Quinnipiac University" />
-				</div>
-				<div class="entry">
-					<p>
-						I currently study at the beautiful campus of Quinnipiac University
-						as an Undergraduate Student in the Class of 2024. I came into
-						Quinnipiac studying Computer Science, and quickly added an Economics
-						Minor. Through the economics department, I was exposed to the
-						opportunity to double major with Data Science, which I happily took.
-						I've spent my years going above and beyond to try and teach myself
-						as much as I can. Many of the projects listed below in my projects
-						section are from courses I took at Quinnipiac!
-					</p>
-				</div>
-				<div class="entry">
-					<p>
-						Technology has been something I knew I loved since the day I first
-						started using computers. I had the unique situation of growing up on
-						Ubuntu Linux, which made me an avid user of Open Source and Linux.
-						Currently, I run some form of linux (such as Pop!_OS) on my laptop,
-						and Windows on my desktop (only for the games).
-					</p>
-				</div>
-				<div class="entry">
-					<img src="images/about/code.webp" alt="My Neovim Configuration that I've spent way too much time on" />
-				</div>
-				<div class="entry">
-					<p>
-						I love customizability, which is why my current editor of choice is
-						<a href="https://neovim.io" target="_blank">Neovim</a>! However, I
-						won't try and sell it to you. Everyone has their own preferences,
-						and there's no best editor. I think the most important factor is
-						learning your editor. Think of it like driving your car; you may be
-						able to drive most cars, but you become an expert in driving your
-						own car well.
-					</p>
-					<p>
-						If you want to see how I've set up my neovim, you can find all my
-						configurations on my
-						<a href="https://www.github.com/LittleTealeaf/dotfiles" target="_blank">dotfiles</a>! For your own sanity,
-						use this as a resource and don't just copy /
-						paste willy nilly; I have some very specific tastes.
-					</p>
-				</div>
-			</div>
-		</section>
-		<section id="projects">
-			<div class="window">
-				<div class="header">
-					<div class="title">Projects</div>
-					<div class="sep">
-
+		<div class="content"></div>
+		<nav class="dock noselect">
+			<div class="item">
+				<div class="hint">
+					<div>
+						<span>About</span>
 					</div>
-					<div class="filter">
-					</div>
-					</div>
-
+				</div>
+				<a href="#about">
+					<div class="nf nf-fa-question_circle"></div>
+				</a>
 			</div>
-		</section>
-		<section id="stats">
-			<h1>STATS</h1>
-		</section>
-		<section id="resume">
-			<h1>RESUME</h1>
-		</section>
-		<section id="contact">
-			<h1>CONTACT</h1>
-		</section>
-	</body>
+			<div class="item">
+				<div class="hint">
+					<div>
+						<span>Stats</span>
+					</div>
+				</div>
+				<a href="#stats">
+					<div class="nf nf-md-equalizer"></div>
+				</a>
+			</div>
+			<div class="item">
+				<div class="hint">
+					<div>
+						<span>Projects</span>
+					</div>
+				</div>
+				<a href="#projects">
+					<div class="nf nf-fa-folder"></div>
+				</a>
+			</div>
 
+			<div class="item">
+				<div class="hint">
+					<div>
+						<span>Resume</span>
+					</div>
+				</div>
+				<a href="#resume">
+					<div class="nf nf-md-briefcase_clock"></div>
+				</a>
+			</div>
+			<div class="item">
+				<div class="hint">
+					<div>
+						<span>Contact</span>
+					</div>
+				</div>
+				<a href="#contact">
+					<div class="nf nf-md-send"></div>
+				</a>
+			</div>
+		</nav>
+
+	</section>
+	<header></header>
+	<section id="about"></section>
+	<section id="stats"></section>
+	<section id="projects"></section>
+	<section id="resume"></section>
+	<section id="contact"></section>
+  </body>
 </html>
