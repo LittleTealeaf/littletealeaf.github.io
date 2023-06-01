@@ -1,87 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Thomas Kwashnak</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
-	<script src="scripts/script.js" async></script>
-	<script src="scripts/sections/landing.js" defer></script>
-  </head>
 
-  <body data-theme="macchiato">
-	<section id="landing">
-		<div class="taskbar">
-			<div class="space"></div>
-			<div class="theme-dropdown noselect" data-open="false">
-				<a class="nf nf-fae-palette_color icon"></a>
-				<div class="dropdown">
-					<div class="dropdown-content">
+	<head>
+		<title>Thomas Kwashnak</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="scripts/script.js" async></script>
+		<script src="scripts/sections/landing.js" defer></script>
+		<script src="scripts/header.js" defer></script>
+	</head>
 
+	<body data-theme="macchiato">
+		<section id="landing">
+			<div class="taskbar">
+				<div class="space"></div>
+				<div class="theme-dropdown noselect" data-open="false">
+					<a class="nf nf-fae-palette_color icon"></a>
+					<div class="dropdown">
+						<div class="dropdown-content"></div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="content"></div>
-		<nav class="dock noselect">
-			<div class="item">
-				<div class="hint">
-					<div>
-						<span>About</span>
+			<div class="content"></div>
+			<div class="dock-container">
+				<nav class="dock noselect">
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>About</span>
+							</div>
+						</div>
+						<a href="#about">
+							<div class="nf nf-fa-question_circle"></div>
+						</a>
 					</div>
-				</div>
-				<a href="#about">
-					<div class="nf nf-fa-question_circle"></div>
-				</a>
-			</div>
-			<div class="item">
-				<div class="hint">
-					<div>
-						<span>Stats</span>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Stats</span>
+							</div>
+						</div>
+						<a href="#stats">
+							<div class="nf nf-md-equalizer"></div>
+						</a>
 					</div>
-				</div>
-				<a href="#stats">
-					<div class="nf nf-md-equalizer"></div>
-				</a>
-			</div>
-			<div class="item">
-				<div class="hint">
-					<div>
-						<span>Projects</span>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Projects</span>
+							</div>
+						</div>
+						<a href="#projects">
+							<div class="nf nf-fa-folder"></div>
+						</a>
 					</div>
-				</div>
-				<a href="#projects">
-					<div class="nf nf-fa-folder"></div>
-				</a>
-			</div>
 
-			<div class="item">
-				<div class="hint">
-					<div>
-						<span>Resume</span>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Resume</span>
+							</div>
+						</div>
+						<a href="#resume">
+							<div class="nf nf-md-briefcase_clock"></div>
+						</a>
 					</div>
-				</div>
-				<a href="#resume">
-					<div class="nf nf-md-briefcase_clock"></div>
-				</a>
-			</div>
-			<div class="item">
-				<div class="hint">
-					<div>
-						<span>Contact</span>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Contact</span>
+							</div>
+						</div>
+						<a href="#contact">
+							<div class="nf nf-md-send"></div>
+						</a>
 					</div>
-				</div>
-				<a href="#contact">
-					<div class="nf nf-md-send"></div>
-				</a>
+				</nav>
 			</div>
-		</nav>
+		</section>
+		<header>
+			<a class="title" href="#landing">Thomas Kwashnak</a>
+			<nav>
+				<div class="item">
+					<a href="#about">About</a>
+				</div>
+				<div class="item">
+					<a href="#stats">Stats</a>
+				</div>
+				<div class="item">
+					<a href="#projects">Projects</a>
+				</div>
+				<div class="item">
+					<a href="#resume">Resume</a>
+				</div>
+				<div class="item">
+					<a href="#contact">Contact</a>
+				</div>
+			</nav>
+		</header>
+		<section id="about">
+			Hi
+			<div class="fake-content"></div>
+		</section>
+		<section id="stats">
+			Hi
+			<div class="fake-content"></div>
+		</section>
+		<section id="projects">
+			Hi
+			<div class="fake-content"></div>
+		</section>
+		<section id="resume">
+			Hi
+			<div class="fake-content"></div>
+		</section>
+		<section id="contact">
+			Hi
+			<div class="fake-content"></div>
+		</section>
+	</body>
 
-	</section>
-	<header></header>
-	<section id="about"></section>
-	<section id="stats"></section>
-	<section id="projects"></section>
-	<section id="resume"></section>
-	<section id="contact"></section>
-  </body>
 </html>

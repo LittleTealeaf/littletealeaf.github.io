@@ -16,3 +16,11 @@
 .space {
 	flex-grow: 1;
 }
+
+@mixin outline {
+	outline: 1px solid red;
+}
+
+.fake-content {
+	height: 75vh;
+}

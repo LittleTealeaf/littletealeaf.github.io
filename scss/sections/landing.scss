@@ -7,6 +7,8 @@
   .taskbar {
     background-color: $crust;
     height: 4vh;
+		padding-right: 0.5vw;
+		padding-left: 0.5vw;
     display: flex;
   }
 
@@ -42,11 +44,13 @@
       z-index: 1;
 
       a {
+				font-size: calc(1vh + 0.5em);
         text-transform: capitalize;
         padding: 0.6em;
         margin: 0.25em;
         border-radius: 1em;
 
+        &:hover,
         &[data-selected="true"] {
           background-color: $surface1;
         }
@@ -66,10 +70,27 @@
     flex-grow: 1;
   }
 
-  .dock {
-    position: sticky;
+	.dock-container {
+    position: fixed;
     bottom: 2.5vh;
+		width: 100%;
+		opacity: 1;
+		transition: bottom 0.2s;
+
+		&[data-hide="true"] {
+			bottom: -7.5vh;
+
+			.hint {
+				top: 0% !important;
+			}
+		}
+	}
+
+  .dock {
+		position: relative;
+		width: fit-content;
     margin: auto;
+    padding: 0.5vh;
     display: flex;
     background-color: $base;
     border-radius: 2vh;
@@ -84,29 +105,32 @@
       height: 300%;
       display: flex;
       justify-content: center;
+			transition: top 0.2s;
+			z-index: -1;
 
       div {
         position: relative;
         width: calc(fit-content / 2);
+        pointer-events: none;
       }
 
       span {
+        font-size: 2vh;
         color: transparent;
         padding: 0.25vh 0.5vh;
         border-radius: 1vh;
         font-weight: bold;
         background-color: transparent;
+				transition: color 0.2s, background-color 0.2s;
       }
     }
 
     .item {
       position: relative;
-      padding: 0.5em;
+      padding: 1vh;
       cursor: pointer;
-      margin-inline: 0.5vw;
       border-radius: 1.75vh;
-
-
+			transition: background-color 0.2s;
 
       a {
         text-decoration: none;
@@ -121,7 +145,7 @@
         background-color: $surface1;
 
         .hint {
-          top: -100%;
+          top: -80%;
 
           span {
             color: $text;
@@ -129,10 +153,6 @@
           }
         }
       }
-    }
-
-    &[data-hide="true"] {
-        
     }
   }
 }

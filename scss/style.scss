@@ -7,7 +7,7 @@
 
 
 body {
-	background-color: $mantle;
+	background-color: $base;
 	color: $text;
 	font-family: "Fira Code";
 	margin: 0;
@@ -19,4 +19,5 @@ body {
 
 a {
 	text-decoration: none;
+	color: $text;
 }
