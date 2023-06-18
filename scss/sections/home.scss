@@ -1,14 +1,14 @@
 #home {
   background-color: $mantle;
-  height: 100vh;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
 
   .taskbar {
     background-color: $crust;
     height: 4vh;
-		padding-right: 0.5vw;
-		padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    padding-left: 0.5vw;
     display: flex;
   }
 
@@ -44,7 +44,7 @@
       z-index: 1;
 
       a {
-				font-size: calc(1vh + 0.5em);
+        font-size: calc(1vh + 0.5em);
         text-transform: capitalize;
         padding: 0.6em;
         margin: 0.25em;
@@ -70,26 +70,26 @@
     flex-grow: 1;
   }
 
-	.dock-container {
-    position: fixed;
+  .dock-container {
+    position: sticky;
     bottom: 2.5vh;
-		width: 100%;
-		opacity: 1;
-		transition: opacity 0.2s, bottom 0.2s;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.2s, bottom 0.2s;
 
-		&[data-hide="true"] {
-			bottom: -7.5vh;
+    &[data-hide="true"] {
+      bottom: -7.5vh;
+      opacity: 0;
 
-			.hint {
-				top: 0% !important;
-				opacity: 0;
-			}
-		}
-	}
+      .hint {
+        top: 0% !important;
+      }
+    }
+  }
 
   .dock {
-		position: relative;
-		width: fit-content;
+    position: relative;
+    width: fit-content;
     margin: auto;
     padding: 0.5vh;
     display: flex;
@@ -106,8 +106,8 @@
       height: 300%;
       display: flex;
       justify-content: center;
-			transition: top 0.2s;
-			z-index: -1;
+      transition: top 0.2s;
+      z-index: -1;
 
       div {
         position: relative;
@@ -122,7 +122,7 @@
         border-radius: 1vh;
         font-weight: bold;
         background-color: transparent;
-				transition: color 0.2s, background-color 0.2s;
+        transition: color 0.2s, background-color 0.2s;
       }
     }
 
@@ -131,7 +131,7 @@
       padding: 1vh;
       cursor: pointer;
       border-radius: 1.75vh;
-			transition: background-color 0.2s;
+      transition: background-color 0.2s;
 
       a {
         text-decoration: none;

@@ -35,7 +35,9 @@
 			throw new Error("Could not find Dock");
 		}
 
-		dock_container.dataset.hide =
-			rect.top < (window.innerHeight || document.documentElement.clientHeight);
+		const window_height =
+			window.innerHeight || document.documentElement.clientHeight;
+
+		dock_container.dataset.hide = rect.top < window_height;
 	});
 }
