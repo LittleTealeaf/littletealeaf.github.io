@@ -40,4 +40,24 @@
 
 		dock_container.dataset.hide = rect.top < window_height;
 	});
+
+	const clock = document.querySelector("#home .clock");
+
+	if(!clock) {
+		throw new Error("Could not find Clock");
+	}
+
+	function update_clock() {
+		const date = new Date();
+
+		clock.innerText = date.toLocaleString("en-us", {
+			month: "short", day: "2-digit", hour: "numeric", minute: "numeric"
+		});
+
+		const interval = (60 - date.getSeconds()) * 1000 + 5;
+
+		setTimeout(update_clock, interval);
+	}
+
+	update_clock();
 }

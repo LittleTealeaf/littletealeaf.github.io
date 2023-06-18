@@ -12,6 +12,12 @@
     display: flex;
   }
 
+	.clock {
+		height: 4vh;
+		line-height: 4vh;
+		margin-right: 1vw;
+	}
+
   .theme-dropdown {
     position: relative;
     display: flex;
