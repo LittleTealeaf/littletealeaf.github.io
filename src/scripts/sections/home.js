@@ -1,6 +1,6 @@
 {
 	let content = document.querySelector(
-		"#landing .theme-dropdown .dropdown-content"
+		"#home .theme-dropdown .dropdown-content"
 	);
 
 	if (!content) {
@@ -29,7 +29,7 @@
 
 		const rect = header.getBoundingClientRect();
 
-		const dock_container = document.querySelector("#landing .dock-container");
+		const dock_container = document.querySelector("#home .dock-container");
 
 		if (!dock_container) {
 			throw new Error("Could not find Dock");

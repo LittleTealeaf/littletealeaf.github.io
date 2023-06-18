@@ -75,13 +75,14 @@
     bottom: 2.5vh;
 		width: 100%;
 		opacity: 1;
-		transition: bottom 0.2s;
+		transition: opacity 0.2s, bottom 0.2s;
 
 		&[data-hide="true"] {
 			bottom: -7.5vh;
 
 			.hint {
 				top: 0% !important;
+				opacity: 0;
 			}
 		}
 	}
