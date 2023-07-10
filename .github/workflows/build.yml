@@ -60,7 +60,7 @@ jobs:
         run: echo "*.scss" >> out/.gitignore
       - name: Upload Artifact
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: 'out/'
       - name: Deploy to GitHub Pages
