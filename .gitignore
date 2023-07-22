@@ -1,6 +1,6 @@
 node_modules/
 src/style.css
 src/images
-src/data/wakatime
+src/data/wakatime/**/*
 src/data/projects.json
 .env
