@@ -20,7 +20,7 @@
 		for (const section of header_sections) {
 			const rect = section.getBoundingClientRect();
 
-			if (rect.y < window_height / 2) {
+			if (rect.y < window_height / 4) {
 				selected = section.id;
 			} else {
 				break;

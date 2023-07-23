@@ -10,6 +10,7 @@
 		<script src="scripts/sections/home.js" defer></script>
 		<script src="scripts/sections/about.js" defer></script>
 		<script src="scripts/header.js" defer></script>
+		<script src="scripts/sections/stats.js" defer></script>
 	</head>
 
 	<body data-theme="macchiato">
@@ -222,8 +223,41 @@
 			</div>
 		</section>
 		<section id="stats">
-			Hi
-			<div class="fake-content"></div>
+			<div class="container">
+				<div class="tabs noselect">
+					<div class="tab" data-range="last_7_days" data-selected="true">
+						<div>Last Week</div>
+					</div>
+					<div class="tab" data-range="last_30_days">
+						<div>Last Month</div>
+					</div>
+					<div class="tab" data-range="last_year">
+						<div>Last Year</div>
+					</div>
+					<div class="tab" data-range="all_time">
+						<div>All Time</div>
+					</div>
+				</div>
+				<div class="stats">
+					<table>
+						<th>
+							<tr>
+								<td colspan="2">Languages</td>
+							</tr>
+						</th>
+						<tbody>
+							<tr>
+								<td>Rust</td>
+								<td>123 hours</td>
+							</tr>
+							<tr>
+								<td>C++</td>
+								<td>40 hours</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</section>
 		<section id="projects">
 			Hi
