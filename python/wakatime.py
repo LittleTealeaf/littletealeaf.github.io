@@ -17,19 +17,26 @@ params = {
     'api_key': os.getenv("WAKA_TOKEN")
 }
 
-# EMBEDDABLE JSONS
-all_time_stats = requests.get(
-    "https://wakatime.com/api/v1/users/current/stats/all_time", params=params
-).json()
+for stats_range in ['all_time', 'last_7_days', 'last_30_days', 'last_year']:
+    print(f'Getting Range {stats_range}')
+    url = f'https://wakatime.com/api/v1/users/current/stats/{stats_range}'
+    response = requests.get(url, params=params)
+    stats = response.json()['data']
 
-for project in all_time_stats['data']['projects']:
-    if project['name'] == 'dotfiles':
-        dotfiles_data = {
-            'hours': project['hours'],
-            'minutes': project['minutes'],
-        }
-        with open(os.path.join("src", "data", "wakatime", "dotfiles_time.json"), 'w') as file:
-            file.write(json.dumps(dotfiles_data))
+    # if stats range is all time, fetch data from the 'dotfiles' to put into 'dotfiles_time.json'
+    if stats_range == 'all_time':
+        for project in stats['projects']:
+            if project['name'] == 'dotfiles':
+                data = {}
+                data['hours'] = project['hours']
+                data['minutes'] = project['minutes']
+                with open(os.path.join('src', 'data', 'wakatime', 'dotfiles_time.json'), 'w') as file:
+                    file.write(json.dumps(data))
 
+    data = {}
+    data['languages'] = stats['languages']
+    data['operating_systems'] = stats['operating_systems']
+    data['editors'] = stats['editors']
 
-# 
+    with open(os.path.join('src', 'data', 'wakatime', f'{stats_range}.json'), 'w') as file:
+        file.write(json.dumps(data))
