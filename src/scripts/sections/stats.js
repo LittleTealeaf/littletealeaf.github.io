@@ -14,16 +14,25 @@ Promise.all(
 	})
 	.then((stats) => {
 		const tabs = document.querySelectorAll("#stats .tabs .tab");
+		const tables = {
+			languages: document.getElementById("stats-table-languages"),
+		};
+
+		function updateTable(table, stats) {
+			
+		}
+
 		function setStats(range) {
 			const data = stats[range];
-			if(!data) {
+			if (!data) {
 				throw new Error("Invalid Range");
 			}
 
-			for(const tab of tabs) {
+			for (const tab of tabs) {
 				tab.dataset.selected = tab.dataset.range == range;
 			}
 
+			updateTable(tables.languages, data.languages);
 		}
 
 		for (const tab of tabs) {
@@ -32,5 +41,5 @@ Promise.all(
 			});
 		}
 
-		setStats('last_7_days');
+		setStats("last_7_days");
 	});
