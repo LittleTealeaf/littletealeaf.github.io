@@ -34,12 +34,14 @@ jobs:
           cache: 'pip'
       - name: Install Python Dependencies
         run: npm run pip
-      - name: Compile Images
+      - name: Run Images Script
         run: npm run images
-      - name: Compile CSS
+      - name: Run CSS Script
         run: npm run css
-      - name: Fetch Wakatime
+      - name: Run Wakatime Script
         run: npm run wakatime
+      - name: Run Projects Script
+        run: npm run projects
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}

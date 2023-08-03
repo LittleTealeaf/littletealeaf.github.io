@@ -1,0 +1,14 @@
+{
+  "Rust": "nf-dev-rust",
+  "Python": "nf-dev-python",
+  "TeX": "nf-seti-tex",
+  "Shell": "nf-seti-shell",
+  "Java": "nf-dev-java",
+  "JavaScript": "nf-dev-javascript_shield",
+  "CSS": "nf-dev-css3",
+  "R": "nf-seti-r",
+  "SCSS": "nf-dev-sass",
+  "SASS": "nf-dev-sass",
+  "HTML": "nf-dev-html5",
+  "Dart": "nf-dev-dart"
+}

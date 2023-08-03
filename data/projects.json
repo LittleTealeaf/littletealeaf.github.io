@@ -1,16 +1,16 @@
 [
 	{
 		"name": "littletealeaf.github.io",
-		"status": "active",
+		"archive": false,
 		"description": [
-
+			"Here is example data"
 		],
 		"github": "LittleTealeaf/littletealeaf.github.io",
-		"website": "littletealeaf.github.io"
+		"website": "https://littletealeaf.github.io"
 	},
 	{
 		"name": "mlcube",
-		"status": "active",
+		"archive": false,
 		"description": [
 
 		],

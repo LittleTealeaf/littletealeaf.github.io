@@ -1,0 +1,124 @@
+#stats,
+#about,
+#home {
+  display: none;
+}
+
+#projects {
+  margin-top: 1vh;
+  padding-top: 5vh;
+  padding-left: 3vw;
+  padding-right: 3vw;
+
+  .title {
+    width: 100%;
+    font-size: 5vw;
+    text-align: center;
+  }
+
+  .container {
+    width: fit-content;
+    margin: auto;
+  }
+
+  .project {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
+    transform: translateY(0px);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 5px;
+
+    &[data-selected="true"] {
+      box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(-5px);
+
+      .summary {
+        box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px;
+      }
+
+      .content {
+        max-height: 60vh;
+        overflow-y: scroll;
+      }
+    }
+
+    &:hover {
+      box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5);
+      transform: translateY(-5px);
+    }
+  }
+
+  .summary {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+
+    .icons {
+      display: flex;
+    }
+  }
+
+  .content {
+    overflow: hidden;
+    transition: all 0.2s;
+    max-height: 0px;
+    padding-left: 7px;
+    padding-right: 7px;
+
+    .links {
+      margin: 12px 0px;
+
+      display: flex;
+
+      a {
+        margin-inline: 10px;
+        display: block;
+        padding: 2px;
+
+        transition: all 0.2s;
+
+        &:hover {
+          box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
+          transform: translateY(-3px);
+        }
+      }
+    }
+  }
+
+  img {
+    max-width: 80vw;
+    max-height: 70vh;
+    margin: auto;
+  }
+
+  .toggle-archive {
+    display: block;
+    width: fit-content;
+
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 20px;
+    transition: all 0.2s;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+
+  .archive {
+    max-height: 0;
+    overflow: hidden;
+
+    &[data-show="true"] {
+      max-height: fit-content;
+    }
+  }
+}
