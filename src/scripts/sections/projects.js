@@ -1,96 +1,50 @@
-(() => {
-  const archive = document.querySelector("#projects .archive");
+{
+	const projects = document.querySelectorAll("#projects .project");
 
-  document.querySelector("#projects .toggle-archive").addEventListener("click", () => {
-    archive.dataset.show = archive.dataset.show != "true";
-  });
+	const github_promise = fetch("data/github.json")
+		.then((res) => res.json())
+		.then((data) => {
+			projects.forEach((project) => {
+				const github_data = data[project.dataset.github];
+				const icons = project.querySelector(".icons");
 
-  fetch("data/projects.json")
-    .then((res) => res.json())
-    .then((data) => {
-      const list = document.querySelector("#projects .active");
-      const archive = document.querySelector("#projects .archive");
-      if (list == null || archive == null) {
-        return;
-      }
+				github_data.languages.forEach((className) => {
+					const icon = document.createElement("div");
+					icon.classList.add("nf", className);
+					icons.append(icon);
+				});
+			});
+		});
 
-      data.forEach((project) => {
-        const container = document.createElement("div");
-        container.classList.add("project");
-        {
-          const summary = document.createElement("a");
-          summary.classList.add("summary");
-          {
-            const name = document.createElement("div");
-            name.innerText = project.name;
-            name.classList.add("name");
-            summary.append(name);
+	document.querySelectorAll("#projects .project .link").forEach((link) => {
+		link.addEventListener("click", () =>
+			sessionStorage.setItem(
+				"click",
+				1 + (sessionStorage.getItem("click") || 0)
+			)
+		);
+	});
 
-            const space = document.createElement("div");
-            space.classList.add("space");
-            summary.append(space);
+	projects.forEach((project) => {
+		project.querySelector(".summary")?.addEventListener("click", () => {
+			const is_hidden = project.dataset.hide == "true";
+			projects.forEach((p) => (p.dataset.hide = true));
+			project.dataset.hide = !is_hidden;
+		});
+	});
 
-            const icons = document.createElement("icons");
-            icons.classList.add("icons");
-            project.icons.forEach((className) => {
-              const icon = document.createElement("div");
-              icon.classList.add("nf", className);
-              icons.append(icon);
-            });
-            summary.append(icons);
-          }
-          container.append(summary);
-        }
+	Promise.all([github_promise]).then(() => {
+		projects.forEach((project) => {
+			const content = project.querySelector(".content");
+			var height = 0;
 
-        {
-          const content = document.createElement("div");
-          content.classList.add("content");
+			for (let i = 0; i < content.children.length; i++) {
+				height += content.children[i].offsetHeight;
+			}
 
-          {
-            const links = document.createElement("div");
-            links.classList.add("links");
+			content.style.setProperty("--extended-height", `${height}px`);
 
-            project.links.forEach(({ icon, label, url }) => {
-              const link = document.createElement("a");
-              link.href = url;
-              const icon_element = document.createElement("span");
-              icon_element.classList.add("nf", icon);
-              link.append(icon_element);
-
-              const label_element = document.createElement("span");
-              label_element.innerText = ` ${label}`;
-              link.append(label_element);
-
-              links.append(link);
-            });
-
-            content.append(links);
-          }
-
-          project.description.forEach((text) => {
-            const element = document.createElement("p");
-            element.innerText = text;
-            content.append(element);
-          });
-
-          container.append(content);
-        }
-
-        (project.archive ? archive : list).append(container);
-      });
-
-      const projects = document.querySelectorAll("#projects .project");
-
-      projects.forEach((project) => {
-        project.dataset.selected = false;
-
-        project.querySelector(".summary")?.addEventListener("click", () => {
-          const open = project.dataset.selected;
-          projects.forEach((p) => {
-            p.dataset.selected = false;
-          });
-          project.dataset.selected = open != "true";
-        });
-      });
-    });
-})();
+			project.dataset.hide = "true";
+		});
+	});
+}

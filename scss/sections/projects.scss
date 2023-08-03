@@ -6,119 +6,70 @@
 
 #projects {
   margin-top: 1vh;
-  padding-top: 5vh;
-  padding-left: 3vw;
-  padding-right: 3vw;
+  padding: 5vh 3vw 0 3vw;
 
   .title {
     width: 100%;
-    font-size: 5vw;
+    font-size: 5vh;
     text-align: center;
-  }
-
-  .container {
-    width: fit-content;
-    margin: auto;
+    margin-bottom: 30px;
   }
 
   .project {
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
-    transform: translateY(0px);
-    transition: transform 0.2s, box-shadow 0.2s;
-    margin: 5px;
+    max-width: 90vw;
+    min-width: 60vw;
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 
-    &[data-selected="true"] {
-      box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.3);
-      transform: translateY(-5px);
+    transition: 0.2s;
 
-      .summary {
-        box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.3);
-        margin-bottom: 10px;
-      }
-
-      .content {
-        max-height: 60vh;
-        overflow-y: scroll;
-      }
+    .summary {
+      background-color: $mantle;
+      display: flex;
+      cursor: pointer;
+      padding: 5px;
     }
-
-    &:hover {
-      box-shadow: 3px 5px 15px rgba(0, 0, 0, 0.5);
-      transform: translateY(-5px);
-    }
-  }
-
-  .summary {
-    padding: 10px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s;
 
     .icons {
       display: flex;
-    }
-  }
 
-  .content {
-    overflow: hidden;
-    transition: all 0.2s;
-    max-height: 0px;
-    padding-left: 7px;
-    padding-right: 7px;
-
-    .links {
-      margin: 12px 0px;
-
-      display: flex;
-
-      a {
-        margin-inline: 10px;
-        display: block;
-        padding: 2px;
-
-        transition: all 0.2s;
-
-        &:hover {
-          box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
-          transform: translateY(-3px);
-        }
+      .nf {
+        margin-inline: 2px;
       }
     }
-  }
 
-  img {
-    max-width: 80vw;
-    max-height: 70vh;
-    margin: auto;
-  }
+    .content {
+      --extended-height: 0px;
+      transition: 0.2s;
+      max-height: calc(var(--extended-height) * 1.5);
+      overflow: hidden;
 
-  .toggle-archive {
-    display: block;
-    width: fit-content;
-
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    padding-left: 15px;
-    padding-right: 15px;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 20px;
-    transition: all 0.2s;
-
-    &:hover {
-      transform: translateY(-3px);
+			.links {
+				display: flex;
+				flex-wrap: wrap;
+				margin-top: 10px;
+				> * {
+					margin-inline: 5px;
+				}
+			}
     }
-  }
 
-  .archive {
-    max-height: 0;
-    overflow: hidden;
+    &[data-hide="true"] {
+      box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0);
+      transform: translateY(0);
 
-    &[data-show="true"] {
-      max-height: fit-content;
+      .content {
+        max-height: 0px;
+      }
+
+      .summary {
+        background-color: $base;
+      }
+
+      &:hover {
+        box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+      }
     }
   }
 }
