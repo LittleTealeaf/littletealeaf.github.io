@@ -37,6 +37,8 @@ jobs:
         with:
           python-version: "3.x"
           cache: "pip"
+      - name: Install Node Dependencies
+        run: npm i
       - name: Install Python Dependencies
         run: npm run pip
       - name: Run Images Script
