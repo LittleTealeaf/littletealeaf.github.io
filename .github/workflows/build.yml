@@ -53,7 +53,7 @@ jobs:
       - name: Pull GitHub Data
         run: npm run github
       - name: Upload Artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         with:
           path: "src/"
