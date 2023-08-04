@@ -22,6 +22,8 @@ jobs:
       group: ${{github.action}}-${{github.head_ref || github.ref}}
     name: "Build Website"
     runs-on: ubuntu-latest
+    env:
+      WAKA_TOKEN: ${{secrets.WAKA_TOKEN}}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
