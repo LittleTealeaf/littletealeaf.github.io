@@ -2,9 +2,10 @@ import requests
 import os
 import json
 import shutil
-from dotenv import load_dotenv
 
-load_dotenv()
+if os.path.exists('.env'):
+    from dotenv import load_dotenv
+    load_dotenv()
 
 
 export_path = os.path.join("src", "data", "wakatime")
