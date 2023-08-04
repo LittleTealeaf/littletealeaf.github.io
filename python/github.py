@@ -4,6 +4,7 @@ import requests
 import json
 
 if os.path.exists('.env'):
+    print('Loading from .env')
     from dotenv import load_dotenv
     load_dotenv()
 

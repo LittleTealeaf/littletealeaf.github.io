@@ -4,6 +4,7 @@ import json
 import shutil
 
 if os.path.exists('.env'):
+    print('Loading from dotenv')
     from dotenv import load_dotenv
     load_dotenv()
 
