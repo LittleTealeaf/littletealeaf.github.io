@@ -2,10 +2,10 @@ name: Build Website
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request_target:
   schedule:
-  - cron: '0 */6 * * *'
+    - cron: "0 */6 * * *"
 
 env:
   NODE_ENV: production
@@ -26,27 +26,27 @@ jobs:
       - uses: actions/setup-node@v3
         name: Setup Node
         with:
-          cache: 'npm'
+          cache: "npm"
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-          cache: 'pip'
+          python-version: "3.x"
+          cache: "pip"
       - name: Install Python Dependencies
         run: npm run pip
       - name: Run Images Script
         run: npm run images
-      - name: Run CSS Script
+      - name: Generate CSS Files
         run: npm run css
-      - name: Run Wakatime Script
+      - name: Pull WakaTime Data
         run: npm run wakatime
-      - name: Run Projects Script
-        run: npm run projects
+      - name: Pull GitHub Data
+        run: npm run github
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v1
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         with:
-          path: 'src/'
+          path: "src/"
       - name: Deploy to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: actions/deploy-pages@v2
