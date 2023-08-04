@@ -12,7 +12,7 @@ html = ""
 with open(os.path.join('src', 'index.html')) as file:
     html = file.read()
 
-soup = BeautifulSoup(html, features='lxml')
+soup = BeautifulSoup(html)
 
 github_headers = {"Authorization": f"Bearer {os.getenv('API_GITHUB')}"}
 
@@ -50,9 +50,6 @@ for repo in repos:
 
 with open(os.path.join('src', 'data', 'github.json'), 'w') as file:
     file.write(json.dumps(repo_data))
-
-
-
 
 # project_data = {}
 #
