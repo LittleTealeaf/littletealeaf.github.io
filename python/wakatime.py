@@ -28,6 +28,7 @@ for stats_range in ['all_time', 'last_7_days', 'last_30_days', 'last_year']:
 
     stats = response['data']
 
+
     # if stats range is all time, fetch data from the 'dotfiles' to put into 'dotfiles_time.json'
     if stats_range == 'all_time':
         for project in stats['projects']:
