@@ -1,9 +1,9 @@
-#stats,
-#about,
-#home {
-  display: none;
-}
-
+// #stats,
+// #about,
+// #home {
+//   display: none;
+// }
+//
 #projects {
   margin-top: 1vh;
   padding: 5vh 3vw 0 3vw;
@@ -20,6 +20,7 @@
     min-width: 60vw;
     box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
     transform: translateY(-5px);
+    margin: 12px;
 
     transition: 0.2s;
 
@@ -41,17 +42,18 @@
     .content {
       --extended-height: 0px;
       transition: 0.2s;
-      max-height: calc(var(--extended-height) * 1.5);
-      overflow: hidden;
+      max-height: calc(var(--extended-height));
+			padding: 10px 10px 10px 10px;
+			overflow: hidden;
 
-			.links {
-				display: flex;
-				flex-wrap: wrap;
-				margin-top: 10px;
-				> * {
-					margin-inline: 5px;
-				}
-			}
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        > * {
+          margin-inline: 5px;
+        }
+      }
     }
 
     &[data-hide="true"] {
@@ -60,6 +62,8 @@
 
       .content {
         max-height: 0px;
+        overflow: hidden;
+        padding: 0 10px 0 10px;
       }
 
       .summary {

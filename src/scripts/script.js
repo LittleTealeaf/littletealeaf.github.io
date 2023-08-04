@@ -67,7 +67,6 @@ window.addEventListener("load", () => {
 					window?.scrollY + (section_rect?.y || 0) - (header_height || 0),
 				behavior: "smooth",
 			});
-			console.log("hi");
 		});
 	});
 });
