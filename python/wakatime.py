@@ -21,8 +21,12 @@ params = {
 for stats_range in ['all_time', 'last_7_days', 'last_30_days', 'last_year']:
     print(f'Getting Range {stats_range}')
     url = f'https://wakatime.com/api/v1/users/current/stats/{stats_range}'
-    response = requests.get(url, params=params)
-    stats = response.json()['data']
+    response = requests.get(url, params=params).json()
+
+    if 'data' not in response:
+        print(response)
+
+    stats = response['data']
 
     # if stats range is all time, fetch data from the 'dotfiles' to put into 'dotfiles_time.json'
     if stats_range == 'all_time':
