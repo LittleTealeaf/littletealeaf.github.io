@@ -1,8 +1,5 @@
-.env
-**/*/__pycache__/
-.cache/
-cache/
-.idea/
-out/styles.css
 node_modules/
-out/resources/
+src/style.css
+src/images
+src/data/**/*
+.env

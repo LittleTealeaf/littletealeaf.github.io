@@ -1,0 +1,237 @@
+#home {
+  background-color: $mantle;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+
+  .taskbar {
+    background-color: $crust;
+    height: 4vh;
+    padding-right: 0.5vw;
+    padding-left: 0.5vw;
+    display: flex;
+  }
+
+  .clock {
+    height: 4vh;
+    line-height: 4vh;
+    margin-right: 1vw;
+  }
+
+  .theme-dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 4vh;
+    height: 4vh;
+    border-radius: 2vh;
+
+    .icon {
+      font-size: 2vh;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .dropdown-content {
+      margin-top: calc(4vh + 5px);
+      background-color: $surface0;
+      padding: 0.1em;
+      border-radius: 1.5vh;
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+
+      a {
+        font-size: calc(1vh + 0.5em);
+        text-transform: capitalize;
+        padding: 0.6em;
+        margin: 0.25em;
+        border-radius: 1em;
+
+        &:hover,
+        &[data-selected="true"] {
+          background-color: $surface1;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: $surface0;
+
+      .dropdown {
+        display: block;
+      }
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .window {
+    background-color: $base;
+    max-width: 90%;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .prompt {
+    line-height: 1.5em;
+
+    .user {
+      font-weight: bold;
+      color: $mauve;
+    }
+
+    .location,
+    .nf {
+      color: $red;
+    }
+
+    .cursor {
+      font-size: 1em;
+      animation: home-cursor-blink 2s infinite;
+    }
+  }
+
+  .neofetch {
+    display: flex;
+    margin: 2vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    .info {
+      margin-left: 2.5vw;
+      margin-right: 2.5vw;
+    }
+
+    hr,
+		.label,
+    .title {
+      color: $green;
+      font-weight: bold;
+    }
+
+    img {
+      width: 30vh;
+      height: 30vh;
+      object-fit: cover;
+      border-radius: 30vh;
+    }
+  }
+
+  .dock-container {
+    position: sticky;
+    bottom: 2.5vh;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.2s, bottom 0.2s;
+
+    &[data-hide="true"] {
+      bottom: -7.5vh;
+      opacity: 0;
+
+      .hint {
+        top: 0% !important;
+      }
+    }
+  }
+
+  .dock {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+    padding: 0.5vh;
+    display: flex;
+    background-color: $base;
+    border-radius: 2vh;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+
+    .hint {
+      position: absolute;
+      width: 100%;
+      left: 0%;
+      text-align: center;
+      top: -30%;
+      height: 300%;
+      display: flex;
+      justify-content: center;
+      transition: top 0.2s;
+      z-index: -1;
+
+      div {
+        position: relative;
+        width: calc(fit-content / 2);
+        pointer-events: none;
+      }
+
+      span {
+        font-size: 2vh;
+        color: transparent;
+        padding: 0.25vh 0.5vh;
+        border-radius: 1vh;
+        font-weight: bold;
+        background-color: transparent;
+        transition: color 0.2s, background-color 0.2s;
+      }
+    }
+
+    .item {
+      position: relative;
+      padding: 1vh;
+      cursor: pointer;
+      border-radius: 1.75vh;
+      transition: background-color 0.2s;
+
+      a {
+        text-decoration: none;
+        color: $text;
+      }
+
+      .nf {
+        font-size: 3vh;
+      }
+
+      &:hover {
+        background-color: $surface1;
+
+        .hint {
+          top: -80%;
+
+          span {
+            color: $text;
+            background-color: $surface0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes home-cursor-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

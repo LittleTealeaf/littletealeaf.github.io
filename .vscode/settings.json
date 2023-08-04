@@ -1,5 +1,0 @@
-{
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///f%3A/Github/littletealeaf.github.io/.github/workflows/build.yml"
-    }
-}

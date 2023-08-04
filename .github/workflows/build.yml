@@ -2,10 +2,10 @@ name: Build Website
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request_target:
   schedule:
-  - cron: '0 */6 * * *'
+    - cron: "0 */6 * * *"
 
 permissions:
   contents: read
@@ -28,43 +28,30 @@ jobs:
         id: checkout
         with:
           ref: ${{github.event.pull_request.head.sha}}
-      - name: Build Cache
-        uses: actions/cache@v3
+      - uses: actions/setup-node@v3
+        name: Setup Node
         with:
-          path: ./cache
-          key: CACHE-${{github.run_id}}-${{github.run_attempt}}
-          restore-keys: |
-            CACHE-${{github.run_id}}
-            CACHE-
-      - name: Set Up Python
+          cache: "npm"
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-      - name: Set up NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-      - name: Install Requirements
-        run: pip install -r requirements.txt
-      - name: Install Node Dependencies
-        run: npm i
-      - name: Run Python Script
-        run: python build.py
-        env:
-          API_GITHUB: ${{secrets.API_GITHUB}}
-          WAKA_TOKEN: ${{secrets.WAKA_TOKEN}}
-      - name: Run Node Script
-        run: npm run build
-      - name: Add scss to gitignore
-        run: echo "*.scss" >> out/.gitignore
+          python-version: "3.x"
+          cache: "pip"
+      - name: Install Python Dependencies
+        run: npm run pip
+      - name: Run Images Script
+        run: npm run images
+      - name: Generate CSS Files
+        run: npm run css
+      - name: Pull WakaTime Data
+        run: npm run wakatime
+      - name: Pull GitHub Data
+        run: npm run github
       - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v1
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
-        uses: actions/upload-pages-artifact@v2
         with:
-          path: 'out/'
-      - name: Deploy to GitHub Pages
+          path: "src/"
+      - name: Deploy to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
         uses: actions/deploy-pages@v2
-        
-        
