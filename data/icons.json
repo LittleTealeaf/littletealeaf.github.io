@@ -9,6 +9,16 @@
   "R": "nf-seti-r",
   "SCSS": "nf-dev-sass",
   "SASS": "nf-dev-sass",
-  "HTML": "nf-dev-html5",
-  "Dart": "nf-dev-dart"
+  "HTML": "nf-seti-html",
+	"XML": "nf-md-xml",
+  "Dart": "nf-dev-dart",
+	"Lua": "nf-md-language_lua",
+	"Vim Script": "nf-custom-vim",
+	"Kotlin": "nf-seti-kotlin",
+	"C": "nf-md-language_c",
+	"C++": "nf-md-language_cpp",
+	"C#": "nf-md-language-csharp",
+	"Go": "nf-md-language_go",
+	"TypeScript": "nf-seti-typescript",
+	"Markdown": "nf-dev-markdown"
 }

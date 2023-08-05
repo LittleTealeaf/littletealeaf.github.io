@@ -1,393 +1,386 @@
 <!DOCTYPE html>
 <html>
-  <!-- So you're trying to find THE THING.. Well, you won't find it here... Or will you?-->
+	<!-- So you're trying to find THE THING.. Well, you won't find it here... Or will you?-->
 
-  <head>
-    <title>Thomas Kwashnak</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <script src="scripts/util.js"></script>
-    <script src="scripts/script.js" async></script>
-    <script src="scripts/sections/home.js" defer></script>
-    <script src="scripts/sections/about.js" defer></script>
-    <script src="scripts/header.js" defer></script>
-    <script src="scripts/sections/stats.js" defer></script>
-    <script src="scripts/sections/projects.js" defer></script>
-  </head>
+	<head>
+		<title>Thomas Kwashnak</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="scripts/util.js"></script>
+		<script src="scripts/script.js" async></script>
+		<script src="scripts/sections/home.js" defer></script>
+		<script src="scripts/sections/about.js" defer></script>
+		<script src="scripts/header.js" defer></script>
+		<script src="scripts/sections/stats.js" defer></script>
+		<script src="scripts/sections/projects.js" defer></script>
+	</head>
 
-  <body data-theme="macchiato">
-    <section id="home">
-      <div class="taskbar">
-        <div class="space"></div>
-        <div class="clock noselect"></div>
-        <div class="theme-dropdown noselect" data-open="false">
-          <a class="nf nf-fae-palette_color icon"></a>
-          <div class="dropdown">
-            <div class="dropdown-content"></div>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="window">
-          <div class="prompt">
-            <span class="user">tea@github.io</span>
-            <span class="location">~</span
-            ><span class="nf nf-oct-chevron_right"></span>
-            <span class="command">neofetch</span>
-          </div>
-          <div class="neofetch">
-            <div class="image">
-              <img src="images/profile.webp" alt="My Profile Picture" />
-            </div>
-            <div class="info">
-              <div class="title">Thomas Kwashnak</div>
-              <hr />
-              <div class="entry">
-                <span class="label">School</span>: Quinnipiac University
-              </div>
-              <div class="entry">
-                <span class="label">Graduation</span>: 2024
-              </div>
-              <div class="entry">
-                <span class="label">Majors</span>: Computer Science, Data
-                Science
-              </div>
-              <div class="entry">
-                <span class="label">Minor</span>: Economics
-              </div>
-              <div class="entry">
-                <span class="label">Languages</span>:
-                <span class="nf nf-dev-rust"></span>
-                <span class="nf nf-dev-python"></span>
-              </div>
-              <div class="entry">
-                <span class="label">Editor</span>:
-                <span class="nf nf-dev-vim"></span>
-                <span class="nf nf-md-microsoft_visual_studio_code"></span>
-              </div>
-              <div class="entry">
-                <span class="label">System</span>:
-                <span class="nf nf-linux-pop_os"></span>
-                <span class="nf nf-dev-windows"></span>
-              </div>
-            </div>
-          </div>
-          <div class="prompt">
-            <span class="user">tea@github.io</span>
-            <span class="location">~</span
-            ><span class="nf nf-oct-chevron_right"></span>
-            <span class="cursor">▋</span>
-          </div>
-        </div>
-      </div>
-      <div class="dock-container">
-        <nav class="dock noselect">
-          <div class="item">
-            <div class="hint">
-              <div>
-                <span>About</span>
-              </div>
-            </div>
-            <a href="#about">
-              <div class="nf nf-fa-question_circle"></div>
-            </a>
-          </div>
-          <div class="item">
-            <div class="hint">
-              <div>
-                <span>Stats</span>
-              </div>
-            </div>
-            <a href="#stats">
-              <div class="nf nf-md-equalizer"></div>
-            </a>
-          </div>
-          <div class="item">
-            <div class="hint">
-              <div>
-                <span>Projects</span>
-              </div>
-            </div>
-            <a href="#projects">
-              <div class="nf nf-fa-folder"></div>
-            </a>
-          </div>
-          <div class="item">
-            <div class="hint">
-              <div>
-                <span>Resume</span>
-              </div>
-            </div>
-            <a href="#resume">
-              <div class="nf nf-md-briefcase_clock"></div>
-            </a>
-          </div>
-          <div class="item">
-            <div class="hint">
-              <div>
-                <span>Contact</span>
-              </div>
-            </div>
-            <a href="#contact">
-              <div class="nf nf-md-send"></div>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </section>
-    <header data-visible="false">
-      <a class="title" href="#home">Thomas Kwashnak</a>
-      <nav>
-        <div class="item">
-          <a href="#about">About</a>
-        </div>
-        <div class="item">
-          <a href="#stats">Stats</a>
-        </div>
-        <div class="item">
-          <a href="#projects">Projects</a>
-        </div>
-        <div class="item">
-          <a href="#resume">Resume</a>
-        </div>
-        <div class="item">
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-    </header>
-    <section id="about">
-      <!-- TODO: Rewrite / update complete with new images -->
-      <div class="title">Who am I</div>
-      <div class="container">
-        <div class="entry" data-height="0.8">Hi!</div>
-        <div class="entry">I'm Thomas Kwashnak</div>
-        <div class="entry left">
-          <img src="images/about/professional.webp" />
-        </div>
-        <div class="entry" data-height="0.8">Yup! That's me!</div>
-        <div class="entry" data-height="0.6">
-          I'm a Computer Science and Data Science Major at Quinnipiac
-          University, Graduating in 2024
-        </div>
-        <div class="entry left"><img src="images/about/quinnipiac.webp" /></div>
-        <div class="entry" data-height="0.7">
-          I've always loved to code. Algorithms and efficient code are some of
-          my favorite topics. I've been very interested in algorithms and
-          machine learning, which I've been teaching myself on the side. Some of
-          my othe...
-        </div>
-        <div class="entry left" data-height="0.75">
-          <img src="images/about/code.webp" />
-        </div>
-        <div class="entry" data-height="0.6">
-          ... Not that one yet! I was talking about career interests, not
-          personal interests.
-        </div>
-        <div class="entry left">Oh, sorry.</div>
-        <div class="entry">
-          Agh, I guess it'll work. Anyways, as the image depicts, I like to code
-          in Neovim. I've spent... <b><i>some</i></b> time working on my
-          configuration.
-        </div>
-        <div class="entry left">
-          You've done a bit more than <i><b>SOME</b></i>
-        </div>
-        <div class="entry">
-          <i>shhh...</i> I like to think it's not what tools you use, but how
-          well you know those tools...
-        </div>
-        <div class="entry left">
-          Dude, you've spent <span id="dotfiles-time"></span> on your dotfiles.
-          It's insane.
-        </div>
-        <div class="entry">Has it been that much?!</div>
-        <div class="entry">
-          I guess it has! If you want to see what I daily drive with, here's the
-          link to my
-          <a href="https://www.github.com/LittleTealeaf/dotfiles">dotfiles</a>
-        </div>
-        <div class="entry">
-          I love open source technology a lot. I had the unique opportunity to
-          grow up using Linux, and I haven't strayed far from that path.
-        </div>
-        <div class="entry">
-          And I think that wraps it up, feel free to explore the websit-
-        </div>
-        <div class="entry left">-but what about <i>the thing</i></div>
-        <div class="entry">
-          <i
-            >Nonsense, that's for them to find out and us to sit back and enjoy
-            the show!</i
-          >
-        </div>
-        <div class="entry">
-          As I was saying before I was rudely interrupted, feel free to explore
-          the website!
-        </div>
-        <div class="entry left"><i>This better be worth it</i></div>
-        <div class="entry"><i>Oh.. it will.. when they find it</i></div>
-      </div>
-    </section>
-    <section id="stats">
-      <div class="container">
-        <div class="tabs noselect">
-          <div class="tab" data-range="last_7_days" data-selected="true">
-            <div>Last Week</div>
-          </div>
-          <div class="tab" data-range="last_30_days">
-            <div>Last Month</div>
-          </div>
-          <div class="tab" data-range="last_year">
-            <div>Last Year</div>
-          </div>
-          <div class="tab" data-range="all_time">
-            <div>All Time</div>
-          </div>
-        </div>
-        <div class="stats">
-          <table
-            data-content="languages"
-            data-name="Languages"
-            data-rows="5"
-          ></table>
-          <table
-            data-content="editors"
-            data-name="Editors"
-            data-rows="5"
-          ></table>
-          <table
-            data-content="operating_systems"
-            data-name="Operating Systems"
-            data-rows="3"
-          ></table>
-        </div>
-      </div>
-    </section>
-    <section id="projects">
-      <div class="title">Projects</div>
-      <div class="projects">
-        <div
-          class="project"
-          data-github="LittleTealeaf/littletealeaf.github.io"
-        >
-          <a class="summary">
-            <div class="name">littletealeaf.github.io</div>
-            <div class="chip">Current</div>
-            <div class="space"></div>
-            <div class="icons"></div>
-          </a>
-          <div class="content">
-            <img src="images/projects/littletealeaf.webp" />
-            <div class="links">
-              <a href="." class="link"
-                ><span class="nf nf-md-web"></span> Website</a
-              >
-              <a
-                href="https://www.github.com/LittleTealeaf/littletealeaf.github.io"
-                ><span class="nf nf-md-github"></span> GitHub</a
-              >
-            </div>
-            <p>You're looking straight at it... Yay!</p>
-            <p>
-              But seriously, this project has been on-going for a while. I've
-              made many different versions and just never got to one that I
-              liked enough to continue building. I'm surprised I've gotten this
-              far with this version!
-            </p>
-            <p>
-              This website is <i>currently</i> built using just good old HTML,
-              CSS, and JavaScript, all hosted on Github Pages. I'm using Python
-              to fetch some of the data in GitHub Actions on a daily basis, so
-              that <i>you</i> don't get my secret keys!
-            </p>
-          </div>
-        </div>
-        <div class="project" data-github="LittleTealeaf/mlcube">
-          <a class="summary">
-            <div class="name">MlCube</div>
-            <div class="chip">Current</div>
-            <div class="space"></div>
-            <div class="icons"></div>
-          </a>
-          <div class="content">
-            <div class="links">
-              <a href="https://www.github.com/LittleTealeaf/mlcube"
-                ><span class="nf nf-md-github"></span> GitHub</a
-              >
-            </div>
-            <p>
-              This is an on-going project that I've been working on to teach
-              myself Machine Learning, specifically Deep-Q Learning.
-            </p>
-          </div>
-        </div>
-        <div class="project" data-github="LittleTealeaf/ddo-build-planner">
-          <a class="summary">
-            <div class="name">DDO Build Planner</div>
-            <div class="chip">Current</div>
-            <div class="space"></div>
-            <div class="icons"></div>
-          </a>
-          <div class="content">
-            <div class="links">
-              <a href="https://www.github.com/LittleTealeaf/ddo-build-planner"
-                ><span class="nf nf-md-github"></span> GitHub</a
-              >
-            </div>
-            <p>
-              Dungeons & Dragons Online is a game I love to play, and one of the
-              itches I've had is that the current player-built build-planners
-              are slow and sometimes inaccurate. This is why I've decided to
-              start working on my own version.
-            </p>
-            <p>
-              As I've started to love working in Rust, I've decided to make this
-              application in Rust. I've also decided to build it with efficiency
-              in mind, specifically avoiding needing to load data files
-              separately from the executable.
-            </p>
-          </div>
-        </div>
-        <div class="project" data-github="LittleTealeaf/DS-210-Final">
-          <a class="summary">
-            <div class="name">DS-210 Final</div>
-            <div class="space"></div>
-            <div class="icons"></div>
-          </a>
-          <div class="content">
-            <div class="links">
-              <a
-                href="https://www.github.com/LittleTealeaf/DS-210-Final/blob/main/report/report.pdf"
-                target="_blank"
-                ><span class="nf nf-md-file_document"></span> Report</a
-              >
-              <a href="https://www.github.com/LittleTealeaf/DS-210-Final"
-                ><span class="nf nf-md-github"></span> GitHub</a
-              >
-            </div>
-            <p>
-              My final project for my DS-210 course in "Algorithms for Data
-              Science". In this project, I created a simple neural network from
-              the ground up to predict which player would win in a given state
-              of the Connect-4 Game. I created this using Python and the python
-              library NumPy.
-            </p>
-            <p>
-              Note that this means I did not use any machine learning library
-              such as TensorFlow or PyTorch. Instead, I hand-calculated each of
-              the derivatives and constructed an algorithm to manually calculate
-              the shifts in weights and biases to train the network. This
-              hands-on approach taught me the intricacies of neural networks,
-              and piqued my interest in machine learning in the future.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="resume">
-      <div class="fake-content"></div>
-      In Construction... Resume and contact will be out soon!
-    </section>
-    <section id="contact"></section>
-  </body>
+	<body data-theme="macchiato">
+		<section id="home">
+			<div class="taskbar">
+				<div class="space"></div>
+				<div class="clock noselect"></div>
+				<div class="theme-dropdown noselect" data-open="false">
+					<a class="nf nf-fae-palette_color icon"></a>
+					<div class="dropdown">
+						<div class="dropdown-content"></div>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="window">
+					<div class="prompt">
+						<span class="user">tea@github.io</span>
+						<span class="location">~</span><span class="nf nf-oct-chevron_right"></span>
+						<span class="command">neofetch</span>
+					</div>
+					<div class="neofetch">
+						<div class="image">
+							<img src="images/profile.webp" alt="My Profile Picture" />
+						</div>
+						<div class="info">
+							<div class="title">Thomas Kwashnak</div>
+							<hr />
+							<div class="entry">
+								<span class="label">School</span>: Quinnipiac University
+							</div>
+							<div class="entry">
+								<span class="label">Graduation</span>: 2024
+							</div>
+							<div class="entry">
+								<span class="label">Majors</span>: Computer Science, Data
+								Science
+							</div>
+							<div class="entry">
+								<span class="label">Minor</span>: Economics
+							</div>
+							<div class="entry">
+								<span class="label">Languages</span>:
+								<span class="nf nf-dev-rust"></span>
+								<span class="nf nf-dev-python"></span>
+							</div>
+							<div class="entry">
+								<span class="label">Editor</span>:
+								<span class="nf nf-dev-vim"></span>
+								<span class="nf nf-md-microsoft_visual_studio_code"></span>
+							</div>
+							<div class="entry">
+								<span class="label">System</span>:
+								<span class="nf nf-linux-pop_os"></span>
+								<span class="nf nf-dev-windows"></span>
+							</div>
+						</div>
+					</div>
+					<div class="prompt">
+						<span class="user">tea@github.io</span>
+						<span class="location">~</span><span class="nf nf-oct-chevron_right"></span>
+						<span class="cursor">▋</span>
+					</div>
+				</div>
+			</div>
+			<div class="dock-container">
+				<nav class="dock noselect">
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>About</span>
+							</div>
+						</div>
+						<a href="#about">
+							<div class="nf nf-fa-question_circle"></div>
+						</a>
+					</div>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Stats</span>
+							</div>
+						</div>
+						<a href="#stats">
+							<div class="nf nf-md-equalizer"></div>
+						</a>
+					</div>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Projects</span>
+							</div>
+						</div>
+						<a href="#projects">
+							<div class="nf nf-fa-folder"></div>
+						</a>
+					</div>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Resume</span>
+							</div>
+						</div>
+						<a href="#resume">
+							<div class="nf nf-md-briefcase_clock"></div>
+						</a>
+					</div>
+					<div class="item">
+						<div class="hint">
+							<div>
+								<span>Contact</span>
+							</div>
+						</div>
+						<a href="#contact">
+							<div class="nf nf-md-send"></div>
+						</a>
+					</div>
+				</nav>
+			</div>
+		</section>
+		<header data-visible="false">
+			<a class="title" href="#home">Thomas Kwashnak</a>
+			<nav>
+				<div class="item">
+					<a href="#about">About</a>
+				</div>
+				<div class="item">
+					<a href="#stats">Stats</a>
+				</div>
+				<div class="item">
+					<a href="#projects">Projects</a>
+				</div>
+				<div class="item">
+					<a href="#resume">Resume</a>
+				</div>
+				<div class="item">
+					<a href="#contact">Contact</a>
+				</div>
+			</nav>
+		</header>
+		<section id="about">
+			<!-- TODO: Rewrite / update complete with new images -->
+			<div class="title">Who am I</div>
+			<div class="container">
+				<div class="entry" data-height="0.8">Hi!</div>
+				<div class="entry">I'm Thomas Kwashnak</div>
+				<div class="entry left">
+					<img src="images/about/professional.webp" />
+				</div>
+				<div class="entry" data-height="0.8">Yup! That's me!</div>
+				<div class="entry" data-height="0.6">
+					I'm a Computer Science and Data Science Major at Quinnipiac
+					University, Graduating in 2024
+				</div>
+				<div class="entry left"><img src="images/about/quinnipiac.webp" /></div>
+				<div class="entry" data-height="0.7">
+					I've always loved to code. Algorithms and efficient code are some of
+					my favorite topics. I've been very interested in algorithms and
+					machine learning, which I've been teaching myself on the side. Some of
+					my othe...
+				</div>
+				<div class="entry left" data-height="0.75">
+					<img src="images/about/code.webp" />
+				</div>
+				<div class="entry" data-height="0.6">
+					... Not that one yet! I was talking about career interests, not
+					personal interests.
+				</div>
+				<div class="entry left">Oh, sorry.</div>
+				<div class="entry">
+					Agh, I guess it'll work. Anyways, as the image depicts, I like to code
+					in Neovim. I've spent... <b><i>some</i></b> time working on my
+					configuration.
+				</div>
+				<div class="entry left">
+					You've done a bit more than <i><b>SOME</b></i>
+				</div>
+				<div class="entry">
+					<i>shhh...</i> I like to think it's not what tools you use, but how
+					well you know those tools...
+				</div>
+				<div class="entry left">
+					Dude, you've spent <span id="dotfiles-time"></span> on your dotfiles.
+					It's insane.
+				</div>
+				<div class="entry">Has it been that much?!</div>
+				<div class="entry">
+					I guess it has! If you want to see what I daily drive with, here's the
+					link to my
+					<a href="https://www.github.com/LittleTealeaf/dotfiles">dotfiles</a>
+				</div>
+				<div class="entry">
+					I love open source technology a lot. I had the unique opportunity to
+					grow up using Linux, and I haven't strayed far from that path.
+				</div>
+				<div class="entry">
+					And I think that wraps it up, feel free to explore the websit-
+				</div>
+				<div class="entry left">-but what about <i>the thing</i></div>
+				<div class="entry">
+					<i>Nonsense, that's for them to find out and us to sit back and enjoy
+						the show!</i>
+				</div>
+				<div class="entry">
+					As I was saying before I was rudely interrupted, feel free to explore
+					the website!
+				</div>
+				<div class="entry left"><i>This better be worth it</i></div>
+				<div class="entry"><i>Oh.. it will.. when they find it</i></div>
+			</div>
+		</section>
+		<section id="stats">
+			<div class="container">
+				<div class="tabs noselect">
+					<div class="tab" data-range="last_7_days" data-selected="true">
+						<div>Last Week</div>
+					</div>
+					<div class="tab" data-range="last_30_days">
+						<div>Last Month</div>
+					</div>
+					<div class="tab" data-range="last_year">
+						<div>Last Year</div>
+					</div>
+					<div class="tab" data-range="all_time">
+						<div>All Time</div>
+					</div>
+				</div>
+				<div class="stats">
+					<table data-content="languages" data-name="Languages" data-rows="5"></table>
+					<table data-content="editors" data-name="Editors" data-rows="5"></table>
+					<table data-content="operating_systems" data-name="Operating Systems" data-rows="3"></table>
+				</div>
+			</div>
+		</section>
+		<section id="projects">
+			<div class="title">Projects</div>
+			<div class="projects">
+				<div class="project" data-github="LittleTealeaf/littletealeaf.github.io">
+					<a class="summary">
+						<div class="name">littletealeaf.github.io</div>
+						<div class="chip">Current</div>
+						<div class="space"></div>
+						<div class="icons"></div>
+					</a>
+					<div class="content">
+						<img src="images/projects/littletealeaf.webp" />
+						<div class="links">
+							<a href="." class="link"><span class="nf nf-md-web"></span> Website</a>
+							<a href="https://www.github.com/LittleTealeaf/littletealeaf.github.io"><span
+									class="nf nf-md-github"></span> GitHub</a>
+						</div>
+						<p>You're looking straight at it... Yay!</p>
+						<p>
+							But seriously, this project has been on-going for a while. I've
+							made many different versions and just never got to one that I
+							liked enough to continue building. I'm surprised I've gotten this
+							far with this version!
+						</p>
+						<p>
+							This website is <i>currently</i> built using just good old HTML,
+							CSS, and JavaScript, all hosted on Github Pages. I'm using Python
+							to fetch some of the data in GitHub Actions on a daily basis, so
+							that <i>you</i> don't get my secret keys!
+						</p>
+					</div>
+				</div>
+				<div class="project" data-github="LittleTealeaf/mlcube">
+					<a class="summary">
+						<div class="name">MlCube</div>
+						<div class="chip">Current</div>
+						<div class="space"></div>
+						<div class="icons"></div>
+					</a>
+					<div class="content">
+						<div class="links">
+							<a href="https://www.github.com/LittleTealeaf/mlcube"><span class="nf nf-md-github"></span> GitHub</a>
+						</div>
+						<p>
+							This is an on-going project that I've been working on to teach
+							myself Machine Learning, specifically Deep-Q Learning.
+						</p>
+					</div>
+				</div>
+				<div class="project" data-github="LittleTealeaf/ddo-build-planner">
+					<a class="summary">
+						<div class="name">DDO Build Planner</div>
+						<div class="chip">Current</div>
+						<div class="space"></div>
+						<div class="icons"></div>
+					</a>
+					<div class="content">
+						<div class="links">
+							<a href="https://www.github.com/LittleTealeaf/ddo-build-planner"><span class="nf nf-md-github"></span>
+								GitHub</a>
+						</div>
+						<p>
+							Dungeons & Dragons Online is a game I love to play, and one of the
+							itches I've had is that the current player-built build-planners
+							are slow and sometimes inaccurate. This is why I've decided to
+							start working on my own version.
+						</p>
+						<p>
+							As I've started to love working in Rust, I've decided to make this
+							application in Rust. I've also decided to build it with efficiency
+							in mind, specifically avoiding needing to load data files
+							separately from the executable.
+						</p>
+					</div>
+				</div>
+				<div class="project" data-github="LittleTealeaf/dotfiles">
+					<div class="summary">
+						<div class="name">dotfiles</div>
+						<div class="chip">Current</div>
+						<div class="space"></div>
+						<div class="icons"></div>
+					</div>
+					<div class="content">
+						<div class="links">
+							<a href="https://www.github.com/LittleTealeaf/dotfiles" target="_blank"><span
+									class="nf nf-md-github"></span> GitHub</a>
+						</div>
+						<p>
+							As stated earlier, this is a project I've spent a
+							<i>little</i> too much on, but it's worth it. As some might know
+							from my <a href="#stats">stats</a>, I use NeoVim as my primary
+							text editor. This repository contains the configuration files I
+							have for NeoVim, as well as any other tool I use, all in one
+							repository.
+						</p>
+					</div>
+				</div>
+				<div class="project" data-github="LittleTealeaf/DS-210-Final">
+					<a class="summary">
+						<div class="name">DS-210 Final</div>
+						<div class="space"></div>
+						<div class="icons"></div>
+					</a>
+					<div class="content">
+						<div class="links">
+							<a href="https://www.github.com/LittleTealeaf/DS-210-Final/blob/main/report/report.pdf"
+								target="_blank"><span class="nf nf-md-file_document"></span> Report</a>
+							<a href="https://www.github.com/LittleTealeaf/DS-210-Final"><span class="nf nf-md-github"></span>
+								GitHub</a>
+						</div>
+						<p>
+							My final project for my DS-210 course in "Algorithms for Data
+							Science". In this project, I created a simple neural network from
+							the ground up to predict which player would win in a given state
+							of the Connect-4 Game. I created this using Python and the python
+							library NumPy.
+						</p>
+						<p>
+							Note that this means I did not use any machine learning library
+							such as TensorFlow or PyTorch. Instead, I hand-calculated each of
+							the derivatives and constructed an algorithm to manually calculate
+							the shifts in weights and biases to train the network. This
+							hands-on approach taught me the intricacies of neural networks,
+							and piqued my interest in machine learning in the future.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="resume">
+			<div class="fake-content"></div>
+			In Construction... Resume and contact will be out soon!
+		</section>
+		<section id="contact"></section>
+	</body>
+
 </html>

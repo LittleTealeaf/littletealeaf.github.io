@@ -41,10 +41,13 @@ repos = {str(project['data-github']) for project in projects}
 repo_data = {}
 
 for repo in repos:
+    print(f"Getting data for {repo}")
     data = {}
 
     github_data = request(f'https://api.github.com/repos/{repo}')
-    data['languages'] = [icon_map[lang] for lang in request(github_data['languages_url']).keys() if lang in icon_map]
+    languages = request(github_data['languages_url']).keys()
+    [print(f'No Icon for {lang}') for lang in languages if lang not in icon_map]
+    data['languages'] = [icon_map[lang] for lang in languages if lang in icon_map]
 
     repo_data[repo] = data
 
