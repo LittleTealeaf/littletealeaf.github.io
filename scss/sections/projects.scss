@@ -10,18 +10,33 @@
   }
 
   .project {
-		max-width: 125vh;
+    max-width: 125vh;
     box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
     transform: translateY(-5px);
     margin: 12px auto;
 
     transition: 0.2s;
 
+    img {
+      width: 100%;
+    }
+
+		.chip {
+			margin-inline: 10px;
+			font-size: 0.7em;
+			padding: 3px;
+			background-color: $mantle;
+			border: 2px solid $surface0;
+			border-radius: 20px;
+		}
+
     .summary {
       background-color: $mantle;
       display: flex;
       cursor: pointer;
       padding: 5px;
+			align-items: center;
+			justify-content: center;
     }
 
     .icons {
@@ -36,8 +51,8 @@
       --extended-height: 0px;
       transition: 0.2s;
       max-height: calc(var(--extended-height));
-			padding: 10px 10px 10px 10px;
-			overflow: hidden;
+      padding: 10px 10px 10px 10px;
+      overflow: hidden;
 
       .links {
         display: flex;
