@@ -20,5 +20,6 @@
 	"C#": "nf-md-language-csharp",
 	"Go": "nf-md-language_go",
 	"TypeScript": "nf-seti-typescript",
-	"Markdown": "nf-dev-markdown"
+	"Markdown": "nf-dev-markdown",
+	"Jupyter Notebook": "nf-md-notebook"
 }
