@@ -2,11 +2,8 @@
 	const projects = document.querySelectorAll("#projects .project");
 
 	function update_extended_height(project) {
-				const content = project.querySelector(".content");
-				content.style.setProperty(
-					"--extended-height",
-					`${content.scrollHeight}px`
-				);
+		const content = project.querySelector(".content");
+		content.style.setProperty("--extended-height", `${content.scrollHeight}px`);
 	}
 
 	const github_promise = fetch("data/github.json")
@@ -29,32 +26,31 @@
 		.then((data) => {
 			projects.forEach((project) => {
 				const wakatime_data = data[project?.dataset?.wakatime || ""];
-				const wakatime = project.querySelector('.wakatime');
+				const wakatime = project.querySelector(".wakatime");
 
-
-				if(wakatime_data?.last_7_days != null) {
-					const last_7_days = document.createElement('div');
-					last_7_days.classList.add('chip');
+				if (wakatime_data?.last_7_days != null) {
+					const last_7_days = document.createElement("div");
+					last_7_days.classList.add("chip");
 					last_7_days.textContent = `${wakatime_data.last_7_days.text} past week`;
-					wakatime?.append(last_7_days)
+					wakatime?.append(last_7_days);
 				}
-				if(wakatime_data?.last_30_days != null) {
-					const element = document.createElement('div');
-					element.classList.add('chip');
+				if (wakatime_data?.last_30_days != null) {
+					const element = document.createElement("div");
+					element.classList.add("chip");
 					element.textContent = `${wakatime_data.last_30_days.text} past month`;
-					wakatime?.append(element)
+					wakatime?.append(element);
 				}
-				if(wakatime_data?.last_year != null) {
-					const element = document.createElement('div');
-					element.classList.add('chip');
+				if (wakatime_data?.last_year != null) {
+					const element = document.createElement("div");
+					element.classList.add("chip");
 					element.textContent = `${wakatime_data.last_year.text} past year`;
-					wakatime?.append(element)
+					wakatime?.append(element);
 				}
-				if(wakatime_data?.all_time != null) {
-					const all_time = document.createElement('div');
-					all_time.classList.add('chip');
+				if (wakatime_data?.all_time != null) {
+					const all_time = document.createElement("div");
+					all_time.classList.add("chip");
 					all_time.textContent = `${wakatime_data.all_time.text} total`;
-					wakatime?.append(all_time)
+					wakatime?.append(all_time);
 				}
 			});
 		});
@@ -80,7 +76,9 @@
 
 	Promise.all([github_promise, wakatime_promise]).then(() => {
 		addEventListener("resize", () => {
-			update_extended_height(document.querySelector('#projects .project[data-hide="false"]'))
+			update_extended_height(
+				document.querySelector('#projects .project[data-hide="false"]')
+			);
 		});
 	});
 }
