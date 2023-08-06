@@ -1,11 +1,48 @@
 @use "../node_modules/@catppuccin/palette/scss/catppuccin";
 
 @each $flavor, $colors in catppuccin.$palette {
-	body[data-theme=#{$flavor}] {
-		@each $key, $color in $colors {
-			--#{$key}: #{$color};
-		}
-	}
+  body[data-theme="#{$flavor}"] {
+    @each $key, $color in $colors {
+      --#{$key}: #{$color};
+    }
+  }
+}
+
+body[data-theme="loading"] {
+  --rosewater: black;
+  --flamingo: black;
+  --pink: black;
+  --mauve: black;
+  --red: black;
+  --maroon: black;
+  --peach: black;
+  --yellow: black;
+  --green: black;
+  --teal: black;
+  --sky: black;
+  --sapphire: black;
+  --blue: black;
+  --lavender: black;
+  --text: black;
+  --subtext1: black;
+  --subtext0: black;
+  --overlay2: black;
+  --overlay1: black;
+  --overlay0: black;
+  --surface2: black;
+  --surface1: black;
+  --surface0: black;
+  --base: black;
+  --mantle: black;
+  --crust: black;
+
+  img {
+    opacity: 0 !important;
+  }
+
+  hr {
+    border: none;
+  }
 }
 
 $rosewater: var(--rosewater);

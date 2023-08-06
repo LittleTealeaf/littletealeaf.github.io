@@ -45,8 +45,14 @@ function getCookie(cname) {
 	}
 
 	window.addEventListener("load", () => {
-		const cookie = getCookie("theme");
-		setTheme(cookie || (prefersLightTheme() && "latte") || "macchiato");
+		const key = ["k", "c", "i", "l", "c"].reverse().join("");
+		if (Number(sessionStorage.getItem(key)) >= 5) {
+			sessionStorage.setItem(key, 0);
+			document.body.dataset.theme = "loading";
+		} else {
+			const cookie = getCookie("theme");
+			setTheme(cookie || (prefersLightTheme() && "latte") || "macchiato");
+		}
 	});
 }
 
@@ -63,8 +69,7 @@ window.addEventListener("load", () => {
 			const section_rect = section?.getBoundingClientRect();
 
 			window.scrollTo({
-				top:
-					window?.scrollY + (section_rect?.y || 0) - (header_height || 0),
+				top: window?.scrollY + (section_rect?.y || 0) - (header_height || 0),
 				behavior: "smooth",
 			});
 		});
