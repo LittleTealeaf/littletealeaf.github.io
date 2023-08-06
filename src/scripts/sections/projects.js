@@ -31,12 +31,6 @@
 				const wakatime_data = data[project?.dataset?.wakatime || ""];
 				const wakatime = project.querySelector('.wakatime');
 
-				// if(wakatime_data?.all_time != null) {
-				// 	const all_time = document.createElement('div');
-				// 	all_time.classList.add('chip');
-				// 	all_time.textContent = `${wakatime_data.all_time.text} spent`;
-				// 	wakatime?.append(all_time)
-				// }
 
 				if(wakatime_data?.last_7_days != null) {
 					const last_7_days = document.createElement('div');
@@ -55,6 +49,12 @@
 					element.classList.add('chip');
 					element.textContent = `${wakatime_data.last_year.text} past year`;
 					wakatime?.append(element)
+				}
+				if(wakatime_data?.all_time != null) {
+					const all_time = document.createElement('div');
+					all_time.classList.add('chip');
+					all_time.textContent = `${wakatime_data.all_time.text} total`;
+					wakatime?.append(all_time)
 				}
 			});
 		});
