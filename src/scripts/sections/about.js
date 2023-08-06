@@ -48,10 +48,10 @@
 	const dotfiles_time = document.getElementById("dotfiles-time");
 
 	if (dotfiles_time) {
-		fetch("data/wakatime/dotfiles_time.json")
+		fetch("data/wakatime/projects.json")
 			.then((res) => res.json())
 			.then((data) => {
-				dotfiles_time.innerText = `${data.hours} hours`;
+				dotfiles_time.innerText = `${data?.dotfiles?.all_time?.hours} hours`;
 			});
 	}
 }

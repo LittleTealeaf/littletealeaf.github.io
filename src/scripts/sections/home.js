@@ -43,7 +43,7 @@
 
 	const clock = document.querySelector("#home .clock");
 
-	if(!clock) {
+	if (!clock) {
 		throw new Error("Could not find Clock");
 	}
 
@@ -51,7 +51,10 @@
 		const date = new Date();
 
 		clock.innerText = date.toLocaleString("en-us", {
-			month: "short", day: "2-digit", hour: "numeric", minute: "numeric"
+			month: "short",
+			day: "2-digit",
+			hour: "numeric",
+			minute: "numeric",
 		});
 
 		const interval = (60 - date.getSeconds()) * 1000 + 5;

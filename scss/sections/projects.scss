@@ -29,6 +29,11 @@
 			border: 2px solid $surface0;
 			border-radius: 20px;
 		}
+		
+		.wakatime {
+			display: flex;
+			flex-wrap: wrap;
+		}
 
     .summary {
       background-color: $mantle;

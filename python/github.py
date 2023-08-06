@@ -30,7 +30,7 @@ with open('data/icons.json') as file:
     icon_map = json.load(file)
 
 # Include ones needed for projects
-projects = soup.select('#projects .project')
+projects = soup.select('#projects [data-github]')
 repos = {str(project['data-github']) for project in projects}
 
 
