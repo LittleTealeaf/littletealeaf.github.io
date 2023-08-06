@@ -21,5 +21,6 @@
 	"Go": "nf-md-language_go",
 	"TypeScript": "nf-seti-typescript",
 	"Markdown": "nf-dev-markdown",
-	"Jupyter Notebook": "nf-md-notebook"
+	"Jupyter Notebook": "nf-md-notebook",
+	"Ruby": "nf-dev-ruby"
 }
