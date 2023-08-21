@@ -6,21 +6,21 @@
 @import "sections/projects.scss";
 @import "sections/about.scss";
 @import "sections/stats.scss";
+@import "sections/contact.scss";
 @import "header.scss";
 
-
 body {
-	background-color: $base;
-	color: $text;
-	font-family: "Fira Code";
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-	overflow-x: hidden;
-	@include noscrollbar;
+  background-color: $base;
+  color: $text;
+  font-family: "Fira Code";
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  @include noscrollbar;
 }
 
 a {
-	text-decoration: none;
-	color: $text;
+  text-decoration: none;
+  color: $text;
 }

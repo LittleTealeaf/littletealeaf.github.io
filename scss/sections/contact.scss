@@ -1,0 +1,32 @@
+#contact {
+  margin-top: 20vh;
+  margin-bottom: 70vh;
+  .title {
+    width: 100%;
+    font-size: 3vh;
+    text-align: center;
+  }
+
+  a {
+    display: block;
+  }
+
+  .contacts {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    margin: 50px auto;
+  }
+
+  .entry {
+    font-size: 3vh;
+
+    transition: all 0.2s;
+
+    &:hover {
+      color: $blue;
+      transform: translateY(-5px);
+    }
+  }
+}
