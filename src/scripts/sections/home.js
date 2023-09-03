@@ -1,6 +1,6 @@
 {
 	let content = document.querySelector(
-		"#home .theme-dropdown .dropdown-content"
+		"#home .theme-dropdown .dropdown-content",
 	);
 
 	if (!content) {
@@ -8,6 +8,13 @@
 	}
 
 	window.addEventListener("load", () => {
+		setTimeout(
+			() =>
+				document.body.dataset.theme == "loading" &&
+				confirm("Error 418: I'm a Teapot") &&
+				location.reload(),
+			100,
+		);
 		for (const theme of THEMES) {
 			const entry = document.createElement("a");
 			entry.addEventListener("click", () => {

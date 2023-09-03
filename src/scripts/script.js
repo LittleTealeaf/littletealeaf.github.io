@@ -3,7 +3,7 @@ const THEMES = ["latte", "frappe", "macchiato", "mocha"];
 function setTheme(theme) {
 	if (!THEMES.includes(theme)) {
 		console.error(
-			"Invalid Theme, Expected one of [latte, frappe, macchiato, mocha]"
+			"Invalid Theme, Expected one of [latte, frappe, macchiato, mocha]",
 		);
 		return;
 	}
