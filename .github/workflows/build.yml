@@ -31,7 +31,7 @@ jobs:
         id: checkout
         with:
           ref: ${{github.event.pull_request.head.sha}}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         name: Setup Node
         with:
           cache: "npm"
