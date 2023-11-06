@@ -18,12 +18,14 @@ github_headers = {"Authorization": f"Bearer {os.getenv('API_GITHUB')}"}
 
 request_cache = {}
 
+
 def request(url):
     if url not in request_cache:
         data = requests.get(url, headers=github_headers).json()
         request_cache[repo] = data
         return data
     return request_cache[url]
+
 
 icon_map = {}
 with open('data/icons.json') as file:
@@ -37,7 +39,6 @@ repos = {str(project['data-github']) for project in projects}
 # Add any other needed here
 
 
-
 repo_data = {}
 
 for repo in repos:
@@ -46,8 +47,10 @@ for repo in repos:
 
     github_data = request(f'https://api.github.com/repos/{repo}')
     languages = request(github_data['languages_url']).keys()
-    [print(f'No Icon for {lang}') for lang in languages if lang not in icon_map]
-    data['languages'] = [icon_map[lang] for lang in languages if lang in icon_map]
+    [print(f'No Icon for {lang}')
+     for lang in languages if lang not in icon_map]
+    data['languages'] = [icon_map[lang]
+                         for lang in languages if lang in icon_map]
 
     repo_data[repo] = data
 
@@ -63,4 +66,4 @@ with open(os.path.join('src', 'data', 'github.json'), 'w') as file:
 #
 # with open(os.path.join('src','data','projects_github.json'), 'w') as file:
 #     file.write(json.dumps(project_data))
-#     
+#
