@@ -21,8 +21,8 @@ os.makedirs(os.path.join("src", "data", "wakatime"), exist_ok=True)
 params = {"api_key": os.getenv("WAKA_TOKEN")}
 
 html = ""
-with open(os.path.join("src", "index.html")) as file:
-    html = file.read()
+with open(os.path.join("src", "index.html")) as f:
+    html = f.read()
 
 soup = BeautifulSoup(html)
 
@@ -82,8 +82,8 @@ for stats_range in ["all_time", "last_7_days", "last_30_days", "last_year"]:
 
     with open(
         os.path.join("src", "data", "wakatime", f"{stats_range}.json"), "w"
-    ) as file:
-        file.write(json.dumps(data))
+    ) as f:
+        f.write(json.dumps(data))
 
-with open(os.path.join("src", "data", "wakatime", "projects.json"), "w") as file:
-    file.write(json.dumps(project_data))
+with open(os.path.join("src", "data", "wakatime", "projects.json"), "w") as f:
+    f.write(json.dumps(project_data))
