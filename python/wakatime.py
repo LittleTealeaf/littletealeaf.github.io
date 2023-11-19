@@ -5,12 +5,13 @@ import json
 import shutil
 import time
 
+print("Starting Script")
+
 if os.path.exists(".env"):
     print("Loading from dotenv")
     from dotenv import load_dotenv
 
     load_dotenv()
-
 
 export_path = os.path.join("src", "data", "wakatime")
 if os.path.exists(export_path):
