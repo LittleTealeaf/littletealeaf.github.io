@@ -43,15 +43,15 @@ jobs:
       - name: Install Node Dependencies
         run: npm i
       - name: Install Python Dependencies
-        run: npm run pip
+        run: pip install -r requirements.txt
       - name: Run Images Script
-        run: npm run images
+        run: python python/images.py
       - name: Generate CSS Files
         run: npm run css
       - name: Pull WakaTime Data
-        run: npm run wakatime
+        run: python python/wakatime.py
       - name: Pull GitHub Data
-        run: npm run github
+        run: python python/github.py
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v2
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
