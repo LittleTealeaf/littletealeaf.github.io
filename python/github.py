@@ -12,7 +12,7 @@ html = ""
 with open(os.path.join('src', 'index.html')) as file:
     html = file.read()
 
-soup = BeautifulSoup(html)
+soup = BeautifulSoup(html, 'html.parser')
 
 github_headers = {"Authorization": f"Bearer {os.getenv('API_GITHUB')}"}
 

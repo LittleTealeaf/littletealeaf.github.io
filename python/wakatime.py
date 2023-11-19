@@ -24,7 +24,7 @@ html = ""
 with open(os.path.join("src", "index.html")) as f:
     html = f.read()
 
-soup = BeautifulSoup(html)
+soup = BeautifulSoup(html, "html.parser")
 
 
 html_projects = {
@@ -42,8 +42,10 @@ for stats_range in ["all_time", "last_7_days", "last_30_days", "last_year"]:
     attempts = 0
 
     while not stats and attempts < 10:
+        print(f"Getting Request for {url}")
         response = requests.get(url, params=params)
 
+        print(f"Recieved Request")
         json_response = response.json()
 
         if "data" not in json_response:
@@ -51,9 +53,13 @@ for stats_range in ["all_time", "last_7_days", "last_30_days", "last_year"]:
             quit(1)
         data = json_response["data"]
 
+        print("Up to Date:", data["is_up_to_date"])
+        print("Status:", data["status"])
+
         if data["is_up_to_date"] and data["status"] == "ok":
             stats = data
             break
+
         print("Waiting 3 minutes before attempting again")
         time.sleep(180)
 
@@ -80,9 +86,7 @@ for stats_range in ["all_time", "last_7_days", "last_30_days", "last_year"]:
     data["operating_systems"] = stats["operating_systems"]
     data["editors"] = stats["editors"]
 
-    with open(
-        os.path.join("src", "data", "wakatime", f"{stats_range}.json"), "w"
-    ) as f:
+    with open(os.path.join("src", "data", "wakatime", f"{stats_range}.json"), "w") as f:
         f.write(json.dumps(data))
 
 with open(os.path.join("src", "data", "wakatime", "projects.json"), "w") as f:
