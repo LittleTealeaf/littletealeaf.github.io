@@ -1,12 +1,9 @@
-print("started")
 from bs4 import BeautifulSoup
 import requests
 import os
 import json
 import shutil
 import time
-
-print("Starting Script")
 
 if os.path.exists(".env"):
     print("Loading from dotenv")
@@ -58,8 +55,8 @@ for stats_range in ["all_time", "last_7_days", "last_30_days", "last_year"]:
         print("Up to Date:", data["is_up_to_date"])
         print("Status:", data["status"])
 
+        stats = data
         if data["is_up_to_date"] and data["status"] == "ok":
-            stats = data
             break
 
         print("Waiting 3 minutes before attempting again")
