@@ -59,4 +59,4 @@ jobs:
           path: "src/"
       - name: Deploy to Github Pages
         if: ${{github.event_name == 'push' || github.event_name == 'schedule'}}
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
