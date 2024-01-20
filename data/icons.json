@@ -22,5 +22,12 @@
 	"TypeScript": "nf-seti-typescript",
 	"Markdown": "nf-dev-markdown",
 	"Jupyter Notebook": "nf-md-notebook",
-	"Ruby": "nf-dev-ruby"
+	"Ruby": "nf-dev-ruby",
+	"Perl": "nf-dev-perl",
+	"Visual Basic .NET": "nf-md-dot_net",
+	"D": "nf-seti-d",
+	"Elm": "nf-seti-elm",
+	"Nim": "nf-seti-nim",
+	"Elixir": "nf-seti-elixir",
+	"Julia": "nf-seti-julia"
 }
