@@ -29,5 +29,6 @@
 	"Elm": "nf-seti-elm",
 	"Nim": "nf-seti-nim",
 	"Elixir": "nf-seti-elixir",
-	"Julia": "nf-seti-julia"
+	"Julia": "nf-seti-julia",
+	"Makefile": "nf-seti-makefile"
 }
