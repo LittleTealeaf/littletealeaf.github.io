@@ -30,5 +30,6 @@
 	"Nim": "nf-seti-nim",
 	"Elixir": "nf-seti-elixir",
 	"Julia": "nf-seti-julia",
-	"Makefile": "nf-seti-makefile"
+	"Makefile": "nf-seti-makefile",
+	"Cuda": "nf-seti-cu"
 }
