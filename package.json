@@ -9,7 +9,7 @@
 	},
 	"dependencies": {
 		"@catppuccin/palette": "^1.4.0",
-		"sass": "^1.79.3",
+		"sass": "^1.79.4",
 		"scss": "^0.2.4"
 	}
 }
