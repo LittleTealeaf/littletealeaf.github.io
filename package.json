@@ -8,7 +8,7 @@
 		"github": "python python/github.py"
 	},
 	"dependencies": {
-		"@catppuccin/palette": "^1.5.0",
+		"@catppuccin/palette": "^1.7.1",
 		"sass": "^1.80.4",
 		"scss": "^0.2.4"
 	}
