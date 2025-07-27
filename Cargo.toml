@@ -4,3 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.98"
+catppuccin = "2.5.1"
+grass = "0.13.4"
+itertools = "0.14.0"
+walkdir = "2.5.0"

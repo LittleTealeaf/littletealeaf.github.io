@@ -1,0 +1,26 @@
+.noselect {
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin noscrollbar {
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	-ms-overflow-style: none;
+	scrollbar-width: None;
+}
+
+.space {
+	flex-grow: 1;
+}
+
+@mixin outline {
+	outline: 1px solid red;
+}
+
+.fake-content {
+	height: 75vh;
+}

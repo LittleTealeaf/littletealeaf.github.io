@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Fira+Sans+Extra+Condensed&display=swap");
+@import url("https://www.nerdfonts.com/assets/css/webfont.css");
+
+body {
+  background-color: $base;
+  color: $text;
+  font-family: "Fira Code";
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+  @include noscrollbar;
+}
+
+a {
+  text-decoration: none;
+  color: $text;
+}
