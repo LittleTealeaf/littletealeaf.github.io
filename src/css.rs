@@ -41,26 +41,28 @@ fn get_color_definitions(colors: &[ColorName]) -> String {
     )
 }
 
-pub fn compile_css() -> Result<()> {
+pub fn compile_css() -> Result<String> {
     let path = [".", "res", "css"].into_iter().collect::<PathBuf>();
+
     let scss = WalkDir::new(path)
         .into_iter()
         .flatten()
         .filter(|e| e.file_type().is_file())
         .flat_map(|file| fs::read_to_string(file.path()))
+        .collect::<Vec<_>>()
+        .into_iter()
+        .rev()
         .collect::<String>();
-
-    println!("{}", scss);
 
     let used_colors = identify_used_colors(&scss).collect_vec();
 
     let theme_definition = get_color_definitions(&used_colors);
 
-    let scss = format!("{}{}", theme_definition, scss);
+    let scss = format!("{theme_definition}{scss}");
 
-    let css = grass::from_string(scss, &grass::Options::default())?;
+    let options = grass::Options::default().style(grass::OutputStyle::Compressed);
 
-    println!("{css}");
+    let css = grass::from_string(scss, &options)?;
 
-    Ok(())
+    Ok(css)
 }

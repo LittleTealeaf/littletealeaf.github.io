@@ -1,6 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Fira+Sans+Extra+Condensed&display=swap");
 @import url("https://www.nerdfonts.com/assets/css/webfont.css");
 
+@mixin outline {
+  outline: 1px solid red;
+}
+
+@mixin noscrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: None;
+}
+
 body {
   background-color: $base;
   color: $text;
@@ -15,4 +28,18 @@ body {
 a {
   text-decoration: none;
   color: $text;
+}
+
+.noselect {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.space {
+  flex-grow: 1;
+}
+
+.fake-content {
+  height: 75vh;
 }

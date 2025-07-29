@@ -3,6 +3,7 @@ src/style.css
 src/images
 src/data/**/*
 .env
+/out/
 
 
 # Added by cargo
