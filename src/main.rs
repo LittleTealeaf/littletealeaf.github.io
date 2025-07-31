@@ -10,9 +10,6 @@ fn main() -> anyhow::Result<()> {
 
     out.add_file("style.css", compile_css()?);
 
-
-    
-
     out.write(Path::new("./out"))?;
 
     Ok(())
